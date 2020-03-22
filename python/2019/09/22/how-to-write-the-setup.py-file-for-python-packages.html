@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>How to Write the setup.py File for Python Packages | Curiosity Notes</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="How to Write the setup.py File for Python Packages" />
+<meta name="author" content="Ziyue Li" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="An example and explanation of some minimum things to configure in the setup.py" />
+<meta property="og:description" content="An example and explanation of some minimum things to configure in the setup.py" />
+<link rel="canonical" href="https://feynlee.github.io/curiosity-notes/python/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html" />
+<meta property="og:url" content="https://feynlee.github.io/curiosity-notes/python/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html" />
+<meta property="og:site_name" content="Curiosity Notes" />
+<meta property="og:image" content="https://feynlee.github.io/curiosity-notes/images/posts/setup_python.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-09-22T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ziyue Li"},"description":"An example and explanation of some minimum things to configure in the setup.py","@type":"BlogPosting","headline":"How to Write the setup.py File for Python Packages","dateModified":"2019-09-22T00:00:00-05:00","datePublished":"2019-09-22T00:00:00-05:00","image":"https://feynlee.github.io/curiosity-notes/images/posts/setup_python.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/python/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html"},"url":"https://feynlee.github.io/curiosity-notes/python/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/curiosity-notes/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://feynlee.github.io/curiosity-notes/feed.xml" title="Curiosity Notes" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-161042973-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+<link rel="shortcut icon" type="image/x-icon" href="/curiosity-notes/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>How to Write the setup.py File for Python Packages | Curiosity Notes</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="How to Write the setup.py File for Python Packages" />
+<meta name="author" content="Ziyue Li" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="An example and explanation of some minimum things to configure in the setup.py" />
+<meta property="og:description" content="An example and explanation of some minimum things to configure in the setup.py" />
+<link rel="canonical" href="https://feynlee.github.io/curiosity-notes/python/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html" />
+<meta property="og:url" content="https://feynlee.github.io/curiosity-notes/python/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html" />
+<meta property="og:site_name" content="Curiosity Notes" />
+<meta property="og:image" content="https://feynlee.github.io/curiosity-notes/images/posts/setup_python.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-09-22T00:00:00-05:00" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ziyue Li"},"description":"An example and explanation of some minimum things to configure in the setup.py","@type":"BlogPosting","headline":"How to Write the setup.py File for Python Packages","dateModified":"2019-09-22T00:00:00-05:00","datePublished":"2019-09-22T00:00:00-05:00","image":"https://feynlee.github.io/curiosity-notes/images/posts/setup_python.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/python/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html"},"url":"https://feynlee.github.io/curiosity-notes/python/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://feynlee.github.io/curiosity-notes/feed.xml" title="Curiosity Notes" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-161042973-1','auto');ga('require','displayfeatures');ga('send','pageview');</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/curiosity-notes/">Curiosity Notes</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/curiosity-notes/about/">About Me</a><a class="page-link" href="/curiosity-notes/books/">Books</a><a class="page-link" href="/curiosity-notes/movies/">Movies</a><a class="page-link" href="/curiosity-notes/search/">Search</a><a class="page-link" href="/curiosity-notes/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">How to Write the setup.py File for Python Packages</h1><p class="page-description">An example and explanation of some minimum things to configure in the setup.py</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2019-09-22T00:00:00-05:00" itemprop="datePublished">
+        Sep 22, 2019
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Ziyue Li</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/curiosity-notes/categories/#python">python</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#basic-setup">Basic Setup</a></li>
+<li class="toc-entry toc-h2"><a href="#why-do-we-choose-the-src-structure">Why do we choose the “src” structure?</a></li>
+</ul><h2 id="basic-setup">
+<a class="anchor" href="#basic-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Setup</h2>
+
+<p>The documentation for the setup.py file is not very clear.
+And I think the quickest way to learn this is through an example, so here is an example of some of the minimum things to configure in the setup.py:</p>
+
+<p>If your folder structure is the following (see <a href="https://blog.ionelmc.ro/2014/05/25/python-packaging/#id13">here</a> for why this structure is preferred):</p>
+
+<pre><code class="language-plain">      - Project_folder
+      - src
+      - PACKAGE_NAME
+            - __init__.py
+            - data
+            - ...
+      - test
+      - setup.py
+</code></pre>
+
+<p>we can use the following setup.py.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+
+<span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">PACKAGE_NAME</span><span class="p">,</span>
+      <span class="n">maintainer</span><span class="o">=</span><span class="n">AUTHOR</span><span class="p">,</span>
+      <span class="n">version</span><span class="o">=</span><span class="n">PACKAGE_VERSION</span><span class="p">,</span>
+      <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="s">'pandas'</span><span class="p">,</span> <span class="s">'numpy'</span><span class="p">],</span>
+      <span class="n">package_dir</span><span class="o">=</span><span class="p">{</span><span class="s">''</span><span class="p">:</span> <span class="s">'src'</span><span class="p">},</span>
+      <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(</span><span class="s">'src'</span><span class="p">),</span>
+      <span class="n">package_data</span><span class="o">=</span><span class="p">{</span><span class="n">PACKAGE_NAME</span><span class="p">:</span> <span class="p">[</span><span class="s">'data/*'</span><span class="p">]},</span>
+      <span class="n">include_package_data</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+      <span class="n">description</span><span class="o">=</span><span class="n">DESCRIPTION</span><span class="p">,</span>
+      <span class="n">python_requires</span><span class="o">=</span><span class="s">'&gt;=3.6'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>The name, maintainer and version are self-explanatory.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">install_requires</code> specifies the depended python packages so that when installing your package, if one of these packages are not already installed in the user’s system, they will be downloaded and installed. One can <a href="https://packaging.python.org/discussions/install-requires-vs-requirements/">specify version requirements for each package here too</a>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">packages</code> specifies all packages to include<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.
+They should be specified in the form of <code class="highlighter-rouge">[foo, foo.bar, foo.tar, foo.bar.tool, ...]</code>, where foo.bar, foo.tar and foo.bar.tool are sub-packages. All sub-packages need to be listed explicitly.</p>
+
+    <p>If you put all packages under the one folder, you can use the find_packages function to automatically find all packages under that folder.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">package_dir</code> specifies where your package resides. The keys to this dictionary are package names, and an empty package name stands for the root package. In the above example, your package directly resides below the <code class="highlighter-rouge">src</code> folder.</p>
+
+    <p>If we have <code class="highlighter-rouge">package_dir={'foo': 'lib'}</code>, then it means the package foo is the folder lib. If we then have <code class="highlighter-rouge">packages = ['foo', 'foo.bar']</code>, the Distutils will be looking for <code class="highlighter-rouge">lib/__init__.py</code> and <code class="highlighter-rouge">lib/bar/__init__.py</code> for the foo and foo.bar packages respectively.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">package_data</code> specifies data files to be included for each package. The key is the package name and the value is a list of paths to the data files that are interpreted as relative to the directory containing the package (information from the package_dir mapping is used if appropriate).</p>
+  </li>
+</ul>
+
+<h2 id="why-do-we-choose-the-src-structure">
+<a class="anchor" href="#why-do-we-choose-the-src-structure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why do we choose the “src” structure?</h2>
+<ol>
+  <li>
+    <p>We could put our package directly under the project folder:</p>
+
+    <pre><code class="language-plain">- Project_folder
+- PACKAGE_NAME
+      - __init__.py
+      - data
+      - ...
+- test
+- setup.py
+</code></pre>
+
+    <p>But then we write our test, the local package with the same PACKAGE_NAME will be imported instead of the installed package in our system.</p>
+  </li>
+  <li>
+    <p>We could put the content of your package directly in the <code class="highlighter-rouge">src</code> folder instead of having another folder with our package name under <code class="highlighter-rouge">src</code>:</p>
+
+    <pre><code class="language-plain">- Project_folder
+  - src
+    - __init__.py
+    - data
+    - ...
+  - test
+  - setup.py
+</code></pre>
+
+    <p>This way, when we import PACKAGE_NAME, it won’t import the local package since they are under the folder named <code class="highlighter-rouge">src</code>.
+However, if we do so, we will not only need specify that <code class="highlighter-rouge">package_dir={PACKAGE_NAME: 'src'}</code>, but because the package name won’t be picked up by the find_packages function, we will also need to manually list all packages in <code class="highlighter-rouge">packages</code>.</p>
+  </li>
+  <li>
+    <p>We could just put the test inside the package:</p>
+
+    <pre><code class="language-plain">- Project_folder
+  - src
+    - __init__.py
+    - data
+    - test
+    - ...
+  - setup.py
+</code></pre>
+
+    <p>But then we are distributing the test as part of the package, which is not ideal.</p>
+  </li>
+</ol>
+
+<p>In comparison, the structure we mentioned in the very beginning avoids all these problems and is therefore what I consider the best solution so far.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>see here for <a href="https://stackoverflow.com/questions/7948494/whats-the-difference-between-a-python-module-and-a-python-package">discussions on the difference between packages and modules</a>. <a href="#fnref:1" class="reversefootnote">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="feynlee/curiosity-notes"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/curiosity-notes/python/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/curiosity-notes/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/curiosity-notes/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/curiosity-notes/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Notes I made while I continue to learn about this world.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/feynlee" title="feynlee"><svg class="svg-icon grey"><use xlink:href="/curiosity-notes/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/curiosity_notes" title="curiosity_notes"><svg class="svg-icon grey"><use xlink:href="/curiosity-notes/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
