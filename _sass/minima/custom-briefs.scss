@@ -1,0 +1,69 @@
+.post-content {
+  .article-in-brief {
+      border-bottom: 1px dotted #b2b2b2;
+      padding-bottom: 40px;
+      margin-bottom: 70px;
+      margin-top: 40px;
+  }
+
+  .hr-titles {
+      position: relative;
+      margin: 10px 0;
+      text-align: center;
+      line-height: 15px;
+
+      span {
+          // font-family: Georgia, serif;
+          font-size: 18px;
+          font-weight: 600;
+          line-height: 1.22222;
+          text-transform: uppercase;
+          letter-spacing: .3em;
+          position: relative;
+          display: inline-block;
+          padding: 0 27px;
+          height: 15px;
+          border-right: 1px solid #999;
+          border-left: 1px solid #999;
+          background: #fff;
+          vertical-align: top;
+          line-height: 15px;
+      }
+  }
+
+  .hr-titles:before {
+      position: absolute;
+      top: 5px;
+      right: 0;
+      left: 0;
+      z-index: -1;
+      height: 2px;
+      background: #000;
+      content: '';
+  }
+
+  .hr-titles:after {
+      position: absolute;
+      top: 9px;
+      right: 0;
+      left: 0;
+      z-index: -1;
+      height: 1px;
+      border-bottom: 1px dotted #999;
+      content: '';
+  }
+
+  .article-in-brief__title {
+      margin-bottom: 40px;
+  }
+
+  .article-in-brief__content {
+      justify-content: left;
+      ul {
+          margin: 0 0 0 20px;
+          li:not(:last-child) {
+              margin-bottom: 20px;
+          }
+      }
+  }
+}
