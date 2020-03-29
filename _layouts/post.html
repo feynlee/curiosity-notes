@@ -32,7 +32,7 @@ layout: default
 
     {% comment %} categories {% endcomment %}
     {% if page.categories.size > 0 and site.show_categories %}
-      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i>
+      <p class="category-tags">{%- include category_icon.html -%}
       {% for category in  page.categories  %}
         <a class="category-tags-link" href="{{site.baseurl}}/categories/#{{category|slugize}}">{{category}}</a>
         {% unless forloop.last %}&nbsp;{% endunless %}
@@ -42,7 +42,7 @@ layout: default
 
     {% comment %} tags {% endcomment %}
     {% if page.tags.size > 0 and site.show_tags %}
-      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i>
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i>
       {% for tag in page.tags  %}
         <a class="category-tags-link" href="{{site.baseurl}}/tags/#{{category|slugize}}">{{tag}}</a>
         {% unless forloop.last %}&nbsp;{% endunless %}

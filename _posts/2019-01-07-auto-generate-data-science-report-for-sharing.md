@@ -10,7 +10,7 @@ image: images/posts/Jupyter_Auto_Convert.png
 hide: false
 search_exclude: false
 categories: [Data Science]
-tags: [Jupyter, Automation]
+tags: [Jupyter, automation]
 ---
 ## Why
 
