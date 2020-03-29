@@ -90,9 +90,9 @@ plugins:
 # navigation
 header_pages:
   - _pages/posts.html
-  - _pages/books.html
-  - _pages/movies.html
-  - _pages/about.html
+  - _pages/books.md
+  - _pages/movies.md
+  - _pages/about.md
   - _pages/search.html
 
 # See https://jekyllrb.com/docs/pagination/

@@ -5,6 +5,8 @@ categories: []
 order: 3
 permalink: /books/
 ---
+# Books I enjoyed
+
 <div class="tab-pane" id="book-list" role="tabpanel" aria-labelledby="books-tab">{%- include books.html -%}</div>
 
 <script>
