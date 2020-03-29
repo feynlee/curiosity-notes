@@ -20,14 +20,14 @@ And I think the quickest way to learn this is through an example, so here is an 
 If your folder structure is the following (see [here](https://blog.ionelmc.ro/2014/05/25/python-packaging/#id13) for why this structure is preferred):
 
 ```plain
-      - Project_folder
-      - src
-      - PACKAGE_NAME
-            - __init__.py
-            - data
-            - ...
-      - test
-      - setup.py
+- Project_folder
+- src
+- PACKAGE_NAME
+      - __init__.py
+      - data
+      - ...
+- test
+- setup.py
 ```
 
 we can use the following setup.py.
