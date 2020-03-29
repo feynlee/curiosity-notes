@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Books
-categories: []
 permalink: /books/
+search_exclude: true
 ---
 # Books I enjoyed
 

@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Movies
-categories: []
-tags: []
 permalink: /movies/
+search_exclude: true
 ---
 # Movies I enjoyed
 
