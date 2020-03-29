@@ -9,7 +9,8 @@ layout: post
 image: images/posts/3_Gods.png
 hide: false
 search_exclude: false
-categories: [puzzle]
+categories: [Information Science]
+tags: [puzzle]
 ---
 
 People often show solutions to a problem without showing their thinking process, just like a magician hiding his/her methods. Instead of knowing the answer, which is no fun at all, I think it's far more important to understand the logical process that helps one reach the answer. After all, this is where the satisfaction of understanding a problem comes from. So I thought it might be helpful to show my thinking process during my attempt to solve this puzzle.

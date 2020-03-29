@@ -2,7 +2,6 @@
 layout: default
 title: Books
 categories: []
-order: 3
 permalink: /books/
 ---
 # Books I enjoyed

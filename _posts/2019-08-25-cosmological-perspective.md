@@ -9,7 +9,8 @@ comments: true
 image: images/posts/Cosmo_Horizons.png
 hide: false
 search_exclude: false
-categories: [cosmology]
+categories: [Physical Science]
+tags: [cosmology]
 ---
 
 !["Cosmic Horizons"]({{ site.baseurl }}/images/posts/Cosmo_Horizons.png )

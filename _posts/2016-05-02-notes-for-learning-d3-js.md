@@ -9,7 +9,8 @@ layout: post
 image: images/posts/d3_part1.png
 hide: false
 search_exclude: false
-categories: [data science]
+categories: [Data Science]
+tags: [d3js]
 ---
 
 In this post, I summarize 7 basic concepts that I find very important to understand when learning D3.

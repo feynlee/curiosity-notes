@@ -14,7 +14,7 @@ layout: default
         {{ page.date | date: date_format }}
       </time>
       {%- if page.modified_date -%}
-        ~ 
+        ~
         {%- assign mdate = page.modified_date | date_to_xmlschema -%}
         <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
           {{ mdate | date: date_format }}
@@ -30,10 +30,21 @@ layout: default
        • {% include reading_time.html -%}
     </p>
 
-    {% if page.categories.size > 0 and site.show_tags %}
-      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+    {% comment %} categories {% endcomment %}
+    {% if page.categories.size > 0 and site.show_categories %}
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i>
       {% for category in  page.categories  %}
         <a class="category-tags-link" href="{{site.baseurl}}/categories/#{{category|slugize}}">{{category}}</a>
+        {% unless forloop.last %}&nbsp;{% endunless %}
+      {% endfor %}
+      </p>
+    {% endif %}
+
+    {% comment %} tags {% endcomment %}
+    {% if page.tags.size > 0 and site.show_tags %}
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i>
+      {% for tag in page.tags  %}
+        <a class="category-tags-link" href="{{site.baseurl}}/tags/#{{category|slugize}}">{{tag}}</a>
         {% unless forloop.last %}&nbsp;{% endunless %}
       {% endfor %}
       </p>

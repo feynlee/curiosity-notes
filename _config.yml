@@ -52,6 +52,9 @@ show_description: true
 # Set this to true to display image previews on home page, if they exist
 show_image: true
 
+# Set this to true to display categories on each post
+show_categories: true
+
 # Set this to true to display tags on each post
 show_tags: true
 
@@ -89,7 +92,7 @@ plugins:
 
 # navigation
 header_pages:
-  - _pages/posts.html
+  - _pages/post_categories.html
   - _pages/books.md
   - _pages/movies.md
   - _pages/about.md

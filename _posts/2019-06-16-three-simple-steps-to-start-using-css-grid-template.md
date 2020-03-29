@@ -9,7 +9,8 @@ layout: post
 image: images/posts/css_grid.png
 hide: false
 search_exclude: false
-categories: [html & css]
+categories: [Programming]
+tags: [html & css]
 ---
 
 

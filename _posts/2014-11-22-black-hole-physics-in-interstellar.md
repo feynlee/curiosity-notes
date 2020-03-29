@@ -8,7 +8,8 @@ layout: post
 image: images/posts/Physics_In_Interstellar.png
 hide: false
 search_exclude: false
-categories: [cosmology]
+categories: [Physical Science]
+tags: [cosmology]
 ---
 
 # Introduction

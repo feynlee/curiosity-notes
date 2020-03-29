@@ -9,7 +9,8 @@ layout: post
 image: images/posts/setup_python.png
 hide: false
 search_exclude: false
-categories: [python]
+categories: [Programming]
+tags: [python]
 ---
 ## Basic Setup
 

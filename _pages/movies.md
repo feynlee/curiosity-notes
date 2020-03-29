@@ -3,7 +3,6 @@ layout: default
 title: Movies
 categories: []
 tags: []
-order: 2
 permalink: /movies/
 ---
 # Movies I enjoyed
