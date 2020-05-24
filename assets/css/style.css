@@ -498,6 +498,8 @@ iframe { margin-left: 0px; }
 
 .utterances { max-width: 100%; }
 
+.jekyll-twitter-plugin { display: flex; justify-content: center; align-items: center; }
+
 .language-python + .language-plaintext { border-left: 1px solid grey; margin-left: 1rem !important; }
 
 [class^="language-"]:not(.language-plaintext) pre, [class^="language-"]:not(.language-plaintext) code { background-color: #323443 !important; color: #f8f8f2; }
