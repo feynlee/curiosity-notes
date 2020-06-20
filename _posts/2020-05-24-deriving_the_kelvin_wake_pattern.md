@@ -117,9 +117,15 @@ The derivation follows 4 steps:
     <img src="{{ site.baseurl }}/images/posts/2020/Kelvin_wake-multiple.png" alt="" width="80%">
 
     Incidentally, the waves propagating in the X-axis direction has to have the speed of $v_p=V$ in order to remain stationary relative to the boat.
-    The wavelengh is therefore $\lambda_0 = 2\pi V^2/g$.
+    The wavelength is therefore $\lambda_0 = 2\pi V^2/g$.
     For these waves, we can plug $\alpha=\pi/2$ into the x coordinates and see that indeed the x coordinates of the peaks $x=\phi V^2/g = 2\pi n V^2/g  = n\lambda_0$ are separated by $2\pi$.
 
+# Kelvin Wake Angle
+
+Now that we've derived the wake pattern, it should be straight forward to derive the famous Kelvin Wake angle.
+I will leave this as an exercise to the readers.
+In fact, we don't even need to have the full wake pattern to derive the Kelvin Wake angle.
+By noticing that this angle is the largest angle that can be formed by the line connecting the boat and the wave propagating in a certain direction whose group velocity follows $v_g=\frac{v_p}{2}=\frac{1}{2}V \sin \alpha$, we can immediately get that the Kelvin Wake angle is $\theta=\arctan \sqrt{2} - \arctan \frac{\sqrt{2}}{2}= 19.7^{\circ}$.
 
 # Final Words
 
