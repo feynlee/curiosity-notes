@@ -4,7 +4,7 @@ comments: true
 date: 2019-04-27 19:08:08+00:00
 layout: post
 title: Cosmological Measurements
-featured_img:
+image:
 featured_img_background: white
 tag_line:
 excerpt:

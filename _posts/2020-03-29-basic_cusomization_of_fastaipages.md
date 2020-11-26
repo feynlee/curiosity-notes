@@ -5,7 +5,7 @@ author: Ziyue Li
 toc: true
 comments: true
 layout: post
-# image: images/posts/
+image: https://github.com/fastai/fastpages/raw/master/images/diagram.png
 hide: false
 search_exclude: false
 topic: programming

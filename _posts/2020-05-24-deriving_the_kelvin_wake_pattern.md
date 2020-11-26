@@ -5,7 +5,6 @@ author: Ziyue Li
 toc: true
 comments: true
 layout: post
-# image: images/posts/2020/
 image: https://upload.wikimedia.org/wikipedia/commons/4/4f/Wake.avon.gorge.2boats.arp.750pix.jpg
 hide: false
 search_exclude: false
