@@ -18,7 +18,7 @@ Jupyter notebooks are great for data analysis, but when we need to share the ana
 
 ## Add Button to Toggle Code
 
-Jupyter notebooks are web-based, we can simply add some html and javascript to make this work. One can include a raw cell at the beginning of your notebook containing the JavaScript and HTML below. This code is heavily based on [Chris Said's blog post](http://chris-said.io/2016/02/13/how-to-make-polished-jupyter-presentations-with-optional-code-visibility/), except it also hides a few other things besides the input cell, includin the numerical prompt next to the cells such as `input [1]` and `output [1]`.
+Jupyter notebooks are web-based, we can simply add some HTML and javascript to make this work. One can include a raw cell at the beginning of your notebook containing the JavaScript and HTML below. This code is heavily based on [Chris Said's blog post](http://chris-said.io/2016/02/13/how-to-make-polished-jupyter-presentations-with-optional-code-visibility/), except it also hides a few other things besides the input cell, including the numerical prompt next to the cells such as `input [1]` and `output [1]`.
 
 ```html
 <script>
@@ -48,21 +48,21 @@ $( document ).ready(function() {
 </form>
 ```
 
-When we export the notebook to html, the added code will make a toggle button. See Chris' example [here](https://nbviewer.jupyter.org/github/csaid/polished_notebooks/blob/master/notebook_polished.ipynb).
+When we export the notebook to HTML, the added code will make a toggle button. See Chris' example [here](https://nbviewer.jupyter.org/github/csaid/polished_notebooks/blob/master/notebook_polished.ipynb).
 
-This is good and all, but we don't want to manually add this raw cell to every notebook we create. Plus, it takes up a lot of space and does not look good in the notebook format. **_Is there a way that Jupyter can automatically add this code to the html file when exporting?_**
+This is good and all, but we don't want to manually add this raw cell to every notebook we create. Plus, it takes up a lot of space and does not look good in the notebook format. **_Is there a way that Jupyter can automatically add this code to the HTML file when exporting?_**
 
 The answer is yes.
 
 ## Custom Template for Exporting HTML File
 
-Most people know that we can use `nbconvert` to export html file, but few know that we can choose a template to use during this process: `jupyter nbconvert --to html 'example.ipynb' --template=custom_template.tpl`
+Most people know that we can use `nbconvert` to export HTML file, but few know that we can choose a template to use during this process: `jupyter nbconvert --to html 'example.ipynb' --template=custom_template.tpl`
 
-This effectively gives us unlimited ability to format the output html file however we want. (For more details on how to make custom template, please refer to the [official document on customizing nbconvert](https://nbconvert.readthedocs.io/en/latest/customizing.html#Converting-a-notebook-to-an-(I)Python-script-and-printing-to-stdout) and the the [Jinja2 template language guide](http://jinja.pocoo.org/docs/2.10/templates/).)
+This effectively gives us unlimited flexibility to format the output HTML file however we want. (For more details on how to make a custom template, please refer to the [official document on customizing nbconvert](https://nbconvert.readthedocs.io/en/latest/customizing.html#Converting-a-notebook-to-an-(I)Python-script-and-printing-to-stdout) and the [Jinja2 template language guide](http://jinja.pocoo.org/docs/2.10/templates/).)
 
-Unfortunately, I found that we can not directly inherit the existing template used by nbconvert, since the position we want to insert our toggle button is not available if we inherit the existing templates. We have to alter some of the existing template to create our own.
+Unfortunately, I found that we can not directly inherit the existing template used by nbconvert, since the position we want to insert our toggle button is not available if we inherit the existing templates. We have to alter some of the existing templates to create our own.
 
-If your jupyter is installed using anaconda in an python3.6 environment called `py3`, then the default templates for generating html files can be found under the path:
+If your Jupyter is installed using anaconda in a python3.6 environment called `py3`, then the default templates for generating HTML files can be found under the path:
 
 `<Anaconda_Folder>/envs/py3/lib/python3.6/site-packages/nbconvert/templates/html/`.
 
@@ -99,7 +99,7 @@ $( document ).ready(function(){
 ```
 {% endraw %}
 
-and the html part for the button to the body.
+and the HTML part for the button to the body.
 
 {% raw %}
 
@@ -120,11 +120,11 @@ and the html part for the button to the body.
 
 See this [gist](https://gist.github.com/feynlee/701a56a239f7034e380e850865154945) for the full template code.
 
-## Use Jupyter's Post Save Hook to Automate
+## Use Jupyter's Post-Save Hook to Automate
 
-We can add a function in the Jupyter configuration file to automatically export html file whenever we save a notebook. The Jupyter configuration file can be found at "~/.jupyter/jupyter_notebook_config.py" on mac.
+We can add a function in the Jupyter configuration file to automatically export HTML file whenever we save a notebook. The Jupyter configuration file can be found at "~/.jupyter/jupyter_notebook_config.py" on mac.
 
-An example code for `jupyter_notebook_config.py` that exports a html file on save for notebooks with "Report-" in their names:
+An example code for `jupyter_notebook_config.py` that exports an HTML file on save for notebooks with "Report-" in their names:
 
 ```python
 import os
@@ -147,4 +147,4 @@ c.FileContentsManager.post_save_hook = post_save
 c.NotebookApp.open_browser = False
 ```
 
-See [Jupyter documentation on file save hooks](https://jupyter-notebook.readthedocs.io/en/stable/extending/savehooks.html) for more details on how to use save hoooks.
+See [Jupyter documentation on file save hooks](https://jupyter-notebook.readthedocs.io/en/stable/extending/savehooks.html) for more details on how to use save hooks.

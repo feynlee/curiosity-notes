@@ -73,4 +73,4 @@ We assign the **grid-area** attribute for each block that we want to place into 
 
 That should get you started! It's really that simple!
 
-For more features and details about css grid, you can look up this wonderful guide: [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+For more features and details about css grid, you can look up this wonderful guide: [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/).

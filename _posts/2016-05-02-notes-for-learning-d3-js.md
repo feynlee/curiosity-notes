@@ -1,7 +1,7 @@
 ---
 title: Study Notes for D3.js - 7 Basic Concepts to Grasp
-description: I summarize 7 basic concepts that I find very important to understand when first learning D3.
-summary: I summarize 7 basic concepts that I find very important to understand when first learning D3.
+description: I summarize 7 basic concepts that I find very important to understand when learning D3.
+summary: I summarize 7 basic concepts that I find very important to understand when learning D3.
 author: Ziyue Li
 toc: true
 comments: true
@@ -45,10 +45,10 @@ var legend = svg.append('g')
 As shown in the above legend example. Note that the canvas origin is at the upper left corner, so the y direction goes downwards instead of upwards.
 
 
-## 3. Binding data to elements by '...selectAll.data(data).enter().append(...)'
+## 3. Bind data to elements by '...selectAll.data(data).enter().append(...)'
 
 
-As shown in the above legend example. 'enter()' returns placeholder elements for data that are not yet bound to any element, while 'exist()' returns elements that not yet bound to any data. 'append' then adds the element.
+As shown in the above legend example, 'enter()' returns placeholder elements for data that are not yet bound to any element, while 'exist()' returns elements that not yet bound to any data. 'append' then adds the element.
 
 
 ## 4. Use functions to assign attributes '.attr'
@@ -88,9 +88,9 @@ var count_scale = d3.scale.linear()
                           .domain(count_extent);
 ```
 
-The 'domain' is the extent of the data range, the 'range' is the extent of the the plot on canvas.
+Here 'domain' is the extent of the data range, while 'range' is the extent of the the plot on canvas.
 
-Use '.scale' method with the appropriate scale. Here I used 'linear()' map. For time, do 'd3.time.scale()'.
+Use '.scale' method with the appropriate scale. As an example, I used the 'linear()' map above. For time, do 'd3.time.scale()'.
 
 
 ## 6. Axis are special functions, use '.call()' on elements to create visualization of axis.
@@ -109,7 +109,7 @@ svg.append('g')
 Use 'd3.svg.axis()' to create the axis function and set '.scale' and '.ticks'.
 
 
-## 7. Finally, when reading data from csv or other files, one can transform the data before passing on to create visualization.
+## 7. Finally, when reading data from csv or other files, one can transform the data before passing it on to create visualization.
 
 ``` javascript
 var format = d3.time.format('%d-%m-%Y (%H:%M h)');
@@ -120,7 +120,7 @@ return d;
 }, draw);
 ```
 
-'d3.tsv()' reads in the data, and pass it to the anonymous function, and then feeds the result to the user defined 'draw' function for visualization. This is very convenient when one needs to convert some data formats before going on to the visualization step.
+'d3.tsv()' reads in the data, and pass it to the anonymous function, and then feeds the result to the user-defined 'draw' function for visualization. This is very convenient when one needs to convert some data format before moving on to the visualization step.
 
 Here I parsed the 'date' column and made them into a 'Date' type, and converted the 'attendance' column from string into a number using the unary operator '+'. The 'draw' is a function that draws the visualization of the dataset.
 
