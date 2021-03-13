@@ -1,7 +1,7 @@
 ---
 title: How I solved the world's hardest logic puzzle
 description: The logical paths I took to tackle the world's hardest logic puzzle
-summary: Three gods A, B, and C are called, in no particular order, True, False, and Random. True always speaks truly, False always speaks falsely, but whether Random speaks truly or falsely is a completely random matter. Your task is to determine the identities of A, B, and C by asking three yes-no questions; each question must be put to exactly one god. The gods understand English, but will answer all questions in their own language, in which the words for yes and no are da and ja, in some order. You do not know which word means which.
+summary: Three gods A, B, and C are called, in no particular order, True, False, and Random. True always speaks truly, False always speaks falsely, but whether Random speaks truly or falsely is a completely random matter. Your task is to determine the identities of A, B, and C by asking three yes-no questions; each question must be put to exactly one god. The gods understand English but will answer all questions in their own language, in which the words for yes and no are da and ja, in some order. You do not know which word means which.
 author: Ziyue Li
 toc: true
 comments: true
@@ -30,11 +30,11 @@ There are 6 different orderings for the gods' positions: "T, F, R","T, R, F",  
 
 The assumptions must be wrong. The 6 different positions of gods seem inarguable. So what's wrong with the second deduction that gives us 4 pieces of info?
 
-In order to distinguish 6 positions, we must have at least 6 pieces of info. Well, if we ask T or F 3 questions, we know we can get 8 pieces of info since their answers are distinguishable, and a careful reread of the question reveals that indeed it doesn't prevent us from doing that. Each question to one god, but one god can have multiple questions.
+To distinguish 6 positions, we must have at least 6 pieces of info. Well, if we ask T or F 3 questions, we know we can get 8 pieces of info since their answers are distinguishable, and a careful reread of the question reveals that indeed it doesn't prevent us from doing that. Each question to one god, but one god can have multiple questions.
 
 But there seems to be no way for us to avoid R in the first question since we have no information to know who R is. What about avoiding R in the second and third questions? The probability that it will be R that answers the first question is $1/3$. If we can avoid R during the second and third question, we would on average get $1/3 * 4+2/3 * 8=6.66666...$ pieces of information, which makes it possible to figure out the 6 different positions! If however, we can only avoid R till the 3rd question, we would on average have $2/3 * 4+1/3 * 8=5.333... < 6$, which is not enough to solve the puzzle.
 
-**Conclusion: we must be able to _at least_ figure out _"who is not R"_ after the first question, in order for the puzzle to be solvable!**
+**Conclusion: we must be able to _at least_ figure out _"who is not R"_ after the first question, for the puzzle to be solvable!**
 
 # Step 2. General Strategy:
 
@@ -44,9 +44,9 @@ Let's do some more deductions to reason out the general strategy. We now know, t
 Conveniently, what we want to find out after question 1 is whether god 2 is not R or god 3 is not R, two things to distinguish.
 Therefore, we can map the answer "da" to "2 is not R" and "jar" to "3 is not R" or the other way around.
 
-2. After we figure out who is not R, we need to ask that god the second question to make sure R is not answering question 2. We can easily duplicate the first question to figure out which one of the other two gods is not R, and therefore combing question 1 and 2 to figure out the identity of god R.
+2. After we figure out who is not R, we need to ask that god the second question to make sure R is not answering question 2. We can easily duplicate the first question to figure out which one of the other two gods is not R, and therefore combing questions 1 and 2 to figure out the identity of god R.
 
-3. That leaves us with one question to figure out T and F. Is that possible to do? If we ask this question to one of the non-random gods, we receive two distinguishable pieces of information, and we need to distinguish two things, so in principle, this is totally possible.
+3. That leaves us with one question to figure out T and F. Is that possible to do? If we ask this question to one of the non-random gods, we receive two distinguishable pieces of information, and we need to distinguish two things, so in principle, this is possible.
 But how does one do it? Let's say we map "da" to god T, and "fa" to god F, meaning if the answer we receive is "da", then the god is T, otherwise F.
 What question would make god T answer "da", and god F answer "fa"?
 Since we don't know the meaning of "da" and "fa", we have to consider the following two scenarios: "da" means yes, "da" means no.
@@ -61,7 +61,7 @@ Now that we've figured out question 3, and question 2 and question 1 are basical
 
 So is it possible to choose between the rest of the 2 gods so that we can avoid the R?
 
-Obviously, when the first god happens to be R, it doesn't matter what the answer is, and it doesn't matter how we choose between the rest of the 2 gods. Therefore, we only need a simple mapping from the 2 possible answers to god 2 and god 3 when the first god is either T or F.
+When the first god happens to be R, it doesn't matter what the answer is, and it doesn't matter how we choose between the rest of the 2 gods. Therefore, we only need a simple mapping from the 2 possible answers to god 2 and god 3 when the first god is either T or F.
 
 ## I. The Qualities Question 1 Needs to Satisfy:
 
@@ -90,7 +90,7 @@ Let's look at requirement 1 first: how is it possible to ask a question, such t
 
 >Note: This was also my downfall. As I will explain later, there's another way of getting consistent answers between T and F gods that leads to a simpler overall solution. But I was so eager to test out this first strategy that came to my mind, that I didn't explore other possibilities. Let me now continue my reasoning following this way of constructing the question.
 
-Still assuming we are only dealing with T and F, we can ask for example: "would the other god (one of T and F) answer yes to the question Q"? The question Q is just an embedded question. I will leave the details of the deduction to the readers, and just say no matter who answers the question (T or F) and who the other god is (F or T), if the truthful answer to Q is yes, then we will get a no answer, and vice versa, because F in the chain would flip the answer once.
+Still assuming we are only dealing with T and F, we can ask for example: "would the other god (one of T and F) answer yes to the question Q"? Question Q is just an embedded question. I will leave the details of the deduction to the readers, and just say no matter who answers the question (T or F) and who the other god is (F or T), if the truthful answer to Q is yes, then we will get a no answer, and vice versa, because F in the chain would flip the answer once.
 
 ### b. Satisfying Requirement 2:
 
@@ -100,16 +100,16 @@ When "da"=yes, the above question translates to the original "would the other go
 
 ### c. Satisfying Requirement 3:
 
-"is 2 R" should also flip the answer, which means we need to incorporate it into our question as well. Well, we haven't specified what Q is yet. Any simple question can replace Q's position and still meet requirement 1 and 2, and it's obvious that the truthful answer to this question Q would flip the chain since it changes the starting point of the chain. Therefore, the question now becomes: "_would the other god answer 'da' to the question 'is 2 R'_"?
+"is 2 R" should also flip the answer, which means we need to incorporate it into our question as well. Well, we haven't specified what Q is yet. Any simple question can replace Q's position and still meet requirements 1 and 2, and the truthful answer to this question Q would flip the chain since it changes the starting point of the chain. Therefore, the question now becomes: "_would the other god answer 'da' to the question 'is 2 R'_"?
 
 Again, I leave the detailed deduction of the answers in different scenarios to the readers.
 
 ### d. Dealing with the Random God
 
-The question would work, except, we have a random god between 2 and 3, so we can't simply say "the other god" to automatically pick out T or F from god 2 and god 3. But in order for our question to work, the answer to the question "is 2 R" has to be consistent and not random.
+The question would work, except, we have a random god between 2 and 3, so we can't simply say "the other god" to automatically pick out T or F from god 2 and god 3. But for our question to work, the answer to the question "is 2 R" has to be consistent and not random.
 
 There's no way that we can know which one of the other 2 gods is not R before the first question since that's exactly what the first question is trying to figure out.
-If we think carefully though, we notice that we don't really need to identify which one of the other 2 gods is not R in order for our question to work.
+If we think carefully though, we notice that we don't need to identify which one of the other 2 gods is not R for our question to work.
 We only need the answer to be consistent.
 One way to do that is to combine the answers of the other two gods in such a way that only the non-random god's answer is taken.
 
@@ -126,7 +126,7 @@ Having figured out the first question, the second and the third questions are e
 
   1. **Ask one god: "would at least one of the other 2 gods always answer 'da' to the question 'is 2 the random god'"?** If the answer is "ja", then go to god 3 to ask the second question, if the answer is "da", then go to god 2 to ask the second question.
 
-  2. **Ask the second god (god 2 or god 3 depending on the answer of question 1) the same question: "would at least one of the other 2 gods always answer 'da' to the question 'is 2 the random god'"? (Change it to "would at least one of the other 2 gods always answer 'da' to the question 'is 3 the random god'" or "would at least one of the other 2 gods always answer 'da' to the question 'is 1 the random god'" if the second god is god 2.)** If you get "da" as the answer, then the god mentioned in your question is not random, otherwise, between the other two gods, the god not mentioned in your question is not random one. Therefore, the god left (besides the god you are asking and the god you just figured out as the other non-random god) is the random god.
+  2. **Ask the second god (god 2 or god 3 depending on the answer of question 1) the same question: "would at least one of the other 2 gods always answer 'da' to the question 'is 2 the random god'"? (Change it to "would at least one of the other 2 gods always answer 'da' to the question 'is 3 the random god'" or "would at least one of the other 2 gods always answer 'da' to the question 'is 1 the random god'" if the second god is god 2.)** If you get "da" as the answer, then the god mentioned in your question is not random, otherwise, between the other two gods, the god not mentioned in your question is not a random one. Therefore, the god left (besides the god you are asking and the god you just figured out as the other non-random god) is the random god.
 
   3. **Ask one of the non-random gods: "Is 'da' yes?"** If you receive "da" as the answer, then the god you are asking is T, otherwise F.
 
@@ -136,7 +136,7 @@ Having figured out the first question, the second and the third questions are e
 
 ## I. A Much Simpler Solution:
 
-As mentioned in Step 3.II.a, there's another way to achieve requirement 1. Instead of chaining T and R's answer with each other, we chain them to themselves! This way, F and F double flips is the same as T and T. The question can be asked as "would you answer 'da' to the question ..."
+As mentioned in Step 3.II.a, there's another way to achieve requirement 1. Instead of chaining T and R's answers with each other, we chain them to themselves! This way, F and F double flips are the same as T and T. The question can be asked as "would you answer 'da' to the question ..."
 
 The good thing about this is that since we don't need to consider the situation where we are asking the random god, the god we are asking can always be treated as non-random. Therefore, we don't need to group this god with another god, and the question becomes much simpler:
 
@@ -148,10 +148,10 @@ This dramatically simplifies the solution.
 
 ## II. My Original Very Complicated Solution
 
-Besides the other chaining method I didn't think about, in my hurried effort to solve this puzzle, I also rushed to get to the end and ended up with a more complicated version of question 1. Instead of asking how the god would answer the question, I was so worried about dealing with the Random god that I also grouped two gods answers in constructing question Q. My original first question is unnecessarily more complicated:
+Besides the other chaining method, I didn't think about, in my hurried effort to solve this puzzle, I also rushed to get to the end and ended up with a more complicated version of question 1. Instead of asking how the god would answer the question, I was so worried about dealing with the Random god that I also grouped two gods' answers in constructing question Q. My original first question is unnecessarily more complicated:
 
 **"Would at least one of the other 2 gods answer 'da' to the question 'would one of you and god 2 always disagree to the question is da yes'"**?
 
-It should be easy to see that question Q "would one of you and god 2 always disagree to the question 'is da yes'" really is just asking is "is one of you and god 2 R"? Since T and F would always disagree on the answer to that question. And since we can ignore the case that the god you are asking the question is R, this question simplifies to "is god 2 R"?
+It should be easy to see that question Q "would one of you and god 2 always disagree about the question 'is da yes'" really is just asking is "is one of you and god 2 R"? Since T and F would always disagree on the answer to that question. And since we can ignore the case that the god you are asking the question is R, this question simplifies to "is god 2 R"?
 
-I was in the mindset of grouping gods and totally forgot about the previous deduction that "_one does not need to consider the situation that the god you are asking the first question is R_". This really shows how important it is to actually go through the logical deduction steps more carefully.
+I was in the mindset of grouping gods and forgot about the previous deduction that "_one does not need to consider the situation that the god you are asking the first question is R_". This shows how important it is to go through the logical deduction steps more carefully.
