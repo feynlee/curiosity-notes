@@ -8,8 +8,8 @@
 <meta property="og:title" content="Study Notes for D3.js - 7 Basic Concepts to Grasp" />
 <meta name="author" content="Ziyue Li" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="I summarize 7 basic concepts that I find very important to understand when first learning D3." />
-<meta property="og:description" content="I summarize 7 basic concepts that I find very important to understand when first learning D3." />
+<meta name="description" content="I summarize 7 basic concepts that I find very important to understand when learning D3." />
+<meta property="og:description" content="I summarize 7 basic concepts that I find very important to understand when learning D3." />
 <link rel="canonical" href="https://feynlee.github.io/curiosity-notes/data%20science/2016/05/02/notes-for-learning-d3-js.html" />
 <meta property="og:url" content="https://feynlee.github.io/curiosity-notes/data%20science/2016/05/02/notes-for-learning-d3-js.html" />
 <meta property="og:site_name" content="Curiosity Notes" />
@@ -17,7 +17,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2016-05-02T00:00:00-05:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Ziyue Li"},"description":"I summarize 7 basic concepts that I find very important to understand when first learning D3.","@type":"BlogPosting","url":"https://feynlee.github.io/curiosity-notes/data%20science/2016/05/02/notes-for-learning-d3-js.html","dateModified":"2016-05-02T00:00:00-05:00","datePublished":"2016-05-02T00:00:00-05:00","headline":"Study Notes for D3.js - 7 Basic Concepts to Grasp","image":"https://feynlee.github.io/curiosity-notes/images/posts/d3_part1.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/data%20science/2016/05/02/notes-for-learning-d3-js.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Ziyue Li"},"description":"I summarize 7 basic concepts that I find very important to understand when learning D3.","@type":"BlogPosting","url":"https://feynlee.github.io/curiosity-notes/data%20science/2016/05/02/notes-for-learning-d3-js.html","dateModified":"2016-05-02T00:00:00-05:00","datePublished":"2016-05-02T00:00:00-05:00","headline":"Study Notes for D3.js - 7 Basic Concepts to Grasp","image":"https://feynlee.github.io/curiosity-notes/images/posts/d3_part1.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/data%20science/2016/05/02/notes-for-learning-d3-js.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/curiosity-notes/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://feynlee.github.io/curiosity-notes/feed.xml" title="Curiosity Notes" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -31,8 +31,8 @@
 <meta property="og:title" content="Study Notes for D3.js - 7 Basic Concepts to Grasp" />
 <meta name="author" content="Ziyue Li" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="I summarize 7 basic concepts that I find very important to understand when first learning D3." />
-<meta property="og:description" content="I summarize 7 basic concepts that I find very important to understand when first learning D3." />
+<meta name="description" content="I summarize 7 basic concepts that I find very important to understand when learning D3." />
+<meta property="og:description" content="I summarize 7 basic concepts that I find very important to understand when learning D3." />
 <link rel="canonical" href="https://feynlee.github.io/curiosity-notes/data%20science/2016/05/02/notes-for-learning-d3-js.html" />
 <meta property="og:url" content="https://feynlee.github.io/curiosity-notes/data%20science/2016/05/02/notes-for-learning-d3-js.html" />
 <meta property="og:site_name" content="Curiosity Notes" />
@@ -40,7 +40,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2016-05-02T00:00:00-05:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Ziyue Li"},"description":"I summarize 7 basic concepts that I find very important to understand when first learning D3.","@type":"BlogPosting","url":"https://feynlee.github.io/curiosity-notes/data%20science/2016/05/02/notes-for-learning-d3-js.html","dateModified":"2016-05-02T00:00:00-05:00","datePublished":"2016-05-02T00:00:00-05:00","headline":"Study Notes for D3.js - 7 Basic Concepts to Grasp","image":"https://feynlee.github.io/curiosity-notes/images/posts/d3_part1.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/data%20science/2016/05/02/notes-for-learning-d3-js.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Ziyue Li"},"description":"I summarize 7 basic concepts that I find very important to understand when learning D3.","@type":"BlogPosting","url":"https://feynlee.github.io/curiosity-notes/data%20science/2016/05/02/notes-for-learning-d3-js.html","dateModified":"2016-05-02T00:00:00-05:00","datePublished":"2016-05-02T00:00:00-05:00","headline":"Study Notes for D3.js - 7 Basic Concepts to Grasp","image":"https://feynlee.github.io/curiosity-notes/images/posts/d3_part1.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/data%20science/2016/05/02/notes-for-learning-d3-js.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -117,7 +117,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Study Notes for D3.js - 7 Basic Concepts to Grasp</h1><p class="page-description">I summarize 7 basic concepts that I find very important to understand when first learning D3.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2016-05-02T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Study Notes for D3.js - 7 Basic Concepts to Grasp</h1><p class="page-description">I summarize 7 basic concepts that I find very important to understand when learning D3.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2016-05-02T00:00:00-05:00" itemprop="datePublished">
         May 2, 2016
       </time>• 
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -154,11 +154,11 @@ window.onload = wrap_img;
     <ul class="section-nav">
 <li class="toc-entry toc-h2"><a href="#1-compartmentalize-the-canvas-into-groups-g-tag">1. Compartmentalize the canvas into groups (“g” tag)</a></li>
 <li class="toc-entry toc-h2"><a href="#2-set-positions-of-each-group-by-setting-attributes-transform-to-translatexy-for-that-group">2. Set positions of each group by setting attributes ‘transform’ to ‘translate(x,y)’ for that group.</a></li>
-<li class="toc-entry toc-h2"><a href="#3-binding-data-to-elements-by-selectalldatadataenterappend">3. Binding data to elements by ‘…selectAll.data(data).enter().append(…)’</a></li>
+<li class="toc-entry toc-h2"><a href="#3-bind-data-to-elements-by-selectalldatadataenterappend">3. Bind data to elements by ‘…selectAll.data(data).enter().append(…)’</a></li>
 <li class="toc-entry toc-h2"><a href="#4-use-functions-to-assign-attributes-attr">4. Use functions to assign attributes ‘.attr’</a></li>
 <li class="toc-entry toc-h2"><a href="#5-create-scale-to-map-the-domain-of-data-to-the-range-on-the-canvas">5. Create scale to map the ‘domain’ of data to the ‘range’ on the canvas</a></li>
 <li class="toc-entry toc-h2"><a href="#6-axis-are-special-functions-use-call-on-elements-to-create-visualization-of-axis">6. Axis are special functions, use ‘.call()’ on elements to create visualization of axis.</a></li>
-<li class="toc-entry toc-h2"><a href="#7-finally-when-reading-data-from-csv-or-other-files-one-can-transform-the-data-before-passing-on-to-create-visualization">7. Finally, when reading data from csv or other files, one can transform the data before passing on to create visualization.</a></li>
+<li class="toc-entry toc-h2"><a href="#7-finally-when-reading-data-from-csv-or-other-files-one-can-transform-the-data-before-passing-it-on-to-create-visualization">7. Finally, when reading data from csv or other files, one can transform the data before passing it on to create visualization.</a></li>
 </ul><p>In this post, I summarize 7 basic concepts that I find very important to understand when learning D3.</p>
 
 <h2 id="1-compartmentalize-the-canvas-into-groups-g-tag">
@@ -188,10 +188,10 @@ window.onload = wrap_img;
 
 <p>As shown in the above legend example. Note that the canvas origin is at the upper left corner, so the y direction goes downwards instead of upwards.</p>
 
-<h2 id="3-binding-data-to-elements-by-selectalldatadataenterappend">
-<a class="anchor" href="#3-binding-data-to-elements-by-selectalldatadataenterappend" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Binding data to elements by ‘…selectAll.data(data).enter().append(…)’</h2>
+<h2 id="3-bind-data-to-elements-by-selectalldatadataenterappend">
+<a class="anchor" href="#3-bind-data-to-elements-by-selectalldatadataenterappend" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Bind data to elements by ‘…selectAll.data(data).enter().append(…)’</h2>
 
-<p>As shown in the above legend example. ‘enter()’ returns placeholder elements for data that are not yet bound to any element, while ‘exist()’ returns elements that not yet bound to any data. ‘append’ then adds the element.</p>
+<p>As shown in the above legend example, ‘enter()’ returns placeholder elements for data that are not yet bound to any element, while ‘exist()’ returns elements that not yet bound to any data. ‘append’ then adds the element.</p>
 
 <h2 id="4-use-functions-to-assign-attributes-attr">
 <a class="anchor" href="#4-use-functions-to-assign-attributes-attr" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Use functions to assign attributes ‘.attr’</h2>
@@ -228,9 +228,9 @@ window.onload = wrap_img;
                           <span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">count_extent</span><span class="p">);</span>
 </code></pre></div></div>
 
-<p>The ‘domain’ is the extent of the data range, the ‘range’ is the extent of the the plot on canvas.</p>
+<p>Here ‘domain’ is the extent of the data range, while ‘range’ is the extent of the the plot on canvas.</p>
 
-<p>Use ‘.scale’ method with the appropriate scale. Here I used ‘linear()’ map. For time, do ‘d3.time.scale()’.</p>
+<p>Use ‘.scale’ method with the appropriate scale. As an example, I used the ‘linear()’ map above. For time, do ‘d3.time.scale()’.</p>
 
 <h2 id="6-axis-are-special-functions-use-call-on-elements-to-create-visualization-of-axis">
 <a class="anchor" href="#6-axis-are-special-functions-use-call-on-elements-to-create-visualization-of-axis" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Axis are special functions, use ‘.call()’ on elements to create visualization of axis.</h2>
@@ -247,8 +247,8 @@ window.onload = wrap_img;
 
 <p>Use ‘d3.svg.axis()’ to create the axis function and set ‘.scale’ and ‘.ticks’.</p>
 
-<h2 id="7-finally-when-reading-data-from-csv-or-other-files-one-can-transform-the-data-before-passing-on-to-create-visualization">
-<a class="anchor" href="#7-finally-when-reading-data-from-csv-or-other-files-one-can-transform-the-data-before-passing-on-to-create-visualization" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. Finally, when reading data from csv or other files, one can transform the data before passing on to create visualization.</h2>
+<h2 id="7-finally-when-reading-data-from-csv-or-other-files-one-can-transform-the-data-before-passing-it-on-to-create-visualization">
+<a class="anchor" href="#7-finally-when-reading-data-from-csv-or-other-files-one-can-transform-the-data-before-passing-it-on-to-create-visualization" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. Finally, when reading data from csv or other files, one can transform the data before passing it on to create visualization.</h2>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">format</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="dl">'</span><span class="s1">%d-%m-%Y (%H:%M h)</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">d3</span><span class="p">.</span><span class="nx">tsv</span><span class="p">(</span><span class="dl">"</span><span class="s2">world_cup_geo.tsv</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span>
@@ -258,7 +258,7 @@ window.onload = wrap_img;
 <span class="p">},</span> <span class="nx">draw</span><span class="p">);</span>
 </code></pre></div></div>
 
-<p>‘d3.tsv()’ reads in the data, and pass it to the anonymous function, and then feeds the result to the user defined ‘draw’ function for visualization. This is very convenient when one needs to convert some data formats before going on to the visualization step.</p>
+<p>‘d3.tsv()’ reads in the data, and pass it to the anonymous function, and then feeds the result to the user-defined ‘draw’ function for visualization. This is very convenient when one needs to convert some data format before moving on to the visualization step.</p>
 
 <p>Here I parsed the ‘date’ column and made them into a ‘Date’ type, and converted the ‘attendance’ column from string into a number using the unary operator ‘+’. The ‘draw’ is a function that draws the visualization of the dataset.</p>
 

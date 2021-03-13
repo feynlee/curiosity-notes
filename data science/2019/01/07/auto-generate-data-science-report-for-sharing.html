@@ -158,7 +158,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#why">Why</a></li>
 <li class="toc-entry toc-h2"><a href="#add-button-to-toggle-code">Add Button to Toggle Code</a></li>
 <li class="toc-entry toc-h2"><a href="#custom-template-for-exporting-html-file">Custom Template for Exporting HTML File</a></li>
-<li class="toc-entry toc-h2"><a href="#use-jupyters-post-save-hook-to-automate">Use Jupyter’s Post Save Hook to Automate</a></li>
+<li class="toc-entry toc-h2"><a href="#use-jupyters-post-save-hook-to-automate">Use Jupyter’s Post-Save Hook to Automate</a></li>
 </ul><h2 id="why">
 <a class="anchor" href="#why" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why</h2>
 
@@ -167,7 +167,7 @@ window.onload = wrap_img;
 <h2 id="add-button-to-toggle-code">
 <a class="anchor" href="#add-button-to-toggle-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add Button to Toggle Code</h2>
 
-<p>Jupyter notebooks are web-based, we can simply add some html and javascript to make this work. One can include a raw cell at the beginning of your notebook containing the JavaScript and HTML below. This code is heavily based on <a href="http://chris-said.io/2016/02/13/how-to-make-polished-jupyter-presentations-with-optional-code-visibility/">Chris Said’s blog post</a>, except it also hides a few other things besides the input cell, includin the numerical prompt next to the cells such as <code class="highlighter-rouge">input [1]</code> and <code class="highlighter-rouge">output [1]</code>.</p>
+<p>Jupyter notebooks are web-based, we can simply add some HTML and javascript to make this work. One can include a raw cell at the beginning of your notebook containing the JavaScript and HTML below. This code is heavily based on <a href="http://chris-said.io/2016/02/13/how-to-make-polished-jupyter-presentations-with-optional-code-visibility/">Chris Said’s blog post</a>, except it also hides a few other things besides the input cell, including the numerical prompt next to the cells such as <code class="highlighter-rouge">input [1]</code> and <code class="highlighter-rouge">output [1]</code>.</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
 <span class="kd">function</span> <span class="nx">code_toggle</span><span class="p">()</span> <span class="p">{</span>
@@ -196,22 +196,22 @@ window.onload = wrap_img;
 <span class="nt">&lt;/form&gt;</span>
 </code></pre></div></div>
 
-<p>When we export the notebook to html, the added code will make a toggle button. See Chris’ example <a href="https://nbviewer.jupyter.org/github/csaid/polished_notebooks/blob/master/notebook_polished.ipynb">here</a>.</p>
+<p>When we export the notebook to HTML, the added code will make a toggle button. See Chris’ example <a href="https://nbviewer.jupyter.org/github/csaid/polished_notebooks/blob/master/notebook_polished.ipynb">here</a>.</p>
 
-<p>This is good and all, but we don’t want to manually add this raw cell to every notebook we create. Plus, it takes up a lot of space and does not look good in the notebook format. <strong><em>Is there a way that Jupyter can automatically add this code to the html file when exporting?</em></strong></p>
+<p>This is good and all, but we don’t want to manually add this raw cell to every notebook we create. Plus, it takes up a lot of space and does not look good in the notebook format. <strong><em>Is there a way that Jupyter can automatically add this code to the HTML file when exporting?</em></strong></p>
 
 <p>The answer is yes.</p>
 
 <h2 id="custom-template-for-exporting-html-file">
 <a class="anchor" href="#custom-template-for-exporting-html-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Template for Exporting HTML File</h2>
 
-<p>Most people know that we can use <code class="highlighter-rouge">nbconvert</code> to export html file, but few know that we can choose a template to use during this process: <code class="highlighter-rouge">jupyter nbconvert --to html 'example.ipynb' --template=custom_template.tpl</code></p>
+<p>Most people know that we can use <code class="highlighter-rouge">nbconvert</code> to export HTML file, but few know that we can choose a template to use during this process: <code class="highlighter-rouge">jupyter nbconvert --to html 'example.ipynb' --template=custom_template.tpl</code></p>
 
-<p>This effectively gives us unlimited ability to format the output html file however we want. (For more details on how to make custom template, please refer to the <a href="https://nbconvert.readthedocs.io/en/latest/customizing.html#Converting-a-notebook-to-an-(I)Python-script-and-printing-to-stdout">official document on customizing nbconvert</a> and the the <a href="http://jinja.pocoo.org/docs/2.10/templates/">Jinja2 template language guide</a>.)</p>
+<p>This effectively gives us unlimited flexibility to format the output HTML file however we want. (For more details on how to make a custom template, please refer to the <a href="https://nbconvert.readthedocs.io/en/latest/customizing.html#Converting-a-notebook-to-an-(I)Python-script-and-printing-to-stdout">official document on customizing nbconvert</a> and the <a href="http://jinja.pocoo.org/docs/2.10/templates/">Jinja2 template language guide</a>.)</p>
 
-<p>Unfortunately, I found that we can not directly inherit the existing template used by nbconvert, since the position we want to insert our toggle button is not available if we inherit the existing templates. We have to alter some of the existing template to create our own.</p>
+<p>Unfortunately, I found that we can not directly inherit the existing template used by nbconvert, since the position we want to insert our toggle button is not available if we inherit the existing templates. We have to alter some of the existing templates to create our own.</p>
 
-<p>If your jupyter is installed using anaconda in an python3.6 environment called <code class="highlighter-rouge">py3</code>, then the default templates for generating html files can be found under the path:</p>
+<p>If your Jupyter is installed using anaconda in a python3.6 environment called <code class="highlighter-rouge">py3</code>, then the default templates for generating HTML files can be found under the path:</p>
 
 <p><code class="highlighter-rouge">&lt;Anaconda_Folder&gt;/envs/py3/lib/python3.6/site-packages/nbconvert/templates/html/</code>.</p>
 
@@ -245,7 +245,7 @@ window.onload = wrap_img;
 <span class="cp">{%</span><span class="o">-</span> <span class="k">endblock</span> <span class="nv">toggle_script</span> <span class="o">-</span><span class="cp">%}</span>
 </code></pre></div></div>
 
-<p>and the html part for the button to the body.</p>
+<p>and the HTML part for the button to the body.</p>
 
 <div class="language-jinja highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;body&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">tabindex=</span><span class="s">"-1"</span> <span class="na">id=</span><span class="s">"notebook"</span> <span class="na">class=</span><span class="s">"border-box-sizing"</span><span class="nt">&gt;</span>
@@ -262,11 +262,11 @@ window.onload = wrap_img;
 <p>See this <a href="https://gist.github.com/feynlee/701a56a239f7034e380e850865154945">gist</a> for the full template code.</p>
 
 <h2 id="use-jupyters-post-save-hook-to-automate">
-<a class="anchor" href="#use-jupyters-post-save-hook-to-automate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use Jupyter’s Post Save Hook to Automate</h2>
+<a class="anchor" href="#use-jupyters-post-save-hook-to-automate" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use Jupyter’s Post-Save Hook to Automate</h2>
 
-<p>We can add a function in the Jupyter configuration file to automatically export html file whenever we save a notebook. The Jupyter configuration file can be found at “~/.jupyter/jupyter_notebook_config.py” on mac.</p>
+<p>We can add a function in the Jupyter configuration file to automatically export HTML file whenever we save a notebook. The Jupyter configuration file can be found at “~/.jupyter/jupyter_notebook_config.py” on mac.</p>
 
-<p>An example code for <code class="highlighter-rouge">jupyter_notebook_config.py</code> that exports a html file on save for notebooks with “Report-“ in their names:</p>
+<p>An example code for <code class="highlighter-rouge">jupyter_notebook_config.py</code> that exports an HTML file on save for notebooks with “Report-“ in their names:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_call</span>
@@ -288,7 +288,7 @@ window.onload = wrap_img;
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">open_browser</span> <span class="o">=</span> <span class="bp">False</span>
 </code></pre></div></div>
 
-<p>See <a href="https://jupyter-notebook.readthedocs.io/en/stable/extending/savehooks.html">Jupyter documentation on file save hooks</a> for more details on how to use save hoooks.</p>
+<p>See <a href="https://jupyter-notebook.readthedocs.io/en/stable/extending/savehooks.html">Jupyter documentation on file save hooks</a> for more details on how to use save hooks.</p>
 
   </div><!-- from https://github.com/utterance/utterances -->
 <script src="https://utteranc.es/client.js"
