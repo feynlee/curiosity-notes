@@ -17,7 +17,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-09-22T00:00:00-05:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Ziyue Li"},"headline":"How to Write the setup.py File for Python Packages","description":"An example and explanation of some minimum things to configure in the setup.py","datePublished":"2019-09-22T00:00:00-05:00","dateModified":"2019-09-22T00:00:00-05:00","image":"https://feynlee.github.io/curiosity-notes/images/posts/setup_python.png","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html"},"url":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html","@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Ziyue Li"},"description":"An example and explanation of some minimum things to configure in the setup.py","@type":"BlogPosting","url":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html","dateModified":"2019-09-22T00:00:00-05:00","datePublished":"2019-09-22T00:00:00-05:00","headline":"How to Write the setup.py File for Python Packages","image":"https://feynlee.github.io/curiosity-notes/images/posts/setup_python.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/curiosity-notes/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://feynlee.github.io/curiosity-notes/feed.xml" title="Curiosity Notes" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -40,7 +40,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-09-22T00:00:00-05:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Ziyue Li"},"headline":"How to Write the setup.py File for Python Packages","description":"An example and explanation of some minimum things to configure in the setup.py","datePublished":"2019-09-22T00:00:00-05:00","dateModified":"2019-09-22T00:00:00-05:00","image":"https://feynlee.github.io/curiosity-notes/images/posts/setup_python.png","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html"},"url":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html","@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Ziyue Li"},"description":"An example and explanation of some minimum things to configure in the setup.py","@type":"BlogPosting","url":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html","dateModified":"2019-09-22T00:00:00-05:00","datePublished":"2019-09-22T00:00:00-05:00","headline":"How to Write the setup.py File for Python Packages","image":"https://feynlee.github.io/curiosity-notes/images/posts/setup_python.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -157,8 +157,7 @@ window.onload = wrap_img;
 </ul><h2 id="basic-setup">
 <a class="anchor" href="#basic-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Setup</h2>
 
-<p>The documentation for the setup.py file is not very clear.
-And I think the quickest way to learn this is through an example, so here is an example of some of the minimum things to configure in the setup.py:</p>
+<p>The documentation for the setup.py file is not very clear, and I think the quickest way to learn this is through an example, so here is an example of some of the minimum things to configure in the setup.py:</p>
 
 <p>If your folder structure is the following (see <a href="https://blog.ionelmc.ro/2014/05/25/python-packaging/#id13">here</a> for why this structure is preferred):</p>
 
@@ -190,24 +189,24 @@ And I think the quickest way to learn this is through an example, so here is an 
 
 <ul>
   <li>
-    <p>The name, maintainer and version are self-explanatory.</p>
+    <p>The name, maintainer, and version are self-explanatory.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">install_requires</code> specifies the depended python packages so that when installing your package, if one of these packages are not already installed in the user’s system, they will be downloaded and installed. One can <a href="https://packaging.python.org/discussions/install-requires-vs-requirements/">specify version requirements for each package here too</a>.</p>
+    <p><code class="highlighter-rouge">install_requires</code> specifies the dependent python packages so that when installing your package, if some of these packages are not already installed in the user’s system, they will be downloaded and installed. One can <a href="https://packaging.python.org/discussions/install-requires-vs-requirements/">specify version requirements for each package here too</a>.</p>
   </li>
   <li>
     <p><code class="highlighter-rouge">packages</code> specifies all packages to include<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>.
 They should be specified in the form of <code class="highlighter-rouge">[foo, foo.bar, foo.tar, foo.bar.tool, ...]</code>, where foo.bar, foo.tar and foo.bar.tool are sub-packages. All sub-packages need to be listed explicitly.</p>
 
-    <p>If you put all packages under the one folder, you can use the find_packages function to automatically find all packages under that folder.</p>
+    <p>If you put all packages under one folder, you can use the find_packages function to automatically find all packages under that folder.</p>
   </li>
   <li>
     <p><code class="highlighter-rouge">package_dir</code> specifies where your package resides. The keys to this dictionary are package names, and an empty package name stands for the root package. In the above example, your package directly resides below the <code class="highlighter-rouge">src</code> folder.</p>
 
-    <p>If we have <code class="highlighter-rouge">package_dir={'foo': 'lib'}</code>, then it means the package foo is the folder lib. If we then have <code class="highlighter-rouge">packages = ['foo', 'foo.bar']</code>, the Distutils will be looking for <code class="highlighter-rouge">lib/__init__.py</code> and <code class="highlighter-rouge">lib/bar/__init__.py</code> for the foo and foo.bar packages respectively.</p>
+    <p>If we have <code class="highlighter-rouge">package_dir={'foo': 'lib'}</code>, then it means the package foo is the folder lib. If we then have <code class="highlighter-rouge">packages = ['foo', 'foo.bar']</code>, Distutils will be looking for <code class="highlighter-rouge">lib/__init__.py</code> and <code class="highlighter-rouge">lib/bar/__init__.py</code> for the foo and foo.bar packages respectively.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">package_data</code> specifies data files to be included for each package. The key is the package name and the value is a list of paths to the data files that are interpreted as relative to the directory containing the package (information from the package_dir mapping is used if appropriate).</p>
+    <p><code class="highlighter-rouge">package_data</code> specifies data files to be included for each package. The key is the package name and the value is a list of paths to the data files that relative to the directory containing the package (information from the package_dir mapping is used if appropriate).</p>
   </li>
 </ul>
 
@@ -215,7 +214,7 @@ They should be specified in the form of <code class="highlighter-rouge">[foo, fo
 <a class="anchor" href="#why-do-we-choose-the-src-structure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why do we choose the “src” structure?</h2>
 <ol>
   <li>
-    <p>We could put our package directly under the project folder:</p>
+    <p>We could’ve put our package directly under the project folder:</p>
 
     <pre><code class="language-plain">- Project_folder
 - PACKAGE_NAME
@@ -226,10 +225,10 @@ They should be specified in the form of <code class="highlighter-rouge">[foo, fo
 - setup.py
 </code></pre>
 
-    <p>But then we write our test, the local package with the same PACKAGE_NAME will be imported instead of the installed package in our system.</p>
+    <p>But then when we write our tests, the local package with the same PACKAGE_NAME will be imported instead of the installed package in our system.</p>
   </li>
   <li>
-    <p>We could put the content of your package directly in the <code class="highlighter-rouge">src</code> folder instead of having another folder with our package name under <code class="highlighter-rouge">src</code>:</p>
+    <p>We could’ve put the content of our package directly under the <code class="highlighter-rouge">src</code> folder instead of having another folder with our package name:</p>
 
     <pre><code class="language-plain">- Project_folder
   - src
@@ -241,10 +240,10 @@ They should be specified in the form of <code class="highlighter-rouge">[foo, fo
 </code></pre>
 
     <p>This way, when we import PACKAGE_NAME, it won’t import the local package since they are under the folder named <code class="highlighter-rouge">src</code>.
-However, if we do so, we will not only need specify that <code class="highlighter-rouge">package_dir={PACKAGE_NAME: 'src'}</code>, but because the package name won’t be picked up by the find_packages function, we will also need to manually list all packages in <code class="highlighter-rouge">packages</code>.</p>
+However, if we had done so, we would not only need to specify that <code class="highlighter-rouge">package_dir={PACKAGE_NAME: 'src'}</code>, but because the package name wouldn’t be picked up by the find_packages function, we would also need to manually list all packages in <code class="highlighter-rouge">packages</code>.</p>
   </li>
   <li>
-    <p>We could just put the test inside the package:</p>
+    <p>We could’ve put the test inside the package:</p>
 
     <pre><code class="language-plain">- Project_folder
   - src
@@ -255,11 +254,11 @@ However, if we do so, we will not only need specify that <code class="highlighte
   - setup.py
 </code></pre>
 
-    <p>But then we are distributing the test as part of the package, which is not ideal.</p>
+    <p>But then we would be distributing the test as part of the package, which is not ideal.</p>
   </li>
 </ol>
 
-<p>In comparison, the structure we mentioned in the very beginning avoids all these problems and is therefore what I consider the best solution so far.</p>
+<p>In comparison, the structure we mentioned in the very beginning avoids all these problems and is therefore what I consider the best solution I’ve found so far.</p>
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
