@@ -6,7 +6,8 @@ search_exclude: true
 ---
 # About
 
-As I continue to learn about things that interest me in this world, I find it helpful to find my way of understanding them. These notes are an effort to organize the thoughts and information in my head as I learn, and whenever possible, make them pedagogical.
+These notes are an effort to organize my thoughts as I learn about things I'm interested in.
+Whenever possible, I will try to make them pedagogical.
 
 ---
 
