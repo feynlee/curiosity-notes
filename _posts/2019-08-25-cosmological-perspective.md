@@ -99,7 +99,7 @@ In other words, the textbook definition of "accelerating expansion" is the "appa
 
 This definition is very unfortunate, since it does not capture the "intrinsic expansion rate" of the universe and thus induces a lot of confusion, especially when we consider the event horizon of the universe, as we will see below.
 
-## Intrinsic Expansion Rate: Hubble's constant
+## Intrinsic Expansion Rate: the Hubble Parameter
 
 To get the "intrinsic expansion rate", we need to remove the dependence on the changing distance. This can be achieved by dividing the apparent velocity of a distant co-moving object by the proper distance in between:
 
@@ -108,9 +108,9 @@ $$H=\dfrac{r\dot{a}(t)}{ra(t)}=\dfrac{\dot{a}(t)}{a(t)},$$
 where $\dot{a}(t)$ is the time derivative of $a(t)$.
 For those interested, Young's modulus in solid-state physics is defined in a similar way to get rid of the length dependence so that it reflects the property of the material.
 
-In other words, Hubble's constant gives the true expansion rate.
+In other words, the Hubble parameter gives the true expansion rate.
 
-To make it clearer why using $\ddot{a}(t)$ to understand expansion is a bad idea, think of it this way: let's say the Hubble's constant is not changing with time, which means the characteristic expansion of the universe is not speeding up nor slowing down. But since at a later time, $a(t)$ itself becomes larger, the induced apparent velocity at that larger proper distance will become larger, and thus $\ddot{a}(t)>0$, and we get the conclusion that the universe's expansion is "accelerating".
+To make it clearer why using $\ddot{a}(t)$ to understand expansion is a bad idea, think of it this way: let's say the Hubble parameter is not changing with time, which means the characteristic expansion of the universe is not speeding up nor slowing down. But since at a later time, $a(t)$ itself becomes larger, the induced apparent velocity at that larger proper distance will become larger, and thus $\ddot{a}(t)>0$, and we get the conclusion that the universe's expansion is "accelerating".
 That "acceleration" is relative to the coordinate system set up from the very beginning.
 If instead you compare the expansion of space now to the expansion of space between objects with the same amount of proper distance in between a long time ago, the expansion can be slower.
 
@@ -123,7 +123,7 @@ One can check this easily with $a(t)=t^2$.
 Obviously $a(t)$ increases at an accelerating rate, but the "intrinsic expansion rate" $H=\dot{a}/a=2/t$ is actually decreasing.
 Said in another way, a constant $H$ corresponds to an exponentially increasing $a(t)$, while a decreasing $H$ corresponds to slower increase in $a(t)$.
 
-The Hubble Constant in our standard cosmology model changes as follows.
+The Hubble parameter in our standard cosmology model changes as follows.
 It decreases quickly in the beginning, and then gradually approaches a constant.
 So initially $a(t)$ increases at a rate slower than exponential, but eventually, $a(t)$ expands exponentially.
 
@@ -132,7 +132,7 @@ So initially $a(t)$ increases at a rate slower than exponential, but eventually,
     <img src="{{ site.baseurl }}/images/posts/Cosmo_Hubble_Constant.png" width="90%">
   </a>
   <figcaption>
-    Fig. 2 An illustration of how Hubble Constant changes in the standard model.
+    Fig. 2 An illustration of how the Hubble parameter changes in the standard model.
   </figcaption>
 </figure>
 
