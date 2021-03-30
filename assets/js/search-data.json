@@ -140,4 +140,18 @@
   
   
 
+  
+  
+
+  
+      ,"page13": {
+          "title": "",
+          "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
+          "url": "https://feynlee.github.io/curiosity-notes/robots.txt",
+          "relUrl": "/robots.txt",
+          "date": ""
+      }
+      
+  
+
 }

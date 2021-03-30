@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Export Jupyter Document With Optional Code Visibility | Curiosity Notes</title>
-<meta name="generator" content="Jekyll v4.0.0" />
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Export Jupyter Document With Optional Code Visibility" />
 <meta name="author" content="Ziyue Li" />
 <meta property="og:locale" content="en_US" />
@@ -17,7 +17,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-01-07T00:00:00-06:00" />
 <script type="application/ld+json">
-{"dateModified":"2019-01-07T00:00:00-06:00","author":{"@type":"Person","name":"Ziyue Li"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/data%20science/2019/01/07/auto-generate-data-science-report-for-sharing.html"},"image":"https://feynlee.github.io/curiosity-notes/images/posts/Jupyter_Auto_Convert.png","description":"Generate an HTML file with a button to toggle code whenever the Jupyter notebook is saved","@type":"BlogPosting","url":"https://feynlee.github.io/curiosity-notes/data%20science/2019/01/07/auto-generate-data-science-report-for-sharing.html","headline":"Export Jupyter Document With Optional Code Visibility","datePublished":"2019-01-07T00:00:00-06:00","@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Ziyue Li"},"description":"Generate an HTML file with a button to toggle code whenever the Jupyter notebook is saved","headline":"Export Jupyter Document With Optional Code Visibility","dateModified":"2019-01-07T00:00:00-06:00","datePublished":"2019-01-07T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/data%20science/2019/01/07/auto-generate-data-science-report-for-sharing.html"},"image":"https://feynlee.github.io/curiosity-notes/images/posts/Jupyter_Auto_Convert.png","url":"https://feynlee.github.io/curiosity-notes/data%20science/2019/01/07/auto-generate-data-science-report-for-sharing.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/curiosity-notes/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://feynlee.github.io/curiosity-notes/feed.xml" title="Curiosity Notes" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -27,7 +27,7 @@
 
 <link rel="shortcut icon" type="image/x-icon" href="/curiosity-notes/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Export Jupyter Document With Optional Code Visibility | Curiosity Notes</title>
-<meta name="generator" content="Jekyll v4.0.0" />
+<meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Export Jupyter Document With Optional Code Visibility" />
 <meta name="author" content="Ziyue Li" />
 <meta property="og:locale" content="en_US" />
@@ -40,7 +40,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-01-07T00:00:00-06:00" />
 <script type="application/ld+json">
-{"dateModified":"2019-01-07T00:00:00-06:00","author":{"@type":"Person","name":"Ziyue Li"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/data%20science/2019/01/07/auto-generate-data-science-report-for-sharing.html"},"image":"https://feynlee.github.io/curiosity-notes/images/posts/Jupyter_Auto_Convert.png","description":"Generate an HTML file with a button to toggle code whenever the Jupyter notebook is saved","@type":"BlogPosting","url":"https://feynlee.github.io/curiosity-notes/data%20science/2019/01/07/auto-generate-data-science-report-for-sharing.html","headline":"Export Jupyter Document With Optional Code Visibility","datePublished":"2019-01-07T00:00:00-06:00","@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Ziyue Li"},"description":"Generate an HTML file with a button to toggle code whenever the Jupyter notebook is saved","headline":"Export Jupyter Document With Optional Code Visibility","dateModified":"2019-01-07T00:00:00-06:00","datePublished":"2019-01-07T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/data%20science/2019/01/07/auto-generate-data-science-report-for-sharing.html"},"image":"https://feynlee.github.io/curiosity-notes/images/posts/Jupyter_Auto_Convert.png","url":"https://feynlee.github.io/curiosity-notes/data%20science/2019/01/07/auto-generate-data-science-report-for-sharing.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -167,7 +167,7 @@ window.onload = wrap_img;
 <h2 id="add-button-to-toggle-code">
 <a class="anchor" href="#add-button-to-toggle-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add Button to Toggle Code</h2>
 
-<p>Jupyter notebooks are web-based, we can simply add some HTML and javascript to make this work. One can include a raw cell at the beginning of your notebook containing the JavaScript and HTML below. This code is heavily based on <a href="http://chris-said.io/2016/02/13/how-to-make-polished-jupyter-presentations-with-optional-code-visibility/">Chris Said’s blog post</a>, except it also hides a few other things besides the input cell, including the numerical prompt next to the cells such as <code class="highlighter-rouge">input [1]</code> and <code class="highlighter-rouge">output [1]</code>.</p>
+<p>Jupyter notebooks are web-based, we can simply add some HTML and javascript to make this work. One can include a raw cell at the beginning of your notebook containing the JavaScript and HTML below. This code is heavily based on <a href="http://chris-said.io/2016/02/13/how-to-make-polished-jupyter-presentations-with-optional-code-visibility/">Chris Said’s blog post</a>, except it also hides a few other things besides the input cell, including the numerical prompt next to the cells such as <code class="language-plaintext highlighter-rouge">input [1]</code> and <code class="language-plaintext highlighter-rouge">output [1]</code>.</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
 <span class="kd">function</span> <span class="nx">code_toggle</span><span class="p">()</span> <span class="p">{</span>
@@ -205,19 +205,19 @@ window.onload = wrap_img;
 <h2 id="custom-template-for-exporting-html-file">
 <a class="anchor" href="#custom-template-for-exporting-html-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Template for Exporting HTML File</h2>
 
-<p>Most people know that we can use <code class="highlighter-rouge">nbconvert</code> to export HTML file, but few know that we can choose a template to use during this process: <code class="highlighter-rouge">jupyter nbconvert --to html 'example.ipynb' --template=custom_template.tpl</code></p>
+<p>Most people know that we can use <code class="language-plaintext highlighter-rouge">nbconvert</code> to export HTML file, but few know that we can choose a template to use during this process: <code class="language-plaintext highlighter-rouge">jupyter nbconvert --to html 'example.ipynb' --template=custom_template.tpl</code></p>
 
 <p>This effectively gives us unlimited flexibility to format the output HTML file however we want. (For more details on how to make a custom template, please refer to the <a href="https://nbconvert.readthedocs.io/en/latest/customizing.html#Converting-a-notebook-to-an-(I)Python-script-and-printing-to-stdout">official document on customizing nbconvert</a> and the <a href="http://jinja.pocoo.org/docs/2.10/templates/">Jinja2 template language guide</a>.)</p>
 
 <p>Unfortunately, I found that we can not directly inherit the existing template used by nbconvert, since the position we want to insert our toggle button is not available if we inherit the existing templates. We have to alter some of the existing templates to create our own.</p>
 
-<p>If your Jupyter is installed using anaconda in a python3.6 environment called <code class="highlighter-rouge">py3</code>, then the default templates for generating HTML files can be found under the path:</p>
+<p>If your Jupyter is installed using anaconda in a python3.6 environment called <code class="language-plaintext highlighter-rouge">py3</code>, then the default templates for generating HTML files can be found under the path:</p>
 
-<p><code class="highlighter-rouge">&lt;Anaconda_Folder&gt;/envs/py3/lib/python3.6/site-packages/nbconvert/templates/html/</code>.</p>
+<p><code class="language-plaintext highlighter-rouge">&lt;Anaconda_Folder&gt;/envs/py3/lib/python3.6/site-packages/nbconvert/templates/html/</code>.</p>
 
 <!-- TODO modifications to basic.tpl -->
 
-<p>I copied the <code class="highlighter-rouge">full.tpl</code> template and added the script part in the <code class="highlighter-rouge">&lt;head&gt;</code> element:</p>
+<p>I copied the <code class="language-plaintext highlighter-rouge">full.tpl</code> template and added the script part in the <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> element:</p>
 
 <div class="language-jinja highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span><span class="o">-</span> <span class="k">block</span> <span class="nv">toggle_script</span> <span class="o">-</span><span class="cp">%}</span>
 <span class="nt">&lt;script&gt;</span>
@@ -266,7 +266,7 @@ window.onload = wrap_img;
 
 <p>We can add a function in the Jupyter configuration file to automatically export HTML file whenever we save a notebook. The Jupyter configuration file can be found at “~/.jupyter/jupyter_notebook_config.py” on mac.</p>
 
-<p>An example code for <code class="highlighter-rouge">jupyter_notebook_config.py</code> that exports an HTML file on save for notebooks with “Report-“ in their names:</p>
+<p>An example code for <code class="language-plaintext highlighter-rouge">jupyter_notebook_config.py</code> that exports an HTML file on save for notebooks with “Report-“ in their names:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_call</span>
@@ -275,17 +275,17 @@ window.onload = wrap_img;
     <span class="s">"""post-save hook for converting notebooks to .py scripts"""</span>
     <span class="k">if</span> <span class="n">model</span><span class="p">[</span><span class="s">'type'</span><span class="p">]</span> <span class="o">!=</span> <span class="s">'notebook'</span><span class="p">:</span>
         <span class="k">return</span> <span class="c1"># only do this for notebooks
-</span>    <span class="n">d</span><span class="p">,</span> <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os_path</span><span class="p">)</span>
+</span>    <span class="n">d</span><span class="p">,</span> <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="n">os_path</span><span class="p">)</span>
     <span class="k">if</span> <span class="s">'Report-'</span> <span class="ow">in</span> <span class="n">fname</span><span class="p">:</span>
         <span class="c1"># generate html files
 </span>        <span class="n">check_call</span><span class="p">([</span><span class="s">'jupyter'</span><span class="p">,</span> <span class="s">'nbconvert'</span><span class="p">,</span> <span class="s">'--to'</span><span class="p">,</span> <span class="s">'html'</span><span class="p">,</span>
             <span class="n">fname</span><span class="p">,</span> <span class="s">'--template=report.tpl'</span><span class="p">],</span> <span class="n">cwd</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"finished creating html file {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">fname</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'.ipynb'</span><span class="p">,</span> <span class="s">'.html'</span><span class="p">)))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"finished creating html file {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">fname</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'.ipynb'</span><span class="p">,</span> <span class="s">'.html'</span><span class="p">)))</span>
 
 
 <span class="n">c</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
-<span class="n">c</span><span class="o">.</span><span class="n">FileContentsManager</span><span class="o">.</span><span class="n">post_save_hook</span> <span class="o">=</span> <span class="n">post_save</span>
-<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">open_browser</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">c</span><span class="p">.</span><span class="n">FileContentsManager</span><span class="p">.</span><span class="n">post_save_hook</span> <span class="o">=</span> <span class="n">post_save</span>
+<span class="n">c</span><span class="p">.</span><span class="n">NotebookApp</span><span class="p">.</span><span class="n">open_browser</span> <span class="o">=</span> <span class="bp">False</span>
 </code></pre></div></div>
 
 <p>See <a href="https://jupyter-notebook.readthedocs.io/en/stable/extending/savehooks.html">Jupyter documentation on file save hooks</a> for more details on how to use save hooks.</p>
