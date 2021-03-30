@@ -132,6 +132,12 @@ By noticing that this angle is the largest angle that can be formed by the line 
 Notice that the speed of the boat only changes the spacing between the peaks, but the general pattern remains the same.
 For Kelvin Wake's pattern construction that takes into account the size of the boat, the readers are referred to this more advanced research [^2].
 
+# Appendix
+
+Minute Physics has done a very nice illustration of the wake pattern formation:
+
+{% youtube https://www.youtube.com/watch?v=95sQcSulRFM %}
+
 # Footnotes
 
 [^1]: [Feynman Lectures on Physics Volume 1, Chapter 51.](https://www.feynmanlectures.caltech.edu/I_51.html)
