@@ -17,7 +17,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-09-22T00:00:00-05:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Ziyue Li"},"description":"An example and explanation of some minimum things to configure in the setup.py","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html"},"url":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html","headline":"How to Write the setup.py File for Python Packages","dateModified":"2019-09-22T00:00:00-05:00","datePublished":"2019-09-22T00:00:00-05:00","image":"https://feynlee.github.io/curiosity-notes/images/posts/setup_python.png","@context":"https://schema.org"}</script>
+{"dateModified":"2019-09-22T00:00:00-05:00","author":{"@type":"Person","name":"Ziyue Li"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html"},"image":"https://feynlee.github.io/curiosity-notes/images/posts/setup_python.png","description":"An example and explanation of some minimum things to configure in the setup.py","@type":"BlogPosting","url":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html","headline":"How to Write the setup.py File for Python Packages","datePublished":"2019-09-22T00:00:00-05:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/curiosity-notes/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://feynlee.github.io/curiosity-notes/feed.xml" title="Curiosity Notes" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -40,7 +40,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-09-22T00:00:00-05:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Ziyue Li"},"description":"An example and explanation of some minimum things to configure in the setup.py","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html"},"url":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html","headline":"How to Write the setup.py File for Python Packages","dateModified":"2019-09-22T00:00:00-05:00","datePublished":"2019-09-22T00:00:00-05:00","image":"https://feynlee.github.io/curiosity-notes/images/posts/setup_python.png","@context":"https://schema.org"}</script>
+{"dateModified":"2019-09-22T00:00:00-05:00","author":{"@type":"Person","name":"Ziyue Li"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html"},"image":"https://feynlee.github.io/curiosity-notes/images/posts/setup_python.png","description":"An example and explanation of some minimum things to configure in the setup.py","@type":"BlogPosting","url":"https://feynlee.github.io/curiosity-notes/programming/2019/09/22/how-to-write-the-setup.py-file-for-python-packages.html","headline":"How to Write the setup.py File for Python Packages","datePublished":"2019-09-22T00:00:00-05:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -195,7 +195,7 @@ window.onload = wrap_img;
     <p><code class="highlighter-rouge">install_requires</code> specifies the dependent python packages so that when installing your package, if some of these packages are not already installed in the user’s system, they will be downloaded and installed. One can <a href="https://packaging.python.org/discussions/install-requires-vs-requirements/">specify version requirements for each package here too</a>.</p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">packages</code> specifies all packages to include<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>.
+    <p><code class="highlighter-rouge">packages</code> specifies all packages to include<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.
 They should be specified in the form of <code class="highlighter-rouge">[foo, foo.bar, foo.tar, foo.bar.tool, ...]</code>, where foo.bar, foo.tar and foo.bar.tool are sub-packages. All sub-packages need to be listed explicitly.</p>
 
     <p>If you put all packages under one folder, you can use the find_packages function to automatically find all packages under that folder.</p>
