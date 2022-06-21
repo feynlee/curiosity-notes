@@ -9,7 +9,7 @@ comments: true
 image: images/posts/Cosmo_Horizons.png
 hide: false
 search_exclude: false
-categories: [Physical Science]
+categories: [Physics]
 tags: [cosmology]
 ---
 

@@ -8,7 +8,7 @@ layout: post
 image: https://upload.wikimedia.org/wikipedia/commons/4/4f/Wake.avon.gorge.2boats.arp.750pix.jpg
 hide: false
 search_exclude: false
-categories: [Physical Science]
+categories: [Physics]
 tags: [Fluid Dynamics]
 ---
 
