@@ -12,9 +12,13 @@ categories: [Travel]
 tags: [Hiking]
 ---
 
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-ot_spOmSYw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
 
-
-<iframe src="https://www.google.com/maps/d/u/2/embed?mid=1M6l2ixFe1cscCMejtJgwl2OIu28fRg8&ehbc=2E312F" width="640" height="480"></iframe>
+<p align="center">
+<iframe src="https://www.google.com/maps/d/u/2/embed?mid=1M6l2ixFe1cscCMejtJgwl2OIu28fRg8&ehbc=2E312F" width="560" height="480"></iframe>
+</p>
 
 # Stats
 
