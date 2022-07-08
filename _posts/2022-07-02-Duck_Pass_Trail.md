@@ -5,7 +5,7 @@ author: Ziyue Li
 toc: true
 comments: true
 layout: post
-image: images/posts/
+image: images/posts/duck_lake-3.jpg
 hide: false
 search_exclude: false
 categories: [Travel]
