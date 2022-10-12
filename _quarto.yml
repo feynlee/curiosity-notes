@@ -1,0 +1,35 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "curiosity-notes"
+  site-url: "https://feynlee.github.io/curiosity-notes"
+  twitter-card: true
+  open-graph: true
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/feynlee
+      - icon: twitter
+        href: https://twitter.com/curiosity_notes
+
+# so that R, Python, and Julia code is only executed locally
+execute:
+  freeze: auto
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 4
+    code-line-numbers: "1"
+    code-block-bg: true
+    code-block-border-left: true
+    code-copy: true
+    code-fold: true
+
+
+
