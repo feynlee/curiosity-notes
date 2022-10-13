@@ -1,6 +1,6 @@
 import yaml
 
-with open('pages/books/books.yml', 'r') as stream:
+with open('books.yml', 'r') as stream:
    books = yaml.load(stream, Loader=yaml.Loader)
 
 entries = [
@@ -74,5 +74,5 @@ f"""
 entries.append(":::::::")
 book_list = '\n'.join(entries)
 
-with open("pages/books/books.md", "w") as f:
+with open("books.md", "w") as f:
     f.write(book_list)
