@@ -148,36 +148,36 @@ div.collection-container {
  div.collection-item_description .collection-item-name {
 	 width: 100%;
 	 justify-content: center;
-	 font-size: 16px;
+	 font-size: 24px;
 	 font-weight: bold;
 	 margin-top: 3%;
 }
  @media (max-width: 500px) {
 	 div.collection-item_description .collection-item-name {
-		 font-size: 13px;
+		 font-size: 18px;
 	}
 }
  div.collection-item_description .collection-item-subtitle {
 	 width: 100%;
 	 justify-content: center;
 	 font-weight: 500;
-	 font-size: 15px;
+	 font-size: 20px;
 	 line-height: 110%;
 }
  @media (max-width: 500px) {
 	 div.collection-item_description .collection-item-subtitle {
-		 font-size: 12px;
+		 font-size: 18px;
 	}
 }
  div.collection-item_description .collection-item-quotes {
 	 width: 100%;
-	 font-size: 15px;
+	 font-size: 18px;
 	 text-align: left;
 	 padding-top: 7%;
 }
  @media (max-width: 500px) {
 	 div.collection-item_description .collection-item-quotes {
-		 font-size: 12px;
+		 font-size: 16px;
 	}
 }
  button.mfp-close {

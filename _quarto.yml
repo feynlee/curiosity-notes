@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: _site
+  pre-render: books/books.py
 
 website:
   title: "curiosity-notes"
@@ -8,6 +9,8 @@ website:
   twitter-card: true
   open-graph: true
   navbar:
+    left:
+      - books/books.md
     right:
       - about.qmd
       - icon: github
@@ -31,5 +34,5 @@ format:
     code-copy: true
     code-fold: true
 
-
+metadata-files: [data/books.yml, data/movies.yml]
 
