@@ -1,0 +1,12 @@
+---
+format:
+  html:
+    page-layout: article
+title: Books
+listing:
+  template: books.ejs
+  contents: books.yml
+  # page-size: 3
+description: Some books that I enjoyed reading.
+toc: false
+---

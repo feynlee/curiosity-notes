@@ -1,22 +1,57 @@
 project:
   type: website
   output-dir: _site
-  pre-render: books/books.py
 
 website:
   title: "curiosity-notes"
   site-url: "https://feynlee.github.io/curiosity-notes"
   twitter-card: true
   open-graph: true
+  page-navigation: true
   navbar:
     left:
-      - books/books.md
+      - text: Posts
+        href: index.qmd
+      - text: Books
+        href: books/books.qmd
+      - text: AI Art
+        href: ai_art-dd.ipynb
     right:
       - about.qmd
       - icon: github
         href: https://github.com/feynlee
       - icon: twitter
         href: https://twitter.com/curiosity_notes
+  sidebar:
+    - id: ai_art
+      title: AI Art
+      contents:
+        - section: Disco Diffusion
+          contents:
+            - text: Temple
+              href: AI_art/disco_diffusion/01-temple.md
+            - text: Cherry Blossom
+              href: AI_art/disco_diffusion/02-cherry_blossom.md
+            - text: Forest
+              href: AI_art/disco_diffusion/03-forest.md
+            - text: Dusk
+              href: AI_art/disco_diffusion/04-dusk.md
+            - text: Islands
+              href: AI_art/disco_diffusion/05-islands.md
+            - text: Peter Pan
+              href: AI_art/disco_diffusion/06-peter_pan.md
+            - text: Lagoon
+              href: AI_art/disco_diffusion/07-lagoon.md
+            - text: Roses
+              href: AI_art/disco_diffusion/08-roses.md
+            - text: Space Station
+              href: AI_art/disco_diffusion/09-space_station.md
+            - text: Night Fortress
+              href: AI_art/disco_diffusion/10-night_fortress.md
+            - text: Jellyfish
+              href: AI_art/disco_diffusion/11-jellyfish.md
+            - text: Single
+              href: AI_art/disco_diffusion/12-singles.md
 
 # so that R, Python, and Julia code is only executed locally
 execute:
@@ -24,7 +59,8 @@ execute:
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: cosmo
     css: styles.css
     toc: true
     toc-depth: 4
@@ -34,5 +70,5 @@ format:
     code-copy: true
     code-fold: true
 
-metadata-files: [data/books.yml, data/movies.yml]
+# metadata-files: [data/books.yml, data/movies.yml]
 

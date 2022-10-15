@@ -6,6 +6,7 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+toc-location: left
 
 comments:
   giscus:
@@ -18,3 +19,4 @@ comments:
     loading: lazy
     input-position: "top"
     theme: "preferred_color_scheme"
+    # theme: "transparent_dark"
