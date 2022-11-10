@@ -45,7 +45,7 @@ $$d_\mu = \partial_\mu s^i + \gamma_{\mu j}^{i} \pmb{e}_i s^j$$
 
 which takes into account the change of coordinate basis on the curved surface, and thus is a true comparison of parallel transported vectors at the same location.
 
-all we need to do now is figure out the christoffel symbols $\gamma^{i}_{\mu j}$ for parallel transport.
+all we need to do now is figure out the Christoffel symbols $\gamma^{i}_{\mu j}$ for parallel transport.
 
 ## parallel transport on a 2d sphere
 
@@ -70,7 +70,7 @@ $$\begin{align}
 this gives us the magnitude of each basis vector and the angle between them ($90\degree$).
 we now have everything we need to draw the local changes of the coordinate basis as follows:
 
-![fig 1. local changes of coordinate basis for a 2d sphere](images/2022/parallel_transport-coordinate_basis.svg){fig-align=center}
+![fig 1. local changes of coordinate basis for a 2d sphere](images/2022/parallel_transport-coordinate_basis.png){fig-align=center}
 
 we can clearly see, that because $\pmb{e}_\phi \propto \sin\theta$, the $\pmb{e}_\theta'$ is rotated.
 the rotation angle $\alpha \approx \tan\alpha = d(\sin\theta)/d\theta = \cos\theta$.
@@ -111,6 +111,9 @@ $$
 &= \gamma_{\gamma\alpha}^{\mu} g_{\mu\beta} + \gamma_{\gamma\beta}^{\mu} g_{\mu\alpha}
 \end{align}
 $$
+
+### Torsion Free and Metric Compatibility
+
 
 # generalized "parallel transport"
 

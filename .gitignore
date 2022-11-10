@@ -61,3 +61,5 @@ docs
 _site
 movies
 /.quarto/
+
+/.luarc.json
