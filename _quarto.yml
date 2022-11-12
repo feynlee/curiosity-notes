@@ -54,6 +54,7 @@ website:
               href: AI_art/disco_diffusion/11-jellyfish.md
             - text: Single
               href: AI_art/disco_diffusion/12-singles.md
+    - id: other
 
 
 # so that R, Python, and Julia code is only executed locally
