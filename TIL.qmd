@@ -1,0 +1,14 @@
+---
+title: TIL
+listing:
+  contents: TIL
+  sort: "date desc"
+  type: grid
+  categories: cloud
+  sort-ui: false
+  filter-ui: false
+  page-size: 30
+  feed: true
+page-layout: full
+title-block-banner: false
+---

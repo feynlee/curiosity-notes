@@ -12,6 +12,8 @@ website:
     left:
       - text: Posts
         href: index.qmd
+      - text: TIL
+        href: TIL.qmd
       - text: Books
         href: books/books.qmd
       - text: AI Art
@@ -72,7 +74,8 @@ format:
     code-block-bg: true
     code-block-border-left: true
     code-copy: true
-    code-fold: true
+    code-fold: false
+    highlight-style: pygments
 
 # metadata-files: [data/books.yml, data/movies.yml]
 
