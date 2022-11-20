@@ -1,7 +1,7 @@
 ---
 title: DreamBooth
 date: '2022-10-01'
-description: Fine-tuning Stability Diffusion to Generate Artwork with My Face.
+description: Fine-tuning Stable Diffusion to Generate Artwork with My Face.
 draft: false
 categories:
 - Deep Learning
@@ -11,7 +11,10 @@ filters:
 lightbox: auto
 toc: false
 ---
+
 [![](https://colab.research.google.com/assets/colab-badge.svg){fig-align="left"}](https://colab.research.google.com/github/feynlee/Stable_Diffusion/blob/main/dreambooth/DreamBooth_Stable_Diffusion.ipynb)
+
+## Train on Stable Diffusion V1.4
 
 I adapted a Google Colab Notebook to fine-tune the stability diffusion model with DreamBooth, and added sections to save the trained model directly to HuggingFace, so it can be pulled from the hub in the future.
 
@@ -60,3 +63,110 @@ Some of them do have some resemblance with me, while others do not look that muc
 ::::
 
 GitHub repo: [https://github.com/feynlee/Stable_Diffusion/tree/main/dreambooth](https://github.com/feynlee/Stable_Diffusion/tree/main/dreambooth)
+
+
+## Train on the Arcane Diffusion
+
+We can also train on fined-tuned stability models. I fine-tuned the [Arcane Diffusion Model](https://huggingface.co/nitrosocke/Arcane-Diffusion) on photos of me using the same [DreamBooth Notebook](https://colab.research.google.com/github/feynlee/Stable_Diffusion/blob/main/dreambooth/DreamBooth_Stable_Diffusion.ipynb).
+
+The Arcane style got preserved, and now I can generate pictures of "me" in this style:
+
+::::{.grid}
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-0.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-1.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-2.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-3.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-4.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-5.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-6.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-7.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-8.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-9.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-10.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-11.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-12.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-13.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-14.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-15.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-16.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-17.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-18.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-19.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-20.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-21.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-22.png){group="arcane"}
+:::
+
+:::{.g-col-6 .g-col-md-4}
+![](images/dreambooth/arcane_style/arcane_style-23.png){group="arcane"}
+:::
+
+::::
