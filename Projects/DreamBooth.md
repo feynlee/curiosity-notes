@@ -9,7 +9,6 @@ image: images/dreambooth/liziyue-51.PNG
 filters:
    - lightbox
 lightbox: auto
-toc: false
 ---
 
 [![](https://colab.research.google.com/assets/colab-badge.svg){fig-align="left"}](https://colab.research.google.com/github/feynlee/Stable_Diffusion/blob/main/dreambooth/DreamBooth_Stable_Diffusion.ipynb)
