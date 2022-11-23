@@ -8,6 +8,19 @@ freeze: true
 title-block-banner: true
 toc-location: left
 
+# filters:
+#   - social-share
+# share:
+#   permalink: "https://mr.schochastics.net/"
+#   description: "awesome page"
+#   twitter: true
+#   facebook: true
+#   reddit: true
+#   stumble: true
+#   tumblr: true
+#   linkedin: true
+#   email: true
+
 comments:
   giscus:
     repo: feynlee/curiosity-notes
