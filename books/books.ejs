@@ -1,7 +1,7 @@
 ```{=html}
-<div class="collection-container">
+<div class="collection-container list">
   <% for (const item of items) { %>
-      <div class="collection-item Box color-shadow-large rounded-1">
+      <div class="collection-item Box color-shadow-large rounded-1" <%= metadataAttrs(item) %>>
           <div class="collection-item-inner">
             <div class="collection-item_img">
               <div class="collection-item-img-link">
@@ -18,15 +18,15 @@
               </p>
             </div>
             <div class="collection-item_description">
-              <div class="collection-item-name">
+              <div class="collection-item-name listing-title">
                 <%= item.title %>
               </div>
               <% if (item.subtitle) { %>
-                <div class="collection-item-subtitle">
+                <div class="collection-item-subtitle listing-subtitle">
                   <%= item.subtitle %>
                 </div>
               <% } %>
-              <div class="collection-item-quotes">
+              <div class="collection-item-quotes listing-description">
               <%= item.description %>
               </div>
             </div>

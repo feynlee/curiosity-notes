@@ -6,7 +6,9 @@ title: Books
 listing:
   template: books.ejs
   contents: books.yml
-  # page-size: 3
+  sort-ui: false
+  filter-ui: true
+  page-size: 10
 description: Some books that I enjoyed reading.
 toc: false
 ---

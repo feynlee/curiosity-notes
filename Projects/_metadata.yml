@@ -11,3 +11,5 @@ comments:
     loading: lazy
     input-position: "top"
     theme: "preferred_color_scheme"
+  hypothesis:
+    theme: clean

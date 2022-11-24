@@ -93,6 +93,10 @@ format:
     code-copy: true
     code-fold: false
     highlight-style: pygments
+    smooth-scroll: true
+    link-external-newwindow: true
+    anchor-sections: true
+    header-includes: <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637e822e04255c001315118d&product=inline-share-buttons&source=platform" async="async"></script>
 
 # metadata-files: [data/books.yml, data/movies.yml]
 
