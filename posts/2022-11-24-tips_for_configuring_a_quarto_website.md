@@ -2,7 +2,7 @@
 title: Tips for Configuring a Quarto Website
 author: ziyue li
 categories:
-- code
+- Web
 date: '2022-11-24'
 # description: how parallel transport can be understood.
 draft: false
@@ -15,15 +15,15 @@ format:
 
 ![](images/2022/quarto-website.png)
 
->It took me some time to migrate to [Quarto](https://quarto.org).
->Here are some the tips that might be helpful if you are thinking about doing the same.
-
 :::{.callout-tip}
 
 ## Tip
 
-Explore the [GitHub Repo for this Website](https://github.com/feynlee/curiosity-notes) to see how it's set up.
+Explore the GitHub Repo for this website to see how it's set up: [![](../images/icons/github-logo.png){fig-align=left width=80px}](https://github.com/feynlee/curiosity-notes)
 :::
+
+It took me some time to migrate to [Quarto](https://quarto.org).
+Here are some the tips that might be helpful if you are thinking about doing the same.
 
 ## Different Sidebars for Different Contents
 
