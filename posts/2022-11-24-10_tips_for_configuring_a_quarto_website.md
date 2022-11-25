@@ -79,7 +79,8 @@ format:
 [Giscus](https://giscus.app) is a comments system powered by [GitHub Discussions](https://docs.github.com/en/discussions).
 It supports Latex, so that visitors can type math equations in the comment section.
 
-Make sure you configure the `repository` and the `Discussion Category` on [Giscus](https://giscus.app), this will generate the script code.
+Make sure you configure the `repository` and the `Discussion Category` on [Giscus](https://giscus.app).
+This will generate the script code.
 We don't need to copy that code, but we do need to note the `data-repo-id`, and `data-category-id`.
 
 To enable it for a page, include the following in the YAML front matter:
@@ -116,7 +117,8 @@ comments:
 2. Include the path to the xml file
 
     We need to explicitly include links to these xml files.
-    In this website, I created 3 RSS feeds: Posts, TIL and Projects, and included them in `_quarto.yml` under a menu on the right side of the navigation bar:
+    On this website, I created 3 RSS feeds: Posts, TIL and Projects.
+    I included them in `_quarto.yml` under a menu on the right side of the navigation bar:
 
     ```yml
     website:
@@ -160,7 +162,7 @@ format:
 ### Buttons Code
 
 For the buttons code, one could've included it at the bottom of each post manually, so that the share buttons appear there.
-However, I'd like to do this more efficiently, so I created an extension: [code-insertion](https://github.com/feynlee/code-insertion).
+However, I'd like to do this more efficiently, so I created an extension: [code-insertion](https://github.com/feynlee/code-insertion), which can insert any markdown/html code before and/or after a post.
 
 Here's what you need to do to enable this:
 
@@ -170,7 +172,7 @@ Here's what you need to do to enable this:
   quarto add feynlee/code-insertion
   ```
 
-  This will install the extension under the _extensions subdirectory. If you're using version control, you will want to check in this directory for your Quarto website.
+  This will install the extension under the `_extensions` subdirectory. If you're using version control, you will want to check in this directory for your Quarto website.
 
 - Create a Markdown file to store the buttons code
 
@@ -186,7 +188,7 @@ Here's what you need to do to enable this:
 
 - Enable the filter in `_metadata.yml` for all posts
 
-  In the front matter of a post, the code-insertion filter and add insert-before-post and/or insert-after-post parameters that point to a markdown file with sections you want to insert before and/or after the post.
+  In the YAML front matter of a post, enable the code-insertion filter, and add `insert-before-post` and/or `insert-after-post` parameters that point to a markdown file with sections you want to insert before and/or after the post.
 
   Create a `_metadata.yml` file under the folder that contains all of your posts.
   Any settings here will be shared by all posts.
