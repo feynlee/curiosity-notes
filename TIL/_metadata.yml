@@ -1,4 +1,8 @@
-toc-location: left
+toc-location: right
+
+filters:
+  - code-insertion
+insert-after-post: ../../_sharebutton.qmd
 
 comments:
   giscus:

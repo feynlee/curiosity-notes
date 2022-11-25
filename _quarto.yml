@@ -44,6 +44,26 @@ website:
             href: https://feynlee.github.io/curiosity-notes/projects.xml
             aria-label: Projects RSS
   sidebar:
+    - id: til
+      title: TIL
+      contents:
+        - section: '2022'
+          contents:
+          - text: Nbdev_ignore
+            href: TIL/2022/2022-11-23-aws-private_subnet_setup.ipynb
+          - text: Whisper2Subtitles
+            href: TIL/2022/2022-11-16-fastai-store_attr_infinite_recursion.ipynb
+          - text: DreamBooth
+            href: TIL/2022/2022-11-15-fastai-show_training_loop.ipynb
+    - id: projects
+      title: Projects
+      contents:
+        - text: Nbdev_ignore
+          href: Projects/Nbdev_ignore.md
+        - text: Whisper2Subtitles
+          href: Projects/Whisper2Subtitles.md
+        - text: DreamBooth
+          href: Projects/DreamBooth.md
     - id: ai_art
       title: AI Art
       contents:
@@ -73,7 +93,6 @@ website:
               href: AI_art/disco_diffusion/11-jellyfish.md
             - text: Single
               href: AI_art/disco_diffusion/12-singles.md
-    - id: other
 
 
 # so that R, Python, and Julia code is only executed locally

@@ -6,20 +6,11 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
-toc-location: left
+toc-location: right
 
-# filters:
-#   - social-share
-# share:
-#   permalink: "https://mr.schochastics.net/"
-#   description: "awesome page"
-#   twitter: true
-#   facebook: true
-#   reddit: true
-#   stumble: true
-#   tumblr: true
-#   linkedin: true
-#   email: true
+filters:
+  - code-insertion
+insert-after-post: ../_sharebutton.qmd
 
 comments:
   giscus:
