@@ -66,6 +66,8 @@ website:
           href: Projects/2022-11-09-Whisper2Subtitles.md
         - text: DreamBooth
           href: Projects/2022-10-01-DreamBooth.md
+        - text: Learning Blender
+          href: Projects/2021-12-15-Learning_Blender.md
     - id: ai_art
       title: AI Art
       contents:
