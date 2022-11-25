@@ -10,8 +10,7 @@ filters:
    - lightbox
 lightbox: auto
 ---
-
-[![](https://colab.research.google.com/assets/colab-badge.svg){fig-align="left"}](https://colab.research.google.com/github/feynlee/Stable_Diffusion/blob/main/dreambooth/DreamBooth_Stable_Diffusion.ipynb)
+[![](https://colab.research.google.com/assets/colab-badge.svg){fig-align="left"}](https://colab.research.google.com/github/feynlee/Stable_Diffusion/blob/main/dreambooth/DreamBooth_Stable_Diffusion.ipynb) [![](../images/icons/github-logo.png){fig-align="left" width=80px}](https://github.com/feynlee/Stable_Diffusion/tree/main/dreambooth)
 
 ## Train on Stable Diffusion V1.4
 
@@ -60,8 +59,6 @@ Some of them do have some resemblance with me, while others do not look that muc
 :::
 
 ::::
-
-GitHub repo: [https://github.com/feynlee/Stable_Diffusion/tree/main/dreambooth](https://github.com/feynlee/Stable_Diffusion/tree/main/dreambooth)
 
 
 ## Train on the Arcane Diffusion

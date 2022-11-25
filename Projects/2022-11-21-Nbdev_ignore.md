@@ -7,7 +7,8 @@ categories:
 - Tools
 image: images/nbdev_ignore/nbdev_ignore.png
 ---
-GitHub Repo: [nbdev-ignore](https://github.com/feynlee/nbdev-ignore)
+
+[![](../images/icons/github-logo.png){fig-align="left" width=80px}](https://github.com/feynlee/nbdev-ignore)
 
 ## What this is
 

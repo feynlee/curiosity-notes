@@ -58,12 +58,14 @@ website:
     - id: projects
       title: Projects
       contents:
+        - text: Code-Insertion
+          href: Projects/2022-11-25-Code_Insertion.md
         - text: Nbdev_ignore
-          href: Projects/Nbdev_ignore.md
+          href: Projects/2022-11-21-Nbdev_ignore.md
         - text: Whisper2Subtitles
-          href: Projects/Whisper2Subtitles.md
+          href: Projects/2022-11-09-Whisper2Subtitles.md
         - text: DreamBooth
-          href: Projects/DreamBooth.md
+          href: Projects/2022-10-01-DreamBooth.md
     - id: ai_art
       title: AI Art
       contents:
