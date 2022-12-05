@@ -114,6 +114,35 @@ $$
 
 ### Torsion Free and Metric Compatibility
 
+## What does the Torsion Tensor Describe
+
+In differential geometry, the torsion tensor is a type of tensor that describes how tangent surfaces twist or skew when they are parallel transported along a curve. This can be seen by considering the effect of parallel transport on the covariant derivative of a vector field.
+
+Recall that the covariant derivative of a vector field X along a curve C is given by the following equation:
+
+$D_XY = \frac{\partial X}{\partial s} + \Gamma_{ij}^k X^j \frac{\partial y^i}{\partial x^k}$
+
+where $X$ is the vector field, $s$ is the arc length along the curve, $\Gamma_{ij}^k$ are the Christoffel symbols, and $y^i$ are the coordinates of the curve.
+
+Now, consider what happens when we parallel transport a tangent vector $Y$ along the curve C. This means that we keep the vector $Y$ constant as we move along the curve, so its covariant derivative should be zero:
+
+$D_XY = 0$
+
+Substituting the expression for the covariant derivative into this equation, we get:
+
+$\frac{\partial X}{\partial s} + \Gamma_{ij}^k X^j \frac{\partial y^i}{\partial x^k} = 0$
+
+We can rearrange this equation to solve for the Christoffel symbols:
+
+$\Gamma_{ij}^k = -\frac{\partial X^k}{\partial s} \frac{\partial y^i}{\partial x^j}$
+
+This equation shows that the Christoffel symbols, which are components of the connection, are determined by the rate of change of the vector field along the curve. In other words, the connection encodes information about how the vector field twists or skews as it is parallel transported along the curve.
+
+The torsion tensor is then defined as the antisymmetric part of the connection:
+
+$T_{ij}^k = \Gamma_{ij}^k - \Gamma_{ji}^k$
+
+This means that the torsion tensor encodes information about how the vector field twists or skews as it is parallel transported along the curve, relative to the direction of the curve. In other words, the torsion tensor describes how tangent surfaces twist or skew about a curve when they are parallel transported.
 
 # generalized "parallel transport"
 
