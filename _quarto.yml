@@ -18,7 +18,11 @@ website:
       - text: Books
         href: books/books.qmd
       - text: AI Art
-        href: ai_art-dd.ipynb
+        menu:
+          - text: Disco Diffusion
+            href: ai_art-dd.ipynb
+          - text: Stable Diffusion
+            href: ai_art-sd.ipynb
       - text: Projects
         href: projects.qmd
     right:
@@ -72,6 +76,7 @@ website:
       title: AI Art
       contents:
         - section: Disco Diffusion
+          href: ai_art-dd.ipynb
           contents:
             - text: Temple
               href: AI_art/disco_diffusion/01-temple.md
@@ -97,6 +102,11 @@ website:
               href: AI_art/disco_diffusion/11-jellyfish.md
             - text: Single
               href: AI_art/disco_diffusion/12-singles.md
+        - section: Stable Diffusion
+          href: ai_art-sd.ipynb
+          contents:
+            - text: Videos
+              href: AI_art/stable_diffusion/01-videos.md
 
 
 # so that R, Python, and Julia code is only executed locally
