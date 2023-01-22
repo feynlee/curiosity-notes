@@ -105,8 +105,14 @@ website:
         - section: Stable Diffusion
           href: ai_art-sd.ipynb
           contents:
-            - text: Videos
-              href: AI_art/stable_diffusion/01-videos.md
+            - text: Year of the Rabbit
+              href: AI_art/stable_diffusion/happy_the_year_of_the_rabbit.md
+            - text: This Fleeting Life
+              href: AI_art/stable_diffusion/this_fleeting_life.md
+            - text: Christmas Gift
+              href: AI_art/stable_diffusion/Christmas_gift.md
+            - text: Horse
+              href: AI_art/stable_diffusion/horse.md
 
 
 # so that R, Python, and Julia code is only executed locally
