@@ -135,7 +135,9 @@ format:
     smooth-scroll: true
     link-external-newwindow: true
     anchor-sections: true
-    header-includes: <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637e822e04255c001315118d&product=inline-share-buttons&source=platform" async="async"></script>
+    header-includes: |
+      <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637e822e04255c001315118d&product=inline-share-buttons&source=platform" async="async"></script>
+      <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="v97khzznr8B" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
 # metadata-files: [data/books.yml, data/movies.yml]
 
