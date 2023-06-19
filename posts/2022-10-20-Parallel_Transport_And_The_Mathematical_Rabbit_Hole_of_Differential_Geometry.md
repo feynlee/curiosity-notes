@@ -168,3 +168,52 @@ where $\Gamma^{\mu}_{\nu \lambda}$ are the connection coefficients. The torsion 
 In general, the torsion tensor is a tensor of rank 3, which means that it has three indices and can be thought of as a 3-dimensional array of numbers. The magnitude of the torsion at a given point in spacetime is determined by the magnitude of the torsion tensor at that point, and the direction of the torsion is determined by the orientation of the tensor.
 
 I hope this helps to clarify the mathematical definition of the torsion tensor in Einstein-Cartan theory. Please let me know if you have any other questions.
+
+
+The Frenet-Serret formulas give us a set of equations that describe how the tangent, normal, and binormal vectors to the curve change as we move along the curve. We have:
+
+$$dT/dt = k_n N$$
+$$dN/dt = -k_n T + k_g B$$
+$$dB/dt = -k_g N$$
+
+Here, T, N, and B are the tangent, normal, and binormal vectors to the curve, and k_n and k_g are the normal and geodesic curvatures of the curve, respectively.
+
+Now, let's take the covariant derivative of the normal vector N with respect to the tangent vector T. The covariant derivative measures the rate of change of a vector as we move along a curve, taking into account the curvature of the surface. We have:
+
+$$D_N T = dN/dt - (N . dT/dt)N$$
+
+where the dot represents the dot product. We can substitute the Frenet-Serret formulas into this expression to get:
+
+$$D_N T = -k_n T + k_g B - (N . k_n N)N$$
+
+Notice that the last term is zero, since the normal vector N is always perpendicular to itself.
+
+Now, let's take the dot product of this expression with the normal vector N:
+
+$$N . D_N T = -k_n (N . T) + k_g (N . B)$$
+
+The dot product (N . T) is zero, since the tangent vector T is always perpendicular to the normal vector N. So we can simplify this expression to:
+
+$$N . D_N T = k_g (N . B)$$
+
+This is the key equation that relates the geodesic torsion to the normal and binormal vectors. To see this, let's recall that the binormal vector B is defined as the cross product of the tangent and normal vectors: B = T x N. So we can write:
+
+$$N . B = N . (T x N) = (N x T) . N$$
+
+where the cross product (N x T) is the tangent vector to the osculating plane of the curve (i.e., the plane that contains the tangent and normal vectors).
+
+Now, let's use the fact that the tangent vector T is always parallel to the surface (since it lies on the surface), so its covariant derivative with respect to the normal vector N is zero: D_N T = 0. This means that the tangent vector is always tangent to the osculating plane, so (N x T) is always perpendicular to the normal vector N. Therefore, we have:
+
+(N x T) . N = 0
+
+which implies that N . B = 0. So we can simplify our previous equation to:
+
+N . D_N T = 0
+
+This means that the normal vector N is always perpendicular to its covariant derivative with respect to the tangent vector T. Geometrically, this means that the normal vector rotates around the tangent vector as we move along the curve, and the rate of rotation is zero.
+
+However, if we take the covariant derivative of the normal vector with respect to the binormal vector B instead, we get:
+
+D_B N = -k_g T
+
+This expression tells us that the normal vector rotates around the binormal vector with a rate of rotation
