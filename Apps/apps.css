@@ -247,20 +247,14 @@ body {
 }
 
 .long-text-pic .text {
-    /* margin-top: 150px; */
     margin-top: auto;
-    margin-bottom: auto;
     margin-left: 50px;
     margin-right: 50px;
+    /* margin: auto 50px; */
 }
 
 .long-text-pic p {
     margin: 0;
-}
-
-.long-text-pic .support {
-    font-size: 14px;
-    margin-top: 100px;
 }
 
 .app-name {
@@ -268,23 +262,83 @@ body {
     font-weight: bold;
 }
 
-@media (max-width: 768px) {
-    .app-name {
-      font-size: 40px;
-    }
-}
-
 .app-subtitle {
     font-size: 26px;
 }
 
-@media (max-width: 768px) {
+#quarto-content>* {
+    padding: 0;
+}
+
+.app-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 0px, 20px; */
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.app-link-item {
+    margin: auto 10px;
+}
+
+.qrcode img {
+    width: 100px;
+}
+
+.app-image {
+    margin: 20px 10px;
+}
+
+
+.long-text-pic .support {
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+
+@media (max-width: 992px) {
+    .long-text-pic .text {
+        margin: auto 20px;
+    }
+    .app-name {
+      font-size: 35px;
+    }
     .app-subtitle {
       font-size: 20px;
+    }
+    .app-link {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .app-link-item {
+        margin: auto 5px;
+    }
+    .qrcode img {
+        width: 70px;
     }
 }
 
 
-#quarto-content>* {
-    padding: 0;
+@media (max-width: 768px) {
+    .long-text-pic .text {
+        margin-top: 30px;
+    }
+    .app-name {
+      font-size: 40px;
+    }
+    .app-subtitle {
+      font-size: 26px;
+    }
+    .app-link {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .app-link-item {
+        margin: auto 5px;
+    }
+    .qrcode img {
+        width: 100px;
+    }
 }

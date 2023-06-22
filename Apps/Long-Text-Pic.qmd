@@ -11,15 +11,25 @@ toc: false
 
 ::::::{.long-text-pic}
 :::::{.grid .gap-0 .container}
-::::{.g-col-12 .g-col-lg-7 .g-col-md-6}
+::::{.g-col-12 .g-col-md-7}
 ![](images/Long-Text-Pic-banner.png)
 ::::
 
-::::{.text .g-col-12 .g-col-lg-5 .g-col-md-6}
+::::{.text .g-col-12 .g-col-md-5}
 [Long Text Pic]{.app-name}
 
 [Edit long text and contert it
-to a long image to share]{.app-subtitle}
+to a long image]{.app-subtitle}
+
+:::{.app-link}
+:::{.app-link-item .qrcode}
+<img src="https://tools-qr-production.s3.amazonaws.com/output/apple-toolbox/35142435f6542ef4f3c5751f85271dc9/640c735d40f77518bf91755bf5a6fff3.png">
+:::
+
+:::{.app-link-item .app-image}
+[![](images/Download_on_the_App_Store_Badge.svg)](https://apple.co/46avN7E)
+:::
+:::
 
 :::{.support}
 support email: long-text-pic@flycricket.support
