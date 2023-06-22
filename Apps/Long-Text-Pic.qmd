@@ -19,7 +19,7 @@ toc: false
 [Long Text Pic]{.app-name}
 
 [Edit long text and contert it
-to a long image]{.app-subtitle}
+to a long image to share]{.app-subtitle}
 
 :::{.app-link}
 :::{.app-link-item .qrcode}
