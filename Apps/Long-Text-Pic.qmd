@@ -18,8 +18,8 @@ toc: false
 ::::{.text .g-col-12 .g-col-md-5}
 [Long Text Pic]{.app-name}
 
-[Edit long text and contert it
-to a long image to share]{.app-subtitle}
+[Edit long text and convert it
+to a long image for sharing]{.app-subtitle}
 
 :::{.app-link}
 :::{.app-link-item .qrcode}
