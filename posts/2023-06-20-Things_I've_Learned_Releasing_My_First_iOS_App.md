@@ -19,6 +19,11 @@ tags:
 [![](images/2023/Long-Text-Pic-banner.png){width=80%}](https://feynlee.github.io/curiosity-notes/Apps/Long-Text-Pic.html)
 
 <!-- {{< youtube ykiD5wqwSe4 >}} -->
+I just released [my first iOS app](http://feynlee.github.io/curiosity-notes/Apps/Long-Text-Pic.html), and man did I underestimate the App Submission process!
+I wish there was a handy compilation of resources and tips from someone that just went through this.
+That could've saved me loads of time!
+
+So I'm sharing my learnings here for people like me.
 
 [This video](https://www.youtube.com/watch?v=ykiD5wqwSe4&embeds_referring_euri=http%3A%2F%2Flocalhost%3A3682%2F&source_ve_path=OTY3MTQ&feature=emb_imp_woyt) provides great instructions on how to submit your app to the App Store.
 I won't repeat what has already been mentioned in the video.
