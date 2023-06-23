@@ -69,16 +69,20 @@ With minimal modifications, you can utilize the demo code to implement in-app pu
 
   Here's the crucial part that I overlooked:
 
-  :::{{.callout-important}}
+  :::{.callout-important}
   The Product IDs you set up on App Store Connect must match those you used during local testing, specifically the ones you configured with the `Product.storekit` file.
   :::
+
+  ![](images/2023/in_app_purchase-app_store_connect.png)
+
+  ![](images/2023/in_app_purchase-xcode.png)
 
   Failing to do so will result in your app being unable to find the expected products, and the in-app purchase will not appear correctly.
   This is where beta testing with TestFlight would have been beneficial in identifying this issue.
 
 - Paid Agreement
 
-  There are [a few other configurations](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases) required for In-App Purchase. One of them is the paid agreement.
+  There are [a few other configurations](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases) required for In-App Purchase. One of them is to accept the paid agreement.
   You can find the paid agreement in the "Agreements, Tax, and Banking" section of App Store Connect.
 
   ![paid_agreement](images/2023/paid_agreement.png)
