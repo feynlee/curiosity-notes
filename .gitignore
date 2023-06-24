@@ -57,7 +57,7 @@ Temporary Items
 .history
 
 # End of https://www.gitignore.io/api/macos,visualstudiocode
-# docs
+docs
 _site
 movies
 /.quarto/
