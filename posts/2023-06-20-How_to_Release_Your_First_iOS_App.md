@@ -3,7 +3,7 @@ author: Ziyue Li
 # draft: false
 date: 2023-06-20
 layout: post
-title: Things I've Learned Releasing My First iOS App
+title: How to Release Your First iOS App
 image: images/2023/Long-Text-Pic-banner.png
 featured_img_background: white
 tag_line: A brief summary of the things I've learned while creating my first iOS app.
