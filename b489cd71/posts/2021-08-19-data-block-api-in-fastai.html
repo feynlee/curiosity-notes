@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ziyue Li">
+<meta name="dcterms.date" content="2021-08-28">
+<meta name="description" content="A visualization and explanation of how the DataBlock API hooks into different steps of the data transformation process to make it customizable.">
+
+<title>curiosity-notes - Understanding Fastai’s DataBlock API</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-343667243"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-343667243', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean"
+}
+</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637e822e04255c001315118d&amp;product=inline-share-buttons&amp;source=platform" async="async"></script>
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="v97khzznr8B" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="curiosity-notes - Understanding Fastai’s DataBlock API">
+<meta property="og:description" content="A visualization and explanation of how the DataBlock API hooks into different steps of the data transformation process to make it customizable.">
+<meta property="og:image" content="https://feynlee.github.io/curiosity-notes/posts/images/2021/DataBlock_API_Workflow-Fastai.svg">
+<meta property="og:site-name" content="curiosity-notes">
+<meta name="twitter:title" content="curiosity-notes - Understanding Fastai’s DataBlock API">
+<meta name="twitter:description" content="A visualization and explanation of how the DataBlock API hooks into different steps of the data transformation process to make it customizable.">
+<meta name="twitter:image" content="https://feynlee.github.io/curiosity-notes/posts/images/2021/DataBlock_API_Workflow-Fastai.svg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">curiosity-notes</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../TIL.html">
+ <span class="menu-text">TIL</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../books/books.html">
+ <span class="menu-text">Books</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai-art" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">AI Art</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai-art">    
+        <li>
+    <a class="dropdown-item" href="../ai_art-dd.html">
+ <span class="dropdown-text">Disco Diffusion</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../ai_art-sd.html">
+ <span class="dropdown-text">Stable Diffusion</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../projects.html">
+ <span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Apps/Long-Text-Pic.html">
+ <span class="menu-text">Apps</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/feynlee"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/curiosity_notes"><i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-rss" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-bi-rss">    
+        <li>
+    <a class="dropdown-item" href="https://feynlee.github.io/curiosity-notes/index.xml"><i class="bi bi-rss" role="img" aria-label="Posts RSS">
+</i> 
+ <span class="dropdown-text">Subscribe to Posts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://feynlee.github.io/curiosity-notes/TIL.xml"><i class="bi bi-rss" role="img" aria-label="TIL RSS">
+</i> 
+ <span class="dropdown-text">Subscribe to TIL</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://feynlee.github.io/curiosity-notes/projects.xml"><i class="bi bi-rss" role="img" aria-label="Projects RSS">
+</i> 
+ <span class="dropdown-text">Subscribe to Projects</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Understanding Fastai’s DataBlock API</h1>
+                  <div>
+        <div class="description">
+          A visualization and explanation of how the DataBlock API hooks into different steps of the data transformation process to make it customizable.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Data Science</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Ziyue Li </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 28, 2021</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#datablock-api-as-a-blueprint-for-data-transformation" id="toc-datablock-api-as-a-blueprint-for-data-transformation" class="nav-link" data-scroll-target="#datablock-api-as-a-blueprint-for-data-transformation">DataBlock API as A Blueprint for Data Transformation</a></li>
+  <li><a href="#deeper-dive" id="toc-deeper-dive" class="nav-link" data-scroll-target="#deeper-dive">Deeper Dive</a>
+  <ul>
+  <li><a href="#transform-and-pipeline" id="toc-transform-and-pipeline" class="nav-link" data-scroll-target="#transform-and-pipeline">Transform and Pipeline</a></li>
+  <li><a href="#tfmdlists-and-datasets" id="toc-tfmdlists-and-datasets" class="nav-link" data-scroll-target="#tfmdlists-and-datasets">TfmdLists and Datasets</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p><a href="https://docs.fast.ai">Fastai</a>’s <code>DataBlock API</code> is a flexible and easy way to get and transform your data into something ready to be fed to a model. The <a href="https://docs.fast.ai/data.block.html#DataBlock">documentation</a> and <a href="https://docs.fast.ai/tutorial.datablock.html">tutorial</a> give some good examples of how to use this API. However, I still find it unclear how each argument in <code>Datablock</code> influences the different steps in the data transformation process.</p>
+<p>In this post, I will try to visualize the data transformation process and explain the different steps the DataBlock API can hook into. Hopefully, this will make it easier for people to customize this process using this API.</p>
+</section>
+<section id="datablock-api-as-a-blueprint-for-data-transformation" class="level2">
+<h2 class="anchored" data-anchor-id="datablock-api-as-a-blueprint-for-data-transformation">DataBlock API as A Blueprint for Data Transformation</h2>
+<p>The data transformation process constructed by Fastai is depicted as follows, where the colored steps can be configured through the DataBlock API:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2021/DataBlock_API_Workflow-Fastai.svg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">How different parts of DataBlock API fit in the data loading process.</figcaption><p></p>
+</figure>
+</div>
+<ol type="1">
+<li><p><strong>get_item</strong>: This is the first optional function that takes the source as input, and returns items to be processed by the <code>Datasets</code> object in Fastai. If it’s not specified, the source will be passed directly to <code>Datasets</code>.</p></li>
+<li><p><strong>splitter</strong>: The splitter is a function that returns two lists of indices, one for the training data set and one for the validation data set so that <code>Datasets</code> and <code>Dataloaders</code> know how to split the data into train/valid.</p></li>
+<li><p><strong>getters</strong> (or <strong>get_x</strong>, <strong>get_y</strong>): getters are a list of functions that is applied to each item passed to them to generate corresponding x and y. You can also specify <strong>get_x</strong> and/or <strong>get_y</strong> specifically. They will overwerite <strong>getters</strong> as <code>get_x + get_y</code>. Note, the number of functions in <strong>get_x</strong> and <strong>get_y</strong> should be consistent with the number of x and y specified in <strong>blocks</strong> and <strong>n_inp</strong> (see below).</p></li>
+<li><p><strong>type_tfms</strong>: These are collected from your <code>TranformBlock</code>s you specified in <strong>blocks</strong> (explained below). They will transform your x and y respectively, according to the blocks you used for x and y.</p></li>
+<li><p><strong>item_tfms</strong>: A list of <code>Transform</code>s to be combined with the <strong>item_tfms</strong> in your <code>TransformBlock</code>s for x and y, respectively. These are applied to each item in the <code>Dataloaders</code> object before batches are created. For example, we can resize each image to the same size at this step.</p></li>
+<li><p><strong>batch_tfms</strong>: A list of <code>Transform</code>s to be combined with the <strong>batch_tfms</strong> in your <code>TransformBlock</code>s for x and y specified in <strong>blocks</strong>. These are applied after a batch is created.</p></li>
+</ol>
+<p>(Note that the <code>Transform</code>s need to be different based on what type of object it’s applied on, whether it’s the training or validation set. This is achieved through type dispatch and the <code>split_idx</code> variable in <code>Transform</code> respectively. Please see the next section <strong>Deeper Dive</strong> for more details.)</p>
+<p>An example usage of the <code>DataBlock</code> API:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>dblock <span class="op">=</span> DataBlock(</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    blocks<span class="op">=</span>(ImageBlock, BBoxBlock, BBoxLblBlock), </span>
+<span id="cb1-3"><a href="#cb1-3"></a>    n_inp<span class="op">=</span><span class="dv">1</span>, </span>
+<span id="cb1-4"><a href="#cb1-4"></a>    get_items<span class="op">=</span>get_image_files,</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    splitter<span class="op">=</span>RandomSplitter(),</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    getters<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb1-7"><a href="#cb1-7"></a>    get_x<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    get_y<span class="op">=</span>[<span class="kw">lambda</span> o: img2bbox[o.name][<span class="dv">0</span>], <span class="kw">lambda</span> o: img2bbox[o.name][<span class="dv">1</span>]], </span>
+<span id="cb1-9"><a href="#cb1-9"></a>    item_tfms<span class="op">=</span>Resize(<span class="dv">128</span>),</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    batch_tfms<span class="op">=</span>aug_transforms()</span>
+<span id="cb1-11"><a href="#cb1-11"></a>)</span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a>dls <span class="op">=</span> dblock.dataloaders(path_to_image_folder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="7" type="1">
+<li><p><strong>blocks</strong>: These can be <code>TransformBlock</code> objects that simultaneously specify the types of your x and y, and their associated <strong>type_tfms</strong>, <strong>item_tfms</strong> and <strong>batch_tfms</strong> to be inserted in the data transformation process for each type. The objects here do not HAVE TO be <code>TransformBlock</code> though. If they are not, they do not contribute any <strong>type_tfms</strong>, <strong>item_tfms</strong> and <strong>batch_tfms</strong> to the data transformation process.</p>
+<p>A <code>TransformBlock</code> is simply defined as:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">class</span> TransformBlock():</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="co">"A basic wrapper that links defaults transforms for the data block API"</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, type_tfms<span class="op">=</span><span class="va">None</span>, item_tfms<span class="op">=</span><span class="va">None</span>, batch_tfms<span class="op">=</span><span class="va">None</span>, dl_type<span class="op">=</span><span class="va">None</span>, dls_kwargs<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb2-4"><a href="#cb2-4"></a>        <span class="va">self</span>.type_tfms  <span class="op">=</span>            L(type_tfms)</span>
+<span id="cb2-5"><a href="#cb2-5"></a>        <span class="va">self</span>.item_tfms  <span class="op">=</span> ToTensor <span class="op">+</span> L(item_tfms)</span>
+<span id="cb2-6"><a href="#cb2-6"></a>        <span class="va">self</span>.batch_tfms <span class="op">=</span>            L(batch_tfms)</span>
+<span id="cb2-7"><a href="#cb2-7"></a>        <span class="va">self</span>.dl_type,<span class="va">self</span>.dls_kwargs <span class="op">=</span> dl_type,({} <span class="cf">if</span> dls_kwargs <span class="kw">is</span> <span class="va">None</span> <span class="cf">else</span> dls_kwargs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>n_inp</strong>: This specifies the number of inputs (x) so that the API knows the first n_inp <code>TransformBlock</code> are for x and the rest for y. In this case, we have one x and two ys. The model will need to predict for both the bounding box and the label.</p></li>
+<li><p><strong>item_tfms</strong>, <strong>batch_ftms</strong>: additional <code>Transform</code>s to be combined with those specified in the <code>TransformBlocks</code> in <strong>blocks</strong>.</p></li>
+<li><p><strong>get_items</strong>, <strong>splitter</strong>, <strong>getters</strong>, <strong>get_x</strong>, <strong>get_y</strong> have one-to-one correspondance to those explained in the blueprint.</p></li>
+</ol>
+<p>Now, we can do a quick walkthrough of the example <code>dblock</code>:</p>
+<ol type="1">
+<li><p><code>path_to_image_folder</code> is fed into <code>get_image_files</code> to generate a list of paths to all images.</p></li>
+<li><p><code>RandomSplitter()</code> takes this list of paths and generates randomized lists of indices for train and valid data sets. These indices will be held in <code>Datasets</code> and <code>Dataloaders</code> to generate the final train/valid data.</p></li>
+<li><p>Because <strong>get_x</strong> is not specified, these paths are passed through directly as our x at this point.</p></li>
+<li><p>The same list of paths is passed to <strong>get_y</strong> which has two functions, one looking up the file name to find its corresponding bounding box data and the other the corresponding label. Because <strong>n_inp=1</strong>, we get two ys.</p></li>
+<li><p>The list of paths in x is passed through <strong>type_tfms</strong> specified in <code>ImageBlock</code> to open the images. <strong>type_tfms</strong> in <code>BBloxBlock</code> and <code>BBoxLablBlock</code> are applied to the bounding box and label data respectively.</p></li>
+<li><p>The <strong>item_tfms</strong> is appended to any <strong>item_tfms</strong> specified in <code>ImageBlock</code>, <code>BBloxBlock</code>, <code>BBoxLablBlock</code> respectively and then applied to our x and y to resize the images and the bounding box while leaving the label unchanged. (Again, a <code>Transform</code> object can specify different transformations to be applied to different object types.)</p></li>
+<li><p>Finally, after a batch is created we apply <code>aug_transforms()</code> to generate a list of fliped, rotated, zoomed, warped, lighting-adjusted images as augmentations of our data for training.</p></li>
+</ol>
+</section>
+<section id="deeper-dive" class="level2">
+<h2 class="anchored" data-anchor-id="deeper-dive">Deeper Dive</h2>
+<section id="transform-and-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="transform-and-pipeline">Transform and Pipeline</h3>
+<p>The <code>Transform</code> object can have multiple <code>encodes</code>/<code>decodes</code> methods defined for different argument types. The appropriate <code>encodes</code>/<code>decodes</code> method will be chosen based on the first argument’s type. This is achieved through type dispatch. For this more advanced topic, please watch Jeremy Howard’s code walk-through video on how the Transform class is built:</p>
+<div class="quarto-video ratio ratio-16x9"><iframe src="https://www.youtube.com/embed/GcMGchBJeXk" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>You can find many examples in the <a href="https://fastcore.fast.ai/transform.html#Transform">Transform documentation</a>. Here I only give the most basic demostrations of <code>Transform</code>:</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">class</span> Times2(Transform):</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">def</span> encodes(<span class="va">self</span>, x):</span>
+<span id="cb3-3"><a href="#cb3-3"></a>        <span class="cf">return</span> x<span class="op">*</span><span class="dv">2</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    </span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="kw">def</span> decodes(<span class="va">self</span>, x):</span>
+<span id="cb3-6"><a href="#cb3-6"></a>        <span class="cf">return</span> x<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="at">@Transform</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">def</span> plus3(x:<span class="bu">int</span>): <span class="cf">return</span> x<span class="op">+</span><span class="dv">3</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a>times2 <span class="op">=</span> Times2()</span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co"># tests</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>test_eq(times2(<span class="dv">1</span>), <span class="dv">2</span>)</span>
+<span id="cb3-14"><a href="#cb3-14"></a>test_eq(plus3(<span class="dv">1</span>), <span class="dv">4</span>)</span>
+<span id="cb3-15"><a href="#cb3-15"></a>test_eq(plus3(<span class="fl">1.0</span>), <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As can be seen, the <em>plus3</em> function is only applied to integer types.</p>
+<p>A <code>Pipeline</code> simply applies a list of Transforms to an item. You can optionally specify <code>split_idx</code> to turn on only transforms with the same <code>split_idx</code>. Please see the <a href="https://fastcore.fast.ai/transform.html#Pipeline">Pipeline doc</a> for more details.</p>
+<div class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>p <span class="op">=</span> Pipeline([times2,plus3])</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># tests</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>test_eq(p(<span class="dv">1</span>), <span class="dv">5</span>)</span>
+<span id="cb4-4"><a href="#cb4-4"></a>test_eq(p(<span class="fl">1.0</span>), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tfmdlists-and-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="tfmdlists-and-datasets">TfmdLists and Datasets</h3>
+<p><code>TfmdLists</code> applies a list of Transforms or a Pipeline to <strong><em>a list of items</em></strong>, with the option to split the list into training data set vs.&nbsp;validation data set by specifying <code>splits</code> as lists of indices:</p>
+<div class="cell" data-execution_count="84">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>tf <span class="op">=</span> TfmdLists([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>], p, splits<span class="op">=</span>[[<span class="dv">0</span>],[<span class="dv">1</span>,<span class="dv">2</span>]])</span>
+<span id="cb5-2"><a href="#cb5-2"></a>tf.train[:]</span>
+<span id="cb5-3"><a href="#cb5-3"></a>tf.valid[:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="84">
+<pre><code>(#1) [5]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="84">
+<pre><code>(#2) [7,13]</code></pre>
+</div>
+</div>
+<p><code>Datasets</code> further expands the functionality so that you can specifiy <strong><em>multiple</em></strong> Pipelines or lists of Transforms to <strong><em>a list of items</em></strong>, returning a list of tuples with each item in the tuple corresponding to the result of one Pipeline.</p>
+<div class="cell" data-execution_count="80">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>ds <span class="op">=</span> Datasets([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="op">-</span><span class="dv">9</span>,<span class="dv">11</span>,<span class="dv">15</span>], [p, [plus3]], splits<span class="op">=</span>[[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],[<span class="dv">4</span>, <span class="dv">5</span>]])</span>
+<span id="cb8-2"><a href="#cb8-2"></a>ds.train</span>
+<span id="cb8-3"><a href="#cb8-3"></a>ds.valid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="80">
+<pre><code>(#4) [(5, 4),(7, 5),(13, 8),(-15, -6)]</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="80">
+<pre><code>(#2) [(25, 14),(33, 18)]</code></pre>
+</div>
+</div>
+<p>From <code>Datasets</code>, we can then get the dataloaders:</p>
+<div class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>dls <span class="op">=</span> ds.dataloaders(bs<span class="op">=</span><span class="dv">2</span>, shuffle<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>dls.one_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="81">
+<pre><code>(tensor([5, 7]), tensor([4, 5]))</code></pre>
+</div>
+</div>
+<p>The same could be achieve by using the DataBlock API directly:</p>
+<div class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>dblock <span class="op">=</span> DataBlock(blocks <span class="op">=</span> (TransformBlock(type_tfms<span class="op">=</span>[times2, plus3]), </span>
+<span id="cb13-2"><a href="#cb13-2"></a>                             TransformBlock(type_tfms<span class="op">=</span>[plus3])),</span>
+<span id="cb13-3"><a href="#cb13-3"></a>                   splitter<span class="op">=</span><span class="kw">lambda</span> x: [[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">5</span>]]</span>
+<span id="cb13-4"><a href="#cb13-4"></a>                  )</span>
+<span id="cb13-5"><a href="#cb13-5"></a></span>
+<span id="cb13-6"><a href="#cb13-6"></a>dls <span class="op">=</span> dblock.dataloaders([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="op">-</span><span class="dv">9</span>,<span class="dv">11</span>,<span class="dv">15</span>], bs<span class="op">=</span><span class="dv">2</span>, shuffle<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-7"><a href="#cb13-7"></a>dls.one_batch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="85">
+<pre><code>(tensor([5, 7]), tensor([4, 5]))</code></pre>
+</div>
+</div>
+
+
+<div class="sharethis-inline-share-buttons pt-5">
+
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/https:\/\/feynlee\.github\.io\/curiosity-notes/);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="feynlee/curiosity-notes" data-repo-id="MDEwOlJlcG9zaXRvcnkyNDgwOTkxNzg=" data-category="Announcements" data-category-id="DIC_kwDODsmxas4CR7S3" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
