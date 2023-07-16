@@ -123,8 +123,7 @@ execute:
 
 format:
   html:
-    theme:
-      light: cosmo
+    theme: cosmo
     css: styles.css
     toc: true
     toc-depth: 4
