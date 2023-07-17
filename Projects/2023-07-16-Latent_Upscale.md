@@ -74,7 +74,7 @@ I wanted to figure out why.
 I found 2 problems in Automatic1111's implementation:
 
 1. It uses the [“bilinear” method](https://en.wikipedia.org/wiki/Bilinear_interpolation), which often results in blurry upscaled images.
-It does not provide users other options to choose from.
+It does not provide users with other options to choose from.
 
 2. The number of steps users set was applied to the full scheduler, effectively reducing the steps for “de-noising”.
   For example, if the user sets the steps to be "30" and the de-noise strength is set to 0.4, the diffusion process will only run for 30*0.4 = 12 steps.
@@ -98,7 +98,7 @@ It does not provide users other options to choose from.
   ![](images/latent-upscale/fixed-sigmas.png)
 
 
-## Other Technical Details
+## Technical Details
 
 1. This plugin overrides the default `init` method for `StableDiffusionProcessingImg2Img` to include additional features:
 
