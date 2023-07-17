@@ -123,7 +123,7 @@ execute:
 
 format:
   html:
-    theme: cosmo
+    theme: default
     css: styles.css
     toc: true
     toc-depth: 4
