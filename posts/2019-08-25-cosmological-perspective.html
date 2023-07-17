@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ziyue Li">
+<meta name="dcterms.date" content="2019-08-25">
+<meta name="description" content="Understanding some basic yet counter-intuitive concepts in an expanding universe.">
+
+<title>curiosity-notes - Cosmological Perspective</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-343667243"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-343667243', { 'anonymize_ip': true});
+</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean"
+}
+</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637e822e04255c001315118d&amp;product=inline-share-buttons&amp;source=platform" async="async"></script>
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="v97khzznr8B" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="curiosity-notes - Cosmological Perspective">
+<meta property="og:description" content="Understanding some basic yet counter-intuitive concepts in an expanding universe.">
+<meta property="og:image" content="https://feynlee.github.io/curiosity-notes/posts/images/Cosmo_Horizons.png">
+<meta property="og:site-name" content="curiosity-notes">
+<meta property="og:image:height" content="2048">
+<meta property="og:image:width" content="2048">
+<meta name="twitter:title" content="curiosity-notes - Cosmological Perspective">
+<meta name="twitter:description" content="Understanding some basic yet counter-intuitive concepts in an expanding universe.">
+<meta name="twitter:image" content="https://feynlee.github.io/curiosity-notes/posts/images/Cosmo_Horizons.png">
+<meta name="twitter:image-height" content="2048">
+<meta name="twitter:image-width" content="2048">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">curiosity-notes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../TIL.html" rel="" target="">
+ <span class="menu-text">TIL</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../books/books.html" rel="" target="">
+ <span class="menu-text">Books</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai-art" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">AI Art</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai-art">    
+        <li>
+    <a class="dropdown-item" href="../ai_art-dd.html" rel="" target="">
+ <span class="dropdown-text">Disco Diffusion</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../ai_art-sd.html" rel="" target="">
+ <span class="dropdown-text">Stable Diffusion</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../projects.html" rel="" target="">
+ <span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Apps/Long-Text-Pic.html" rel="" target="">
+ <span class="menu-text">Apps</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/feynlee" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/curiosity_notes" rel="" target=""><i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bi-rss" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+      <i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-bi-rss">    
+        <li>
+    <a class="dropdown-item" href="https://feynlee.github.io/curiosity-notes/index.xml" rel="" target=""><i class="bi bi-rss" role="img" aria-label="Posts RSS">
+</i> 
+ <span class="dropdown-text">Subscribe to Posts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://feynlee.github.io/curiosity-notes/TIL.xml" rel="" target=""><i class="bi bi-rss" role="img" aria-label="TIL RSS">
+</i> 
+ <span class="dropdown-text">Subscribe to TIL</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://feynlee.github.io/curiosity-notes/projects.xml" rel="" target=""><i class="bi bi-rss" role="img" aria-label="Projects RSS">
+</i> 
+ <span class="dropdown-text">Subscribe to Projects</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Cosmological Perspective</h1>
+                  <div>
+        <div class="description">
+          Understanding some basic yet counter-intuitive concepts in an expanding universe.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Physics</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Ziyue Li </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 25, 2019</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#properties-of-an-expanding-universe" id="toc-properties-of-an-expanding-universe" class="nav-link" data-scroll-target="#properties-of-an-expanding-universe">Properties of An Expanding Universe</a></li>
+  <li><a href="#definitions-of-distances" id="toc-definitions-of-distances" class="nav-link" data-scroll-target="#definitions-of-distances">Definitions of distances</a>
+  <ul>
+  <li><a href="#co-moving-distance" id="toc-co-moving-distance" class="nav-link" data-scroll-target="#co-moving-distance">Co-moving Distance</a></li>
+  <li><a href="#proper-distance" id="toc-proper-distance" class="nav-link" data-scroll-target="#proper-distance">Proper Distance</a></li>
+  <li><a href="#traveling-distance" id="toc-traveling-distance" class="nav-link" data-scroll-target="#traveling-distance">Traveling Distance</a></li>
+  </ul></li>
+  <li><a href="#understanding-expansion" id="toc-understanding-expansion" class="nav-link" data-scroll-target="#understanding-expansion">Understanding Expansion</a>
+  <ul>
+  <li><a href="#the-unfortunate-definition-of-accelerating-expansion" id="toc-the-unfortunate-definition-of-accelerating-expansion" class="nav-link" data-scroll-target="#the-unfortunate-definition-of-accelerating-expansion">The Unfortunate Definition of “Accelerating Expansion”</a></li>
+  <li><a href="#intrinsic-expansion-rate-the-hubble-parameter" id="toc-intrinsic-expansion-rate-the-hubble-parameter" class="nav-link" data-scroll-target="#intrinsic-expansion-rate-the-hubble-parameter">Intrinsic Expansion Rate: the Hubble Parameter</a></li>
+  </ul></li>
+  <li><a href="#how-the-expansion-affects-our-observations" id="toc-how-the-expansion-affects-our-observations" class="nav-link" data-scroll-target="#how-the-expansion-affects-our-observations">How the Expansion Affects Our Observations</a>
+  <ul>
+  <li><a href="#hubble-distance" id="toc-hubble-distance" class="nav-link" data-scroll-target="#hubble-distance">Hubble Distance</a></li>
+  <li><a href="#cosmic-event-horizon" id="toc-cosmic-event-horizon" class="nav-link" data-scroll-target="#cosmic-event-horizon">Cosmic Event Horizon</a>
+  <ul class="collapse">
+  <li><a href="#a-detour" id="toc-a-detour" class="nav-link" data-scroll-target="#a-detour">A Detour</a></li>
+  <li><a href="#explanation" id="toc-explanation" class="nav-link" data-scroll-target="#explanation">Explanation</a></li>
+  </ul></li>
+  <li><a href="#particle-horizon" id="toc-particle-horizon" class="nav-link" data-scroll-target="#particle-horizon">Particle Horizon</a></li>
+  <li><a href="#observable-universe" id="toc-observable-universe" class="nav-link" data-scroll-target="#observable-universe">Observable Universe</a></li>
+  <li><a href="#what-the-sky-looks-like-in-the-far-distant-future" id="toc-what-the-sky-looks-like-in-the-far-distant-future" class="nav-link" data-scroll-target="#what-the-sky-looks-like-in-the-far-distant-future">What the Sky Looks Like In the Far Distant Future</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Cosmo_Horizons.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">“Cosmic Horizons”</figcaption>
+</figure>
+</div>
+<div class="article-in-brief">
+<div class="hr-titles article-in-brief__title">
+<p><span class="in-brief">In Brief</span></p>
+</div>
+<div class="article-in-brief__content">
+<ul>
+<li><strong>In an expanding universe</strong>, when we look at objects 1 billion light years away, we see what they look like LESS than 1 billion years ago. And in order to see what they look like currently, we will need to wait for MORE than 1 billion years.</li>
+<li><strong>Even though we say the expansion of the universe is accelerating</strong>, the “intrinsic expansion rate”, rate at which the space is increasing at unit distance is actually slowing down.</li>
+<li><strong>Because the “intrinsic expansion rate” is slowing down</strong>, light emitted from stars that are currently moving away from us at the speed of light can still be observed in the future.</li>
+<li><strong>Contrary to common misconception</strong>, even in the distant future when all distant galaxies have moved outside of our cosmic event horizon, they won’t simply disappear in the sky, but instead become frozen images with the light from them more and more red-shifted.</li>
+</ul>
+</div>
+</div>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Most lectures about cosmology I’ve seen like to start from general relativity. While it is helpful to have the mathematical background to understand the details of our current cosmological model, I find it much more important and usually more effective to first think about the conceptual problems, to shift our&nbsp;world view to the cosmological perspective. Some of the most counter-intuitive things can happen in the expanding universe, and we can understand them without knowing general relativity. We only need to assume some basic properties about the expanding universe. To focus our attention on the concepts in this chapter, I will treat the expanding universe as a theoretical construct without worrying too much about the proofs. We will leave the observational evidence for future chapters.</p>
+</section>
+<section id="properties-of-an-expanding-universe" class="level1">
+<h1>Properties of An Expanding Universe</h1>
+<ol type="1">
+<li><em>The amount of space itself is increasing with time.</em></li>
+<li><em>Astronomical objects are moving relative to their local space.</em></li>
+</ol>
+<p>One way to imagine this is to think of space as a rubber sheet. It can stretch and contract while the objects are moving on it. The fact that space can stretch and contract induces an apparent velocity even when the object is not moving relative to the local space by itself. Imagine two fixed points on the rubber sheet. The stretching or contracting of the rubber makes one move away from or towards the other. On top of this apparent motion, the relative movement with respect to the local space induces the “local velocity”. And the total effective velocity of an object seen from another will be the addition of these two motions.</p>
+<p><em>On very large scales, the local motion is negligible in comparison to the apparent motion induced by the expansion of the space itself.</em></p>
+</section>
+<section id="definitions-of-distances" class="level1">
+<h1>Definitions of distances</h1>
+<p>In an expanding universe, because the distance changes with time, the distance between A and B at time 0 is no longer the same as the distance between them at time t, and these distances are not the same as the distance traveled by someone going from A to B from time 0 to time t. To describe the concept of distance in an expanding universe, we need the following definitions.</p>
+<section id="co-moving-distance" class="level2">
+<h2 class="anchored" data-anchor-id="co-moving-distance">Co-moving Distance</h2>
+<p>To disentangle the effects of property 1 and property 2, we construct so-called “co-moving coordinates” to mark the expansion and contraction of the space itself. The co-moving distance is the distance measured on this coordinate system and is therefore fixed relative to space itself. The lattice spacing between the coordinates indicates how space itself is changing in time. And the change in the co-moving coordinates indicates a real motion relative to the local space. We denote the co-moving coordinates with the letter <span class="math inline">\(r\)</span> and the lattice spacing with <span class="math inline">\(a(t)\)</span>, as a function of time. The co-moving distance will be denoted as <span class="math inline">\(D_{C}\)</span>.</p>
+</section>
+<section id="proper-distance" class="level2">
+<h2 class="anchored" data-anchor-id="proper-distance">Proper Distance</h2>
+<p>Proper distance is the “real” distance between two objects, i.e.&nbsp;the lattice spacing times the co-moving distance between these two objects. In Fig. 1, the co-moving distance between coordinates 1 and 2 is always 1, but the proper distance <span class="math inline">\(a(t)\)</span> changes from 1 unit to 3 units because of the expansion. The proper distance will be denoted as <span class="math inline">\(D_P\)</span>.</p>
+<p>Notice that for objects fixed in space, because it is easy to convert between the co-moving distance and the proper distance, most of the time it’s not necessary to specify which one we are talking about. For example, “the distance between A and B” can be understood as either the co-moving or the proper distance, and it’s easy to work out one from the other. In that case, we will just say “distance”.</p>
+</section>
+<section id="traveling-distance" class="level2">
+<h2 class="anchored" data-anchor-id="traveling-distance">Traveling Distance</h2>
+<p><strong>This introduces the first thought experiment: in a universe where space varies with time, the proper distance an object traveled from point A at time <span class="math inline">\(t_{A}\)</span> to point B at time <span class="math inline">\(t_{B}\)</span> is in general not the same as the proper distance at time <span class="math inline">\(t_A\)</span> nor <span class="math inline">\(t_B\)</span>.</strong></p>
+<p>Let’s say space is expanding. As the object travels from A to B, the space in front of it is constantly increasing, so that the distance it has to travel to reach B is certainly larger than the original proper distance at time <span class="math inline">\(t_{A}\)</span>. At the same time, the space behind it, i.e.&nbsp;the space it has already traveled, is also constantly expanding, so that the proper distance at time <span class="math inline">\(t_{B}\)</span>, namely <span class="math inline">\(D_{P}(t_{B})=a(t_{B})\|r_{B}-r_{A}\|\)</span>, is larger than the distance it traversed. So in this case we have <span class="math inline">\(D_{P}(t_A)&lt;D_{T}&lt;D_{P}(t_B)\)</span>, where we denoted the traveling distance with <span class="math inline">\(D_{T}\)</span> and the proper distance between AB at time <span class="math inline">\(t_A\)</span> and <span class="math inline">\(t_B\)</span> with <span class="math inline">\(D_{P}(t_A)\)</span> and <span class="math inline">\(D_{P}(t_B)\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://fishlee919.files.wordpress.com/2015/07/embedded_lambdacdm_geometry.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Fig. 1 A view of an isometric embedding of part of the visible universe over most of its history. The vertical direction is the time and the blue circles represent the space at a certain cosmological time. This figure shows how a light ray (red line) can travel an effective distance of 28 billion light-years (orange line) in just 13 billion years of cosmological time. Here the 13 billion light-years are the traveling distance and the 28 billion light-years are the proper distance between AB at the end time.&nbsp;[This demonstration is taken from the section “Measuring distances in expanding space” in this wiki page: <a href="https://en.wikipedia.org/wiki/Metric_expansion_of_space">Metric expansion of space</a>].</figcaption>
+</figure>
+</div>
+<p><strong>Once you figure this out, it’s easy to understand the following seemingly counterintuitive phenomena</strong>:</p>
+<ul>
+<li>When we look at objects that are currently 1 billion light-years away, we see what they were like LESS than 1 billion light-years away.</li>
+<li>For us to see what objects that are currently 1 billion light-years away look like, we will have to wait MORE than 1 billion years.</li>
+</ul>
+<p>Whenever we talk about distance, we need to understand which distance at which time we are talking about. For example, when we say that we can see light from objects 28 billion light-years away even though the universe is only 13 billion years ago, what we mean is that we can see light emitted 13 billion years ago from objects that were less than 13 billion light-years away from us when the light was emitted, but now are 28 billion light-years away from us. We don’t currently see the light currently emitted by objects that are currently 28 billion light-years away.</p>
+</section>
+</section>
+<section id="understanding-expansion" class="level1">
+<h1>Understanding Expansion</h1>
+<section id="the-unfortunate-definition-of-accelerating-expansion" class="level2">
+<h2 class="anchored" data-anchor-id="the-unfortunate-definition-of-accelerating-expansion">The Unfortunate Definition of “Accelerating Expansion”</h2>
+<p>Whether the expansion of the universe is accelerating or decelerating is defined by <span class="math inline">\(\ddot{a}(t)\)</span>. This is defined from the perspective that if we observe the space expansion between two fixed points on the co-moving coordinate system, whether we see the rate of space added is increasing or decreasing. But if we think about this for a minute, we will realize that more spaces may be added later, simply because there are more spaces between the two points later. In other words, the textbook definition of “accelerating expansion” is the “apparent accelerating expansion”.</p>
+<p>This definition is very unfortunate, since it does not capture the “intrinsic expansion rate” of the universe and thus induces a lot of confusion, especially when we consider the event horizon of the universe, as we will see below.</p>
+</section>
+<section id="intrinsic-expansion-rate-the-hubble-parameter" class="level2">
+<h2 class="anchored" data-anchor-id="intrinsic-expansion-rate-the-hubble-parameter">Intrinsic Expansion Rate: the Hubble Parameter</h2>
+<p>To get the “intrinsic expansion rate”, we need to remove the dependence on the changing distance. This can be achieved by dividing the apparent velocity of a distant co-moving object by the proper distance in between:</p>
+<p><span class="math display">\[H=\dfrac{r\dot{a}(t)}{ra(t)}=\dfrac{\dot{a}(t)}{a(t)},\]</span></p>
+<p>where <span class="math inline">\(\dot{a}(t)\)</span> is the time derivative of <span class="math inline">\(a(t)\)</span>. For those interested, Young’s modulus in solid-state physics is defined in a similar way to get rid of the length dependence so that it reflects the property of the material.</p>
+<p>In other words, the Hubble parameter gives the true expansion rate.</p>
+<p>To make it clearer why using <span class="math inline">\(\ddot{a}(t)\)</span> to understand expansion is a bad idea, think of it this way: let’s say the Hubble parameter is not changing with time, which means the characteristic expansion of the universe is not speeding up nor slowing down. But since at a later time, <span class="math inline">\(a(t)\)</span> itself becomes larger, the induced apparent velocity at that larger proper distance will become larger, and thus <span class="math inline">\(\ddot{a}(t)&gt;0\)</span>, and we get the conclusion that the universe’s expansion is “accelerating”. That “acceleration” is relative to the coordinate system set up from the very beginning. If instead you compare the expansion of space now to the expansion of space between objects with the same amount of proper distance in between a long time ago, the expansion can be slower.</p>
+<p>How does <span class="math inline">\(a(t)\)</span> change if the intrinsic expansion rate is constant? We can solve <span class="math inline">\(H=\dot{a}(t)/a(t)=\beta\)</span> to get <span class="math display">\[a(t)=e^{\beta t}.\]</span> In other words, at a constant intrinsic expansion rate, <span class="math inline">\(a(t)\)</span> should be increasing exponentially. Therefore, any slower change of <span class="math inline">\(a(t)\)</span> corresponds to a decrease in the intrinsic expansion rate. One can check this easily with <span class="math inline">\(a(t)=t^2\)</span>. Obviously <span class="math inline">\(a(t)\)</span> increases at an accelerating rate, but the “intrinsic expansion rate” <span class="math inline">\(H=\dot{a}/a=2/t\)</span> is actually decreasing. Said in another way, a constant <span class="math inline">\(H\)</span> corresponds to an exponentially increasing <span class="math inline">\(a(t)\)</span>, while a decreasing <span class="math inline">\(H\)</span> corresponds to slower increase in <span class="math inline">\(a(t)\)</span>.</p>
+<p>The Hubble parameter in our standard cosmology model changes as follows. It decreases quickly in the beginning, and then gradually approaches a constant. So initially <span class="math inline">\(a(t)\)</span> increases at a rate slower than exponential, but eventually, <span class="math inline">\(a(t)\)</span> expands exponentially.</p>
+<figure class="figure">
+<a href=""> <img src="images/Cosmo_Hubble_Constant.png" width="90%" class="figure-img"> </a>
+<figcaption class="figure-caption">
+Fig. 2 An illustration of how the Hubble parameter changes in the standard model.
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="how-the-expansion-affects-our-observations" class="level1">
+<h1>How the Expansion Affects Our Observations</h1>
+<section id="hubble-distance" class="level2">
+<h2 class="anchored" data-anchor-id="hubble-distance">Hubble Distance</h2>
+<p>Hubble distance is defined as the distance at which the receding velocity is the speed of light:</p>
+<p><span class="math display">\[D_H=\frac{c}{H}.\]</span></p>
+<p>However, due to the space expansion, we can see objects that are currently moving with speed above the speed of light, beyond the Hubble distance, as explained below.</p>
+</section>
+<section id="cosmic-event-horizon" class="level2">
+<h2 class="anchored" data-anchor-id="cosmic-event-horizon">Cosmic Event Horizon</h2>
+<p>The event horizon is the distance at which the photon emitted now will never reach us in the infinite future. One might naively think that this distance is the Hubble length. After all, the objects beyond the Hubble length are leaving us at speeds greater than the speed of light, so of course, their light can never reach us! Well, think again.&nbsp;</p>
+<p>We will be able to see light emitted from some objects outside of our Hubble Sphere, thanks to the slowing down of the intrinsic expansion rate <span class="math inline">\(H\)</span>!</p>
+<section id="a-detour" class="level3">
+<h3 class="anchored" data-anchor-id="a-detour">A Detour</h3>
+<p>This is very counter-intuitive. Before we go into the correct explanation, I want to spell out a couple of common traps people tend to fall into when thinking about this problem:</p>
+<ol type="1">
+<li><p>As hinted above, people assume that just because the photons emitted from those objects are now apparently moving away from us, and the expansion is “accelerating”, there’s no way that the light emitted from these objects will reverse their course and come towards us.</p>
+<p>We already explained what “accelerating expansion” really means. So the above assumption translates to: because <span class="math inline">\(a(t)\)</span> is accelerating, the apparent velocity of the object can only increase. The implicit assumption for that statement is that the apparent velocity of the object only depends on how <span class="math inline">\(a(t)\)</span> changes. Is that true? No. The apparent velocity of the photon is composed of two parts:</p>
+<ul>
+<li><p>the apparent velocity induced by the expansion of the universe, which is <span class="math inline">\(r\cdot \dot{a}(t)\)</span>, depends on both how <span class="math inline">\(a(t)\)</span> changes and how its co-moving coordinates <span class="math inline">\(r(t)\)</span> changes;</p></li>
+<li><p>the local velocity of the photon, which is c.</p></li>
+</ul>
+<p>The apparent velocity of the photon is therefore <span class="math inline">\(r(t) \cdot \dot{a}(t)-c\)</span>.</p>
+<p>Just because at one moment this value is positive (moving away from us), does not mean that it will stay that way. At the same time that <span class="math inline">\(\dot{a}(t)\)</span> is increasing, the co-moving distance <span class="math inline">\(r\)</span> is decreasing because the photon is locally heading in our direction. The apparent velocity can potentially decrease if the decreasing <span class="math inline">\(r\)</span> brings down the total apparent velocity, even though <span class="math inline">\(\dot{a}(t)\)</span> is increasing.</p></li>
+<li><p>Once we understand how the apparent velocity also depends on the decreasing co-moving distance, people might assume that just because the apparent velocity might start decreasing, that will guarantee the photon can reach us.</p>
+<p>Unfortunately, the apparent velocity of a photon can slow down and never get to the point where the apparent velocity is flipped. It’s hard to show this without invoking some math, but one can conceptually understand that the changes of <span class="math inline">\(r(t)\)</span> and <span class="math inline">\(\dot{a}(t)\)</span> can result in the apparent velocity <span class="math inline">\(r(t) \cdot \dot{a}(t)-c\)</span> decreasing but never reaching zero.</p></li>
+</ol>
+</section>
+<section id="explanation" class="level3">
+<h3 class="anchored" data-anchor-id="explanation">Explanation</h3>
+<p>It’s easy to see that reasoning using the apparent velocity is difficult and error-prone. Our first instinct and intuition lead us that way, probably because we are so used to thinking about motions in terms of how velocity changes. However, the dynamics in an expanding universe are more complex, because the velocity induced by the expansion is location-specific (it’s a function of relative distance), while the other local velocity is constant relative to space. This makes it very hard to imagine and reason about how the apparent velocity changes, since at the next moment, the location changes and the location-induced velocity changes.</p>
+<p>Instead of thinking in terms of velocity, let’s think in terms of the co-moving coordinates since it’s easier to see the effect of the local motion relative to this coordinate system.</p>
+<p>During a small time interval <span class="math inline">\(dt\)</span>, the photon travels a distance <span class="math inline">\(cdt\)</span> in space, which gives <span class="math inline">\(dr = c dt/a(t)\)</span> in terms of the co-moving distance. The proper distance at a cosmological time <span class="math inline">\(t\)</span> corresponding to the total co-moving distance that can be traversed from time <span class="math inline">\(t\)</span> to the infinite future is the definition of Event Horizon:</p>
+<p><span class="math display">\[R_{EH} = a(t)\int_{t}^{\infty}\dfrac{c dt}{a(t)}.\]</span></p>
+<p>When the universe is expanding at a constant intrinsic rate, <span class="math inline">\(a(t)=e^{\beta t}\)</span>, we have</p>
+<p><span class="math display">\[R_{EH} = \dfrac{c}{\beta} = D_{H}.\]</span></p>
+<p>The Hubble Sphere coincides with the Event Horizon. It’s easy to understand then if the “intrinsic expansion rate” is not constant, but instead slowing down during the time the photon was traveling to us, it will be able to cover more ground, and therefore the Event Horizon will be larger than the Hubble distance.</p>
+<p>As mentioned before, the intrinsic expansion rate of our universe is slowing down, resulting in the fact that we can observe objects outside of our current Hubble Sphere, even though the expansion rate as measured by <span class="math inline">\(a(t)\)</span> is speeding up.</p>
+</section>
+</section>
+<section id="particle-horizon" class="level2">
+<h2 class="anchored" data-anchor-id="particle-horizon">Particle Horizon</h2>
+<p>The particle horizon describes the furthest distance we can see right now. And because it takes photon time to reach us and we are looking back in time as we look deeper into space, it should not be a surprise that we can see things that are currently beyond our current Hubble sphere and our current event horizon.</p>
+<p>It’s very important to stress that we are not seeing what these objects look like right now since it takes time for the photon to travel to us. We are only seeing them as their younger selves when the distance to them was different.</p>
+<p>Confusingly, the particle horizon is not defined in terms of the co-moving distance of these objects, which never changes, nor is it defined as the proper distance at which the photon was emitted, but instead the current proper distance of these objects, even though we are not seeing them at the current proper distance right now:</p>
+<p><span class="math display">\[R_{PH} = a(t)\int_{0}^{t}\dfrac{c dt}{a(t)}\]</span></p>
+<figure role="presentation" class="figure">
+<p><a href=""> <img src="images/Cosmo_Horizons-comoving.png" width="90%" class="figure-img"> </a> <a href=""> <img src="images/Cosmo_Horizons-proper.png" width="90%" class="figure-img"> </a></p>
+<figcaption class="figure-caption">
+Fig. 3 Demonstration of how Hubble sphere (green), Event horizon (red), light ray (yellow), and Particle horizon (blue) change with the cosmological time, plotted in both the co-moving distances (top) and the proper distances (bottom). The light ray shows how it is possible to observe photons outside of the Hubble sphere. The dotted lines indicate constant co-moving distances. The black horizontal line indicates our current universe, where the particle horizon &gt; the Event horizon &gt; the Hubble sphere. The standard cosmological model is assumed. Numerical values for parameters in the model: <span class="math inline">\(H_0=67.8 \text{km/s/Mpc}\)</span>, <span class="math inline">\(\Omega_{\Lambda}=0.7\)</span>, <span class="math inline">\(\Omega_{M}=0.3\)</span>, <span class="math inline">\(\Omega_{R}=\Omega_K=0\)</span>. [Mathematical notebook used to calculate the above curves: <a href="{{ site.baseurl }}/assets/nbs/Hubble_Sphere_Observable_Universe.nb">Hubble_Sphere_Horizons_and_Observable_Universe.nb</a>.]
+</figcaption>
+</figure>
+</section>
+<section id="observable-universe" class="level2">
+<h2 class="anchored" data-anchor-id="observable-universe">Observable Universe</h2>
+<p>One should be extremely careful in understanding the concepts of the cosmic event horizon and the particle horizon. The cosmic event horizon is NOT the furthest distance one can see in the future. The furthest distance one can see in the future is the particle horizon in that future. As demonstrated in Fig. 3, the particle horizon is bigger than the cosmic event horizon at the present and in the future. <strong>The cosmic event horizon describes the boundary beyond which the events will never be observed, while the particle horizon describes the furthest distance one can see at a certain cosmological time.</strong></p>
+<p><strong>The “observable universe” is defined by the particle horizon.</strong> This is the 93 billion light-years value quoted in <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Observable_Universe_with_Measurements_01.png/2560px-Observable_Universe_with_Measurements_01.png">this wikipedia picture</a>.&nbsp; According to Fig. 3, the size of the “observable universe” is getting bigger and bigger.</p>
+</section>
+<section id="what-the-sky-looks-like-in-the-far-distant-future" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-sky-looks-like-in-the-far-distant-future">What the Sky Looks Like In the Far Distant Future</h2>
+<p>Because the light rays always go all the way back in time, it means that we will always in theory get photons from the objects emitted in the past. So it is not correct to say that when objects move out of the event horizon, we will never see them again. In fact, we will always see their younger selves before they move beyond the event horizon. As illustrated by the light rays in Fig. 3, as time goes on, the light ray (yellow) infinitely approaches the event horizon line (red). This means, in the very far distant future, these objects will seem to be frozen at the time when they started to cross the event horizon, and we never see them actually cross it.</p>
+<p>As a clarification, the event horizon should not be thought of as a distance, but different distances at different times (a world line in space-time diagram), as indicated by the red line in Fig. 3. When we say the objects seem to be frozen at the event horizon, we mean, when we look out into space, the younger selves of distant objects whose light reaches us slowly approach the time when they crossed the event horizon, but never get there. Therefore, we should always be able to see distant objects as their younger selves moving closer and closer to the event horizons at corresponding times, if we still exist.</p>
+<p>However, there’s another effect that we haven’t mentioned in this post: redshift. The wavelengths of photons emitted from the distant past will be stretched due to the expansion of space, so in the very distant future, even though we should still get photons from the distant past in theory, the large wavelengths of these photons will make it almost impossible to observe. This is the real reason why we won’t be able to these distant objects anymore, not because they already moved past the event horizon from our perspective.</p>
+<p>Does that mean that the sky will look black in the distant future? Not if stars in our galaxy and nearby galaxies are still shining for some reason. Galaxies that are close enough to be gravitationally bound to our own when the universe expands will not be pushed away by the expansion, and could still be there. But then again, in the far distant future, stars might have already died. In that case, we won’t be able to see anything anymore.</p>
+
+
+<div class="sharethis-inline-share-buttons pt-5">
+
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp("https:\/\/feynlee\.github\.io\/curiosity-notes");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="feynlee/curiosity-notes" data-repo-id="MDEwOlJlcG9zaXRvcnkyNDgwOTkxNzg=" data-category="Announcements" data-category-id="DIC_kwDODsmxas4CR7S3" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" data-loading="lazy" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

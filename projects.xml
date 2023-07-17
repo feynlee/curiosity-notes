@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>curiosity-notes</title>
+<link>https://feynlee.github.io/curiosity-notes/projects.html</link>
+<atom:link href="https://feynlee.github.io/curiosity-notes/projects.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.3.433</generator>
+<lastBuildDate>Sun, 16 Jul 2023 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Latent Upscale Plugin for Automatic1111 (Stable Diffusion)</title>
+  <link>https://feynlee.github.io/curiosity-notes/Projects/2023-07-16-Latent_Upscale.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><a href="https://github.com/feynlee/latent-upscale"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid figure-img" width="80"></a></p>
+</figure>
+</div>
+<p>Enhance the latent upscale options in the img2img process in <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">Automatic1111</a> to provide more flexibility and better image quality.</p>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<ol type="1">
+<li>The current img2img process lacks the ability to select the “Hires Fix” latent upscale options.</li>
+<li>The default latent upscale method (“bilinear”) often produces blurry images.</li>
+</ol>
+<p>This plugin introduces alternative interpolation methods for upscaling and offers different schedulers for the diffusion process, resulting in superior upscaled images. Moreover, this plugin expands the upscale options available in the Latent Space, surpassing those offered by the “Hires Fix” for the txt2img process.</p>
+</section>
+<section id="example-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="example-comparison">Example Comparison</h2>
+<p>Original Image:</p>
+<p><img src="https://feynlee.github.io/curiosity-notes/Projects/images/latent-upscale/original.png" class="img-fluid" style="width:50.0%"></p>
+<p>The default latent upscale (choose Resize mode “latent upscale”): <img src="https://feynlee.github.io/curiosity-notes/Projects/images/latent-upscale/default.png" class="img-fluid"></p>
+<p>Latent Upscale Plugin (Upscale method: “nearest-exact”, Scheduler: “simple”) <img src="https://feynlee.github.io/curiosity-notes/Projects/images/latent-upscale/nearest-exact-simple8.png" class="img-fluid"></p>
+</section>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p><img src="https://feynlee.github.io/curiosity-notes/Projects/images/latent-upscale/installation-search.png" class="img-fluid"></p>
+<p>You can find the “Latent Upscale” plugin in the <strong>Available</strong> section under the <strong>Extensions</strong> tab in the WebUI. Simply search for “Latent Upscale” in the extension search bar to locate it and click on “install”.</p>
+<p><em>Don’t forget to go back to <strong>Installed</strong> and click on <strong>Apply</strong>.</em></p>
+</section>
+<section id="usage" class="level2">
+<h2 class="anchored" data-anchor-id="usage">Usage</h2>
+<p><img src="https://feynlee.github.io/curiosity-notes/Projects/images/latent-upscale/usage.png" class="img-fluid"></p>
+<p>At the bottom of the <strong>img2img</strong> tab, you can select the newly installed <strong>Latent Upscale</strong> script in the <strong>Script</strong> dropdown menu.</p>
+<p>To benefit from these enhancements, make sure you have the “Just resize (latent upscale)” option selected for <strong>Resize mode</strong>. Additionally, all the parameters present in the user interface remain applicable, alongside the new options provided by this plugin in “Upscale Method” and “Scheduler”.</p>
+</section>
+<section id="tips" class="level2">
+<h2 class="anchored" data-anchor-id="tips">Tips</h2>
+<ol type="1">
+<li>Opting for “nearest”, “nearest-exact”, or “area” in the Upscale Method and “simple” or “normal” in the Scheduler can often lead to crisper images. However, don’t hesitate to experiment with different choices to discover the best outcome.</li>
+<li>If you want more details in the image, you can try to increase the number of steps in the diffusion process. However, this will also increase the time required to generate the image.</li>
+</ol>
+<hr>
+</section>
+<section id="how-this-came-about" class="level2">
+<h2 class="anchored" data-anchor-id="how-this-came-about">How this came about</h2>
+<p>This all started when I noticed that the default “Just resize (latent upscale)” mode in Automatic1111 produces foggy images, but when I played with latent upscale in <a href="">Comfyui</a>, the results are much sharper.</p>
+<p>I wanted to figure out why.</p>
+<blockquote class="blockquote">
+<p>How Latent Upscale Works:</p>
+<p>The original image is first encoded into the latent space, which is upscaled by the correct factor before fed into the diffusion (de-noising) process, and then decoded to the upscaled image.</p>
+<p><img src="https://feynlee.github.io/curiosity-notes/Projects/images/latent-upscale/img2img_latent_upscale_process.png" class="img-fluid"></p>
+</blockquote>
+<p>I found 2 problems in Automatic1111’s implementation:</p>
+<ol type="1">
+<li><p>It uses the <a href="https://en.wikipedia.org/wiki/Bilinear_interpolation">“bilinear” method</a>, which often results in blurry upscaled images. It does not provide users with other options to choose from.</p></li>
+<li><p>The number of steps users set was applied to the full scheduler, effectively reducing the steps for “de-noising”. For example, if the user sets the steps to be “30” and the de-noise strength is set to 0.4, the diffusion process will only run for 30*0.4 = 12 steps. <img src="https://feynlee.github.io/curiosity-notes/Projects/images/latent-upscale/default-sigmas.png" class="img-fluid"></p></li>
+</ol>
+</section>
+<section id="solutions" class="level2">
+<h2 class="anchored" data-anchor-id="solutions">Solutions</h2>
+<ol type="1">
+<li>For problem 1, I simply replaced this line of code. Instead of hard coding the interpolation method, I allowed the users to choose their own method.</li>
+</ol>
+<p><img src="https://feynlee.github.io/curiosity-notes/Projects/images/latent-upscale/interpolation_method_updates.png" class="img-fluid"></p>
+<ol start="2" type="1">
+<li>I turned on a fix that’s already in the code base but for some reason not applied by default:</li>
+</ol>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1">  opts.img2img_fix_steps <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span></span></code></pre></div>
+<p>so the de-noising process has the correct number of steps.</p>
+<p><img src="https://feynlee.github.io/curiosity-notes/Projects/images/latent-upscale/fixed-sigmas.png" class="img-fluid"></p>
+</section>
+<section id="technical-details" class="level2">
+<h2 class="anchored" data-anchor-id="technical-details">Technical Details</h2>
+<ol type="1">
+<li><p>This plugin overrides the default <code>init</code> method for <code>StableDiffusionProcessingImg2Img</code> to include additional features:</p>
+<ol type="1">
+<li>It adds the option to choose the “Upscale Method” interpolation method when creating the latent image.</li>
+<li>It ensures that the diffusion process runs for the correct number of steps, as specified by the user, by setting opts.img2img_fix_steps = True. It is unclear why this was not the default setting for img2img.</li>
+</ol></li>
+<li><p>This plugin assigns the <code>sampler_noise_scheduler_override</code> method for <code>StableDiffusionProcessingImg2Img</code> so that our custom schedulers can be used for the diffusion process.</p></li>
+</ol>
+
+
+<div class="sharethis-inline-share-buttons pt-5">
+
+</div>
+</section>
+
+ ]]></description>
+  <category>Tools</category>
+  <guid>https://feynlee.github.io/curiosity-notes/Projects/2023-07-16-Latent_Upscale.html</guid>
+  <pubDate>Sun, 16 Jul 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://feynlee.github.io/curiosity-notes/Projects/images/latent-upscale/latent-upscale-comparison.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>Code-Insertion</title>
+  <link>https://feynlee.github.io/curiosity-notes/Projects/2022-11-25-Code_Insertion.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><a href="https://github.com/feynlee/code-insertion"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid figure-img" width="80"></a></p>
+</figure>
+</div>
+<section id="what-this-is" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-is">What this is</h2>
+<p>I was looking for a way to add share buttons at the bottom of each post before the comment section (see for details). I searched through the <a href="https://quarto.org">Quarto</a> documentation, and couldn’t find a viable solution, so I created this extension to enable code insertion immediately before and/or after a post/page.</p>
+<ul>
+<li>When you insert code <strong>before</strong> the post, it will be after the post header (section that contains author and date).</li>
+<li>When you insert code <strong>after</strong> the post, it will be before the comment section.</li>
+</ul>
+</section>
+<section id="installing" class="level2">
+<h2 class="anchored" data-anchor-id="installing">Installing</h2>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">quarto</span> add feynlee/code-insertion</span></code></pre></div>
+<p>This will install the extension under the <code>_extensions</code> subdirectory. If you’re using version control, you will want to check in this directory for your Quarto website.</p>
+</section>
+<section id="using" class="level2">
+<h2 class="anchored" data-anchor-id="using">Using</h2>
+<p>In the front matter of a post, the <code>code-insertion</code> filter and add <code>insert-before-post</code> and/or <code>insert-after-post</code> parameters that point to a markdown file with sections you want to insert before and/or after the post.</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filters</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span></span>
+<span id="cb2-2"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">-</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> code-insertion</span></span>
+<span id="cb2-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">insert-before-post</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> before_post.md</span></span>
+<span id="cb2-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">insert-after-post</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">:</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;"> after_post.md</span></span></code></pre></div>
+<p>You need to specify the path to the markdown file that contains the code you want to insert into your post. Currently this extension does not support inline code insertion (i.e.&nbsp;specifying the code to be inserted right within YAML front matter).</p>
+<p><strong>Tip</strong>: You can add this to <code>_metadata.yml</code> under the folder containing all your posts, so that all of them can share this setting.</p>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>With this extension, I was finally able to <a href="https://feynlee.github.io/curiosity-notes/posts/2022-11-24-10_tips_for_configuring_a_quarto_website.html#add-social-share-buttons">add the social share buttons</a>.</p>
+
+
+<div class="sharethis-inline-share-buttons pt-5">
+
+</div>
+</section>
+
+ ]]></description>
+  <category>Tools</category>
+  <guid>https://feynlee.github.io/curiosity-notes/Projects/2022-11-25-Code_Insertion.html</guid>
+  <pubDate>Fri, 25 Nov 2022 00:00:00 GMT</pubDate>
+  <media:content url="https://feynlee.github.io/curiosity-notes/Projects/images/code-insertion/code-insertion-filters.png" medium="image" type="image/png" height="52" width="144"/>
+</item>
+<item>
+  <title>Nbdev_ignore</title>
+  <link>https://feynlee.github.io/curiosity-notes/Projects/2022-11-21-Nbdev_ignore.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><a href="https://github.com/feynlee/nbdev-ignore"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid figure-img" width="80"></a></p>
+</figure>
+</div>
+<section id="what-this-is" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-is">What this is</h2>
+<p>When using the <a href="https://github.com/fastai/nbdev">nbdev</a> library, I often find myself having to write</p>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| hide</span></span>
+<span id="cb1-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| eval: false</span></span>
+<span id="cb1-3">...</span></code></pre></div>
+<p>in order for that cell in Jupyter Notebook to be ignored by both the tests and docs. It would great to have a simple directive to do this, and this is the ignore directive:</p>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| ignore</span></span>
+<span id="cb2-2">...</span></code></pre></div>
+<p>It’s equivalent to the above directives.</p>
+</section>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install nbdev_ignore</span></code></pre></div>
+</section>
+<section id="how-to-use" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
+<p>To enable the <code>#| ignore</code> directive, in your settings.ini make sure to:</p>
+<ul>
+<li>Add <code>nbdev_ignore</code> as a requirement</li>
+<li>Add <code>procs = nbdev_igore.core:ignore_</code>, where it should point to the exact function being called</li>
+<li>Add it to test flags: <code>tst_flags = ignore</code>, so that cells with this directive also avoids testing. If you already have other test flags, separate them with space. For example, if you already have <code>notest</code> as your test flag, then <code>tst_flags = notest ignore</code>.</li>
+</ul>
+</section>
+<section id="how-it-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-it-works">How it works</h2>
+<p>There’s only one function <a href="https://feynlee.github.io/nbdev-ignore/core.html#ignore_"><code>ignore_</code></a> in this module. It’s exactly the same as the <a href="">hide_</a> processor in <code>nbdev</code>, so that “#| ignore” serves the same purpose as “#| hide”. For details on how it works, see <a href="https://feynlee.github.io/nbdev-ignore/core.html">here</a>.</p>
+<p>In order for it to also serve as a test flag, we will need to manually add it to <code>tst_flags</code> (see below) so tests will ignore cells with this directive. Currently there’s no simple way to hack the <code>nbdev_test</code> process, so this has to be done manually.</p>
+</section>
+<section id="result" class="level2">
+<h2 class="anchored" data-anchor-id="result">Result</h2>
+<p>We can now write <code>#|ignore</code> for the cell to be ignored by both tests and docs, but still kept in the notebook:</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#|ignore</span></span>
+<span id="cb4-2"></span>
+<span id="cb4-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> pyspark.sql <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> SparkSession</span>
+<span id="cb4-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> mock <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> patch</span>
+<span id="cb4-5"></span>
+<span id="cb4-6">spark <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (SparkSession.builder</span>
+<span id="cb4-7">        .config(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"fs.s3a.aws.credentials.provider"</span>,</span>
+<span id="cb4-8">                <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"com.amazonaws.auth.profile.ProfileCredentialsProvider"</span>)</span>
+<span id="cb4-9">        .appName(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"app_name"</span>)</span>
+<span id="cb4-10">        .getOrCreate()</span>
+<span id="cb4-11">        )</span>
+<span id="cb4-12"></span>
+<span id="cb4-13">columns <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"address"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"date"</span>]</span>
+<span id="cb4-14">data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"address1"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"20211001"</span>)]</span>
+<span id="cb4-15">df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> spark.createDataFrame(data).toDF(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>columns)</span>
+<span id="cb4-16"></span>
+<span id="cb4-17"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@patch</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pyspark.sql.session.DataFrameReader.load"</span>, return_value <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df)</span>
+<span id="cb4-18"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">def</span> test(spark_load_mock):</span>
+<span id="cb4-19">    df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> fake_func(spark)</span>
+<span id="cb4-20">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span> df</span>
+<span id="cb4-21"></span>
+<span id="cb4-22">dfpd <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> test()</span></code></pre></div>
+
+
+<div class="sharethis-inline-share-buttons pt-5">
+
+</div>
+</section>
+
+ ]]></description>
+  <category>Tools</category>
+  <guid>https://feynlee.github.io/curiosity-notes/Projects/2022-11-21-Nbdev_ignore.html</guid>
+  <pubDate>Mon, 21 Nov 2022 00:00:00 GMT</pubDate>
+  <media:content url="https://feynlee.github.io/curiosity-notes/Projects/images/nbdev_ignore/nbdev_ignore.png" medium="image" type="image/png" height="89" width="144"/>
+</item>
+<item>
+  <title>Whisper2Subtitles</title>
+  <link>https://feynlee.github.io/curiosity-notes/Projects/2022-11-09-Whisper2Subtitles.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://feynlee.github.io/curiosity-notes/Projects/images/whisper2subtitles-facecover.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<p><a href="https://colab.research.google.com/github/feynlee/whisper2subtitles/blob/main/Whisper2subtitles.ipynb"><img src="https://feynlee.github.io/curiosity-notes/Projects/https:/colab.research.google.com/assets/colab-badge.svg" class="img-fluid" data-fig-align="left"></a> <a href="https://github.com/feynlee/whisper2subtitles"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid" data-fig-align="left" width="80"></a></p>
+<p>A simple Google Colab Notebook to generate transcribed subtitles for videos/audios using OpenAI’s open source <a href="https://github.com/openai/whisper">whisper model</a>, with options to generate translated subtitles.</p>
+<p>You can choose to generate translations using Facebooks’ <a href="https://huggingface.co/facebook/m2m100_418M">M2M100_418 model</a> model or manually add translated texts from other tools. The original texts and translated texts will be combined into one bilingual subtitle.</p>
+<p>There’s also an option to burn the subtitle into video using ffmpeg directly in the notebook.</p>
+
+
+<div class="sharethis-inline-share-buttons pt-5">
+
+</div>
+
+ ]]></description>
+  <category>Deep Learning</category>
+  <guid>https://feynlee.github.io/curiosity-notes/Projects/2022-11-09-Whisper2Subtitles.html</guid>
+  <pubDate>Wed, 09 Nov 2022 00:00:00 GMT</pubDate>
+  <media:content url="https://feynlee.github.io/curiosity-notes/Projects/images/whisper2subtitles/whisper2subtitles-facecover.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>DreamBooth</title>
+  <link>https://feynlee.github.io/curiosity-notes/Projects/2022-10-01-DreamBooth.html</link>
+  <description><![CDATA[ 
+
+
+
+<p><a href="https://colab.research.google.com/github/feynlee/Stable_Diffusion/blob/main/dreambooth/DreamBooth_Stable_Diffusion.ipynb"><img src="https://feynlee.github.io/curiosity-notes/Projects/https:/colab.research.google.com/assets/colab-badge.svg" class="img-fluid" data-fig-align="left"></a> <a href="https://github.com/feynlee/Stable_Diffusion/tree/main/dreambooth"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid" data-fig-align="left" width="80"></a></p>
+<section id="train-on-stable-diffusion-v1.4" class="level2">
+<h2 class="anchored" data-anchor-id="train-on-stable-diffusion-v1.4">Train on Stable Diffusion V1.4</h2>
+<p>I adapted a Google Colab Notebook to fine-tune the stability diffusion model with DreamBooth, and added sections to save the trained model directly to HuggingFace, so it can be pulled from the hub in the future.</p>
+<p>The following are some profile artworks generated by a model trained with photos of my face. The results are pretty interesting. Some of them do have some resemblance with me, while others do not look that much like me.</p>
+<div class="grid">
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/comp-1.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-1.JPG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/comp-2.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-2.JPG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/comp-3.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-3.JPG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/comp-4.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-4.JPG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/comp-5.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-5.JPG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/comp-6.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-6.JPG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/comp-7.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-7.JPG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/comp-8.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-8.JPG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/comp-9.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-9.JPG" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="train-on-the-arcane-diffusion" class="level2">
+<h2 class="anchored" data-anchor-id="train-on-the-arcane-diffusion">Train on the Arcane Diffusion</h2>
+<p>We can also train on fined-tuned stability models. I fine-tuned the <a href="https://huggingface.co/nitrosocke/Arcane-Diffusion">Arcane Diffusion Model</a> on photos of me using the same <a href="https://colab.research.google.com/github/feynlee/Stable_Diffusion/blob/main/dreambooth/DreamBooth_Stable_Diffusion.ipynb">DreamBooth Notebook</a>.</p>
+<p>The Arcane style got preserved, and now I can generate pictures of “me” in this style:</p>
+<div class="grid">
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-0.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-0.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-1.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-2.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-2.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-3.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-3.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-4.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-4.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-5.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-5.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-6.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-6.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-7.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-7.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-8.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-8.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-9.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-9.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-10.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-10.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-11.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-11.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-12.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-12.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-13.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-13.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-14.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-14.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-15.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-15.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-16.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-16.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-17.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-17.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-18.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-18.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-19.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-19.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-20.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-20.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-21.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-21.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-22.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-22.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="g-col-6 g-col-md-4">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/dreambooth/arcane_style/arcane_style-23.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-23.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<div class="sharethis-inline-share-buttons pt-5">
+
+</div>
+</section>
+
+ ]]></description>
+  <category>Deep Learning</category>
+  <guid>https://feynlee.github.io/curiosity-notes/Projects/2022-10-01-DreamBooth.html</guid>
+  <pubDate>Sat, 01 Oct 2022 00:00:00 GMT</pubDate>
+  <media:content url="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/liziyue-51.PNG" medium="image"/>
+</item>
+<item>
+  <title>Learning Blender</title>
+  <link>https://feynlee.github.io/curiosity-notes/Projects/2021-12-15-Learning_Blender.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>Some projects I did while learning Blender.</p>
+<p></p><div id="youtube-frame" style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;"><iframe width="100%" height="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/Q3o_hI-Jx_8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+<p></p><div id="youtube-frame" style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;"><iframe width="100%" height="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/QZ8IfDjbJNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+<p></p><div id="youtube-frame" style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;"><iframe width="100%" height="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/XKTIpnJ2R4o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+
+
+<div class="sharethis-inline-share-buttons pt-5">
+
+</div>
+
+ ]]></description>
+  <category>3D</category>
+  <guid>https://feynlee.github.io/curiosity-notes/Projects/2021-12-15-Learning_Blender.html</guid>
+  <pubDate>Wed, 15 Dec 2021 00:00:00 GMT</pubDate>
+  <media:content url="https://feynlee.github.io/curiosity-notes/Projects/images/learning_blender/learning_blender.png" medium="image" type="image/png" height="82" width="144"/>
+</item>
+</channel>
+</rss>
