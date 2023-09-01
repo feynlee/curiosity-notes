@@ -64,6 +64,8 @@ website:
     - id: projects
       title: Projects
       contents:
+        - text: Latent Upscale
+          href: Projects/2023-07-16-Latent_Upscale.md
         - text: Code-Insertion
           href: Projects/2022-11-25-Code_Insertion.md
         - text: Nbdev_ignore
@@ -107,6 +109,10 @@ website:
         - section: Stable Diffusion
           href: ai_art-sd.ipynb
           contents:
+            - text: Cyberpunk Knight
+              href: AI_art/stable_diffusion/Cyberpunk_Knight.md
+            - text: Practice
+              href: AI_art/stable_diffusion/Practice.md
             - text: Year of the Rabbit
               href: AI_art/stable_diffusion/happy_the_year_of_the_rabbit.md
             - text: This Fleeting Life
