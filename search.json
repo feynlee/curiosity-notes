@@ -364,116 +364,32 @@
     "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nCyberpunk Knight\n\n\nFuturistic Retro Punk\n\n\n\n\n\n\nMay 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nArtwork Generation and Touchups Practice\n\n\nUsing ControlNet for generation and in-painting to tweak and fix the artwork to get the desired output.\n\n\n\n\n\n\nMar 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYear of the Rabbit\n\n\nThe year of the tiger ends and the year of the rabbit begins.\n\n\n\n\n\n\nJan 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis Fleeting Life\n\n\nThis fleeting life will eventually be lost to us all. You might as well be bold and love someone, climb a mountain, and chase a dream.\n\n\n\n\n\n\nDec 31, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChristmas Gift\n\n\nI don’t want a single gift, ’cause I’ve got everything I need.\n\n\n\n\n\n\nDec 25, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHorse\n\n\nBGM:《马》by 福禄寿.\n\n\n\n\n\n\nDec 1, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "Projects/2022-11-25-Code_Insertion.html#what-this-is",
-    "href": "Projects/2022-11-25-Code_Insertion.html#what-this-is",
-    "title": "Code-Insertion",
-    "section": "What this is",
-    "text": "What this is\nI was looking for a way to add share buttons at the bottom of each post before the comment section (see for details). I searched through the Quarto documentation, and couldn’t find a viable solution, so I created this extension to enable code insertion immediately before and/or after a post/page.\n\nWhen you insert code before the post, it will be after the post header (section that contains author and date).\nWhen you insert code after the post, it will be before the comment section."
-  },
-  {
-    "objectID": "Projects/2022-11-25-Code_Insertion.html#installing",
-    "href": "Projects/2022-11-25-Code_Insertion.html#installing",
-    "title": "Code-Insertion",
-    "section": "Installing",
-    "text": "Installing\nquarto add feynlee/code-insertion\nThis will install the extension under the _extensions subdirectory. If you’re using version control, you will want to check in this directory for your Quarto website."
-  },
-  {
-    "objectID": "Projects/2022-11-25-Code_Insertion.html#using",
-    "href": "Projects/2022-11-25-Code_Insertion.html#using",
-    "title": "Code-Insertion",
-    "section": "Using",
-    "text": "Using\nIn the front matter of a post, the code-insertion filter and add insert-before-post and/or insert-after-post parameters that point to a markdown file with sections you want to insert before and/or after the post.\nfilters:\n  - code-insertion\ninsert-before-post: before_post.md\ninsert-after-post: after_post.md\nYou need to specify the path to the markdown file that contains the code you want to insert into your post. Currently this extension does not support inline code insertion (i.e. specifying the code to be inserted right within YAML front matter).\nTip: You can add this to _metadata.yml under the folder containing all your posts, so that all of them can share this setting."
-  },
-  {
-    "objectID": "Projects/2022-11-25-Code_Insertion.html#example",
-    "href": "Projects/2022-11-25-Code_Insertion.html#example",
-    "title": "Code-Insertion",
-    "section": "Example",
-    "text": "Example\nWith this extension, I was finally able to add the social share buttons."
-  },
-  {
-    "objectID": "Projects/2022-11-09-Whisper2Subtitles.html",
-    "href": "Projects/2022-11-09-Whisper2Subtitles.html",
-    "title": "Whisper2Subtitles",
+    "objectID": "Projects/2023-09-04-PikaQ.html",
+    "href": "Projects/2023-09-04-PikaQ.html",
+    "title": "pikaQ - A SQL Query Builder for Different Dialects",
     "section": "",
-    "text": "A simple Google Colab Notebook to generate transcribed subtitles for videos/audios using OpenAI’s open source whisper model, with options to generate translated subtitles.\nYou can choose to generate translations using Facebooks’ M2M100_418 model model or manually add translated texts from other tools. The original texts and translated texts will be combined into one bilingual subtitle.\nThere’s also an option to burn the subtitle into video using ffmpeg directly in the notebook."
+    "text": "Programmatically generate SQL queries for different dialects.\n\nThis library is heavily inspired by PyPika, so a lot of the syntax is based on how PyPika works. Just like PyPika, PikaQ replaces handwritten SQL queries with programmatic construction of queries. The main difference is that pikaQ is designed to generate different SQL dialects from the same code. This is done by using a common syntax that is then translated to the specific dialect.\nThis library provides the core components and implementation for constructing the Select query and the core mechanism for translating it into different dialect. It does not offer complete coverage of SQL syntax nor the detailed implementation of all the dialects. However, it should be easy to extend the library to support more SQL syntax and other types of queries you want to construct.\nValidation of SQL correctness is not an explicit goal of PikaQ. You are encouraged to check inputs you provide to PyPika or appropriately handle errors raised from your SQL database - just as you would have if you were writing SQL yourself.\n\n\npip install pikaQ\n\n\n\nFor example, if we want to write the same query in Spark SQL and AWS Athena, we might encounter this problem: we have ADD_MONTHS function in Spark SQL, but in AWS Athena (Presto) we don’t have this function.\nWe can define an ADD_MONTHS function in the following way:\n\nfrom pikaQ.terms import custom_func\nfrom pikaQ.queries import Query\n\n\n@custom_func\ndef add_months(column, value, dialect='spark'):\n    if dialect == 'athena':\n        return f\"DATE_ADD('month', {value}, {column})\"\n    elif dialect == 'spark':\n        return f'ADD_MONTH({column}, {value})'\n    else:\n        raise ValueError(f'Unsupported dialect: {dialect}')\n\n\nq = (Query.from_('table')\n        .select('col1', add_months('col2', 3).as_('col2'))\n)\n\nThen we can generate the query for Spark SQL and AWS Athena:\n\nprint(q.get_sql(dialect='athena'))\n\nselect col1, DATE_ADD('month', 3, col2) AS col2\nfrom table\n\n\n\nprint(q.get_sql(dialect='spark'))\n\nselect col1, ADD_MONTH(col2, 3) AS col2\nfrom table\n\n\nA more complex example to show how the syntax works:\n\nfrom pikaQ.queries import Query, Table, Field, AliasedQuery\nfrom pikaQ.terms import Case, Preceding, CURRENT_ROW\nimport pikaQ.functions as fn\n\n\na = Table('tbl1').as_('a')\nb = Table('tbl2').as_('b')\ns = AliasedQuery('s')\nm = AliasedQuery('m')\nv = AliasedQuery('v')\n\nq0 = (Query\n      .from_(a)\n      .select(\n         a.col1,\n         a.col2,\n         fn.Sum(a.col3).over(b.col2).rows(Preceding(3), CURRENT_ROW).as_('total'), \n         fn.RowNumber().over(b.col2).orderby(b.col4).as_('row_num')\n      ).distinct()\n      .where((Field('col2')-100&gt;2) & (Field('col3')/9&lt;=1))\n      .orderby(b.col2)\n)\nq1 = (Query\n      .from_(b)\n      .select(b.col1, b.col2, fn.Avg(b.col3).as_('avg'))\n      .groupby(b.col1, b.col2)\n      .having(fn.Count(b.col3)&gt;2)\n)\n\nq = (Query\n     .with_(q0, 's')\n     .with_(Query\n         .from_(s)\n         .select(s.star())\n         .where(s.row_num == 1), 'm')\n     .with_(q1, 'v')\n     .from_('v')\n     .join('m')\n        .on(\n            (v.col1 == m.col1) &\n            (v.col2 == m.col2)\n            )\n     .select(\n         v.col1, v.col2, v.avg,\n         Case().when(m.total&gt;100, 1).else_(0).as_('flag')\n         )\n)\n\nprint(q.get_sql())\n\nwith s as (\nselect distinct a.col1, a.col2, SUM(a.col3) OVER (PARTITION BY b.col2 ROWS BETWEEN 3 PRECEDING AND CURRENT_ROW) AS total, ROW_NUMBER() OVER (PARTITION BY b.col2 ORDER BY b.col4) AS row_num\nfrom tbl1 as a\nwhere col2 - 100 &gt; 2 and col3 / 9 &lt;= 1\norder by b.col2)\n\n, m as (\nselect s.*\nfrom s\nwhere s.row_num = 1)\n\n, v as (\nselect b.col1, b.col2, AVG(b.col3)\nfrom tbl2 as b\ngroup by b.col1, b.col2\nhaving COUNT(b.col3) &gt; 2)\n\nselect v.col1, v.col2, v.avg, CASE\nWHEN m.total &gt; 100 THEN 1\nELSE 0\nEND AS flag\nfrom v\njoin m on v.col1 = m.col1 and v.col2 = m.col2\n\n\nFor more syntax examples, please refer to the docs.\n\n\n\nOne can use the core components and logic implemented in this library to extend the functionality to support more SQL syntax and other types of queries. For details of how to extend the SelectQuery to support more clauses, please refer to the Extending Query section of the docs."
   },
   {
-    "objectID": "Projects/2022-10-01-DreamBooth.html#train-on-stable-diffusion-v1.4",
-    "href": "Projects/2022-10-01-DreamBooth.html#train-on-stable-diffusion-v1.4",
-    "title": "DreamBooth",
-    "section": "Train on Stable Diffusion V1.4",
-    "text": "Train on Stable Diffusion V1.4\nI adapted a Google Colab Notebook to fine-tune the stability diffusion model with DreamBooth, and added sections to save the trained model directly to HuggingFace, so it can be pulled from the hub in the future.\nThe following are some profile artworks generated by a model trained with photos of my face. The results are pretty interesting. Some of them do have some resemblance with me, while others do not look that much like me."
-  },
-  {
-    "objectID": "Projects/2022-10-01-DreamBooth.html#train-on-the-arcane-diffusion",
-    "href": "Projects/2022-10-01-DreamBooth.html#train-on-the-arcane-diffusion",
-    "title": "DreamBooth",
-    "section": "Train on the Arcane Diffusion",
-    "text": "Train on the Arcane Diffusion\nWe can also train on fined-tuned stability models. I fine-tuned the Arcane Diffusion Model on photos of me using the same DreamBooth Notebook.\nThe Arcane style got preserved, and now I can generate pictures of “me” in this style:"
-  },
-  {
-    "objectID": "AI_art/stable_diffusion/happy_the_year_of_the_rabbit.html",
-    "href": "AI_art/stable_diffusion/happy_the_year_of_the_rabbit.html",
-    "title": "Year of the Rabbit",
+    "objectID": "Projects/2023-09-04-PikaQ.html#install",
+    "href": "Projects/2023-09-04-PikaQ.html#install",
+    "title": "pikaQ - A SQL Query Builder for Different Dialects",
     "section": "",
-    "text": "The year of the tiger ends and the year of the rabbit begins. This animation is made using Deforum and a fine-tuned Stable Diffusion model."
+    "text": "pip install pikaQ"
   },
   {
-    "objectID": "AI_art/stable_diffusion/Christmas_gift.html",
-    "href": "AI_art/stable_diffusion/Christmas_gift.html",
-    "title": "Christmas Gift",
+    "objectID": "Projects/2023-09-04-PikaQ.html#how-to-use",
+    "href": "Projects/2023-09-04-PikaQ.html#how-to-use",
+    "title": "pikaQ - A SQL Query Builder for Different Dialects",
     "section": "",
-    "text": "The song is Christmas List by Anson Seabra, covered by Suho陈仕雨."
+    "text": "For example, if we want to write the same query in Spark SQL and AWS Athena, we might encounter this problem: we have ADD_MONTHS function in Spark SQL, but in AWS Athena (Presto) we don’t have this function.\nWe can define an ADD_MONTHS function in the following way:\n\nfrom pikaQ.terms import custom_func\nfrom pikaQ.queries import Query\n\n\n@custom_func\ndef add_months(column, value, dialect='spark'):\n    if dialect == 'athena':\n        return f\"DATE_ADD('month', {value}, {column})\"\n    elif dialect == 'spark':\n        return f'ADD_MONTH({column}, {value})'\n    else:\n        raise ValueError(f'Unsupported dialect: {dialect}')\n\n\nq = (Query.from_('table')\n        .select('col1', add_months('col2', 3).as_('col2'))\n)\n\nThen we can generate the query for Spark SQL and AWS Athena:\n\nprint(q.get_sql(dialect='athena'))\n\nselect col1, DATE_ADD('month', 3, col2) AS col2\nfrom table\n\n\n\nprint(q.get_sql(dialect='spark'))\n\nselect col1, ADD_MONTH(col2, 3) AS col2\nfrom table\n\n\nA more complex example to show how the syntax works:\n\nfrom pikaQ.queries import Query, Table, Field, AliasedQuery\nfrom pikaQ.terms import Case, Preceding, CURRENT_ROW\nimport pikaQ.functions as fn\n\n\na = Table('tbl1').as_('a')\nb = Table('tbl2').as_('b')\ns = AliasedQuery('s')\nm = AliasedQuery('m')\nv = AliasedQuery('v')\n\nq0 = (Query\n      .from_(a)\n      .select(\n         a.col1,\n         a.col2,\n         fn.Sum(a.col3).over(b.col2).rows(Preceding(3), CURRENT_ROW).as_('total'), \n         fn.RowNumber().over(b.col2).orderby(b.col4).as_('row_num')\n      ).distinct()\n      .where((Field('col2')-100&gt;2) & (Field('col3')/9&lt;=1))\n      .orderby(b.col2)\n)\nq1 = (Query\n      .from_(b)\n      .select(b.col1, b.col2, fn.Avg(b.col3).as_('avg'))\n      .groupby(b.col1, b.col2)\n      .having(fn.Count(b.col3)&gt;2)\n)\n\nq = (Query\n     .with_(q0, 's')\n     .with_(Query\n         .from_(s)\n         .select(s.star())\n         .where(s.row_num == 1), 'm')\n     .with_(q1, 'v')\n     .from_('v')\n     .join('m')\n        .on(\n            (v.col1 == m.col1) &\n            (v.col2 == m.col2)\n            )\n     .select(\n         v.col1, v.col2, v.avg,\n         Case().when(m.total&gt;100, 1).else_(0).as_('flag')\n         )\n)\n\nprint(q.get_sql())\n\nwith s as (\nselect distinct a.col1, a.col2, SUM(a.col3) OVER (PARTITION BY b.col2 ROWS BETWEEN 3 PRECEDING AND CURRENT_ROW) AS total, ROW_NUMBER() OVER (PARTITION BY b.col2 ORDER BY b.col4) AS row_num\nfrom tbl1 as a\nwhere col2 - 100 &gt; 2 and col3 / 9 &lt;= 1\norder by b.col2)\n\n, m as (\nselect s.*\nfrom s\nwhere s.row_num = 1)\n\n, v as (\nselect b.col1, b.col2, AVG(b.col3)\nfrom tbl2 as b\ngroup by b.col1, b.col2\nhaving COUNT(b.col3) &gt; 2)\n\nselect v.col1, v.col2, v.avg, CASE\nWHEN m.total &gt; 100 THEN 1\nELSE 0\nEND AS flag\nfrom v\njoin m on v.col1 = m.col1 and v.col2 = m.col2\n\n\nFor more syntax examples, please refer to the docs."
   },
   {
-    "objectID": "AI_art/stable_diffusion/this_fleeting_life.html",
-    "href": "AI_art/stable_diffusion/this_fleeting_life.html",
-    "title": "This Fleeting Life",
+    "objectID": "Projects/2023-09-04-PikaQ.html#extension",
+    "href": "Projects/2023-09-04-PikaQ.html#extension",
+    "title": "pikaQ - A SQL Query Builder for Different Dialects",
     "section": "",
-    "text": "After multiple tries, I was able to create this aging animation using Deforum and a fine-tuned Stable Diffusion model.\nThis fleeting life will eventually be lost to us all. You might as well be bold and love someone, climb a mountain, and chase a dream."
-  },
-  {
-    "objectID": "AI_art/stable_diffusion/horse.html",
-    "href": "AI_art/stable_diffusion/horse.html",
-    "title": "Horse",
-    "section": "",
-    "text": "《马》by 福禄寿."
-  },
-  {
-    "objectID": "Projects/2022-11-21-Nbdev_ignore.html#what-this-is",
-    "href": "Projects/2022-11-21-Nbdev_ignore.html#what-this-is",
-    "title": "Nbdev_ignore",
-    "section": "What this is",
-    "text": "What this is\nWhen using the nbdev library, I often find myself having to write\n#| hide\n#| eval: false\n...\nin order for that cell in Jupyter Notebook to be ignored by both the tests and docs. It would great to have a simple directive to do this, and this is the ignore directive:\n#| ignore\n...\nIt’s equivalent to the above directives."
-  },
-  {
-    "objectID": "Projects/2022-11-21-Nbdev_ignore.html#installation",
-    "href": "Projects/2022-11-21-Nbdev_ignore.html#installation",
-    "title": "Nbdev_ignore",
-    "section": "Installation",
-    "text": "Installation\npip install nbdev_ignore"
-  },
-  {
-    "objectID": "Projects/2022-11-21-Nbdev_ignore.html#how-to-use",
-    "href": "Projects/2022-11-21-Nbdev_ignore.html#how-to-use",
-    "title": "Nbdev_ignore",
-    "section": "How to use",
-    "text": "How to use\nTo enable the #| ignore directive, in your settings.ini make sure to:\n\nAdd nbdev_ignore as a requirement\nAdd procs = nbdev_igore.core:ignore_, where it should point to the exact function being called\nAdd it to test flags: tst_flags = ignore, so that cells with this directive also avoids testing. If you already have other test flags, separate them with space. For example, if you already have notest as your test flag, then tst_flags = notest ignore."
-  },
-  {
-    "objectID": "Projects/2022-11-21-Nbdev_ignore.html#how-it-works",
-    "href": "Projects/2022-11-21-Nbdev_ignore.html#how-it-works",
-    "title": "Nbdev_ignore",
-    "section": "How it works",
-    "text": "How it works\nThere’s only one function ignore_ in this module. It’s exactly the same as the hide_ processor in nbdev, so that “#| ignore” serves the same purpose as “#| hide”. For details on how it works, see here.\nIn order for it to also serve as a test flag, we will need to manually add it to tst_flags (see below) so tests will ignore cells with this directive. Currently there’s no simple way to hack the nbdev_test process, so this has to be done manually."
-  },
-  {
-    "objectID": "Projects/2022-11-21-Nbdev_ignore.html#result",
-    "href": "Projects/2022-11-21-Nbdev_ignore.html#result",
-    "title": "Nbdev_ignore",
-    "section": "Result",
-    "text": "Result\nWe can now write #|ignore for the cell to be ignored by both tests and docs, but still kept in the notebook:\n#|ignore\n\nfrom pyspark.sql import SparkSession\nfrom mock import patch\n\nspark = (SparkSession.builder\n        .config(\"fs.s3a.aws.credentials.provider\",\n                \"com.amazonaws.auth.profile.ProfileCredentialsProvider\")\n        .appName(\"app_name\")\n        .getOrCreate()\n        )\n\ncolumns = [\"address\", \"date\"]\ndata = [(\"address1\", \"20211001\")]\ndf = spark.createDataFrame(data).toDF(*columns)\n\n@patch(\"pyspark.sql.session.DataFrameReader.load\", return_value = df)\ndef test(spark_load_mock):\n    df = fake_func(spark)\n    return df\n\ndfpd = test()"
+    "text": "One can use the core components and logic implemented in this library to extend the functionality to support more SQL syntax and other types of queries. For details of how to extend the SelectQuery to support more clauses, please refer to the Extending Query section of the docs."
   },
   {
     "objectID": "Projects/2023-07-16-Latent_Upscale.html",
@@ -539,6 +455,118 @@
     "text": "Technical Details\n\nThis plugin overrides the default init method for StableDiffusionProcessingImg2Img to include additional features:\n\nIt adds the option to choose the “Upscale Method” interpolation method when creating the latent image.\nIt ensures that the diffusion process runs for the correct number of steps, as specified by the user, by setting opts.img2img_fix_steps = True. It is unclear why this was not the default setting for img2img.\n\nThis plugin assigns the sampler_noise_scheduler_override method for StableDiffusionProcessingImg2Img so that our custom schedulers can be used for the diffusion process."
   },
   {
+    "objectID": "Projects/2022-11-21-Nbdev_ignore.html#what-this-is",
+    "href": "Projects/2022-11-21-Nbdev_ignore.html#what-this-is",
+    "title": "Nbdev_ignore",
+    "section": "What this is",
+    "text": "What this is\nWhen using the nbdev library, I often find myself having to write\n#| hide\n#| eval: false\n...\nin order for that cell in Jupyter Notebook to be ignored by both the tests and docs. It would great to have a simple directive to do this, and this is the ignore directive:\n#| ignore\n...\nIt’s equivalent to the above directives."
+  },
+  {
+    "objectID": "Projects/2022-11-21-Nbdev_ignore.html#installation",
+    "href": "Projects/2022-11-21-Nbdev_ignore.html#installation",
+    "title": "Nbdev_ignore",
+    "section": "Installation",
+    "text": "Installation\npip install nbdev_ignore"
+  },
+  {
+    "objectID": "Projects/2022-11-21-Nbdev_ignore.html#how-to-use",
+    "href": "Projects/2022-11-21-Nbdev_ignore.html#how-to-use",
+    "title": "Nbdev_ignore",
+    "section": "How to use",
+    "text": "How to use\nTo enable the #| ignore directive, in your settings.ini make sure to:\n\nAdd nbdev_ignore as a requirement\nAdd procs = nbdev_igore.core:ignore_, where it should point to the exact function being called\nAdd it to test flags: tst_flags = ignore, so that cells with this directive also avoids testing. If you already have other test flags, separate them with space. For example, if you already have notest as your test flag, then tst_flags = notest ignore."
+  },
+  {
+    "objectID": "Projects/2022-11-21-Nbdev_ignore.html#how-it-works",
+    "href": "Projects/2022-11-21-Nbdev_ignore.html#how-it-works",
+    "title": "Nbdev_ignore",
+    "section": "How it works",
+    "text": "How it works\nThere’s only one function ignore_ in this module. It’s exactly the same as the hide_ processor in nbdev, so that “#| ignore” serves the same purpose as “#| hide”. For details on how it works, see here.\nIn order for it to also serve as a test flag, we will need to manually add it to tst_flags (see below) so tests will ignore cells with this directive. Currently there’s no simple way to hack the nbdev_test process, so this has to be done manually."
+  },
+  {
+    "objectID": "Projects/2022-11-21-Nbdev_ignore.html#result",
+    "href": "Projects/2022-11-21-Nbdev_ignore.html#result",
+    "title": "Nbdev_ignore",
+    "section": "Result",
+    "text": "Result\nWe can now write #|ignore for the cell to be ignored by both tests and docs, but still kept in the notebook:\n#|ignore\n\nfrom pyspark.sql import SparkSession\nfrom mock import patch\n\nspark = (SparkSession.builder\n        .config(\"fs.s3a.aws.credentials.provider\",\n                \"com.amazonaws.auth.profile.ProfileCredentialsProvider\")\n        .appName(\"app_name\")\n        .getOrCreate()\n        )\n\ncolumns = [\"address\", \"date\"]\ndata = [(\"address1\", \"20211001\")]\ndf = spark.createDataFrame(data).toDF(*columns)\n\n@patch(\"pyspark.sql.session.DataFrameReader.load\", return_value = df)\ndef test(spark_load_mock):\n    df = fake_func(spark)\n    return df\n\ndfpd = test()"
+  },
+  {
+    "objectID": "AI_art/stable_diffusion/horse.html",
+    "href": "AI_art/stable_diffusion/horse.html",
+    "title": "Horse",
+    "section": "",
+    "text": "《马》by 福禄寿."
+  },
+  {
+    "objectID": "AI_art/stable_diffusion/this_fleeting_life.html",
+    "href": "AI_art/stable_diffusion/this_fleeting_life.html",
+    "title": "This Fleeting Life",
+    "section": "",
+    "text": "After multiple tries, I was able to create this aging animation using Deforum and a fine-tuned Stable Diffusion model.\nThis fleeting life will eventually be lost to us all. You might as well be bold and love someone, climb a mountain, and chase a dream."
+  },
+  {
+    "objectID": "AI_art/stable_diffusion/Christmas_gift.html",
+    "href": "AI_art/stable_diffusion/Christmas_gift.html",
+    "title": "Christmas Gift",
+    "section": "",
+    "text": "The song is Christmas List by Anson Seabra, covered by Suho陈仕雨."
+  },
+  {
+    "objectID": "AI_art/stable_diffusion/happy_the_year_of_the_rabbit.html",
+    "href": "AI_art/stable_diffusion/happy_the_year_of_the_rabbit.html",
+    "title": "Year of the Rabbit",
+    "section": "",
+    "text": "The year of the tiger ends and the year of the rabbit begins. This animation is made using Deforum and a fine-tuned Stable Diffusion model."
+  },
+  {
+    "objectID": "Projects/2022-10-01-DreamBooth.html#train-on-stable-diffusion-v1.4",
+    "href": "Projects/2022-10-01-DreamBooth.html#train-on-stable-diffusion-v1.4",
+    "title": "DreamBooth",
+    "section": "Train on Stable Diffusion V1.4",
+    "text": "Train on Stable Diffusion V1.4\nI adapted a Google Colab Notebook to fine-tune the stability diffusion model with DreamBooth, and added sections to save the trained model directly to HuggingFace, so it can be pulled from the hub in the future.\nThe following are some profile artworks generated by a model trained with photos of my face. The results are pretty interesting. Some of them do have some resemblance with me, while others do not look that much like me."
+  },
+  {
+    "objectID": "Projects/2022-10-01-DreamBooth.html#train-on-the-arcane-diffusion",
+    "href": "Projects/2022-10-01-DreamBooth.html#train-on-the-arcane-diffusion",
+    "title": "DreamBooth",
+    "section": "Train on the Arcane Diffusion",
+    "text": "Train on the Arcane Diffusion\nWe can also train on fined-tuned stability models. I fine-tuned the Arcane Diffusion Model on photos of me using the same DreamBooth Notebook.\nThe Arcane style got preserved, and now I can generate pictures of “me” in this style:"
+  },
+  {
+    "objectID": "Projects/2022-11-09-Whisper2Subtitles.html",
+    "href": "Projects/2022-11-09-Whisper2Subtitles.html",
+    "title": "Whisper2Subtitles",
+    "section": "",
+    "text": "A simple Google Colab Notebook to generate transcribed subtitles for videos/audios using OpenAI’s open source whisper model, with options to generate translated subtitles.\nYou can choose to generate translations using Facebooks’ M2M100_418 model model or manually add translated texts from other tools. The original texts and translated texts will be combined into one bilingual subtitle.\nThere’s also an option to burn the subtitle into video using ffmpeg directly in the notebook."
+  },
+  {
+    "objectID": "Projects/2022-11-25-Code_Insertion.html#what-this-is",
+    "href": "Projects/2022-11-25-Code_Insertion.html#what-this-is",
+    "title": "Code-Insertion",
+    "section": "What this is",
+    "text": "What this is\nI was looking for a way to add share buttons at the bottom of each post before the comment section (see for details). I searched through the Quarto documentation, and couldn’t find a viable solution, so I created this extension to enable code insertion immediately before and/or after a post/page.\n\nWhen you insert code before the post, it will be after the post header (section that contains author and date).\nWhen you insert code after the post, it will be before the comment section."
+  },
+  {
+    "objectID": "Projects/2022-11-25-Code_Insertion.html#installing",
+    "href": "Projects/2022-11-25-Code_Insertion.html#installing",
+    "title": "Code-Insertion",
+    "section": "Installing",
+    "text": "Installing\nquarto add feynlee/code-insertion\nThis will install the extension under the _extensions subdirectory. If you’re using version control, you will want to check in this directory for your Quarto website."
+  },
+  {
+    "objectID": "Projects/2022-11-25-Code_Insertion.html#using",
+    "href": "Projects/2022-11-25-Code_Insertion.html#using",
+    "title": "Code-Insertion",
+    "section": "Using",
+    "text": "Using\nIn the front matter of a post, the code-insertion filter and add insert-before-post and/or insert-after-post parameters that point to a markdown file with sections you want to insert before and/or after the post.\nfilters:\n  - code-insertion\ninsert-before-post: before_post.md\ninsert-after-post: after_post.md\nYou need to specify the path to the markdown file that contains the code you want to insert into your post. Currently this extension does not support inline code insertion (i.e. specifying the code to be inserted right within YAML front matter).\nTip: You can add this to _metadata.yml under the folder containing all your posts, so that all of them can share this setting."
+  },
+  {
+    "objectID": "Projects/2022-11-25-Code_Insertion.html#example",
+    "href": "Projects/2022-11-25-Code_Insertion.html#example",
+    "title": "Code-Insertion",
+    "section": "Example",
+    "text": "Example\nWith this extension, I was finally able to add the social share buttons."
+  },
+  {
     "objectID": "Projects/2021-12-15-Learning_Blender.html",
     "href": "Projects/2021-12-15-Learning_Blender.html",
     "title": "Learning Blender",
@@ -550,7 +578,7 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nLatent Upscale Plugin for Automatic1111 (Stable Diffusion)\n\n\n\nTools\n\n\n\nThis plugin provides better options for latent upscale in img2img, surpassing those offered by “Hires Fix” for the txt2img process..\n\n\n\n\n\n\nJul 16, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode-Insertion\n\n\n\nTools\n\n\n\nA Quarto extension that enables code insertion immediately before and/or after a post/page.\n\n\n\n\n\n\nNov 25, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNbdev_ignore\n\n\n\nTools\n\n\n\nAdd a #|ignore directive to hide the cell and avoid execution during testing and docs generation when using nbdev for development.\n\n\n\n\n\n\nNov 21, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhisper2Subtitles\n\n\n\nDeep Learning\n\n\n\nAdd bilingual subtitles to videos using OpenAI’s Whisper model.\n\n\n\n\n\n\nNov 9, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDreamBooth\n\n\n\nDeep Learning\n\n\n\nFine-tuning Stable Diffusion to Generate Artwork with My Face.\n\n\n\n\n\n\nOct 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLearning Blender\n\n\n\n3D\n\n\n\nSome 3D animation projects I did when learning Blender.\n\n\n\n\n\n\nDec 15, 2021\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\npikaQ - A SQL Query Builder for Different Dialects\n\n\n\nTools\n\n\n\nWrite it once, and automatically generate SQL queries for different database platforms.\n\n\n\n\n\n\nSep 4, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLatent Upscale Plugin for Automatic1111 (Stable Diffusion)\n\n\n\nTools\n\n\n\nThis plugin provides better options for latent upscale in img2img, surpassing those offered by “Hires Fix” for the txt2img process..\n\n\n\n\n\n\nJul 16, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode-Insertion\n\n\n\nTools\n\n\n\nA Quarto extension that enables code insertion immediately before and/or after a post/page.\n\n\n\n\n\n\nNov 25, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNbdev_ignore\n\n\n\nTools\n\n\n\nAdd a #|ignore directive to hide the cell and avoid execution during testing and docs generation when using nbdev for development.\n\n\n\n\n\n\nNov 21, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhisper2Subtitles\n\n\n\nDeep Learning\n\n\n\nAdd bilingual subtitles to videos using OpenAI’s Whisper model.\n\n\n\n\n\n\nNov 9, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDreamBooth\n\n\n\nDeep Learning\n\n\n\nFine-tuning Stable Diffusion to Generate Artwork with My Face.\n\n\n\n\n\n\nOct 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLearning Blender\n\n\n\n3D\n\n\n\nSome 3D animation projects I did when learning Blender.\n\n\n\n\n\n\nDec 15, 2021\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "TIL/2023/2023-01-13-get_function_with_its_name.html",

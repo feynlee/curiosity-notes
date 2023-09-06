@@ -10,7 +10,373 @@
 <atom:link href="https://feynlee.github.io/curiosity-notes/projects.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.3.450</generator>
-<lastBuildDate>Sun, 16 Jul 2023 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 04 Sep 2023 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>pikaQ - A SQL Query Builder for Different Dialects</title>
+  <link>https://feynlee.github.io/curiosity-notes/Projects/2023-09-04-PikaQ.html</link>
+  <description><![CDATA[ 
+
+
+
+<section id="pikaq" class="level1">
+<h1>pikaQ</h1>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><a href="https://github.com/feynlee/pikaQ"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid figure-img" width="80"></a></p>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>Programmatically generate SQL queries for different dialects.</p>
+</blockquote>
+<p>This library is heavily inspired by <a href="https://github.com/kayak/pypika">PyPika</a>, so a lot of the syntax is based on how PyPika works. Just like PyPika, PikaQ replaces handwritten SQL queries with programmatic construction of queries. The main difference is that pikaQ is designed to generate different SQL dialects from the same code. This is done by using a common syntax that is then translated to the specific dialect.</p>
+<p>This library provides the core components and implementation for constructing the <code>Select</code> query and the core mechanism for translating it into different dialect. It does not offer complete coverage of SQL syntax nor the detailed implementation of all the dialects. However, it should be easy to extend the library to support more SQL syntax and other types of queries you want to construct.</p>
+<p>Validation of SQL correctness is not an explicit goal of PikaQ. You are encouraged to check inputs you provide to PyPika or appropriately handle errors raised from your SQL database - just as you would have if you were writing SQL yourself.</p>
+<section id="install" class="level2">
+<h2 class="anchored" data-anchor-id="install">Install</h2>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">pip</span> install pikaQ</span></code></pre></div>
+</section>
+<section id="how-to-use" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
+<p>For example, if we want to write the same query in Spark SQL and AWS Athena, we might encounter this problem: we have <code>ADD_MONTHS</code> function in <a href="https://spark.apache.org/docs/2.3.0/api/sql/#add_months">Spark SQL</a>, but in AWS Athena (<a href="https://prestodb.io/docs/current/functions/datetime.html#interval-functions">Presto</a>) we don’t have this function.</p>
+<p>We can define an <code>ADD_MONTHS</code> function in the following way:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> pikaQ.terms <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> custom_func</span>
+<span id="cb2-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> pikaQ.queries <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> Query</span>
+<span id="cb2-3"></span>
+<span id="cb2-4"></span>
+<span id="cb2-5"><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">@custom_func</span></span>
+<span id="cb2-6"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">def</span> add_months(column, value, dialect<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'spark'</span>):</span>
+<span id="cb2-7">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> dialect <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'athena'</span>:</span>
+<span id="cb2-8">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"DATE_ADD('month', </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>value<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">, </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>column<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">)"</span></span>
+<span id="cb2-9">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">elif</span> dialect <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'spark'</span>:</span>
+<span id="cb2-10">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'ADD_MONTH(</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>column<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">, </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>value<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">)'</span></span>
+<span id="cb2-11">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">else</span>:</span>
+<span id="cb2-12">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">raise</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">ValueError</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'Unsupported dialect: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>dialect<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb2-13"></span>
+<span id="cb2-14"></span>
+<span id="cb2-15">q <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (Query.from_(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'table'</span>)</span>
+<span id="cb2-16">        .select(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'col1'</span>, add_months(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'col2'</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>).as_(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'col2'</span>))</span>
+<span id="cb2-17">)</span></code></pre></div>
+</div>
+<p>Then we can generate the query for Spark SQL and AWS Athena:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(q.get_sql(dialect<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'athena'</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>select col1, DATE_ADD('month', 3, col2) AS col2
+from table</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(q.get_sql(dialect<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'spark'</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>select col1, ADD_MONTH(col2, 3) AS col2
+from table</code></pre>
+</div>
+</div>
+<p>A more complex example to show how the syntax works:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> pikaQ.queries <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> Query, Table, Field, AliasedQuery</span>
+<span id="cb7-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> pikaQ.terms <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> Case, Preceding, CURRENT_ROW</span>
+<span id="cb7-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pikaQ.functions <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> fn</span>
+<span id="cb7-4"></span>
+<span id="cb7-5"></span>
+<span id="cb7-6">a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Table(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'tbl1'</span>).as_(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'a'</span>)</span>
+<span id="cb7-7">b <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Table(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'tbl2'</span>).as_(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'b'</span>)</span>
+<span id="cb7-8">s <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> AliasedQuery(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'s'</span>)</span>
+<span id="cb7-9">m <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> AliasedQuery(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'m'</span>)</span>
+<span id="cb7-10">v <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> AliasedQuery(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'v'</span>)</span>
+<span id="cb7-11"></span>
+<span id="cb7-12">q0 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (Query</span>
+<span id="cb7-13">      .from_(a)</span>
+<span id="cb7-14">      .select(</span>
+<span id="cb7-15">         a.col1,</span>
+<span id="cb7-16">         a.col2,</span>
+<span id="cb7-17">         fn.Sum(a.col3).over(b.col2).rows(Preceding(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>), CURRENT_ROW).as_(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'total'</span>), </span>
+<span id="cb7-18">         fn.RowNumber().over(b.col2).orderby(b.col4).as_(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'row_num'</span>)</span>
+<span id="cb7-19">      ).distinct()</span>
+<span id="cb7-20">      .where((Field(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'col2'</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> (Field(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'col3'</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))</span>
+<span id="cb7-21">      .orderby(b.col2)</span>
+<span id="cb7-22">)</span>
+<span id="cb7-23">q1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (Query</span>
+<span id="cb7-24">      .from_(b)</span>
+<span id="cb7-25">      .select(b.col1, b.col2, fn.Avg(b.col3).as_(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'avg'</span>))</span>
+<span id="cb7-26">      .groupby(b.col1, b.col2)</span>
+<span id="cb7-27">      .having(fn.Count(b.col3)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb7-28">)</span>
+<span id="cb7-29"></span>
+<span id="cb7-30">q <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (Query</span>
+<span id="cb7-31">     .with_(q0, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'s'</span>)</span>
+<span id="cb7-32">     .with_(Query</span>
+<span id="cb7-33">         .from_(s)</span>
+<span id="cb7-34">         .select(s.star())</span>
+<span id="cb7-35">         .where(s.row_num <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'m'</span>)</span>
+<span id="cb7-36">     .with_(q1, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'v'</span>)</span>
+<span id="cb7-37">     .from_(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'v'</span>)</span>
+<span id="cb7-38">     .join(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'m'</span>)</span>
+<span id="cb7-39">        .on(</span>
+<span id="cb7-40">            (v.col1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> m.col1) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span></span>
+<span id="cb7-41">            (v.col2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> m.col2)</span>
+<span id="cb7-42">            )</span>
+<span id="cb7-43">     .select(</span>
+<span id="cb7-44">         v.col1, v.col2, v.avg,</span>
+<span id="cb7-45">         Case().when(m.total<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>).else_(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>).as_(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'flag'</span>)</span>
+<span id="cb7-46">         )</span>
+<span id="cb7-47">)</span>
+<span id="cb7-48"></span>
+<span id="cb7-49"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(q.get_sql())</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>with s as (
+select distinct a.col1, a.col2, SUM(a.col3) OVER (PARTITION BY b.col2 ROWS BETWEEN 3 PRECEDING AND CURRENT_ROW) AS total, ROW_NUMBER() OVER (PARTITION BY b.col2 ORDER BY b.col4) AS row_num
+from tbl1 as a
+where col2 - 100 &gt; 2 and col3 / 9 &lt;= 1
+order by b.col2)
+
+, m as (
+select s.*
+from s
+where s.row_num = 1)
+
+, v as (
+select b.col1, b.col2, AVG(b.col3)
+from tbl2 as b
+group by b.col1, b.col2
+having COUNT(b.col3) &gt; 2)
+
+select v.col1, v.col2, v.avg, CASE
+WHEN m.total &gt; 100 THEN 1
+ELSE 0
+END AS flag
+from v
+join m on v.col1 = m.col1 and v.col2 = m.col2</code></pre>
+</div>
+</div>
+<p>For more syntax examples, please refer to the <a href="https://feynlee.github.io/pikaQ/">docs</a>.</p>
+</section>
+<section id="extension" class="level2">
+<h2 class="anchored" data-anchor-id="extension">Extension</h2>
+<p>One can use the core components and logic implemented in this library to extend the functionality to support more SQL syntax and other types of queries. For details of how to extend the <code>SelectQuery</code> to support more clauses, please refer to the <a href="https://feynlee.github.io/pikaQ/queries.html#extending-query">Extending Query section</a> of the docs.</p>
+
+
+<div class="sharethis-inline-share-buttons pt-5">
+
+</div>
+</section>
+</section>
+
+ ]]></description>
+  <category>Tools</category>
+  <guid>https://feynlee.github.io/curiosity-notes/Projects/2023-09-04-PikaQ.html</guid>
+  <pubDate>Mon, 04 Sep 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://pbs.twimg.com/media/F5MYuEQXwAAXx04?format=jpg&amp;name=large" medium="image"/>
+</item>
 <item>
   <title>Latent Upscale Plugin for Automatic1111 (Stable Diffusion)</title>
   <link>https://feynlee.github.io/curiosity-notes/Projects/2023-07-16-Latent_Upscale.html</link>
