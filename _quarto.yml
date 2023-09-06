@@ -64,6 +64,8 @@ website:
     - id: projects
       title: Projects
       contents:
+        - text: pikaQ
+          href: Projects/2023-09-04-PikaQ.ipynb
         - text: Latent Upscale
           href: Projects/2023-07-16-Latent_Upscale.md
         - text: Code-Insertion
