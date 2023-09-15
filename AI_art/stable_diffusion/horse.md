@@ -8,7 +8,7 @@ filters:
 date: 2022-12-01
 image: /images/ai_art/horse.png
 lightbox: auto
-description: "BGM:《马》by 福禄寿."
+description: Simple practice using Stable Diffusion.
 toc: false
 ---
 

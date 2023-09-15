@@ -6,7 +6,7 @@ format:
 filters:
    - lightbox
 date: 2023-03-12
-image: Practice/knight.png
+image: Practice/knight.jpg
 lightbox: auto
 description: "Using ControlNet for generation and in-painting to tweak and fix the artwork to get the desired output."
 toc: false
@@ -20,7 +20,7 @@ toc: false
 :::
 
 :::{.g-col-6 .g-col-md-4}
-![](Practice/knight.png){group="my-gallery"}
+![](Practice/knight.jpg){group="my-gallery"}
 :::
 
 :::{.g-col-6 .g-col-md-4}

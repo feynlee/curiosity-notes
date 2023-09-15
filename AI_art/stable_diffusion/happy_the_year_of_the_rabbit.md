@@ -8,7 +8,7 @@ filters:
 date: 2023-01-21
 image: /images/ai_art/Happy_the_year_of_the_rabbit.png
 lightbox: auto
-description: The year of the tiger ends and the year of the rabbit begins.
+description: Animation made using Deforum and a fine-tuned Stable Diffusion model.
 toc: false
 ---
 

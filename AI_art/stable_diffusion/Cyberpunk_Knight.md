@@ -8,7 +8,7 @@ filters:
 date: 2023-05-12
 image: Cyberpunk_Knight/cyberknight4.PNG
 lightbox: auto
-description: "Futuristic Retro Punk"
+description: "Futuristic Retro Punk, made with ControlNet and In-Painting and a lot of post processing to fine-tune the details."
 toc: false
 ---
 

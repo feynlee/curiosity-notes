@@ -8,7 +8,7 @@ filters:
 date: 2022-12-31
 image: /images/ai_art/this_fleeting_life.png
 lightbox: auto
-description: This fleeting life will eventually be lost to us all. You might as well be bold and love someone, climb a mountain, and chase a dream.
+description: Animation of the aging process, made using Deforum and a fine-tuned Stable Diffusion model over-trained on my face to keep the facial features as "consistent" as possible.
 toc: false
 ---
 
@@ -24,5 +24,4 @@ allowfullscreen></iframe>
 
 After multiple tries, I was able to create this aging animation using Deforum and a fine-tuned Stable Diffusion model.
 
-This fleeting life will eventually be lost to us all. You might as well be bold and love someone, climb a mountain, and chase a dream.
-
+"This fleeting life will eventually be lost to us all. You might as well be bold and love someone, climb a mountain, and chase a dream."

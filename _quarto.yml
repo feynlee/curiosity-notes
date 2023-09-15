@@ -19,10 +19,10 @@ website:
         href: books/books.qmd
       - text: AI Art
         menu:
-          - text: Disco Diffusion
-            href: ai_art-dd.ipynb
           - text: Stable Diffusion
             href: ai_art-sd.ipynb
+          - text: Disco Diffusion
+            href: ai_art-dd.ipynb
       - text: Projects
         href: projects.qmd
       - text: Apps
@@ -81,6 +81,21 @@ website:
     - id: ai_art
       title: AI Art
       contents:
+        - section: Stable Diffusion
+          href: ai_art-sd.ipynb
+          contents:
+            - text: Cyberpunk Knight
+              href: AI_art/stable_diffusion/Cyberpunk_Knight.md
+            - text: Practice
+              href: AI_art/stable_diffusion/Practice.md
+            - text: Year of the Rabbit
+              href: AI_art/stable_diffusion/happy_the_year_of_the_rabbit.md
+            - text: This Fleeting Life
+              href: AI_art/stable_diffusion/this_fleeting_life.md
+            - text: Christmas Gift
+              href: AI_art/stable_diffusion/Christmas_gift.md
+            - text: Horse
+              href: AI_art/stable_diffusion/horse.md
         - section: Disco Diffusion
           href: ai_art-dd.ipynb
           contents:
@@ -108,21 +123,6 @@ website:
               href: AI_art/disco_diffusion/11-jellyfish.md
             - text: Single
               href: AI_art/disco_diffusion/12-singles.md
-        - section: Stable Diffusion
-          href: ai_art-sd.ipynb
-          contents:
-            - text: Cyberpunk Knight
-              href: AI_art/stable_diffusion/Cyberpunk_Knight.md
-            - text: Practice
-              href: AI_art/stable_diffusion/Practice.md
-            - text: Year of the Rabbit
-              href: AI_art/stable_diffusion/happy_the_year_of_the_rabbit.md
-            - text: This Fleeting Life
-              href: AI_art/stable_diffusion/this_fleeting_life.md
-            - text: Christmas Gift
-              href: AI_art/stable_diffusion/Christmas_gift.md
-            - text: Horse
-              href: AI_art/stable_diffusion/horse.md
 
 
 # so that R, Python, and Julia code is only executed locally
