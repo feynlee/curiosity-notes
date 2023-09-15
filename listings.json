@@ -15,6 +15,7 @@
     "items": [
       "/Projects/2023-09-04-PikaQ.html",
       "/Projects/2023-07-16-Latent_Upscale.html",
+      "/Projects/2023-06-20-Long_Text_Pic.html",
       "/Projects/2022-11-25-Code_Insertion.html",
       "/Projects/2022-11-21-Nbdev_ignore.html",
       "/Projects/2022-11-09-Whisper2Subtitles.html",
@@ -25,6 +26,23 @@
   {
     "listing": "/books/books.html",
     "items": []
+  },
+  {
+    "listing": "/ai_art-dd.html",
+    "items": [
+      "/AI_art/disco_diffusion/01-temple.html",
+      "/AI_art/disco_diffusion/02-cherry_blossom.html",
+      "/AI_art/disco_diffusion/03-forest.html",
+      "/AI_art/disco_diffusion/04-dusk.html",
+      "/AI_art/disco_diffusion/05-islands.html",
+      "/AI_art/disco_diffusion/06-peter_pan.html",
+      "/AI_art/disco_diffusion/07-lagoon.html",
+      "/AI_art/disco_diffusion/08-roses.html",
+      "/AI_art/disco_diffusion/09-space_station.html",
+      "/AI_art/disco_diffusion/10-night_fortress.html",
+      "/AI_art/disco_diffusion/11-jellyfish.html",
+      "/AI_art/disco_diffusion/12-singles.html"
+    ]
   },
   {
     "listing": "/index.html",
@@ -43,23 +61,6 @@
       "/posts/2017-01-20-how-i-solved-the-worlds-hardest-logic-puzzle.html",
       "/posts/2016-05-02-notes-for-learning-d3-js.html",
       "/posts/2014-11-22-black-hole-physics-in-interstellar.html"
-    ]
-  },
-  {
-    "listing": "/ai_art-dd.html",
-    "items": [
-      "/AI_art/disco_diffusion/01-temple.html",
-      "/AI_art/disco_diffusion/02-cherry_blossom.html",
-      "/AI_art/disco_diffusion/03-forest.html",
-      "/AI_art/disco_diffusion/04-dusk.html",
-      "/AI_art/disco_diffusion/05-islands.html",
-      "/AI_art/disco_diffusion/06-peter_pan.html",
-      "/AI_art/disco_diffusion/07-lagoon.html",
-      "/AI_art/disco_diffusion/08-roses.html",
-      "/AI_art/disco_diffusion/09-space_station.html",
-      "/AI_art/disco_diffusion/10-night_fortress.html",
-      "/AI_art/disco_diffusion/11-jellyfish.html",
-      "/AI_art/disco_diffusion/12-singles.html"
     ]
   },
   {

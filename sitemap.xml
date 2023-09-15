@@ -2,242 +2,246 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/ai_art-sd.html</loc>
-    <lastmod>2023-09-15T14:30:49.115Z</lastmod>
+    <lastmod>2023-09-15T19:25:18.416Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/projects.html</loc>
-    <lastmod>2023-09-15T14:30:45.375Z</lastmod>
+    <lastmod>2023-09-15T19:25:14.833Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/books/books.html</loc>
-    <lastmod>2023-09-15T14:30:43.475Z</lastmod>
+    <lastmod>2023-09-15T19:25:12.933Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2023/2023-04-02-variable_shadows_function.html</loc>
-    <lastmod>2023-09-15T14:30:42.227Z</lastmod>
+    <lastmod>2023-09-15T19:25:11.829Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2022/2022-11-16-fastai-store_attr_infinite_recursion.html</loc>
-    <lastmod>2023-09-15T14:30:40.367Z</lastmod>
+    <lastmod>2023-09-15T19:25:10.229Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2022/2022-12-06-replace_certain_lines_in_file.html</loc>
-    <lastmod>2023-09-15T14:30:38.875Z</lastmod>
+    <lastmod>2023-09-15T19:25:08.945Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2022/2022-11-06-pip_install_from_private_repo.html</loc>
-    <lastmod>2023-09-15T14:30:37.411Z</lastmod>
+    <lastmod>2023-09-15T19:25:07.613Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2022/2022-11-23-aws-private_subnet_setup.html</loc>
-    <lastmod>2023-09-15T14:30:35.303Z</lastmod>
+    <lastmod>2023-09-15T19:25:05.777Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2022/2022-11-30-access_data_in_python_libraries.html</loc>
-    <lastmod>2023-09-15T14:30:33.859Z</lastmod>
+    <lastmod>2023-09-15T19:25:04.441Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/Projects/2022-11-25-Code_Insertion.html</loc>
-    <lastmod>2023-09-15T14:30:32.043Z</lastmod>
+    <lastmod>2023-09-15T19:25:02.789Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/Projects/2022-11-21-Nbdev_ignore.html</loc>
-    <lastmod>2023-09-15T14:30:30.775Z</lastmod>
+    <lastmod>2023-09-15T19:25:01.541Z</lastmod>
   </url>
   <url>
-    <loc>https://feynlee.github.io/curiosity-notes/Projects/2021-12-15-Learning_Blender.html</loc>
-    <lastmod>2023-09-15T14:30:29.147Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/Projects/2023-09-04-PikaQ.html</loc>
-    <lastmod>2023-09-15T14:30:27.999Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2016-05-02-notes-for-learning-d3-js.html</loc>
-    <lastmod>2023-09-15T14:30:25.235Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2019-01-07-auto-generate-data-science-report-for-sharing.html</loc>
-    <lastmod>2023-09-15T14:30:23.659Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2022-12-23-Eclipse_on_pandora_and_orbital_physics.html</loc>
-    <lastmod>2023-09-15T14:30:20.459Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2017-01-20-how-i-solved-the-worlds-hardest-logic-puzzle.html</loc>
-    <lastmod>2023-09-15T14:30:18.587Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2020-11-26-what_is_temporature.html</loc>
-    <lastmod>2023-09-15T14:30:16.747Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2019-08-25-cosmological-perspective.html</loc>
-    <lastmod>2023-09-15T14:30:14.955Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2019-06-16-three-simple-steps-to-start-using-css-grid-template.html</loc>
-    <lastmod>2023-09-15T14:30:12.835Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/Practice.html</loc>
-    <lastmod>2023-09-15T14:30:11.783Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/Cyberpunk_Knight.html</loc>
-    <lastmod>2023-09-15T14:30:10.803Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/Christmas_gift.html</loc>
-    <lastmod>2023-09-15T14:30:09.247Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/10-night_fortress.html</loc>
-    <lastmod>2023-09-15T14:30:08.139Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/03-forest.html</loc>
-    <lastmod>2023-09-15T14:30:07.075Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/05-islands.html</loc>
-    <lastmod>2023-09-15T14:30:06.019Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/01-temple.html</loc>
-    <lastmod>2023-09-15T14:30:04.975Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/07-lagoon.html</loc>
-    <lastmod>2023-09-15T14:30:03.987Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/09-space_station.html</loc>
-    <lastmod>2023-09-15T14:30:02.983Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/index.html</loc>
-    <lastmod>2023-09-15T14:30:00.627Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/ai_art-dd.html</loc>
-    <lastmod>2023-09-15T14:30:02.487Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/08-roses.html</loc>
-    <lastmod>2023-09-15T14:30:03.523Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/04-dusk.html</loc>
-    <lastmod>2023-09-15T14:30:04.487Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/12-singles.html</loc>
-    <lastmod>2023-09-15T14:30:05.467Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/11-jellyfish.html</loc>
-    <lastmod>2023-09-15T14:30:06.527Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/06-peter_pan.html</loc>
-    <lastmod>2023-09-15T14:30:07.647Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/02-cherry_blossom.html</loc>
-    <lastmod>2023-09-15T14:30:08.711Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/horse.html</loc>
-    <lastmod>2023-09-15T14:30:09.703Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/happy_the_year_of_the_rabbit.html</loc>
-    <lastmod>2023-09-15T14:30:11.287Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/this_fleeting_life.html</loc>
-    <lastmod>2023-09-15T14:30:12.263Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2021-08-19-data-block-api-in-fastai.html</loc>
-    <lastmod>2023-09-15T14:30:13.611Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2023-06-20-How_to_Release_Your_First_iOS_App.html</loc>
-    <lastmod>2023-09-15T14:30:15.639Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2020-05-24-deriving_the_kelvin_wake_pattern.html</loc>
-    <lastmod>2023-09-15T14:30:17.455Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2022-11-24-tips_for_configuring_a_quarto_website.html</loc>
-    <lastmod>2023-09-15T14:30:19.719Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2019-09-22-how-to-write-the-setup.py-file-for-python-packages.html</loc>
-    <lastmod>2023-09-15T14:30:22.999Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2014-11-22-black-hole-physics-in-interstellar.html</loc>
-    <lastmod>2023-09-15T14:30:24.551Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/posts/2022-07-02-Duck_Pass_Trail.html</loc>
-    <lastmod>2023-09-15T14:30:25.819Z</lastmod>
-  </url>
-  <url>
-    <loc>https://feynlee.github.io/curiosity-notes/about.html</loc>
-    <lastmod>2023-09-15T14:30:27.087Z</lastmod>
+    <loc>https://feynlee.github.io/curiosity-notes/Projects/2023-06-20-Long_Text_Pic.html</loc>
+    <lastmod>2023-09-15T19:24:59.969Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/Projects/2022-10-01-DreamBooth.html</loc>
-    <lastmod>2023-09-15T14:30:28.679Z</lastmod>
+    <lastmod>2023-09-15T19:24:59.025Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/about.html</loc>
+    <lastmod>2023-09-15T19:24:57.545Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2022-07-02-Duck_Pass_Trail.html</loc>
+    <lastmod>2023-09-15T19:24:56.333Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2014-11-22-black-hole-physics-in-interstellar.html</loc>
+    <lastmod>2023-09-15T19:24:55.133Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2019-09-22-how-to-write-the-setup.py-file-for-python-packages.html</loc>
+    <lastmod>2023-09-15T19:24:53.545Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2022-11-24-tips_for_configuring_a_quarto_website.html</loc>
+    <lastmod>2023-09-15T19:24:50.389Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2020-05-24-deriving_the_kelvin_wake_pattern.html</loc>
+    <lastmod>2023-09-15T19:24:48.161Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2023-06-20-How_to_Release_Your_First_iOS_App.html</loc>
+    <lastmod>2023-09-15T19:24:46.381Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2021-08-19-data-block-api-in-fastai.html</loc>
+    <lastmod>2023-09-15T19:24:44.269Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/this_fleeting_life.html</loc>
+    <lastmod>2023-09-15T19:24:42.885Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/happy_the_year_of_the_rabbit.html</loc>
+    <lastmod>2023-09-15T19:24:41.965Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/horse.html</loc>
+    <lastmod>2023-09-15T19:24:40.469Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/02-cherry_blossom.html</loc>
+    <lastmod>2023-09-15T19:24:39.381Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/06-peter_pan.html</loc>
+    <lastmod>2023-09-15T19:24:38.389Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/11-jellyfish.html</loc>
+    <lastmod>2023-09-15T19:24:37.365Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/12-singles.html</loc>
+    <lastmod>2023-09-15T19:24:36.477Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/04-dusk.html</loc>
+    <lastmod>2023-09-15T19:24:35.525Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/08-roses.html</loc>
+    <lastmod>2023-09-15T19:24:34.557Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/ai_art-dd.html</loc>
+    <lastmod>2023-09-15T19:24:33.545Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/index.html</loc>
+    <lastmod>2023-09-15T19:24:31.553Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/09-space_station.html</loc>
+    <lastmod>2023-09-15T19:24:34.057Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/07-lagoon.html</loc>
+    <lastmod>2023-09-15T19:24:35.061Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/01-temple.html</loc>
+    <lastmod>2023-09-15T19:24:35.981Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/05-islands.html</loc>
+    <lastmod>2023-09-15T19:24:36.917Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/03-forest.html</loc>
+    <lastmod>2023-09-15T19:24:37.853Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/10-night_fortress.html</loc>
+    <lastmod>2023-09-15T19:24:38.845Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/Christmas_gift.html</loc>
+    <lastmod>2023-09-15T19:24:39.877Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/Cyberpunk_Knight.html</loc>
+    <lastmod>2023-09-15T19:24:41.517Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/Practice.html</loc>
+    <lastmod>2023-09-15T19:24:42.425Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2019-06-16-three-simple-steps-to-start-using-css-grid-template.html</loc>
+    <lastmod>2023-09-15T19:24:43.457Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2019-08-25-cosmological-perspective.html</loc>
+    <lastmod>2023-09-15T19:24:45.689Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2020-11-26-what_is_temporature.html</loc>
+    <lastmod>2023-09-15T19:24:47.449Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2017-01-20-how-i-solved-the-worlds-hardest-logic-puzzle.html</loc>
+    <lastmod>2023-09-15T19:24:49.253Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2022-12-23-Eclipse_on_pandora_and_orbital_physics.html</loc>
+    <lastmod>2023-09-15T19:24:51.065Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2019-01-07-auto-generate-data-science-report-for-sharing.html</loc>
+    <lastmod>2023-09-15T19:24:54.197Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/posts/2016-05-02-notes-for-learning-d3-js.html</loc>
+    <lastmod>2023-09-15T19:24:55.777Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/Projects/2023-09-04-PikaQ.html</loc>
+    <lastmod>2023-09-15T19:24:58.421Z</lastmod>
+  </url>
+  <url>
+    <loc>https://feynlee.github.io/curiosity-notes/Projects/2021-12-15-Learning_Blender.html</loc>
+    <lastmod>2023-09-15T19:24:59.465Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/Projects/2023-07-16-Latent_Upscale.html</loc>
-    <lastmod>2023-09-15T14:30:29.859Z</lastmod>
+    <lastmod>2023-09-15T19:25:00.677Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/Projects/2022-11-09-Whisper2Subtitles.html</loc>
-    <lastmod>2023-09-15T14:30:31.231Z</lastmod>
+    <lastmod>2023-09-15T19:25:01.989Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2022/2022-12-04-set_function_as_methods.html</loc>
-    <lastmod>2023-09-15T14:30:32.827Z</lastmod>
+    <lastmod>2023-09-15T19:25:03.533Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2022/2022-12-28-f_string_in_python.html</loc>
-    <lastmod>2023-09-15T14:30:34.523Z</lastmod>
+    <lastmod>2023-09-15T19:25:05.049Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2022/2022-12-12-get_list_of_folders_of_updated_files_since_last_merge.html</loc>
-    <lastmod>2023-09-15T14:30:36.351Z</lastmod>
+    <lastmod>2023-09-15T19:25:06.713Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2022/2022-12-15-Fixing_the_Unable_to_Resolve_Your_Shell_Environment_Problem_in_VSCode.html</loc>
-    <lastmod>2023-09-15T14:30:38.167Z</lastmod>
+    <lastmod>2023-09-15T19:25:08.317Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2022/2022-11-15-fastai-show_training_loop.html</loc>
-    <lastmod>2023-09-15T14:30:39.603Z</lastmod>
+    <lastmod>2023-09-15T19:25:09.553Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2023/2023-01-03-()_in_bash_vs_in_zsh.html</loc>
-    <lastmod>2023-09-15T14:30:41.423Z</lastmod>
+    <lastmod>2023-09-15T19:25:11.125Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL/2023/2023-01-13-get_function_with_its_name.html</loc>
-    <lastmod>2023-09-15T14:30:42.955Z</lastmod>
+    <lastmod>2023-09-15T19:25:12.473Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/Apps/Long-Text-Pic.html</loc>
-    <lastmod>2023-09-15T14:30:43.951Z</lastmod>
+    <lastmod>2023-09-15T19:25:13.397Z</lastmod>
   </url>
   <url>
     <loc>https://feynlee.github.io/curiosity-notes/TIL.html</loc>
-    <lastmod>2023-09-15T14:30:47.967Z</lastmod>
+    <lastmod>2023-09-15T19:25:17.329Z</lastmod>
   </url>
 </urlset>

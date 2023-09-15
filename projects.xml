@@ -484,6 +484,60 @@ font-style: inherit;">True</span></span></code></pre></div>
   <media:content url="https://feynlee.github.io/curiosity-notes/Projects/images/latent-upscale/latent-upscale-comparison.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
+  <title>Lon Text Pic</title>
+  <link>https://feynlee.github.io/curiosity-notes/Projects/2023-06-20-Long_Text_Pic.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="long-text-pic">
+<div class="grid gap-0 container">
+<div class="g-col-12">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://feynlee.github.io/curiosity-notes/Apps/Long-Text-Pic.html"><img src="https://feynlee.github.io/curiosity-notes/Apps/images/Long-Text-Pic-banner.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="text g-col-12">
+<p><span class="app-name">Long Text Pic</span></p>
+<p><span class="app-subtitle">Edit long text and convert it to a long image for sharing</span></p>
+<div class="app-link">
+<div class="app-link-item qrcode">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://apple.co/46avN7E"><img src="https://feynlee.github.io/curiosity-notes/Projects/https:/tools-qr-production.s3.amazonaws.com/output/apple-toolbox/35142435f6542ef4f3c5751f85271dc9/640c735d40f77518bf91755bf5a6fff3.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div class="app-link-item app-image">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://apple.co/46avN7E"><img src="https://feynlee.github.io/curiosity-notes/Apps/images/Download_on_the_App_Store_Badge.svg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="support">
+<p>support email: long-text-pic@flycricket.support</p>
+<p><a href="https://doc-hosting.flycricket.io/long-text-pic-privacy-policy/9fb63f5d-7387-4a59-a7b5-e9f31aff2121/privacy">privacy policy</a> | <a href="https://doc-hosting.flycricket.io/long-text-pic-terms-of-use/225e88ee-450f-4fad-8403-42113088f4b6/terms">terms of use</a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="sharethis-inline-share-buttons pt-5">
+
+</div>
+
+ ]]></description>
+  <category>App</category>
+  <guid>https://feynlee.github.io/curiosity-notes/Projects/2023-06-20-Long_Text_Pic.html</guid>
+  <pubDate>Tue, 20 Jun 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://feynlee.github.io/curiosity-notes/Apps/images/Long-Text-Pic-banner.png" medium="image" type="image/png" height="115" width="144"/>
+</item>
+<item>
   <title>Code-Insertion</title>
   <link>https://feynlee.github.io/curiosity-notes/Projects/2022-11-25-Code_Insertion.html</link>
   <description><![CDATA[ 
@@ -716,7 +770,7 @@ font-style: inherit;">=</span> test()</span></code></pre></div>
 </div>
 
  ]]></description>
-  <category>Deep Learning</category>
+  <category>Machine Learning</category>
   <guid>https://feynlee.github.io/curiosity-notes/Projects/2022-11-09-Whisper2Subtitles.html</guid>
   <pubDate>Wed, 09 Nov 2022 00:00:00 GMT</pubDate>
   <media:content url="https://feynlee.github.io/curiosity-notes/Projects/images/whisper2subtitles/whisper2subtitles-facecover.png" medium="image" type="image/png" height="81" width="144"/>
@@ -981,7 +1035,7 @@ font-style: inherit;">=</span> test()</span></code></pre></div>
 </section>
 
  ]]></description>
-  <category>Deep Learning</category>
+  <category>Machine Learning</category>
   <guid>https://feynlee.github.io/curiosity-notes/Projects/2022-10-01-DreamBooth.html</guid>
   <pubDate>Sat, 01 Oct 2022 00:00:00 GMT</pubDate>
   <media:content url="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/liziyue-51.PNG" medium="image"/>
