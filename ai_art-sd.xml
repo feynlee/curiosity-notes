@@ -130,7 +130,7 @@
 <div class="g-col-6 g-col-md-4">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="Practice/knight.png" class="lightbox" data-gallery="my-gallery"><img src="https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/Practice/knight.png" class="img-fluid figure-img"></a></p>
+<p><a href="Practice/knight.jpg" class="lightbox" data-gallery="my-gallery"><img src="https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/Practice/knight.jpg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -155,7 +155,7 @@
  ]]></description>
   <guid>https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/Practice.html</guid>
   <pubDate>Sun, 12 Mar 2023 00:00:00 GMT</pubDate>
-  <media:content url="https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/Practice/knight.png" medium="image" type="image/png"/>
+  <media:content url="https://feynlee.github.io/curiosity-notes/AI_art/stable_diffusion/Practice/knight.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Year of the Rabbit</title>
@@ -193,7 +193,7 @@ web-share" allowfullscreen="">
 </iframe>
 </div>
 <p>After multiple tries, I was able to create this aging animation using Deforum and a fine-tuned Stable Diffusion model.</p>
-<p>This fleeting life will eventually be lost to us all. You might as well be bold and love someone, climb a mountain, and chase a dream.</p>
+<p>“This fleeting life will eventually be lost to us all. You might as well be bold and love someone, climb a mountain, and chase a dream.”</p>
 
 
 
