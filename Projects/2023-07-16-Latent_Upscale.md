@@ -1,7 +1,7 @@
 ---
 title: Latent Upscale Plugin for Automatic1111 (Stable Diffusion)
 date: '2023-07-16'
-description: This plugin provides better options for latent upscale in img2img, surpassing those offered by "Hires Fix" for the txt2img process..
+description: This plugin provides better options for latent upscale in img2img, resulting in sharper images.
 draft: false
 categories:
 - Tools

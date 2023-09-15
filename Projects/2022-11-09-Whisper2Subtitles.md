@@ -4,7 +4,7 @@ date: '2022-11-09'
 description: Add bilingual subtitles to videos using OpenAI's Whisper model.
 draft: false
 categories:
-- Deep Learning
+- Machine Learning
 image: images/whisper2subtitles/whisper2subtitles-facecover.png
 ---
 ![](images/whisper2subtitles-facecover.png){fig-align="center" width=100%}

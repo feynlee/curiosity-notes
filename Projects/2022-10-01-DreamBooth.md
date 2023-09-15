@@ -4,7 +4,7 @@ date: '2022-10-01'
 description: Fine-tuning Stable Diffusion to Generate Artwork with My Face.
 draft: false
 categories:
-- Deep Learning
+- Machine Learning
 image: images/dreambooth/liziyue-51.PNG
 filters:
    - lightbox
