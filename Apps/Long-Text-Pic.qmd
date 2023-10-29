@@ -34,7 +34,7 @@ to a long image for sharing]{.app-subtitle}
 :::{.support}
 support email: long-text-pic@flycricket.support
 
-[privacy policy](https://doc-hosting.flycricket.io/long-text-pic-privacy-policy/9fb63f5d-7387-4a59-a7b5-e9f31aff2121/privacy)   |   [terms of use](https://doc-hosting.flycricket.io/long-text-pic-terms-of-use/225e88ee-450f-4fad-8403-42113088f4b6/terms)
+[privacy policy](https://doc-hosting.flycricket.io/long-text-pic-privacy-policy/9fb63f5d-7387-4a59-a7b5-e9f31aff2121/privacy)   |   [terms of use](https://doc-hosting.flycricket.io/long-text-pic-terms-of-use/9b7dadc5-5887-4353-aeeb-d8ff20c12f1a/terms)
 :::
 ::::
 :::::
