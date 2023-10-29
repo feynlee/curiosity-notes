@@ -35,7 +35,7 @@ After archiving your app and uploading it to App Store Connect, you will be prom
 Refer to the screenshot below to see the "missing compliance" status for BUILD 2.
 
 ![missing_compliance](images/2023/missing_compliance.png)
-![export_compliance](images/2023/export_compliance.png)
+![export_compliance](images/2023/export_compliance_info.png)
 
 You can actually bypass the process of setting up export compliance in App Store Connect by specifying your use of encryption directly in the information property list (Info.plist) of your Xcode project.
 
