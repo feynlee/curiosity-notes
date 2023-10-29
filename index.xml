@@ -32,7 +32,7 @@
 <section id="you-can-bypass-setting-up-export-compliance-in-app-store-connect" class="level2">
 <h2 class="anchored" data-anchor-id="you-can-bypass-setting-up-export-compliance-in-app-store-connect">You Can Bypass Setting Up Export Compliance in App Store Connect</h2>
 <p>After archiving your app and uploading it to App Store Connect, you will be prompted to set up export compliance. Refer to the screenshot below to see the “missing compliance” status for BUILD 2.</p>
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2023/missing_compliance.png" class="img-fluid" alt="missing_compliance"> <img src="https://feynlee.github.io/curiosity-notes/posts/images/2023/export_compliance.png" class="img-fluid" alt="export_compliance"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2023/missing_compliance.png" class="img-fluid" alt="missing_compliance"> <img src="https://feynlee.github.io/curiosity-notes/posts/images/2023/export_compliance_info.png" class="img-fluid" alt="export_compliance"></p>
 <p>You can actually bypass the process of setting up export compliance in App Store Connect by specifying your use of encryption directly in the information property list (Info.plist) of your Xcode project.</p>
 <p>To do this, add the <code>App Uses Non-Exempt Encryption</code> key to your Info.plist file and set its value to <code>NO</code>.</p>
 <p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2023/ITSAppUsesNonExemptEncryption.png" class="img-fluid"></p>
