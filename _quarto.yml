@@ -61,6 +61,16 @@ website:
             href: TIL/2022/2022-11-16-fastai-store_attr_infinite_recursion.ipynb
           - text: DreamBooth
             href: TIL/2022/2022-11-15-fastai-show_training_loop.ipynb
+        - section: '2023'
+          contents:
+          - text: $() in Bash vs in Zsh
+            href: TIL/2023/2023-01-03-()_in_bash_vs_in_zsh.ipynb
+          - text: Get Function from Modules Using its Name
+            href: TIL/2023/2023-01-13-get_function_with_its_name.ipynb
+          - text: "Subtle Bug: Variable Shadows Function"
+            href: TIL/2023/2023-04-02-variable_shadows_function.ipynb
+          - text: Incorporating Google Admob in SwiftUI
+            href: TIL/2023/2023-10-30-Incorporating_Google_Admob_in_SwiftUI.ipynb
     - id: projects
       title: Projects
       contents:
