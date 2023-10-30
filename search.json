@@ -385,46 +385,18 @@
     "text": "Here’s an example:\n\ndef func(): pass\n\ndef func2(): pass\n\ndef test(x):\n    if x &gt;0:\n        func = func2\n    return func\n\n\ntest(0)\n\nUnboundLocalError: cannot access local variable 'func' where it is not associated with a value\n\n\nIn the function test, func is a new variable that gets assigned func2 if x is positive. It shadows the function func defined outside of the test function. So when x=0, the func is treated as a variable which is not defined, and the function func is not called.\nfunc does not fall back to the function func defined outside of the test function.\nThis is a subtle bug that can be hard to find.\nWe need to remember that if the same name is used for a variable inside the function, we have to continue to treat it as a variable in the function, even if it’s inside a branched if statement.\nTo fix this, we can either directly return the function func or func2 in the test function, or we can use a different name for the variable.\n\ndef func(): pass\n\ndef func2(): pass\n\ndef test(x):\n    if x &gt;0:\n        return func2\n    else:\n        return func\n\n\ntest(0)\n\n&lt;function __main__.func()&gt;\n\n\n\n\ndef func(): pass\n\ndef func2(): pass\n\ndef test(x):\n    if x &gt;0:\n        f =  func2\n    else:\n        f = func\n    return f\n\n\ntest(0)\n\n&lt;function __main__.func()&gt;"
   },
   {
-    "objectID": "TIL/2023/2023-01-13-get_function_with_its_name.html",
-    "href": "TIL/2023/2023-01-13-get_function_with_its_name.html",
-    "title": "Get Function from Modules Using Its Name",
+    "objectID": "TIL/2023/2023-10-30-Incorporating_Google_Admob_in_SwiftUI.html",
+    "href": "TIL/2023/2023-10-30-Incorporating_Google_Admob_in_SwiftUI.html",
+    "title": "Incorporating Google Admob in SwiftUI",
     "section": "",
-    "text": "Sometimes we need to obtain a function defined in a certain module using its name. If the function you are calling is defined in the same module, we can use globals() or locals():\n\nglobals() returns a dictionary with the global symbol table:\nfunc = globals()[\"func_name\"]\nlocals() returns a dictionary with the current local symbol table:\nfunc = locals()[\"func_name\"]\n\n\ndef demo_func(*args, **kwargs):\n    pass\n\n\ndef test_locals(*args, **kwargs):\n    \"Test whether we can get the local functions using locals()\"\n    def local_demo_func(self, *args, **kwargs):\n        pass\n\n    return locals()['local_demo_func'] == local_demo_func\n\n\n# `globals()` returns a dictionary with the global symbol table:\nassert globals()['demo_func'] == demo_func\n# `locals()` returns a dictionary with the current local symbol table\nassert test_locals()\n\nIf it’s defined another module, we can simply do\nimport foo\n\nfunc = getattr(foo, 'demo_func')\nFor example:\n\nfrom datetime import date\n\nassert getattr(date, 'today') == date.today"
+    "text": "Resources for incorporating Google Admob in SwiftUI:\n\nGuide\nSample Code\nApp Privacy"
   },
   {
-    "objectID": "AI_art/stable_diffusion/Christmas_gift.html",
-    "href": "AI_art/stable_diffusion/Christmas_gift.html",
-    "title": "Christmas Gift",
+    "objectID": "TIL.html",
+    "href": "TIL.html",
+    "title": "TIL",
     "section": "",
-    "text": "The song is Christmas List by Anson Seabra, covered by Suho陈仕雨."
-  },
-  {
-    "objectID": "ai_art-sd.html",
-    "href": "ai_art-sd.html",
-    "title": "Stable Diffusion",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nCyberpunk Knight\n\n\nFuturistic Retro Punk, made with ControlNet and In-Painting and a lot of post processing to fine-tune the details.\n\n\n\n\n\n\nMay 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nArtwork Generation and Touchups Practice\n\n\nUsing ControlNet for generation and in-painting to tweak and fix the artwork to get the desired output.\n\n\n\n\n\n\nMar 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYear of the Rabbit\n\n\nAnimation made using Deforum and a fine-tuned Stable Diffusion model.\n\n\n\n\n\n\nJan 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis Fleeting Life\n\n\nAnimation of the aging process, made using Deforum and a fine-tuned Stable Diffusion model over-trained on my face to keep the facial features as “consistent” as possible.\n\n\n\n\n\n\nDec 31, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChristmas Gift\n\n\nI don’t want a single gift, ’cause I’ve got everything I need.\n\n\n\n\n\n\nDec 25, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHorse\n\n\nSimple practice using Stable Diffusion.\n\n\n\n\n\n\nDec 1, 2022\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Trained as a theoretical particle physicist | Now a data scientist and AI practitioner\n\nA curious mind, ignorant and eager to learn\nSharing what I learn about science, AI, coding and life in general\nLooking for like-minded people to connect"
-  },
-  {
-    "objectID": "AI_art/stable_diffusion/horse.html",
-    "href": "AI_art/stable_diffusion/horse.html",
-    "title": "Horse",
-    "section": "",
-    "text": "《马》by 福禄寿."
-  },
-  {
-    "objectID": "AI_art/stable_diffusion/this_fleeting_life.html",
-    "href": "AI_art/stable_diffusion/this_fleeting_life.html",
-    "title": "This Fleeting Life",
-    "section": "",
-    "text": "After multiple tries, I was able to create this aging animation using Deforum and a fine-tuned Stable Diffusion model.\n“This fleeting life will eventually be lost to us all. You might as well be bold and love someone, climb a mountain, and chase a dream.”"
+    "text": "Incorporating Google Admob in SwiftUI\n\n\n\nSwift\n\n\niOS\n\n\n\nResources for incorporating Google Admob in SwiftUI.\n\n\n\nZiyue Li\n\n\nOct 30, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSubtle Bug: Variable Shadows Function\n\n\n\nPython\n\n\n\nIf we assign a variable with the same name as a function, even in a conditional statement, the function will be shadowed.\n\n\n\nZiyue Li\n\n\nApr 2, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGet Function from Modules Using Its Name\n\n\n\nPython\n\n\n\nHow to get the function defined in the current module using its name.\n\n\n\nZiyue Li\n\n\nJan 19, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n$() Command Substitution in Bash vs in Zsh\n\n\n\nCommand Line\n\n\nZsh\n\n\nBash\n\n\n\n$() concatenates the results into one single line in bash, but not in zsh.\n\n\n\nZiyue Li\n\n\nJan 3, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAppend and Prepend Characters in Python f-Strings\n\n\n\nPython\n\n\n\nA tip to quickly append and/or prepend multiple characters in f-strings.\n\n\n\nZiyue Li\n\n\nDec 28, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFixing the “Unable to Resolve Your Shell Environment” Problem in VSCode\n\n\n\nVSCode\n\n\nIDE\n\n\nZsh\n\n\n\nHow to fix the “unable to resolve your shell environment in a reasonable time” problem in VSCode.\n\n\n\nZiyue Li\n\n\nDec 15, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow to Get a List of Directories with Updated Files Since the Last Git Merge\n\n\n\nGit\n\n\nLinux\n\n\n\nUsing Linux commands to get a list of recently changed files and parse out the root directories.\n\n\n\nZiyue Li\n\n\nDec 12, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReplace Certain Lines in a Script Using Fileinput\n\n\n\nPython\n\n\n\nHow to replace certain lines and overwrite a text file using Python’s fileinput module.\n\n\n\nZiyue Li\n\n\nDec 6, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow to Set Function as Methods\n\n\n\nPython\n\n\n\nHow to set a function as bound method, class method and property.\n\n\n\nZiyue Li\n\n\nDec 4, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAccess Data in Installed Python Package\n\n\n\nPython\n\n\n\nHow to access data files in installed python packages.\n\n\n\nZiyue Li\n\n\nNov 30, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAccess Internet from Private Subnet in VPC\n\n\n\nAWS\n\n\nNetwork\n\n\n\nHow to setup AWS VPC so we can access internet from the private subnet.\n\n\n\nZiyue Li\n\n\nNov 23, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInfinite Recursion When Using store_attr and Overwriting __getattr__\n\n\n\nPython\n\n\nFastai\n\n\n\nAn infinite recursion when overwriting __getattr__ while store_attr is used.\n\n\n\nZiyue Li\n\n\nNov 16, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the Training Loop and CallBacks\n\n\n\nData Science\n\n\nPython\n\n\nAI\n\n\nFastai\n\n\n\nAn easy way to show the structure of the training loop and where callbacks are called in Fastai.\n\n\n\nZiyue Li\n\n\nNov 15, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPip Install from a Private Repo\n\n\n\nPython\n\n\n\nHow to pip install from a private repo\n\n\n\nZiyue Li\n\n\nNov 6, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "AI_art/stable_diffusion/happy_the_year_of_the_rabbit.html",
@@ -434,11 +406,46 @@
     "text": "The year of the tiger ends and the year of the rabbit begins. This animation is made using Deforum and a fine-tuned Stable Diffusion model."
   },
   {
-    "objectID": "TIL.html",
-    "href": "TIL.html",
-    "title": "TIL",
+    "objectID": "AI_art/stable_diffusion/this_fleeting_life.html",
+    "href": "AI_art/stable_diffusion/this_fleeting_life.html",
+    "title": "This Fleeting Life",
     "section": "",
-    "text": "Subtle Bug: Variable Shadows Function\n\n\n\nPython\n\n\n\nIf we assign a variable with the same name as a function, even in a conditional statement, the function will be shadowed.\n\n\n\nZiyue Li\n\n\nApr 2, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGet Function from Modules Using Its Name\n\n\n\nPython\n\n\n\nHow to get the function defined in the current module using its name.\n\n\n\nZiyue Li\n\n\nJan 19, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n$() Command Substitution in Bash vs in Zsh\n\n\n\nCommand Line\n\n\nZsh\n\n\nBash\n\n\n\n$() concatenates the results into one single line in bash, but not in zsh.\n\n\n\nZiyue Li\n\n\nJan 3, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAppend and Prepend Characters in Python f-Strings\n\n\n\nPython\n\n\n\nA tip to quickly append and/or prepend multiple characters in f-strings.\n\n\n\nZiyue Li\n\n\nDec 28, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFixing the “Unable to Resolve Your Shell Environment” Problem in VSCode\n\n\n\nVSCode\n\n\nIDE\n\n\nZsh\n\n\n\nHow to fix the “unable to resolve your shell environment in a reasonable time” problem in VSCode.\n\n\n\nZiyue Li\n\n\nDec 15, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow to Get a List of Directories with Updated Files Since the Last Git Merge\n\n\n\nGit\n\n\nLinux\n\n\n\nUsing Linux commands to get a list of recently changed files and parse out the root directories.\n\n\n\nZiyue Li\n\n\nDec 12, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReplace Certain Lines in a Script Using Fileinput\n\n\n\nPython\n\n\n\nHow to replace certain lines and overwrite a text file using Python’s fileinput module.\n\n\n\nZiyue Li\n\n\nDec 6, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow to Set Function as Methods\n\n\n\nPython\n\n\n\nHow to set a function as bound method, class method and property.\n\n\n\nZiyue Li\n\n\nDec 4, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAccess Data in Installed Python Package\n\n\n\nPython\n\n\n\nHow to access data files in installed python packages.\n\n\n\nZiyue Li\n\n\nNov 30, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAccess Internet from Private Subnet in VPC\n\n\n\nAWS\n\n\nNetwork\n\n\n\nHow to setup AWS VPC so we can access internet from the private subnet.\n\n\n\nZiyue Li\n\n\nNov 23, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInfinite Recursion When Using store_attr and Overwriting __getattr__\n\n\n\nPython\n\n\nFastai\n\n\n\nAn infinite recursion when overwriting __getattr__ while store_attr is used.\n\n\n\nZiyue Li\n\n\nNov 16, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the Training Loop and CallBacks\n\n\n\nData Science\n\n\nPython\n\n\nAI\n\n\nFastai\n\n\n\nAn easy way to show the structure of the training loop and where callbacks are called in Fastai.\n\n\n\nZiyue Li\n\n\nNov 15, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPip Install from a Private Repo\n\n\n\nPython\n\n\n\nHow to pip install from a private repo\n\n\n\nZiyue Li\n\n\nNov 6, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "After multiple tries, I was able to create this aging animation using Deforum and a fine-tuned Stable Diffusion model.\n“This fleeting life will eventually be lost to us all. You might as well be bold and love someone, climb a mountain, and chase a dream.”"
+  },
+  {
+    "objectID": "AI_art/stable_diffusion/horse.html",
+    "href": "AI_art/stable_diffusion/horse.html",
+    "title": "Horse",
+    "section": "",
+    "text": "《马》by 福禄寿."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Trained as a theoretical particle physicist | Now a data scientist and AI practitioner\n\nA curious mind, ignorant and eager to learn\nSharing what I learn about science, AI, coding and life in general\nLooking for like-minded people to connect"
+  },
+  {
+    "objectID": "ai_art-sd.html",
+    "href": "ai_art-sd.html",
+    "title": "Stable Diffusion",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nCyberpunk Knight\n\n\nFuturistic Retro Punk, made with ControlNet and In-Painting and a lot of post processing to fine-tune the details.\n\n\n\n\n\n\nMay 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nArtwork Generation and Touchups Practice\n\n\nUsing ControlNet for generation and in-painting to tweak and fix the artwork to get the desired output.\n\n\n\n\n\n\nMar 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nYear of the Rabbit\n\n\nAnimation made using Deforum and a fine-tuned Stable Diffusion model.\n\n\n\n\n\n\nJan 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis Fleeting Life\n\n\nAnimation of the aging process, made using Deforum and a fine-tuned Stable Diffusion model over-trained on my face to keep the facial features as “consistent” as possible.\n\n\n\n\n\n\nDec 31, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChristmas Gift\n\n\nI don’t want a single gift, ’cause I’ve got everything I need.\n\n\n\n\n\n\nDec 25, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHorse\n\n\nSimple practice using Stable Diffusion.\n\n\n\n\n\n\nDec 1, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "AI_art/stable_diffusion/Christmas_gift.html",
+    "href": "AI_art/stable_diffusion/Christmas_gift.html",
+    "title": "Christmas Gift",
+    "section": "",
+    "text": "The song is Christmas List by Anson Seabra, covered by Suho陈仕雨."
+  },
+  {
+    "objectID": "TIL/2023/2023-01-13-get_function_with_its_name.html",
+    "href": "TIL/2023/2023-01-13-get_function_with_its_name.html",
+    "title": "Get Function from Modules Using Its Name",
+    "section": "",
+    "text": "Sometimes we need to obtain a function defined in a certain module using its name. If the function you are calling is defined in the same module, we can use globals() or locals():\n\nglobals() returns a dictionary with the global symbol table:\nfunc = globals()[\"func_name\"]\nlocals() returns a dictionary with the current local symbol table:\nfunc = locals()[\"func_name\"]\n\n\ndef demo_func(*args, **kwargs):\n    pass\n\n\ndef test_locals(*args, **kwargs):\n    \"Test whether we can get the local functions using locals()\"\n    def local_demo_func(self, *args, **kwargs):\n        pass\n\n    return locals()['local_demo_func'] == local_demo_func\n\n\n# `globals()` returns a dictionary with the global symbol table:\nassert globals()['demo_func'] == demo_func\n# `locals()` returns a dictionary with the current local symbol table\nassert test_locals()\n\nIf it’s defined another module, we can simply do\nimport foo\n\nfunc = getattr(foo, 'demo_func')\nFor example:\n\nfrom datetime import date\n\nassert getattr(date, 'today') == date.today"
   },
   {
     "objectID": "TIL/2023/2023-01-03-()_in_bash_vs_in_zsh.html",

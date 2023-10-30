@@ -34,19 +34,9 @@
     ]
   },
   {
-    "listing": "/ai_art-sd.html",
-    "items": [
-      "/AI_art/stable_diffusion/Cyberpunk_Knight.html",
-      "/AI_art/stable_diffusion/Practice.html",
-      "/AI_art/stable_diffusion/happy_the_year_of_the_rabbit.html",
-      "/AI_art/stable_diffusion/this_fleeting_life.html",
-      "/AI_art/stable_diffusion/Christmas_gift.html",
-      "/AI_art/stable_diffusion/horse.html"
-    ]
-  },
-  {
     "listing": "/TIL.html",
     "items": [
+      "/TIL/2023/2023-10-30-Incorporating_Google_Admob_in_SwiftUI.html",
       "/TIL/2023/2023-04-02-variable_shadows_function.html",
       "/TIL/2023/2023-01-13-get_function_with_its_name.html",
       "/TIL/2023/2023-01-03-()_in_bash_vs_in_zsh.html",
@@ -60,6 +50,17 @@
       "/TIL/2022/2022-11-16-fastai-store_attr_infinite_recursion.html",
       "/TIL/2022/2022-11-15-fastai-show_training_loop.html",
       "/TIL/2022/2022-11-06-pip_install_from_private_repo.html"
+    ]
+  },
+  {
+    "listing": "/ai_art-sd.html",
+    "items": [
+      "/AI_art/stable_diffusion/Cyberpunk_Knight.html",
+      "/AI_art/stable_diffusion/Practice.html",
+      "/AI_art/stable_diffusion/happy_the_year_of_the_rabbit.html",
+      "/AI_art/stable_diffusion/this_fleeting_life.html",
+      "/AI_art/stable_diffusion/Christmas_gift.html",
+      "/AI_art/stable_diffusion/horse.html"
     ]
   },
   {
