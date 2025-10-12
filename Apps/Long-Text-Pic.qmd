@@ -23,7 +23,7 @@ to a long image for sharing]{.app-subtitle}
 
 :::{.app-link}
 :::{.app-link-item .qrcode}
-[![](https://tools-qr-production.s3.amazonaws.com/output/apple-toolbox/35142435f6542ef4f3c5751f85271dc9/640c735d40f77518bf91755bf5a6fff3.png)](https://apple.co/46avN7E)
+[![](images/qr-code-long_text_pic.png)](https://apple.co/46avN7E)
 :::
 
 :::{.app-link-item .app-image}
