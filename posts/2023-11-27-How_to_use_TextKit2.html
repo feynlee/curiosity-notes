@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2022-08-01">
+<meta name="author" content="Ziyue Li">
+<meta name="dcterms.date" content="2023-11-27">
 
-<title>Peter Pan – curiosity-notes</title>
+<title>How to use TextKit2 – curiosity-notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,32 +22,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../AI_art/disco_diffusion/07-lagoon.html" rel="next">
-<link href="../../AI_art/disco_diffusion/05-islands.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-95f147d06fdb9f8ce149f95e323965f4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9fe750d4bca42c81179e6171a5259934.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-95f147d06fdb9f8ce149f95e323965f4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9fe750d4bca42c81179e6171a5259934.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -84,33 +115,44 @@ gtag('js', new Date());
 gtag('config', 'G-343667243', { 'anonymize_ip': true});
 </script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean"
+}
+</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=637e822e04255c001315118d&amp;product=inline-share-buttons&amp;source=platform" async="async"></script>
 <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="v97khzznr8B" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
 
-<link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Peter Pan – curiosity-notes">
-<meta property="og:image" content="https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/06-peter_pan/06-peter_pan-0.png">
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="How to use TextKit2 – curiosity-notes">
+<meta property="og:image" content="https://feynlee.github.io/curiosity-notes/posts/images/2023/Long-Text-Pic-banner.png">
 <meta property="og:site_name" content="curiosity-notes">
-<meta property="og:image:height" content="768">
-<meta property="og:image:width" content="1280">
-<meta name="twitter:title" content="Peter Pan – curiosity-notes">
-<meta name="twitter:image" content="https://feynlee.github.io/curiosity-notes/AI_art/disco_diffusion/06-peter_pan/06-peter_pan-0.png">
-<meta name="twitter:image-height" content="768">
-<meta name="twitter:image-width" content="1280">
+<meta property="og:image:height" content="1000">
+<meta property="og:image:width" content="1255">
+<meta name="twitter:title" content="How to use TextKit2 – curiosity-notes">
+<meta name="twitter:image" content="https://feynlee.github.io/curiosity-notes/posts/images/2023/Long-Text-Pic-banner.png">
+<meta name="twitter:image-height" content="1000">
+<meta name="twitter:image-width" content="1255">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">curiosity-notes</span>
     </a>
   </div>
@@ -121,15 +163,15 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../TIL.html"> 
+    <a class="nav-link" href="../TIL.html"> 
 <span class="menu-text">TIL</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../books/books.html"> 
+    <a class="nav-link" href="../books/books.html"> 
 <span class="menu-text">Books</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -138,27 +180,27 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-ai-art">    
         <li>
-    <a class="dropdown-item" href="../../ai_art-sd.html">
+    <a class="dropdown-item" href="../ai_art-sd.html">
  <span class="dropdown-text">Stable Diffusion</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../ai_art-dd.html">
+    <a class="dropdown-item" href="../ai_art-dd.html">
  <span class="dropdown-text">Disco Diffusion</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../projects.html"> 
+    <a class="nav-link" href="../projects.html"> 
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../Apps/Long-Text-Pic.html"> 
+    <a class="nav-link" href="../Apps/Long-Text-Pic.html"> 
 <span class="menu-text">Apps</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -201,231 +243,141 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ai_art-dd.html">Disco Diffusion</a></li><li class="breadcrumb-item"><a href="../../AI_art/disco_diffusion/06-peter_pan.html">Peter Pan</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">How to use TextKit2</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Programming</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Ziyue Li </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 27, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../ai_art-sd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stable Diffusion</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/stable_diffusion/Cyberpunk_Knight.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Cyberpunk Knight</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/stable_diffusion/Practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Practice</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/stable_diffusion/happy_the_year_of_the_rabbit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Year of the Rabbit</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/stable_diffusion/this_fleeting_life.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">This Fleeting Life</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/stable_diffusion/Christmas_gift.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Christmas Gift</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/stable_diffusion/horse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Horse</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../ai_art-dd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Disco Diffusion</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/disco_diffusion/01-temple.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Temple</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/disco_diffusion/02-cherry_blossom.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Cherry Blossom</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/disco_diffusion/03-forest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Forest</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/disco_diffusion/04-dusk.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dusk</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/disco_diffusion/05-islands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Islands</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/disco_diffusion/06-peter_pan.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Peter Pan</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/disco_diffusion/07-lagoon.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lagoon</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/disco_diffusion/08-roses.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Roses</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/disco_diffusion/09-space_station.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Space Station</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/disco_diffusion/10-night_fortress.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Night Fortress</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/disco_diffusion/11-jellyfish.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Jellyfish</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../AI_art/disco_diffusion/12-singles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Single</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
-<!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../ai_art-dd.html">Disco Diffusion</a></li><li class="breadcrumb-item"><a href="../../AI_art/disco_diffusion/06-peter_pan.html">Peter Pan</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Peter Pan</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">August 1, 2022</p>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
-  </div>
-  
-    
-  </div>
-  
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
-</header>
 
 
-<div class="grid">
-<div class="g-col-6 g-col-md-4">
-<p><a href="06-peter_pan/06-peter_pan-0.png" class="lightbox" data-gallery="my-gallery"><img src="06-peter_pan/06-peter_pan-0.png" class="img-fluid"></a></p>
-</div>
-<div class="g-col-6 g-col-md-4">
-<p><a href="06-peter_pan/06-peter_pan-1.png" class="lightbox" data-gallery="my-gallery"><img src="06-peter_pan/06-peter_pan-1.png" class="img-fluid"></a></p>
-</div>
-<div class="g-col-6 g-col-md-4">
-<p><a href="06-peter_pan/06-peter_pan-2.png" class="lightbox" data-gallery="my-gallery"><img src="06-peter_pan/06-peter_pan-2.png" class="img-fluid"></a></p>
-</div>
-<div class="g-col-6 g-col-md-4">
-<p><a href="06-peter_pan/06-peter_pan-3.png" class="lightbox" data-gallery="my-gallery"><img src="06-peter_pan/06-peter_pan-3.png" class="img-fluid"></a></p>
-</div>
-<div class="g-col-6 g-col-md-4">
-<p><a href="06-peter_pan/06-peter_pan-4.png" class="lightbox" data-gallery="my-gallery"><img src="06-peter_pan/06-peter_pan-4.png" class="img-fluid"></a></p>
-</div>
-<div class="g-col-6 g-col-md-4">
-<p><a href="06-peter_pan/06-peter_pan-5.png" class="lightbox" data-gallery="my-gallery"><img src="06-peter_pan/06-peter_pan-5.png" class="img-fluid"></a></p>
-</div>
-<div class="g-col-6 g-col-md-4">
-<p><a href="06-peter_pan/06-peter_pan-6.png" class="lightbox" data-gallery="my-gallery"><img src="06-peter_pan/06-peter_pan-6.png" class="img-fluid"></a></p>
-</div>
-<div class="g-col-6 g-col-md-4">
-<p><a href="06-peter_pan/06-peter_pan-7.png" class="lightbox" data-gallery="my-gallery"><img src="06-peter_pan/06-peter_pan-7.png" class="img-fluid"></a></p>
-</div>
-<div class="g-col-6 g-col-md-4">
-<p><a href="06-peter_pan/06-peter_pan-8.png" class="lightbox" data-gallery="my-gallery"><img src="06-peter_pan/06-peter_pan-8.png" class="img-fluid"></a></p>
-</div>
-<div class="g-col-6 g-col-md-4">
-<p><a href="06-peter_pan/06-peter_pan-9.png" class="lightbox" data-gallery="my-gallery"><img src="06-peter_pan/06-peter_pan-9.png" class="img-fluid"></a></p>
-</div>
-<div class="g-col-6 g-col-md-4">
-<p><a href="06-peter_pan/06-peter_pan-10.png" class="lightbox" data-gallery="my-gallery"><img src="06-peter_pan/06-peter_pan-10.png" class="img-fluid"></a></p>
-</div>
-<div class="g-col-6 g-col-md-4">
-<p><a href="06-peter_pan/06-peter_pan-11.png" class="lightbox" data-gallery="my-gallery"><img src="06-peter_pan/06-peter_pan-11.png" class="img-fluid"></a></p>
-</div>
-</div>
+
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource swift number-lines code-with-copy"><code class="sourceCode swift"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">struct</span> TextEditorView<span class="op">:</span> <span class="dt">UIViewRepresentable</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">func</span> <span class="fu">makeUIView</span><span class="op">(</span><span class="va">context</span><span class="op">:</span> <span class="dt">Context</span><span class="op">)</span> -&gt; <span class="fu">CustomTextView</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>        <span class="co">// Use TextKit2</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>        <span class="kw">let</span> <span class="va">textContentStorage</span> <span class="op">=</span> NSTextContentStorage<span class="op">()</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>        <span class="kw">let</span> <span class="va">textLayoutManager</span> <span class="op">=</span> NSTextLayoutManager<span class="op">()</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>        <span class="kw">let</span> <span class="va">textContainer</span> <span class="op">=</span> NSTextContainer<span class="op">(</span>size<span class="op">:</span> CGSize<span class="op">(</span>width<span class="op">:</span> CGFloat<span class="op">.</span>infinity<span class="op">,</span> height<span class="op">:</span> CGFloat<span class="op">.</span>infinity<span class="op">))</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a>        textLayoutManager<span class="op">.</span>textContainer <span class="op">=</span> textContainer</span>
+<span id="cb1-9"><a href="#cb1-9"></a>        textContentStorage<span class="op">.</span>addTextLayoutManager<span class="op">(</span>textLayoutManager<span class="op">)</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a>        <span class="kw">let</span> <span class="va">textView</span> <span class="op">=</span> CustomTextView<span class="op">(</span>frame<span class="op">:</span> UIScreen<span class="op">.</span>main<span class="op">.</span>bounds<span class="op">,</span> textContainer<span class="op">:</span> textContainer<span class="op">,</span> padding<span class="op">:</span> <span class="dv">15</span><span class="op">)</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>        textLayoutManager<span class="op">.</span>delegate <span class="op">=</span> textView</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a>        <span class="co">// Remove all paddings</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>        textView<span class="op">.</span>textContainerInset <span class="op">=</span> UIEdgeInsets<span class="op">(</span>top<span class="op">:</span> <span class="dv">0</span><span class="op">,</span> left<span class="op">:</span> <span class="dv">0</span><span class="op">,</span> bottom<span class="op">:</span> <span class="dv">0</span><span class="op">,</span> right<span class="op">:</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>        <span class="co">// Set line fragment padding to 0 to remove default padding in UITextView</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>        textView<span class="op">.</span>textContainer<span class="op">.</span>lineFragmentPadding <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a>        <span class="co">// Set default font</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>        textView<span class="op">.</span>typingAttributes <span class="op">=</span> <span class="op">[.</span>font<span class="op">:</span> UIFont<span class="op">.</span>preferredFont<span class="op">(</span>forTextStyle<span class="op">:</span> <span class="op">.</span>body<span class="op">),</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>                                     <span class="op">.</span>foregroundColor<span class="op">:</span> UIColor<span class="op">(.</span>black<span class="op">)]</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>        textView<span class="op">.</span>isEditable <span class="op">=</span> vm<span class="op">.</span>isEditable</span>
+<span id="cb1-23"><a href="#cb1-23"></a>        textView<span class="op">.</span>isSelectable <span class="op">=</span> <span class="kw">true</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a>        <span class="co">// set delegate to handle text changes</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>        textView<span class="op">.</span>delegate <span class="op">=</span> context<span class="op">.</span>coordinator</span>
+<span id="cb1-27"><a href="#cb1-27"></a>        <span class="kw">return</span> textView</span>
+<span id="cb1-28"><a href="#cb1-28"></a>    <span class="op">}</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a>    <span class="op">...</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource swift number-lines code-with-copy"><code class="sourceCode swift"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">class</span> CustomTextView<span class="op">:</span> <span class="dt">UITextView</span><span class="op">,</span> <span class="dt">NSTextLayoutManagerDelegate</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">var</span> <span class="va">padding</span><span class="op">:</span> CGFloat</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="co">// Custom Initializer</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="kw">init</span><span class="op">(</span>frame<span class="op">:</span> CGRect<span class="op">,</span> textContainer<span class="op">:</span> NSTextContainer<span class="op">?,</span> padding<span class="op">:</span> CGFloat<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>        <span class="kw">self</span><span class="op">.</span>padding <span class="op">=</span> padding</span>
+<span id="cb2-7"><a href="#cb2-7"></a>        <span class="kw">super</span><span class="op">.</span><span class="kw">init</span><span class="op">(</span>frame<span class="op">:</span> frame<span class="op">,</span> textContainer<span class="op">:</span> textContainer<span class="op">)</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="op">}</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="kw">required</span> <span class="kw">init</span><span class="op">?(</span>coder<span class="op">:</span> NSCoder<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>        <span class="cf">fatalError</span><span class="op">(</span><span class="st">"init(coder:) has not been implemented"</span><span class="op">)</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="op">}</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a>    <span class="co">// MARK: - NSTextLayoutManagerDelegate</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>    <span class="kw">func</span> <span class="fu">textLayoutManager</span><span class="op">(</span><span class="va">_</span> <span class="va">textLayoutManager</span><span class="op">:</span> <span class="dt">NSTextLayoutManager</span><span class="op">,</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>                           <span class="va">textLayoutFragmentFor</span> <span class="va">location</span><span class="op">:</span> <span class="dt">NSTextLocation</span><span class="op">,</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>                           <span class="va">in</span> <span class="va">textElement</span><span class="op">:</span> <span class="dt">NSTextElement</span><span class="op">)</span> -&gt; <span class="fu">NSTextLayoutFragment</span> <span class="op">{</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>        <span class="kw">let</span> <span class="va">index</span> <span class="op">=</span> textLayoutManager<span class="op">.</span>offset<span class="op">(</span>from<span class="op">:</span> textLayoutManager<span class="op">.</span>documentRange<span class="op">.</span>location<span class="op">,</span> to<span class="op">:</span> location<span class="op">)</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a></span>
+<span id="cb2-20"><a href="#cb2-20"></a>        <span class="co">// Make sure the string is not empty</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>        <span class="cf">if</span> textStorage<span class="op">.</span>length <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">{</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>            <span class="kw">let</span> <span class="va">attributedString</span> <span class="op">=</span> textStorage<span class="op">.</span>attributedSubstring<span class="op">(</span>from<span class="op">:</span> NSRange<span class="op">(</span>location<span class="op">:</span> index<span class="op">,</span> length<span class="op">:</span> <span class="dv">1</span><span class="op">))</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a>            <span class="co">// Check for an NSTextAttachment at the first position</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>            <span class="cf">if</span> <span class="kw">let</span> <span class="va">attachment</span> <span class="op">=</span> attributedString<span class="op">.</span>attribute<span class="op">(.</span>attachment<span class="op">,</span> at<span class="op">:</span> <span class="dv">0</span><span class="op">,</span> effectiveRange<span class="op">:</span> <span class="kw">nil</span><span class="op">)</span> <span class="kw">as</span><span class="op">?</span> NSTextAttachment<span class="op">,</span> attachment<span class="op">.</span>image <span class="op">!=</span> <span class="kw">nil</span> <span class="op">{</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>                <span class="co">// The first character is an image</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>                <span class="co">// Return the default NSTextLayoutFragment</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>                <span class="kw">return</span> NSTextLayoutFragment<span class="op">(</span>textElement<span class="op">:</span> textElement<span class="op">,</span> range<span class="op">:</span> textElement<span class="op">.</span>elementRange<span class="op">)</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>            <span class="op">}</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>        <span class="op">}</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a></span>
+<span id="cb2-32"><a href="#cb2-32"></a>        <span class="co">// Otherwise, return a custom NSTextLayoutFragment with padding</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a>        <span class="kw">return</span> TextLayoutFragment<span class="op">(</span>textElement<span class="op">:</span> textElement<span class="op">,</span> range<span class="op">:</span> textElement<span class="op">.</span>elementRange<span class="op">,</span> padding<span class="op">:</span> padding<span class="op">)</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a>    <span class="op">}</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a><span class="op">}</span></span>
+<span id="cb2-36"><a href="#cb2-36"></a></span>
+<span id="cb2-37"><a href="#cb2-37"></a></span>
+<span id="cb2-38"><a href="#cb2-38"></a><span class="kw">class</span> TextLayoutFragment<span class="op">:</span> <span class="dt">NSTextLayoutFragment</span> <span class="op">{</span></span>
+<span id="cb2-39"><a href="#cb2-39"></a>    <span class="kw">var</span> <span class="va">padding</span><span class="op">:</span> CGFloat</span>
+<span id="cb2-40"><a href="#cb2-40"></a></span>
+<span id="cb2-41"><a href="#cb2-41"></a>    <span class="co">// custom initializer</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a>    <span class="kw">init</span><span class="op">(</span>textElement<span class="op">:</span> NSTextElement<span class="op">,</span> range<span class="op">:</span> NSTextRange<span class="op">?,</span> padding<span class="op">:</span> CGFloat<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-43"><a href="#cb2-43"></a>        <span class="kw">self</span><span class="op">.</span>padding <span class="op">=</span> padding</span>
+<span id="cb2-44"><a href="#cb2-44"></a>        <span class="kw">super</span><span class="op">.</span><span class="kw">init</span><span class="op">(</span>textElement<span class="op">:</span> textElement<span class="op">,</span> range<span class="op">:</span> range<span class="op">)</span></span>
+<span id="cb2-45"><a href="#cb2-45"></a>    <span class="op">}</span></span>
+<span id="cb2-46"><a href="#cb2-46"></a></span>
+<span id="cb2-47"><a href="#cb2-47"></a>    <span class="kw">required</span> <span class="kw">init</span><span class="op">?(</span>coder<span class="op">:</span> NSCoder<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-48"><a href="#cb2-48"></a>        <span class="cf">fatalError</span><span class="op">(</span><span class="st">"init(coder:) has not been implemented"</span><span class="op">)</span></span>
+<span id="cb2-49"><a href="#cb2-49"></a>    <span class="op">}</span></span>
+<span id="cb2-50"><a href="#cb2-50"></a></span>
+<span id="cb2-51"><a href="#cb2-51"></a>    <span class="kw">override</span> <span class="kw">var</span> <span class="va">leadingPadding</span><span class="op">:</span> CGFloat <span class="op">{</span> <span class="kw">return</span> padding <span class="op">}</span></span>
+<span id="cb2-52"><a href="#cb2-52"></a>    <span class="kw">override</span> <span class="kw">var</span> <span class="va">trailingPadding</span><span class="op">:</span> CGFloat <span class="op">{</span> <span class="kw">return</span> padding <span class="op">}</span></span>
+<span id="cb2-53"><a href="#cb2-53"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
+<div class="sharethis-inline-share-buttons pt-5">
+
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -862,54 +814,10 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
   }
   loadGiscus();
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../AI_art/disco_diffusion/05-islands.html" class="pagination-link" aria-label="Islands">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Islands</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../AI_art/disco_diffusion/07-lagoon.html" class="pagination-link" aria-label="Lagoon">
-        <span class="nav-page-text">Lagoon</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
 
-<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

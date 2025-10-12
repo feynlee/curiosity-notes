@@ -6,11 +6,748 @@
       version="2.0">
 <channel>
 <title>curiosity-notes</title>
-<link>https://feynlee.github.io/curiosity-notes/index.html</link>
+<link>https://feynlee.github.io/curiosity-notes/</link>
 <atom:link href="https://feynlee.github.io/curiosity-notes/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.3.450</generator>
-<lastBuildDate>Tue, 20 Jun 2023 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Mon, 27 Nov 2023 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>How to use TextKit2</title>
+  <dc:creator>Ziyue Li</dc:creator>
+  <link>https://feynlee.github.io/curiosity-notes/posts/2023-11-27-How_to_use_TextKit2.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource swift number-lines code-with-copy"><code class="sourceCode swift"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">struct</span> TextEditorView<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">UIViewRepresentable</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb1-2">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">func</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">makeUIView</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">context</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Context</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> -&gt; <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">CustomTextView</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb1-3">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Use TextKit2</span></span>
+<span id="cb1-4">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">textContentStorage</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> NSTextContentStorage<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">()</span></span>
+<span id="cb1-5">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">textLayoutManager</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> NSTextLayoutManager<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">()</span></span>
+<span id="cb1-6">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">textContainer</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> NSTextContainer<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> CGSize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>width<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> CGFloat<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>infinity<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> height<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> CGFloat<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>infinity<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">))</span></span>
+<span id="cb1-7"></span>
+<span id="cb1-8">        textLayoutManager<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>textContainer <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> textContainer</span>
+<span id="cb1-9">        textContentStorage<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>addTextLayoutManager<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>textLayoutManager<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb1-10"></span>
+<span id="cb1-11">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">textView</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CustomTextView<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>frame<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> UIScreen<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>bounds<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> textContainer<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> textContainer<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> padding<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb1-12">        textLayoutManager<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>delegate <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> textView</span>
+<span id="cb1-13"></span>
+<span id="cb1-14">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Remove all paddings</span></span>
+<span id="cb1-15">        textView<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>textContainerInset <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> UIEdgeInsets<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>top<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> left<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> bottom<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> right<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb1-16">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Set line fragment padding to 0 to remove default padding in UITextView</span></span>
+<span id="cb1-17">        textView<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>textContainer<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>lineFragmentPadding <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb1-18"></span>
+<span id="cb1-19">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Set default font</span></span>
+<span id="cb1-20">        textView<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>typingAttributes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[.</span>font<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> UIFont<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>preferredFont<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>forTextStyle<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>body<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">),</span></span>
+<span id="cb1-21">                                     <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>foregroundColor<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> UIColor<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(.</span>black<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)]</span></span>
+<span id="cb1-22">        textView<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>isEditable <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> vm<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>isEditable</span>
+<span id="cb1-23">        textView<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>isSelectable <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span></span>
+<span id="cb1-24"></span>
+<span id="cb1-25">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// set delegate to handle text changes</span></span>
+<span id="cb1-26">        textView<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>delegate <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> context<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>coordinator</span>
+<span id="cb1-27">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> textView</span>
+<span id="cb1-28">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb1-29"></span>
+<span id="cb1-30">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">...</span></span>
+<span id="cb1-31"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource swift number-lines code-with-copy"><code class="sourceCode swift"><span id="cb2-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">class</span> CustomTextView<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">UITextView</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">NSTextLayoutManagerDelegate</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-2">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">var</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">padding</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> CGFloat</span>
+<span id="cb2-3"></span>
+<span id="cb2-4">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Custom Initializer</span></span>
+<span id="cb2-5">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">init</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>frame<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> CGRect<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> textContainer<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> NSTextContainer<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">?,</span> padding<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> CGFloat<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-6">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">self</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>padding <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> padding</span>
+<span id="cb2-7">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">super</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">init</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>frame<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> frame<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> textContainer<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> textContainer<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb2-8">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb2-9"></span>
+<span id="cb2-10">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">required</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">init</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">?(</span>coder<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> NSCoder<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-11">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fatalError</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"init(coder:) has not been implemented"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb2-12">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb2-13"></span>
+<span id="cb2-14">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// MARK: - NSTextLayoutManagerDelegate</span></span>
+<span id="cb2-15">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">func</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">textLayoutManager</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">_</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">textLayoutManager</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">NSTextLayoutManager</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-16">                           <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">textLayoutFragmentFor</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">location</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">NSTextLocation</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb2-17">                           <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">in</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">textElement</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">NSTextElement</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> -&gt; <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">NSTextLayoutFragment</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-18">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">index</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> textLayoutManager<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>offset<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>from<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> textLayoutManager<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>documentRange<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>location<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> to<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> location<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb2-19"></span>
+<span id="cb2-20">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Make sure the string is not empty</span></span>
+<span id="cb2-21">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> textStorage<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>length <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-22">            <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">attributedString</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> textStorage<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>attributedSubstring<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>from<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> NSRange<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>location<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> index<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> length<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">))</span></span>
+<span id="cb2-23"></span>
+<span id="cb2-24">            <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Check for an NSTextAttachment at the first position</span></span>
+<span id="cb2-25">            <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">attachment</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> attributedString<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>attribute<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(.</span>attachment<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> at<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> effectiveRange<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">nil</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">as</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">?</span> NSTextAttachment<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> attachment<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>image <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!=</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">nil</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-26">                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// The first character is an image</span></span>
+<span id="cb2-27">                <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Return the default NSTextLayoutFragment</span></span>
+<span id="cb2-28">                <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> NSTextLayoutFragment<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>textElement<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> textElement<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> range<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> textElement<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>elementRange<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb2-29">            <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb2-30">        <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb2-31"></span>
+<span id="cb2-32">        <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Otherwise, return a custom NSTextLayoutFragment with padding</span></span>
+<span id="cb2-33">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> TextLayoutFragment<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>textElement<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> textElement<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> range<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> textElement<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>elementRange<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> padding<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> padding<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb2-34">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb2-35"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb2-36"></span>
+<span id="cb2-37"></span>
+<span id="cb2-38"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">class</span> TextLayoutFragment<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">NSTextLayoutFragment</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-39">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">var</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">padding</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> CGFloat</span>
+<span id="cb2-40"></span>
+<span id="cb2-41">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// custom initializer</span></span>
+<span id="cb2-42">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">init</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>textElement<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> NSTextElement<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> range<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> NSTextRange<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">?,</span> padding<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> CGFloat<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-43">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">self</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>padding <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> padding</span>
+<span id="cb2-44">        <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">super</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">init</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>textElement<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> textElement<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> range<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> range<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb2-45">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb2-46"></span>
+<span id="cb2-47">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">required</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">init</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">?(</span>coder<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> NSCoder<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb2-48">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fatalError</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"init(coder:) has not been implemented"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb2-49">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb2-50"></span>
+<span id="cb2-51">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">override</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">var</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">leadingPadding</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> CGFloat <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> padding <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb2-52">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">override</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">var</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">trailingPadding</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> CGFloat <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> padding <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb2-53"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+
+
+<div class="sharethis-inline-share-buttons pt-5">
+
+</div>
+
+ ]]></description>
+  <category>Programming</category>
+  <guid>https://feynlee.github.io/curiosity-notes/posts/2023-11-27-How_to_use_TextKit2.html</guid>
+  <pubDate>Mon, 27 Nov 2023 00:00:00 GMT</pubDate>
+  <media:content url="https://feynlee.github.io/curiosity-notes/posts/images/2023/Long-Text-Pic-banner.png" medium="image" type="image/png" height="115" width="144"/>
+</item>
 <item>
   <title>How to Release Your First iOS App</title>
   <dc:creator>Ziyue Li</dc:creator>
@@ -20,11 +757,8 @@
 
 
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://feynlee.github.io/curiosity-notes/Apps/Long-Text-Pic.html"><img src="https://feynlee.github.io/curiosity-notes/posts/images/2023/Long-Text-Pic-banner.png" class="img-fluid figure-img" style="width:80.0%"></a></p>
-</figure>
-</div>
+
+<p><a href="https://feynlee.github.io/curiosity-notes/Apps/Long-Text-Pic.html"><img src="https://feynlee.github.io/curiosity-notes/posts/images/2023/Long-Text-Pic-banner.png" class="img-fluid" style="width:80.0%"></a></p>
 <!--  -->
 <p>I just released <a href="http://feynlee.github.io/curiosity-notes/Apps/Long-Text-Pic.html">my first iOS app</a>, and man did I underestimate the App Submission process! I wish there was a handy compilation of resources and tips from someone that just went through this. That could’ve saved me loads of time!</p>
 <p>So I’m sharing my learnings here for people like me.</p>
@@ -44,7 +778,7 @@
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2023/testflight.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">testflight</figcaption>
+<figcaption>testflight</figcaption>
 </figure>
 </div>
 <p>Next, download the TestFlight app from the App Store and install your app for testing purposes. During testing, you will not be charged for in-app purchases when you click on the purchase button.</p>
@@ -84,7 +818,7 @@ Important
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2023/paid_agreement.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">paid_agreement</figcaption>
+<figcaption>paid_agreement</figcaption>
 </figure>
 </div>
 <p>You will need to set up a bank account for accepting payments, which leads us to the next section: sole proprietorship.</p></li>
@@ -139,6 +873,7 @@ Important
 
 
 
+
 <section id="eclipse-on-pandora" class="level1">
 <h1>Eclipse on Pandora</h1>
 <p>After watching <a href="https://en.wikipedia.org/wiki/Avatar:_The_Way_of_Water">Avatar: The Way of Water</a>, I’m quite intrigued by the eclipse in the movie. The sun is blocked by the gas giant for what appears to be a couple of hours, which seems to make sense if you assume that the sun travels across the sky in a similar amount of time as what we experience on Earth.</p>
@@ -161,7 +896,7 @@ Important
 <p>From some shots in the movie, we can get a sense of how big the gas giant looks like from Pandora.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2022/angular_size_measurement.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2022/angular_size_measurement.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <p>In the shot above, if we take the smaller planet (circled) as having the same angular size as the sun seen from the Earth (<img src="https://latex.codecogs.com/png.latex?0.53%5E%7B%5Ccirc%7D">), then a rough measurement shows that the apparent size of the gas giant is about 22 times <img src="https://latex.codecogs.com/png.latex?%5Cdelta%20=%2022%20*%200.53%5E%7B%5Ccirc%7D%20%5Capprox%2011%5E%7B%5Ccirc%7D%20%5Capprox%20%5Cfrac%7B%5Cpi%7D%7B18%7D%20"></p>
@@ -176,7 +911,7 @@ Important
 <h1>Eclipse Duration</h1>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2022/eclipse.svg" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2022/eclipse.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 <p>With the simplest assumption that Pandora’s orbit plane lines up with the gas giant’s orbit plane around its sun, Pandora will pass through the whole diameter of the gas giant’s shadow. We can also assume that the shadow size is almost the same as the size of the gas giant itself (some reasoning and justification about this are given in the Appendix). That means the eclipse duration is the amount of time Pandora spends traveling through the part of the orbit that’s covered in the shadow, the distance of which we approximate as <img src="https://latex.codecogs.com/png.latex?2R">: <img src="https://latex.codecogs.com/png.latex?t_%7Beclipse%7D%20=%20%5Cfrac%7Bl%7D%7B2%5Cpi%20r%7D%20T%20%5Capprox%20%5Cfrac%7B2R%7D%7B2%5Cpi%20r%7D%20T%20=%202%20%5Csqrt%7B%5Cfrac%7Br%7D%7BR%7D%7D%5Csqrt%7B%5Cfrac%7B3%7D%7B4%5Cpi%20G%20%5Crho%7D%7D"></p>
@@ -198,7 +933,7 @@ Important
 <h2 class="anchored" data-anchor-id="shadow-size-of-the-gas-giant">Shadow Size of the Gas Giant</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2022/shadow_length.svg" class="img-fluid figure-img"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2022/shadow_length.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 <p>If the sun for the gas giant and Pandora have a similar apparent size in the sky as our sun, then the ratio of its radius <img src="https://latex.codecogs.com/png.latex?R_s"> to its distance <img src="https://latex.codecogs.com/png.latex?D"> is about: <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7BR_s%7D%7BD%7D%5Capprox%5Ctan(0.53%5E%7B%5Ccirc%7D)%20%5Capprox%20%5Cfrac%7B1%7D%7B100%7D"></p>
@@ -229,6 +964,7 @@ Important
 
 
 
+
 <p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2022/quarto-website.png" class="img-fluid"></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -236,11 +972,11 @@ Important
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Tip</span>Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Explore the GitHub Repo for this website to see how it’s set up: <a href="https://github.com/feynlee/curiosity-notes"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid" data-fig-align="left" width="80"></a></p>
+<p>Explore the GitHub Repo for this website to see how it’s set up: <a href="https://github.com/feynlee/curiosity-notes"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid quarto-figure quarto-figure-left" width="80"></a></p>
 </div>
 </div>
 <p>It took me some time to migrate to <a href="https://quarto.org">Quarto</a>. Here are some the tips that might be helpful if you are thinking about doing the same.</p>
@@ -250,21 +986,24 @@ Tip
 <!-- ![](images/2022/sidebars.png){width=50%, fig-align=center} -->
 <p>This is easy to set up by simply having multiple sidebars in <code>_quarto.yml</code>. However, there seems to be a bug when you only have one sidebar configured. That one sidebar will show up across your website, even for pages unrelated to that sidebar.</p>
 <p>As of this writing, an easy way to solve this is to make another empty sidebar:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sidebar</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb1-2"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">id</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> til</span></span>
@@ -274,6 +1013,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">title</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> TIL</span></span>
@@ -283,17 +1023,20 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">contents</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb1-5"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">      </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">section</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="st" style="color: #20794D;
@@ -305,17 +1048,20 @@ font-style: inherit;">        </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">contents</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb1-7"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">text</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> Nbdev_ignore</span></span>
@@ -325,6 +1071,7 @@ font-style: inherit;">          </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">href</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> TIL/2022/2022-11-23-aws-private_subnet_setup.ipynb</span></span>
@@ -332,12 +1079,14 @@ font-style: inherit;"> TIL/2022/2022-11-23-aws-private_subnet_setup.ipynb</span>
 background-color: null;
 font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">text</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> Whisper2Subtitles</span></span>
@@ -347,6 +1096,7 @@ font-style: inherit;">          </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">href</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> TIL/2022/2022-11-16-fastai-store_attr_infinite_recursion.ipynb</span></span>
@@ -354,12 +1104,14 @@ font-style: inherit;"> TIL/2022/2022-11-16-fastai-store_attr_infinite_recursion.
 background-color: null;
 font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">text</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> DreamBooth</span></span>
@@ -369,6 +1121,7 @@ font-style: inherit;">          </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">href</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> TIL/2022/2022-11-15-fastai-show_training_loop.ipynb</span></span>
@@ -376,23 +1129,26 @@ font-style: inherit;"> TIL/2022/2022-11-15-fastai-show_training_loop.ipynb</span
 background-color: null;
 font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">id</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;"> empty sidebar</span></span></code></pre></div>
+font-style: inherit;"> empty sidebar</span></span></code></pre></div></div>
 </section>
 <section id="enable-line-numbers-in-code-blocks" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="enable-line-numbers-in-code-blocks"><span class="header-section-number">2</span> Enable Line Numbers in Code Blocks</h2>
 <p>Some useful settings for code blocks in <code>_quarto.yml</code>:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">format</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb2-2"><span class="at" style="color: #657422;
 background-color: null;
@@ -400,6 +1156,7 @@ font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">html</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb2-3"><span class="at" style="color: #657422;
 background-color: null;
@@ -407,6 +1164,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">code-line-numbers</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="st" style="color: #20794D;
@@ -418,6 +1176,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">code-block-bg</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="ch" style="color: #20794D;
@@ -429,6 +1188,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">code-block-border-left</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="ch" style="color: #20794D;
@@ -440,6 +1200,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">code-copy</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="ch" style="color: #20794D;
@@ -451,11 +1212,12 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">code-fold</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="ch" style="color: #20794D;
 background-color: null;
-font-style: inherit;">false</span></span></code></pre></div>
+font-style: inherit;">false</span></span></code></pre></div></div>
 </section>
 <section id="add-a-comment-section-that-supports-latex" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="add-a-comment-section-that-supports-latex"><span class="header-section-number">3</span> Add A Comment Section that Supports Latex</h2>
@@ -463,10 +1225,11 @@ font-style: inherit;">false</span></span></code></pre></div>
 <p><a href="https://giscus.app">Giscus</a> is a comments system powered by <a href="https://docs.github.com/en/discussions">GitHub Discussions</a>. It supports Latex, so that visitors can type math equations in the comment section.</p>
 <p>Make sure you configure the <code>repository</code> and the <code>Discussion Category</code> on <a href="https://giscus.app">Giscus</a>. This will generate the script code. We don’t need to copy that code, but we do need to note the <code>data-repo-id</code>, and <code>data-category-id</code>.</p>
 <p>To enable it for a page, include the following in the YAML front matter:</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">comments</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb3-2"><span class="at" style="color: #657422;
 background-color: null;
@@ -474,6 +1237,7 @@ font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">giscus</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb3-3"><span class="at" style="color: #657422;
 background-color: null;
@@ -481,6 +1245,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">repo</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> &lt;GitHub Repo for Your Quarto Website&gt;</span></span>
@@ -490,6 +1255,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">repo-id</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> &lt;Your data-repo-id&gt;</span></span>
@@ -499,6 +1265,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">category</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> &lt;The Discussion Category&gt;</span></span>
@@ -508,6 +1275,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">category-id</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> &lt;Your data-category-id&gt;</span></span>
@@ -517,6 +1285,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mapping</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="st" style="color: #20794D;
@@ -528,6 +1297,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">reactions-enabled</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="ch" style="color: #20794D;
@@ -539,6 +1309,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">loading</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> lazy</span></span>
@@ -548,6 +1319,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">input-position</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="st" style="color: #20794D;
@@ -559,21 +1331,23 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"preferred_color_scheme"</span></span></code></pre></div>
+font-style: inherit;">"preferred_color_scheme"</span></span></code></pre></div></div>
 </section>
 <section id="add-rss-feed" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="add-rss-feed"><span class="header-section-number">4</span> Add RSS Feed</h2>
 <!-- ![rss](images/2022/rss.png){width=50%, fig-align=center} -->
 <ol type="1">
 <li><p>Add <code>feed: true</code> in the listing page Include a feed for your listing by including the <code>feed</code> option in your listing page:</p>
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">listing</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb4-2"><span class="at" style="color: #657422;
 background-color: null;
@@ -581,6 +1355,7 @@ font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">contents</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> posts</span></span>
@@ -590,18 +1365,20 @@ font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">feed</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="ch" style="color: #20794D;
 background-color: null;
-font-style: inherit;">true</span></span></code></pre></div>
+font-style: inherit;">true</span></span></code></pre></div></div>
 <p>An RSS file will automatically be generated using the name of the the file in the same location as the listing page. For example, <code>index.qmd</code> will produce a feed at <code>index.xml</code>.</p></li>
 <li><p>Include the path to the xml file</p>
 <p>We need to explicitly include links to these xml files. On this website, I created 3 RSS feeds: Posts, TIL and Projects. I included them in <code>_quarto.yml</code> under a menu on the right side of the navigation bar:</p>
-<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">website</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb5-2"><span class="at" style="color: #657422;
 background-color: null;
@@ -609,6 +1386,7 @@ font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">navbar</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb5-3"><span class="at" style="color: #657422;
 background-color: null;
@@ -616,17 +1394,20 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">right</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb5-4"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">      </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">icon</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> rss</span></span>
@@ -636,17 +1417,20 @@ font-style: inherit;">        </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">menu</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb5-6"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">text</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> Subscribe to Posts</span></span>
@@ -656,6 +1440,7 @@ font-style: inherit;">            </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">icon</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> rss</span></span>
@@ -665,6 +1450,7 @@ font-style: inherit;">            </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">href</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> https://feynlee.github.io/curiosity-notes/index.xml</span></span>
@@ -674,6 +1460,7 @@ font-style: inherit;">            </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aria-label</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> Posts RSS</span></span>
@@ -681,12 +1468,14 @@ font-style: inherit;"> Posts RSS</span></span>
 background-color: null;
 font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">text</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> Subscribe to TIL</span></span>
@@ -696,6 +1485,7 @@ font-style: inherit;">            </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">icon</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> rss</span></span>
@@ -705,6 +1495,7 @@ font-style: inherit;">            </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">href</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> https://feynlee.github.io/curiosity-notes/TIL.xml</span></span>
@@ -714,6 +1505,7 @@ font-style: inherit;">            </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aria-label</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> TIL RSS</span></span>
@@ -721,12 +1513,14 @@ font-style: inherit;"> TIL RSS</span></span>
 background-color: null;
 font-style: inherit;">        </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">text</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> Subscribe to Projects</span></span>
@@ -736,6 +1530,7 @@ font-style: inherit;">            </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">icon</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> rss</span></span>
@@ -745,6 +1540,7 @@ font-style: inherit;">            </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">href</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> https://feynlee.github.io/curiosity-notes/projects.xml</span></span>
@@ -754,9 +1550,10 @@ font-style: inherit;">            </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aria-label</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;"> Projects RSS</span></span></code></pre></div></li>
+font-style: inherit;"> Projects RSS</span></span></code></pre></div></div></li>
 </ol>
 </section>
 <section id="add-social-share-buttons" class="level2" data-number="5">
@@ -767,10 +1564,11 @@ font-style: inherit;"> Projects RSS</span></span></code></pre></div></li>
 <section id="header-code" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="header-code"><span class="header-section-number">5.1</span> Header Code</h3>
 <p>For the header code, we can include it in the header of the website, by adding the following in <code>_quarto.yml</code>:</p>
-<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">format</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb6-2"><span class="at" style="color: #657422;
 background-color: null;
@@ -778,6 +1576,7 @@ font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">html</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb6-3"><span class="at" style="color: #657422;
 background-color: null;
@@ -785,11 +1584,12 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">header-includes</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> &lt;script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js</span><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">#property=**************&amp;product=inline-share-buttons&amp;source=platform" async="async"&gt;&lt;/script&gt;</span></span></code></pre></div>
+font-style: inherit;">#property=**************&amp;product=inline-share-buttons&amp;source=platform" async="async"&gt;&lt;/script&gt;</span></span></code></pre></div></div>
 </section>
 <section id="buttons-code" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="buttons-code"><span class="header-section-number">5.2</span> Buttons Code</h3>
@@ -797,37 +1597,47 @@ font-style: inherit;">#property=**************&amp;product=inline-share-buttons&
 <p>Here’s what you need to do to enable this:</p>
 <ul>
 <li><p>Install Extension</p>
-<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="ex" style="color: null;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">quarto</span> add feynlee/code-insertion</span></code></pre></div>
+font-style: inherit;">quarto</span> add feynlee/code-insertion</span></code></pre></div></div>
 <p>This will install the extension under the <code>_extensions</code> subdirectory. If you’re using version control, you will want to check in this directory for your Quarto website.</p></li>
 <li><p>Create a Markdown file to store the buttons code</p>
 <p>Create a markdown file (html also works) <code>_sharebuttons.md</code>:</p>
-<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;div</span> <span class="er" style="color: #AD0000;
+font-style: inherit;">&lt;</span><span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">class</span><span class="ot" style="color: #003B4F;
+font-weight: bold;
+font-style: inherit;">div</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;"> class</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"sharethis-inline-share-buttons pt-5"</span><span class="kw" style="color: #003B4F;
+font-style: inherit;">"sharethis-inline-share-buttons pt-5"</span><span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&gt;&lt;/div&gt;</span></span></code></pre></div>
+font-style: inherit;">&gt;&lt;/</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">div</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&gt;</span></span></code></pre></div></div>
 <p>The <code>pt-5</code> is a <a href="https://getbootstrap.com/docs/4.0/utilities/spacing/#examples">Bootstrap class</a> to make sure there’s enough space between the post and the share buttons.</p>
 <p>Make sure to start the file name with an underscore, so that Quarto ignores it when generating htmls.</p></li>
 <li><p>Enable the filter in <code>_metadata.yml</code> for all posts</p>
 <p>In the YAML front matter of a post, enable the code-insertion filter, and add <code>insert-before-post</code> and/or <code>insert-after-post</code> parameters that point to a markdown file with sections you want to insert before and/or after the post.</p>
 <p>Create a <code>_metadata.yml</code> file under the folder that contains all of your posts. Any settings here will be shared by all posts. Enable the <code>code-insertion</code> filter:</p>
-<div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filters</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb9-2"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> code-insertion</span></span>
@@ -835,9 +1645,10 @@ font-style: inherit;"> code-insertion</span></span>
 background-color: null;
 font-style: inherit;">insert-after-post</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;"> _sharebuttons.md</span></span></code></pre></div>
+font-style: inherit;"> _sharebuttons.md</span></span></code></pre></div></div>
 <p>Note that you should put the path to your <code>_sharebuttons.md</code> file for <code>insert-after-post</code>. This will insert that code as the last block in your post, which is above the comment section.</p></li>
 </ul>
 </section>
@@ -845,10 +1656,11 @@ font-style: inherit;"> _sharebuttons.md</span></span></code></pre></div>
 <section id="add-an-annotation-tool" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="add-an-annotation-tool"><span class="header-section-number">6</span> Add An Annotation Tool</h2>
 <p>You can enable <a href="https://web.hypothes.is">hypothes</a> on your website so that visitors can highlight and annotate your posts.</p>
-<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">comments</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb10-2"><span class="at" style="color: #657422;
 background-color: null;
@@ -856,6 +1668,7 @@ font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">hypothesis</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb10-3"><span class="at" style="color: #657422;
 background-color: null;
@@ -863,18 +1676,20 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;"> clean</span></span></code></pre></div>
+font-style: inherit;"> clean</span></span></code></pre></div></div>
 <p>This is enabled for my website. You can see the Hypothesis UI at the far right of the page. You can also drag cursor over texts to make your own highlights and annotations on this page.</p>
 </section>
 <section id="enable-anchor-sections" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="enable-anchor-sections"><span class="header-section-number">7</span> Enable Anchor Sections</h2>
 <p>Hover over a section title to see an anchor link. An anchor link makes it possible to share and reference the exact position of the specified section. Enable/disable this behavior with:</p>
-<div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">format</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb11-2"><span class="at" style="color: #657422;
 background-color: null;
@@ -882,6 +1697,7 @@ font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">html</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb11-3"><span class="at" style="color: #657422;
 background-color: null;
@@ -889,11 +1705,12 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">anchor-sections</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="ch" style="color: #20794D;
 background-color: null;
-font-style: inherit;">true</span></span></code></pre></div>
+font-style: inherit;">true</span></span></code></pre></div></div>
 <p>Anchor links are also automatically added to figures and tables that have a <a href="https://quarto.org/docs/authoring/cross-references.html">cross reference</a> defined.</p>
 </section>
 <section id="a-custom-listing-page" class="level2" data-number="8">
@@ -918,6 +1735,7 @@ font-style: inherit;">true</span></span></code></pre></div>
   <dc:creator>Ziyue Li</dc:creator>
   <link>https://feynlee.github.io/curiosity-notes/posts/2022-07-02-Duck_Pass_Trail.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -986,6 +1804,7 @@ font-style: inherit;">true</span></span></code></pre></div>
 
 
 
+
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p><a href="https://docs.fast.ai">Fastai</a>’s <code>DataBlock API</code> is a flexible and easy way to get and transform your data into something ready to be fed to a model. The <a href="https://docs.fast.ai/data.block.html#DataBlock">documentation</a> and <a href="https://docs.fast.ai/tutorial.datablock.html">tutorial</a> give some good examples of how to use this API. However, I still find it unclear how each argument in <code>Datablock</code> influences the different steps in the data transformation process.</p>
@@ -997,7 +1816,7 @@ font-style: inherit;">true</span></span></code></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2021/DataBlock_API_Workflow-Fastai.svg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">How different parts of DataBlock API fit in the data loading process.</figcaption>
+<figcaption>How different parts of DataBlock API fit in the data loading process.</figcaption>
 </figure>
 </div>
 <ol type="1">
@@ -1010,7 +1829,7 @@ font-style: inherit;">true</span></span></code></pre></div>
 </ol>
 <p>(Note that the <code>Transform</code>s need to be different based on what type of object it’s applied on, whether it’s the training or validation set. This is achieved through type dispatch and the <code>split_idx</code> variable in <code>Transform</code> respectively. Please see the next section <strong>Deeper Dive</strong> for more details.)</p>
 <p>An example usage of the <code>DataBlock</code> API:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1">dblock <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1">dblock <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> DataBlock(</span>
 <span id="cb1-2">    blocks<span class="op" style="color: #5E5E5E;
@@ -1041,10 +1860,12 @@ font-style: inherit;">None</span>,</span>
 background-color: null;
 font-style: inherit;">=</span>[<span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">lambda</span> o: img2bbox[o.name][<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>], <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">lambda</span> o: img2bbox[o.name][<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>]], </span>
@@ -1060,18 +1881,20 @@ font-style: inherit;">=</span>aug_transforms()</span>
 <span id="cb1-12"></span>
 <span id="cb1-13">dls <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> dblock.dataloaders(path_to_image_folder)</span></code></pre></div>
+font-style: inherit;">=</span> dblock.dataloaders(path_to_image_folder)</span></code></pre></div></div>
 <ol start="7" type="1">
 <li><p><strong>blocks</strong>: These can be <code>TransformBlock</code> objects that simultaneously specify the types of your x and y, and their associated <strong>type_tfms</strong>, <strong>item_tfms</strong> and <strong>batch_tfms</strong> to be inserted in the data transformation process for each type. The objects here do not HAVE TO be <code>TransformBlock</code> though. If they are not, they do not contribute any <strong>type_tfms</strong>, <strong>item_tfms</strong> and <strong>batch_tfms</strong> to the data transformation process.</p>
 <p>A <code>TransformBlock</code> is simply defined as:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">class</span> TransformBlock():</span>
 <span id="cb2-2">    <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">"A basic wrapper that links defaults transforms for the data block API"</span></span>
 <span id="cb2-3">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">__init__</span>(<span class="va" style="color: #111111;
@@ -1122,13 +1945,16 @@ font-style: inherit;">self</span>.dls_kwargs <span class="op" style="color: #5E5
 background-color: null;
 font-style: inherit;">=</span> dl_type,({} <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> dls_kwargs <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">is</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">None</span> <span class="cf" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">else</span> dls_kwargs)</span></code></pre></div></li>
+font-weight: bold;
+font-style: inherit;">else</span> dls_kwargs)</span></code></pre></div></div></li>
 <li><p><strong>n_inp</strong>: This specifies the number of inputs (x) so that the API knows the first n_inp <code>TransformBlock</code> are for x and the rest for y. In this case, we have one x and two ys. The model will need to predict for both the bounding box and the label.</p></li>
 <li><p><strong>item_tfms</strong>, <strong>batch_ftms</strong>: additional <code>Transform</code>s to be combined with those specified in the <code>TransformBlocks</code> in <strong>blocks</strong>.</p></li>
 <li><p><strong>get_items</strong>, <strong>splitter</strong>, <strong>getters</strong>, <strong>get_x</strong>, <strong>get_y</strong> have one-to-one correspondance to those explained in the blueprint.</p></li>
@@ -1151,17 +1977,20 @@ font-style: inherit;">else</span> dls_kwargs)</span></code></pre></div></li>
 <p>The <code>Transform</code> object can have multiple <code>encodes</code>/<code>decodes</code> methods defined for different argument types. The appropriate <code>encodes</code>/<code>decodes</code> method will be chosen based on the first argument’s type. This is achieved through type dispatch. For this more advanced topic, please watch Jeremy Howard’s code walk-through video on how the Transform class is built:</p>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/GcMGchBJeXk" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <p>You can find many examples in the <a href="https://fastcore.fast.ai/transform.html#Transform">Transform documentation</a>. Here I only give the most basic demostrations of <code>Transform</code>:</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="kw" style="color: #003B4F;
+<div id="cell-14" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">class</span> Times2(Transform):</span>
 <span id="cb3-2">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> encodes(<span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">self</span>, x):</span>
 <span id="cb3-3">        <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span><span class="dv" style="color: #AD0000;
@@ -1170,11 +1999,13 @@ font-style: inherit;">2</span></span>
 <span id="cb3-4">    </span>
 <span id="cb3-5">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> decodes(<span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">self</span>, x):</span>
 <span id="cb3-6">        <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
@@ -1186,10 +2017,12 @@ background-color: null;
 font-style: inherit;">@Transform</span></span>
 <span id="cb3-9"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> plus3(x:<span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">int</span>): <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span><span class="dv" style="color: #AD0000;
@@ -1216,12 +2049,12 @@ font-style: inherit;">4</span>)</span>
 background-color: null;
 font-style: inherit;">1.0</span>), <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1</span>)</span></code></pre></div>
+font-style: inherit;">1</span>)</span></code></pre></div></div>
 </div>
 <p>As can be seen, the <em>plus3</em> function is only applied to integer types.</p>
 <p>A <code>Pipeline</code> simply applies a list of Transforms to an item. You can optionally specify <code>split_idx</code> to turn on only transforms with the same <code>split_idx</code>. Please see the <a href="https://fastcore.fast.ai/transform.html#Pipeline">Pipeline doc</a> for more details.</p>
-<div class="cell" data-execution_count="83">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1">p <span class="op" style="color: #5E5E5E;
+<div id="cell-17" class="cell" data-execution_count="83">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1">p <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> Pipeline([times2,plus3])</span>
 <span id="cb4-2"><span class="co" style="color: #5E5E5E;
@@ -1236,14 +2069,14 @@ font-style: inherit;">5</span>)</span>
 background-color: null;
 font-style: inherit;">1.0</span>), <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2</span>)</span></code></pre></div>
+font-style: inherit;">2</span>)</span></code></pre></div></div>
 </div>
 </section>
 <section id="tfmdlists-and-datasets" class="level3">
 <h3 class="anchored" data-anchor-id="tfmdlists-and-datasets">TfmdLists and Datasets</h3>
 <p><code>TfmdLists</code> applies a list of Transforms or a Pipeline to <strong><em>a list of items</em></strong>, with the option to split the list into training data set vs.&nbsp;validation data set by specifying <code>splits</code> as lists of indices:</p>
-<div class="cell" data-execution_count="84">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1">tf <span class="op" style="color: #5E5E5E;
+<div id="cell-20" class="cell" data-execution_count="84">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1">tf <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> TfmdLists([<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -1261,7 +2094,7 @@ font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>]])</span>
 <span id="cb5-2">tf.train[:]</span>
-<span id="cb5-3">tf.valid[:]</span></code></pre></div>
+<span id="cb5-3">tf.valid[:]</span></code></pre></div></div>
 <div class="cell-output cell-output-display" data-execution_count="84">
 <pre><code>(#1) [5]</code></pre>
 </div>
@@ -1270,8 +2103,8 @@ font-style: inherit;">2</span>]])</span>
 </div>
 </div>
 <p><code>Datasets</code> further expands the functionality so that you can specifiy <strong><em>multiple</em></strong> Pipelines or lists of Transforms to <strong><em>a list of items</em></strong>, returning a list of tuples with each item in the tuple corresponding to the result of one Pipeline.</p>
-<div class="cell" data-execution_count="80">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1">ds <span class="op" style="color: #5E5E5E;
+<div id="cell-22" class="cell" data-execution_count="80">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1">ds <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> Datasets([<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -1303,7 +2136,7 @@ font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>]])</span>
 <span id="cb8-2">ds.train</span>
-<span id="cb8-3">ds.valid</span></code></pre></div>
+<span id="cb8-3">ds.valid</span></code></pre></div></div>
 <div class="cell-output cell-output-display" data-execution_count="80">
 <pre><code>(#4) [(5, 4),(7, 5),(13, 8),(-15, -6)]</code></pre>
 </div>
@@ -1312,8 +2145,8 @@ font-style: inherit;">5</span>]])</span>
 </div>
 </div>
 <p>From <code>Datasets</code>, we can then get the dataloaders:</p>
-<div class="cell" data-execution_count="81">
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1">dls <span class="op" style="color: #5E5E5E;
+<div id="cell-24" class="cell" data-execution_count="81">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1">dls <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> ds.dataloaders(bs<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1324,14 +2157,14 @@ background-color: null;
 font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">False</span>)</span>
-<span id="cb11-2">dls.one_batch()</span></code></pre></div>
+<span id="cb11-2">dls.one_batch()</span></code></pre></div></div>
 <div class="cell-output cell-output-display" data-execution_count="81">
 <pre><code>(tensor([5, 7]), tensor([4, 5]))</code></pre>
 </div>
 </div>
 <p>The same could be achieve by using the DataBlock API directly:</p>
-<div class="cell" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1">dblock <span class="op" style="color: #5E5E5E;
+<div id="cell-26" class="cell" data-execution_count="85">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1">dblock <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> DataBlock(blocks <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1345,6 +2178,7 @@ font-style: inherit;">=</span>[plus3])),</span>
 background-color: null;
 font-style: inherit;">=</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">lambda</span> x: [[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
@@ -1385,7 +2219,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">False</span>)</span>
-<span id="cb13-7">dls.one_batch()</span></code></pre></div>
+<span id="cb13-7">dls.one_batch()</span></code></pre></div></div>
 <div class="cell-output cell-output-display" data-execution_count="85">
 <pre><code>(tensor([5, 7]), tensor([4, 5]))</code></pre>
 </div>
@@ -1413,11 +2247,12 @@ font-style: inherit;">False</span>)</span>
 
 
 
+
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/https:/upload.wikimedia.org/wikipedia/commons/7/70/Thermometer_CF.svg" class="img-fluid figure-img" style="width:40.0%"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Thermometer_CF.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
 <p>The concept of temperature has always been confusing to me. On the one hand, we have statistical mechanics that defines the temperature by <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7BT%7D%20=%20%5Cleft.%5Cfrac%7B%5Cpartial%20S%7D%7B%5Cpartial%20E%7D%20%5Cright%7C_%7BV,N%7D"> (or <img src="https://latex.codecogs.com/png.latex?T%20=%20%5Cleft.%5Cfrac%7B%5Cpartial%20E%7D%7B%5Cpartial%20S%7D%20%5Cright%7C_%7BV,N%7D">). On the other hand, we have our everyday experience of temperature scales. We obviously don’t measure the entropy of everything and do the partial derivative with respect to their energy to get their temperature. Instead we mark the temperature directly from a thermometer. How are they connected? How is that abstract temperature formula related to how we measure temperature in our everyday life?</p>
@@ -1566,7 +2401,7 @@ font-style: inherit;">False</span>)</span>
 <p>Because <img src="https://latex.codecogs.com/png.latex?%5Cbar%7BS%7D%20%5Cpropto%20N"> and <img src="https://latex.codecogs.com/png.latex?U%20%5Cpropto%20N">, <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B%5Cpartial%5E2%20%5Cbar%7BS%7D_1%7D%7B%5Cpartial%20U_1%5E2%7D%20+%20%5Cfrac%7B%5Cpartial%5E2%20%5Cbar%7BS%7D_2%7D%7B%5Cpartial%20U_2%5E2%7D%20%5Cpropto%20-1/N"> (the second order derivative around the maximum is negative), the exponential part becomes a gaussian distribution <img src="https://latex.codecogs.com/png.latex?%5Cpropto%20%5Cexp(%5Cfrac%7B-(U_1-U_1%5E*)%5E2%7D%7B2N%7D)%20%5Crightarrow%20%5Cexp(-N%20%5CDelta%20%5Cepsilon%5E2/2)">, where <img src="https://latex.codecogs.com/png.latex?%5CDelta%20%5Cepsilon"> is the average energy difference from the maximum per particle. When the number of particles <img src="https://latex.codecogs.com/png.latex?N"> is large, this is a super narrow distribution, as an example:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/gaussian_dist.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/gaussian_dist.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 <p>In reality, this distribution is often so sharp that the other states with energies different from the states at the maximum have negligible probabilities, and the system is dominated by the state with the maximum probability.</p>
@@ -1603,10 +2438,11 @@ font-style: inherit;">False</span>)</span>
 
 
 
+
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>Kelvin wake is the pattern generated by objects moving through deep waters at a constant speed.</p>
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/https:/upload.wikimedia.org/wikipedia/commons/4/4f/Wake.avon.gorge.2boats.arp.750pix.jpg" class="img-fluid"></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Wake.avon.gorge.2boats.arp.750pix.jpg" class="img-fluid"></p>
 <p>In Feynman’s lecture <sup>1</sup>, he mentioned that if one is clever enough, one can derive the Kelvin wake pattern from the fact that the pattern of the waves is stationary relative to the constant velocity of the boat; any other pattern would get lost from the boat. This post attempts to lay out the details of this derivation.</p>
 <section id="phase-velocity-and-group-velocity" class="level2">
 <h2 class="anchored" data-anchor-id="phase-velocity-and-group-velocity">Phase Velocity and Group Velocity</h2>
@@ -1614,8 +2450,8 @@ font-style: inherit;">False</span>)</span>
 <p>The phase velocity is the velocity at which the actual wave amplitudes travel, and the group velocity is the velocity at which the wave groups travel. The group velocity for water goes half as fast as the phase. This means, if one follows a particular crest of the water waves, they will find it moves forward in the group and gradually gets weaker and dies out in the front, and a weaker one in the back appears mysteriously and gets stronger, as show in the following demonstration:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/https:/upload.wikimedia.org/wikipedia/commons/d/d8/Wave_packet_propagation_%28phase_faster_than_group%2C_nondispersive%29.gif" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">By <a href="//commons.wikimedia.org/wiki/User:Becarlson">Becarlson</a> - Own work, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=67433782">Link</a></figcaption>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Wave_packet_propagation_%28phase_faster_than_group%2C_nondispersive%29.gif" class="img-fluid figure-img"></p>
+<figcaption>By <a href="../commons.wikimedia.org/wiki/User:Becarlson">Becarlson</a> - Own work, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=67433782">Link</a></figcaption>
 </figure>
 </div>
 </section>
@@ -1635,7 +2471,7 @@ font-style: inherit;">False</span>)</span>
 <p>Because the group velocity is half of the phase velocity, we can construct the following general propagation pattern:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/Kelvin_wake-phase_velocity_and_group_velocity.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/Kelvin_wake-phase_velocity_and_group_velocity.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 <p>The boat is at point A. For a certain wavelength, AD is where the wavefront would be for the phase velocity and because the group velocity is half of the phase velocity, AC is where the group of waves propagates to. The green lines are all parallel to AD and mark the phase wavefront on AC.</p></li>
@@ -1643,13 +2479,13 @@ font-style: inherit;">False</span>)</span>
 <p>This can be seen by moving the wavefront pattern sketched above horizontally.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/Kelvin_wake-phase_velocity_propagating.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/Kelvin_wake-phase_velocity_propagating.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 <p>This procedure ensures that the wavefront pattern is stationary with respect to the boat (point A and point A’). Because the wavefront pattern’s construction is solely dependent on the phase velocity wavefront (the dashed line AD), we just have to make sure that AD propagates to A’D’ when A moves to A’:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/Kelvin_wake-geometry.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/Kelvin_wake-geometry.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 <p>In other words, in any specific direction, only waves that have a certain phase velocity so that</p>
@@ -1659,7 +2495,7 @@ font-style: inherit;">False</span>)</span>
 <p>To derive the wave pattern, we need to trace out “equal-phase lines” that connect wavefronts of the same phase.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/Kelvin_wake-equal_phase.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/Kelvin_wake-equal_phase.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 <p>Every point on the equal-phase line (depicted as green in the above plot) originates from a different point on the horizontal line. Let’s pick the point O as the origin, for example, and the phase at point C can be calculated as</p>
@@ -1670,17 +2506,17 @@ font-style: inherit;">False</span>)</span>
 <p>Now that x and y are written in terms of the parameter <img src="https://latex.codecogs.com/png.latex?%5Calpha"> and the constant <img src="https://latex.codecogs.com/png.latex?%5Cphi">, we can plot the equal-phase line in mathematica:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/Kelvin_wake-single.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/Kelvin_wake-single.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
 </figure>
 </div></li>
 <li><p><strong>Composite all equal phase lines that are separated by <img src="https://latex.codecogs.com/png.latex?2%5Cpi"></strong></p>
 <p>The peaks of waves are separated by <img src="https://latex.codecogs.com/png.latex?2%5Cpi">. Since the waves at the front of the boat (point A) are always at the peak, which has the phase of 0, the peaks of waves are at <img src="https://latex.codecogs.com/png.latex?%5Cphi%20=%202%5Cpi%20n">, where <img src="https://latex.codecogs.com/png.latex?n"> is any positive integer. Overlaying all equal-phase lines with <img src="https://latex.codecogs.com/png.latex?%5Cphi%20=%202%5Cpi%20n">, we see that the peaks of waves form the famous “Kelvin Wake” pattern:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/Kelvin_wake-multiple.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/2020/Kelvin_wake-multiple.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
 </figure>
 </div>
-<p>Incidentally, the waves propagating in the X-axis direction have to have the speed of <img src="https://latex.codecogs.com/png.latex?v_p=V"> to remain stationary relative to the boat. The wavelength is therefore <img src="https://latex.codecogs.com/png.latex?%5Clambda_0%20=%202%5Cpi%20V%5E2/g">. For these waves, we can plug <img src="https://latex.codecogs.com/png.latex?%5Calpha=%5Cpi/2"> into the x coordinates and see that indeed the x coordinates of the peaks <img src="https://latex.codecogs.com/png.latex?x=%5Cphi%20V%5E2/g%20=%202%5Cpi%20n%20V%5E2/g%20=%20n%5Clambda_0"> are separated by <img src="https://latex.codecogs.com/png.latex?2%5Cpi">.</p></li>
+<p>Incidentally, the waves propagating in the X-axis direction have to have the speed of <img src="https://latex.codecogs.com/png.latex?v_p=V"> to remain stationary relative to the boat. The wavelength is therefore <img src="https://latex.codecogs.com/png.latex?%5Clambda_0%20=%202%5Cpi%20V%5E2/g">. For these waves, we can plug <img src="https://latex.codecogs.com/png.latex?%5Calpha=%5Cpi/2"> into the x coordinates and see that indeed the x coordinates of the peaks <img src="https://latex.codecogs.com/png.latex?x=%5Cphi%20V%5E2/g%20=%202%5Cpi%20n%20V%5E2/g%20%20=%20n%5Clambda_0"> are separated by <img src="https://latex.codecogs.com/png.latex?2%5Cpi">.</p></li>
 </ol>
 </section>
 <section id="kelvin-wake-angle" class="level1">
@@ -1728,20 +2564,21 @@ font-style: inherit;">False</span>)</span>
 
 
 
+
 <section id="basic-setup" class="level2">
 <h2 class="anchored" data-anchor-id="basic-setup">Basic Setup</h2>
 <p>The documentation for the setup.py file is not very clear, and I think the quickest way to learn this is through an example, so here is an example of some of the minimum things to configure in the setup.py:</p>
 <p>If your folder structure is the following (see <a href="https://blog.ionelmc.ro/2014/05/25/python-packaging/#id13">here</a> for why this structure is preferred):</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource plain number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1">- Project_folder</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource plain number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1">- Project_folder</span>
 <span id="cb1-2">- src</span>
 <span id="cb1-3">- PACKAGE_NAME</span>
 <span id="cb1-4">      - __init__.py</span>
 <span id="cb1-5">      - data</span>
 <span id="cb1-6">      - ...</span>
 <span id="cb1-7">- test</span>
-<span id="cb1-8">- setup.py</span></code></pre></div>
+<span id="cb1-8">- setup.py</span></code></pre></div></div>
 <p>we can use the following setup.py.</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> setuptools <span class="im" style="color: #00769E;
 background-color: null;
@@ -1792,7 +2629,7 @@ font-style: inherit;">=</span>DESCRIPTION,</span>
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'&gt;=3.6'</span>)</span></code></pre></div>
+font-style: inherit;">'&gt;=3.6'</span>)</span></code></pre></div></div>
 <ul>
 <li><p>The name, maintainer, and version are self-explanatory.</p></li>
 <li><p><code>install_requires</code> specifies the dependent python packages so that when installing your package, if some of these packages are not already installed in the user’s system, they will be downloaded and installed. One can <a href="https://packaging.python.org/discussions/install-requires-vs-requirements/">specify version requirements for each package here too</a>.</p></li>
@@ -1807,31 +2644,31 @@ font-style: inherit;">'&gt;=3.6'</span>)</span></code></pre></div>
 <h2 class="anchored" data-anchor-id="why-do-we-choose-the-src-structure">Why do we choose the “src” structure?</h2>
 <ol type="1">
 <li><p>We could’ve put our package directly under the project folder:</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource plain number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1">- Project_folder</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource plain number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1">- Project_folder</span>
 <span id="cb3-2">- PACKAGE_NAME</span>
 <span id="cb3-3">      - __init__.py</span>
 <span id="cb3-4">      - data</span>
 <span id="cb3-5">      - ...</span>
 <span id="cb3-6">- test</span>
-<span id="cb3-7">- setup.py</span></code></pre></div>
+<span id="cb3-7">- setup.py</span></code></pre></div></div>
 <p>But then when we write our tests, the local package with the same PACKAGE_NAME will be imported instead of the installed package in our system.</p></li>
 <li><p>We could’ve put the content of our package directly under the <code>src</code> folder instead of having another folder with our package name:</p>
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource plain number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1">- Project_folder</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource plain number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1">- Project_folder</span>
 <span id="cb4-2">  - src</span>
 <span id="cb4-3">    - __init__.py</span>
 <span id="cb4-4">    - data</span>
 <span id="cb4-5">    - ...</span>
 <span id="cb4-6">  - test</span>
-<span id="cb4-7">  - setup.py</span></code></pre></div>
+<span id="cb4-7">  - setup.py</span></code></pre></div></div>
 <p>This way, when we import PACKAGE_NAME, it won’t import the local package since they are under the folder named <code>src</code>. However, if we had done so, we would not only need to specify that <code>package_dir={PACKAGE_NAME: 'src'}</code>, but because the package name wouldn’t be picked up by the find_packages function, we would also need to manually list all packages in <code>packages</code>.</p></li>
 <li><p>We could’ve put the test inside the package:</p>
-<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource plain number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1">- Project_folder</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource plain number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1">- Project_folder</span>
 <span id="cb5-2">  - src</span>
 <span id="cb5-3">    - __init__.py</span>
 <span id="cb5-4">    - data</span>
 <span id="cb5-5">    - test</span>
 <span id="cb5-6">    - ...</span>
-<span id="cb5-7">  - setup.py</span></code></pre></div>
+<span id="cb5-7">  - setup.py</span></code></pre></div></div>
 <p>But then we would be distributing the test as part of the package, which is not ideal.</p></li>
 </ol>
 <p>In comparison, the structure we mentioned in the very beginning avoids all these problems and is therefore what I consider the best solution I’ve found so far.</p>
@@ -1863,10 +2700,11 @@ font-style: inherit;">'&gt;=3.6'</span>)</span></code></pre></div>
 
 
 
+
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://feynlee.github.io/curiosity-notes/posts/images/Cosmo_Horizons.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">“Cosmic Horizons”</figcaption>
+<figcaption>“Cosmic Horizons”</figcaption>
 </figure>
 </div>
 <div class="article-in-brief">
@@ -1913,8 +2751,8 @@ font-style: inherit;">'&gt;=3.6'</span>)</span></code></pre></div>
 <p>Let’s say space is expanding. As the object travels from A to B, the space in front of it is constantly increasing, so that the distance it has to travel to reach B is certainly larger than the original proper distance at time <img src="https://latex.codecogs.com/png.latex?t_%7BA%7D">. At the same time, the space behind it, i.e.&nbsp;the space it has already traveled, is also constantly expanding, so that the proper distance at time <img src="https://latex.codecogs.com/png.latex?t_%7BB%7D">, namely <img src="https://latex.codecogs.com/png.latex?D_%7BP%7D(t_%7BB%7D)=a(t_%7BB%7D)%5C%7Cr_%7BB%7D-r_%7BA%7D%5C%7C">, is larger than the distance it traversed. So in this case we have <img src="https://latex.codecogs.com/png.latex?D_%7BP%7D(t_A)%3CD_%7BT%7D%3CD_%7BP%7D(t_B)">, where we denoted the traveling distance with <img src="https://latex.codecogs.com/png.latex?D_%7BT%7D"> and the proper distance between AB at time <img src="https://latex.codecogs.com/png.latex?t_A"> and <img src="https://latex.codecogs.com/png.latex?t_B"> with <img src="https://latex.codecogs.com/png.latex?D_%7BP%7D(t_A)"> and <img src="https://latex.codecogs.com/png.latex?D_%7BP%7D(t_B)">.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/https:/fishlee919.files.wordpress.com/2015/07/embedded_lambdacdm_geometry.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Fig. 1 A view of an isometric embedding of part of the visible universe over most of its history. The vertical direction is the time and the blue circles represent the space at a certain cosmological time. This figure shows how a light ray (red line) can travel an effective distance of 28 billion light-years (orange line) in just 13 billion years of cosmological time. Here the 13 billion light-years are the traveling distance and the 28 billion light-years are the proper distance between AB at the end time.&nbsp;[This demonstration is taken from the section “Measuring distances in expanding space” in this wiki page: <a href="https://en.wikipedia.org/wiki/Metric_expansion_of_space">Metric expansion of space</a>].</figcaption>
+<p><img src="https://fishlee919.files.wordpress.com/2015/07/embedded_lambdacdm_geometry.png" class="img-fluid figure-img"></p>
+<figcaption>Fig. 1 A view of an isometric embedding of part of the visible universe over most of its history. The vertical direction is the time and the blue circles represent the space at a certain cosmological time. This figure shows how a light ray (red line) can travel an effective distance of 28 billion light-years (orange line) in just 13 billion years of cosmological time. Here the 13 billion light-years are the traveling distance and the 28 billion light-years are the proper distance between AB at the end time.&nbsp;[This demonstration is taken from the section “Measuring distances in expanding space” in this wiki page: <a href="https://en.wikipedia.org/wiki/Metric_expansion_of_space">Metric expansion of space</a>].</figcaption>
 </figure>
 </div>
 <p><strong>Once you figure this out, it’s easy to understand the following seemingly counterintuitive phenomena</strong>:</p>
@@ -1943,7 +2781,7 @@ font-style: inherit;">'&gt;=3.6'</span>)</span></code></pre></div>
 <p>The Hubble parameter in our standard cosmology model changes as follows. It decreases quickly in the beginning, and then gradually approaches a constant. So initially <img src="https://latex.codecogs.com/png.latex?a(t)"> increases at a rate slower than exponential, but eventually, <img src="https://latex.codecogs.com/png.latex?a(t)"> expands exponentially.</p>
 <figure class="figure">
 <a href=""> <img src="https://feynlee.github.io/curiosity-notes/posts/images/Cosmo_Hubble_Constant.png" width="90%" class="figure-img"> </a>
-<figcaption class="figure-caption">
+<figcaption>
 Fig. 2 An illustration of how the Hubble parameter changes in the standard model.
 </figcaption>
 </figure>
@@ -1997,7 +2835,7 @@ Fig. 2 An illustration of how the Hubble parameter changes in the standard model
 <p><img src="https://latex.codecogs.com/png.latex?R_%7BPH%7D%20=%20a(t)%5Cint_%7B0%7D%5E%7Bt%7D%5Cdfrac%7Bc%20dt%7D%7Ba(t)%7D"></p>
 <figure class="figure">
 <p><a href=""> <img src="https://feynlee.github.io/curiosity-notes/posts/images/Cosmo_Horizons-comoving.png" width="90%" class="figure-img"> </a> <a href=""> <img src="https://feynlee.github.io/curiosity-notes/posts/images/Cosmo_Horizons-proper.png" width="90%" class="figure-img"> </a></p>
-<figcaption class="figure-caption">
+<figcaption>
 Fig. 3 Demonstration of how Hubble sphere (green), Event horizon (red), light ray (yellow), and Particle horizon (blue) change with the cosmological time, plotted in both the co-moving distances (top) and the proper distances (bottom). The light ray shows how it is possible to observe photons outside of the Hubble sphere. The dotted lines indicate constant co-moving distances. The black horizontal line indicates our current universe, where the particle horizon &gt; the Event horizon &gt; the Hubble sphere. The standard cosmological model is assumed. Numerical values for parameters in the model: <img src="https://latex.codecogs.com/png.latex?H_0=67.8%20%5Ctext%7Bkm/s/Mpc%7D">, <img src="https://latex.codecogs.com/png.latex?%5COmega_%7B%5CLambda%7D=0.7">, <img src="https://latex.codecogs.com/png.latex?%5COmega_%7BM%7D=0.3">, <img src="https://latex.codecogs.com/png.latex?%5COmega_%7BR%7D=%5COmega_K=0">. [Mathematical notebook used to calculate the above curves: <a href="{{ site.baseurl }}/assets/nbs/Hubble_Sphere_Observable_Universe.nb">Hubble_Sphere_Horizons_and_Observable_Universe.nb</a>.]
 </figcaption>
 </figure>
@@ -2036,29 +2874,34 @@ Fig. 3 Demonstration of how Hubble sphere (green), Event horizon (red), light ra
 
 
 
+
 <section id="step-1-display-grid" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-display-grid">Step 1: Display Grid</h2>
 <p>First, we change the display to be “grid”:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb1-1">div<span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb1-1">div<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">.container</span> {</span>
 <span id="cb1-2">    <span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">display</span>: <span class="dv" style="color: #AD0000;
+font-weight: bold;
+font-style: inherit;">display</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">grid</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-3">}</span></code></pre></div>
+<span id="cb1-3">}</span></code></pre></div></div>
 </section>
 <section id="step-2-define-grid" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-define-grid">Step 2: Define Grid</h2>
 <p>We then define the grid using “fr” (short for fraction) as the following:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource scss number-lines code-with-copy"><code class="sourceCode scss"><span id="cb2-1">div<span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource scss number-lines code-with-copy"><code class="sourceCode scss"><span id="cb2-1">div<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">.container</span> {</span>
 <span id="cb2-2">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">display</span>: <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">grid</span><span class="op" style="color: #5E5E5E;
@@ -2066,6 +2909,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb2-3">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">grid-template-columns</span>: <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>fr <span class="dv" style="color: #AD0000;
@@ -2077,6 +2921,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb2-4">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">grid-template-rows</span>: <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>fr <span class="dv" style="color: #AD0000;
@@ -2084,10 +2929,10 @@ background-color: null;
 font-style: inherit;">1</span>fr<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-5">}</span></code></pre></div>
+<span id="cb2-5">}</span></code></pre></div></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/css_grid.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/posts/images/css_grid.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 <p>Think of each fraction as 1 unit. So the above code defines a grid with 3 columns with width 5, 1, 1 respectively and two rows with equal height. One can also define the grid using px, percentages and other units, but I find “fr” to be very convenient.</p>
@@ -2095,11 +2940,12 @@ font-style: inherit;">;</span></span>
 <section id="step-3-place-content-into-the-grid" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-place-content-into-the-grid">Step 3: Place Content Into the Grid</h2>
 <p>The easiest way is to use grid-template-areas:</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource scss number-lines code-with-copy"><code class="sourceCode scss"><span id="cb3-1">div<span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource scss number-lines code-with-copy"><code class="sourceCode scss"><span id="cb3-1">div<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">.container</span> {</span>
 <span id="cb3-2">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">display</span>: <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">grid</span><span class="op" style="color: #5E5E5E;
@@ -2107,6 +2953,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb3-3">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">grid-template-columns</span>: <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>fr <span class="dv" style="color: #AD0000;
@@ -2118,6 +2965,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb3-4">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">grid-template-rows</span>: <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>fr <span class="dv" style="color: #AD0000;
@@ -2127,6 +2975,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb3-5">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">grid-template-areas</span>:</span>
 <span id="cb3-6">        <span class="st" style="color: #20794D;
 background-color: null;
@@ -2143,17 +2992,24 @@ background-color: null;
 font-style: inherit;">.description</span> {</span>
 <span id="cb3-11">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">grid-area</span>: description<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb3-12">    <span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">justify-self</span>: stretch<span class="op" style="color: #5E5E5E;
+font-weight: bold;
+font-style: inherit;">justify-self</span>: <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">stretch</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb3-13">    <span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">align-self</span>: stretch<span class="op" style="color: #5E5E5E;
+font-weight: bold;
+font-style: inherit;">align-self</span>: <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">stretch</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb3-14">}</span>
@@ -2162,17 +3018,24 @@ background-color: null;
 font-style: inherit;">.social</span> {</span>
 <span id="cb3-16">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">grid-area</span>: social<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb3-17">    <span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">justify-self</span>: stretch<span class="op" style="color: #5E5E5E;
+font-weight: bold;
+font-style: inherit;">justify-self</span>: <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">stretch</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb3-18">    <span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">align-self</span>: stretch<span class="op" style="color: #5E5E5E;
+font-weight: bold;
+font-style: inherit;">align-self</span>: <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">stretch</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb3-19">}</span>
@@ -2181,20 +3044,27 @@ background-color: null;
 font-style: inherit;">.rss</span> {</span>
 <span id="cb3-21">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">grid-area</span>: rss<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb3-22">    <span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">justify-self</span>: stretch<span class="op" style="color: #5E5E5E;
+font-weight: bold;
+font-style: inherit;">justify-self</span>: <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">stretch</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb3-23">    <span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">align-self</span>: stretch<span class="op" style="color: #5E5E5E;
+font-weight: bold;
+font-style: inherit;">align-self</span>: <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">stretch</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb3-24">}</span></code></pre></div>
+<span id="cb3-24">}</span></code></pre></div></div>
 <p>We assign the <strong>grid-area</strong> attribute for each block that we want to place into the grid, and then use <strong>grid-template-areas</strong> to easily specify how they should be layed out within the grid. The <strong>justify-self</strong> and <strong>align-self</strong> attributes further specifies how they should be justified and aligned within their grid space.</p>
 <p>That should get you started! It’s really that simple!</p>
 <p>For more features and details about css grid, you can look up this wonderful guide: <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">A Complete Guide to Grid</a>.</p>
@@ -2220,6 +3090,7 @@ font-style: inherit;">;</span></span>
 
 
 
+
 <section id="why" class="level2">
 <h2 class="anchored" data-anchor-id="why">Why</h2>
 <p>Jupyter notebooks are great for data analysis, but when we need to share the analysis, some people may not care about the code. It would be great to have a solution that automatically generates reports where the code can be toggled by a button. After some online searching and experimentation, the following is my solution.</p>
@@ -2227,16 +3098,23 @@ font-style: inherit;">;</span></span>
 <section id="add-button-to-toggle-code" class="level2">
 <h2 class="anchored" data-anchor-id="add-button-to-toggle-code">Add Button to Toggle Code</h2>
 <p>Jupyter notebooks are web-based, we can simply add some HTML and javascript to make this work. One can include a raw cell at the beginning of your notebook containing the JavaScript and HTML below. This code is heavily based on <a href="http://chris-said.io/2016/02/13/how-to-make-polished-jupyter-presentations-with-optional-code-visibility/">Chris Said’s blog post</a>, except it also hides a few other things besides the input cell, including the numerical prompt next to the cells such as <code>input [1]</code> and <code>output [1]</code>.</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb1-1"><span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;script&gt;</span></span>
+font-style: inherit;">&lt;</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">script</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&gt;</span></span>
 <span id="cb1-2"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">code_toggle</span>() {</span>
 <span id="cb1-3">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (code_shown){</span>
 <span id="cb1-4">    <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2264,6 +3142,7 @@ background-color: null;
 font-style: inherit;">'Show Code'</span>)</span>
 <span id="cb1-6">    } <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span> {</span>
 <span id="cb1-7">    <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2307,11 +3186,13 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ready</span>(<span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>() {</span>
 <span id="cb1-14">    code_shown<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">false</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
@@ -2384,46 +3265,62 @@ font-style: inherit;">;</span></span>
 <span id="cb1-21">})<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-22"><span class="kw" style="color: #003B4F;
+<span id="cb1-22"><span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;/script&gt;</span></span>
-<span id="cb1-23"><span class="kw" style="color: #003B4F;
+font-style: inherit;">&lt;/</span><span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">&lt;form</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">action</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"javascript:code_toggle()"</span><span class="kw" style="color: #003B4F;
+font-weight: bold;
+font-style: inherit;">script</span><span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">&gt;</span></span>
-<span id="cb1-24"><span class="kw" style="color: #003B4F;
+<span id="cb1-23"><span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;input</span> <span class="er" style="color: #AD0000;
+font-style: inherit;">&lt;</span><span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">type</span><span class="ot" style="color: #003B4F;
+font-weight: bold;
+font-style: inherit;">form</span><span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"submit"</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">id</span><span class="ot" style="color: #003B4F;
+font-style: inherit;"> action</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"toggleButton"</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">value</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Show Code"</span><span class="kw" style="color: #003B4F;
+font-style: inherit;">"javascript:code_toggle()"</span><span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">&gt;</span></span>
-<span id="cb1-25"><span class="kw" style="color: #003B4F;
+<span id="cb1-24"><span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;/form&gt;</span></span></code></pre></div>
+font-style: inherit;">&lt;</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">input</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;"> type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"submit"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;"> id</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"toggleButton"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;"> value</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Show Code"</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&gt;</span></span>
+<span id="cb1-25"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&lt;/</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">form</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&gt;</span></span></code></pre></div></div>
 <p>When we export the notebook to HTML, the added code will make a toggle button. See Chris’ example <a href="https://nbviewer.jupyter.org/github/csaid/polished_notebooks/blob/master/notebook_polished.ipynb">here</a>.</p>
 <p>This is good and all, but we don’t want to manually add this raw cell to every notebook we create. Plus, it takes up a lot of space and does not look good in the notebook format. <strong><em>Is there a way that Jupyter can automatically add this code to the HTML file when exporting?</em></strong></p>
 <p>The answer is yes.</p>
@@ -2437,18 +3334,25 @@ font-style: inherit;">&lt;/form&gt;</span></span></code></pre></div>
 <p><code>&lt;Anaconda_Folder&gt;/envs/py3/lib/python3.6/site-packages/nbconvert/templates/html/</code>.</p>
 <!-- TODO modifications to basic.tpl -->
 <p>I copied the <code>full.tpl</code> template and added the script part in the <code>&lt;head&gt;</code> element:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb2-1">#| code-fold: true</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb2-1">#| code-fold: true</span>
 <span id="cb2-2">{%- block toggle_script -%}</span>
-<span id="cb2-3"><span class="kw" style="color: #003B4F;
+<span id="cb2-3"><span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;script&gt;</span></span>
+font-style: inherit;">&lt;</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">script</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&gt;</span></span>
 <span id="cb2-4"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">code_toggle</span>() {</span>
 <span id="cb2-5">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (code_shown){</span>
 <span id="cb2-6">    <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2476,6 +3380,7 @@ background-color: null;
 font-style: inherit;">'Show Code'</span>)</span>
 <span id="cb2-8">    } <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span> {</span>
 <span id="cb2-9">    <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2519,11 +3424,13 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ready</span>(<span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(){</span>
 <span id="cb2-16">    code_shown<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">false</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
@@ -2596,108 +3503,150 @@ font-style: inherit;">;</span></span>
 <span id="cb2-23">})<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb2-24"><span class="kw" style="color: #003B4F;
+<span id="cb2-24"><span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;/script&gt;</span></span>
-<span id="cb2-25">{%- endblock toggle_script -%}</span></code></pre></div>
+font-style: inherit;">&lt;/</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">script</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&gt;</span></span>
+<span id="cb2-25">{%- endblock toggle_script -%}</span></code></pre></div></div>
 <p>and the HTML part for the button to the body.</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb3-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb3-1"><span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;body&gt;</span></span>
-<span id="cb3-2">  <span class="kw" style="color: #003B4F;
+font-style: inherit;">&lt;</span><span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">&lt;div</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">tabindex</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"-1"</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">id</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"notebook"</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">class</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"border-box-sizing"</span><span class="kw" style="color: #003B4F;
+font-weight: bold;
+font-style: inherit;">body</span><span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">&gt;</span></span>
-<span id="cb3-3">    <span class="kw" style="color: #003B4F;
+<span id="cb3-2">  <span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;div</span> <span class="er" style="color: #AD0000;
+font-style: inherit;">&lt;</span><span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">class</span><span class="ot" style="color: #003B4F;
+font-weight: bold;
+font-style: inherit;">div</span><span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"container"</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">id</span><span class="ot" style="color: #003B4F;
+font-style: inherit;"> tabindex</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"notebook-container"</span><span class="kw" style="color: #003B4F;
+font-style: inherit;">"-1"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;"> id</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"notebook"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;"> class</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"border-box-sizing"</span><span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">&gt;</span></span>
-<span id="cb3-4">        <span class="kw" style="color: #003B4F;
+<span id="cb3-3">    <span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;form</span> <span class="er" style="color: #AD0000;
+font-style: inherit;">&lt;</span><span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">action</span><span class="ot" style="color: #003B4F;
+font-weight: bold;
+font-style: inherit;">div</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;"> class</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"javascript:code_toggle()"</span><span class="kw" style="color: #003B4F;
+font-style: inherit;">"container"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;"> id</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"notebook-container"</span><span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">&gt;</span></span>
-<span id="cb3-5">        <span class="kw" style="color: #003B4F;
+<span id="cb3-4">        <span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;input</span> <span class="er" style="color: #AD0000;
+font-style: inherit;">&lt;</span><span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">type</span><span class="ot" style="color: #003B4F;
+font-weight: bold;
+font-style: inherit;">form</span><span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"submit"</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">id</span><span class="ot" style="color: #003B4F;
+font-style: inherit;"> action</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"toggleButton"</span> <span class="er" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">value</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Show Code"</span><span class="kw" style="color: #003B4F;
+font-style: inherit;">"javascript:code_toggle()"</span><span class="dt" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">&gt;</span></span>
-<span id="cb3-6">        <span class="kw" style="color: #003B4F;
+<span id="cb3-5">        <span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;/form&gt;</span></span>
+font-style: inherit;">&lt;</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">input</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;"> type</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"submit"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;"> id</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"toggleButton"</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;"> value</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Show Code"</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&gt;</span></span>
+<span id="cb3-6">        <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&lt;/</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">form</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&gt;</span></span>
 <span id="cb3-7">        {{ super() }}</span>
-<span id="cb3-8">    <span class="kw" style="color: #003B4F;
+<span id="cb3-8">    <span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;/div&gt;</span></span>
-<span id="cb3-9">  <span class="kw" style="color: #003B4F;
+font-style: inherit;">&lt;/</span><span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">&lt;/div&gt;</span></span>
-<span id="cb3-10"><span class="kw" style="color: #003B4F;
+font-weight: bold;
+font-style: inherit;">div</span><span class="dt" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">&lt;/body&gt;</span></span></code></pre></div>
+font-style: inherit;">&gt;</span></span>
+<span id="cb3-9">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&lt;/</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">div</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&gt;</span></span>
+<span id="cb3-10"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&lt;/</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">body</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">&gt;</span></span></code></pre></div></div>
 <p>See this <a href="https://gist.github.com/feynlee/701a56a239f7034e380e850865154945">gist</a> for the full template code.</p>
 </section>
 <section id="use-jupyters-post-save-hook-to-automate" class="level2">
 <h2 class="anchored" data-anchor-id="use-jupyters-post-save-hook-to-automate">Use Jupyter’s Post-Save Hook to Automate</h2>
 <p>We can add a function in the Jupyter configuration file to automatically export HTML file whenever we save a notebook. The Jupyter configuration file can be found at “~/.jupyter/jupyter_notebook_config.py” on mac.</p>
 <p>An example code for <code>jupyter_notebook_config.py</code> that exports an HTML file on save for notebooks with “Report-” in their names:</p>
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> os</span>
 <span id="cb4-2"><span class="im" style="color: #00769E;
@@ -2708,12 +3657,14 @@ font-style: inherit;">import</span> check_call</span>
 <span id="cb4-3"></span>
 <span id="cb4-4"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> post_save(model, os_path, contents_manager):</span>
 <span id="cb4-5">    <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">"""post-save hook for converting notebooks to .py scripts"""</span></span>
 <span id="cb4-6">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> model[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'type'</span>] <span class="op" style="color: #5E5E5E;
@@ -2723,6 +3674,7 @@ background-color: null;
 font-style: inherit;">'notebook'</span>:</span>
 <span id="cb4-7">        <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># only do this for notebooks</span></span>
@@ -2731,10 +3683,12 @@ background-color: null;
 font-style: inherit;">=</span> os.path.split(os_path)</span>
 <span id="cb4-9">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Report-'</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">in</span> fname:</span>
 <span id="cb4-10">        <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -2780,7 +3734,7 @@ font-style: inherit;">=</span> post_save</span>
 background-color: null;
 font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;">False</span></span></code></pre></div>
+font-style: inherit;">False</span></span></code></pre></div></div>
 <p>See <a href="https://jupyter-notebook.readthedocs.io/en/stable/extending/savehooks.html">Jupyter documentation on file save hooks</a> for more details on how to use save hooks.</p>
 
 
@@ -2804,10 +3758,11 @@ font-style: inherit;">False</span></span></code></pre></div>
 
 
 
+
 <p>People often show solutions to a problem without showing their thinking process, just like a magician hiding his/her methods. Instead of knowing the answer, which is no fun at all, I think it’s more important to understand the logical steps that help one reach the answer. After all, this is where the satisfaction of understanding comes from. So I thought it might be helpful to show the paths I took during my attempt to solve this puzzle.</p>
 <section id="the-puzzle" class="level1">
 <h1>The Puzzle</h1>
-<p><img src="https://feynlee.github.io/curiosity-notes/posts/https:/fishlee919.files.wordpress.com/2017/01/7531_021f6dd88a11ca489936ae770e4634ad.png?w=1240" class="img-fluid"></p>
+<p><img src="https://fishlee919.files.wordpress.com/2017/01/7531_021f6dd88a11ca489936ae770e4634ad.png?w=1240" class="img-fluid"></p>
 <p><em>For simplicity, I will denote True, False, Random gods with T, F, and R respectively.</em></p>
 <p>I’ve organized and cleaned up my thoughts for better clarity. I will present the version of the solution that felt most natural to me, and explain in the final section both the much simpler solution and the unnecessarily complicated solution I originally came up with in my hurried effort to solve this puzzle.</p>
 </section>
@@ -2925,12 +3880,14 @@ font-style: inherit;">False</span></span></code></pre></div>
 
 
 
+
 <p>In this post, I summarize 7 basic concepts that I find very important to understand when learning D3.</p>
 <section id="compartmentalize-the-canvas-into-groups-g-tag" class="level2">
 <h2 class="anchored" data-anchor-id="compartmentalize-the-canvas-into-groups-g-tag">1. Compartmentalize the canvas into groups (“g” tag)</h2>
 <p>Think of the whole visualization as many small groups of elements. Each group can have its own group of elements. Use&nbsp;<strong>select</strong> and&nbsp;<strong>append</strong> to add tags. The first thing usually is to create an svg element (the canvas):</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">var</span> svg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> d3<span class="op" style="color: #5E5E5E;
@@ -2964,10 +3921,11 @@ font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"height"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">,</span> height)</span></code></pre></div>
+font-style: inherit;">,</span> height)</span></code></pre></div></div>
 <p>Then within the svg element, we can add many groups, for example, the legend itself is a group, within which we have two groups, each represents an entry in the legend:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">var</span> legend <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> svg<span class="op" style="color: #5E5E5E;
@@ -3048,7 +4006,7 @@ font-style: inherit;">append</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'g'</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">;</span></span></code></pre></div>
+font-style: inherit;">;</span></span></code></pre></div></div>
 </section>
 <section id="set-positions-of-each-group-by-setting-attributes-transform-to-translatexy-for-that-group." class="level2">
 <h2 class="anchored" data-anchor-id="set-positions-of-each-group-by-setting-attributes-transform-to-translatexy-for-that-group.">2. Set positions of each group by setting attributes ‘transform’ to ‘translate(x,y)’ for that group.</h2>
@@ -3060,7 +4018,7 @@ font-style: inherit;">;</span></span></code></pre></div>
 </section>
 <section id="use-functions-to-assign-attributes-.attr" class="level2">
 <h2 class="anchored" data-anchor-id="use-functions-to-assign-attributes-.attr">4. Use functions to assign attributes ‘.attr’</h2>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb3-1">legend<span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb3-1">legend<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3077,11 +4035,13 @@ font-style: inherit;">"y"</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span>i){</span>
 <span id="cb3-3"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> i <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
@@ -3113,21 +4073,24 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">text</span>(<span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(d){</span>
 <span id="cb3-7"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb3-8">})<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">;</span></span></code></pre></div>
+font-style: inherit;">;</span></span></code></pre></div></div>
 <p>Use ‘d’ in function for the data entry, and ‘i’ for index of the data entry.</p>
 </section>
 <section id="create-scale-to-map-the-domain-of-data-to-the-range-on-the-canvas" class="level2">
 <h2 class="anchored" data-anchor-id="create-scale-to-map-the-domain-of-data-to-the-range-on-the-canvas">5. Create scale to map the ‘domain’ of data to the ‘range’ on the canvas</h2>
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb4-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">var</span> time_extent <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> d3<span class="op" style="color: #5E5E5E;
@@ -3138,9 +4101,11 @@ font-style: inherit;">extent</span>(data<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(d){</span>
 <span id="cb4-2"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> d[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'date'</span>]<span class="op" style="color: #5E5E5E;
@@ -3152,6 +4117,7 @@ font-style: inherit;">;</span></span>
 <span id="cb4-4"></span>
 <span id="cb4-5"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">var</span> count_extent <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> d3<span class="op" style="color: #5E5E5E;
@@ -3162,9 +4128,11 @@ font-style: inherit;">extent</span>(data<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(d){</span>
 <span id="cb4-6"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> d[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'attendance'</span>]<span class="op" style="color: #5E5E5E;
@@ -3176,6 +4144,7 @@ font-style: inherit;">;</span></span>
 <span id="cb4-8"></span>
 <span id="cb4-9"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">var</span> time_scale <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> d3<span class="op" style="color: #5E5E5E;
@@ -3204,6 +4173,7 @@ font-style: inherit;">;</span></span>
 <span id="cb4-12"></span>
 <span id="cb4-13"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">var</span> count_scale <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> d3<span class="op" style="color: #5E5E5E;
@@ -3228,14 +4198,15 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">domain</span>(count_extent)<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">;</span></span></code></pre></div>
+font-style: inherit;">;</span></span></code></pre></div></div>
 <p>Here ‘domain’ is the extent of the data range, while ‘range’ is the extent of the the plot on canvas.</p>
 <p>Use ‘.scale’ method with the appropriate scale. As an example, I used the ‘linear()’ map above. For time, do ‘d3.time.scale()’.</p>
 </section>
 <section id="axis-are-special-functions-use-.call-on-elements-to-create-visualization-of-axis." class="level2">
 <h2 class="anchored" data-anchor-id="axis-are-special-functions-use-.call-on-elements-to-create-visualization-of-axis.">6. Axis are special functions, use ‘.call()’ on elements to create visualization of axis.</h2>
-<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb5-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">var</span> time_axis <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> d3<span class="op" style="color: #5E5E5E;
@@ -3313,13 +4284,14 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">call</span>(time_axis)<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">;</span></span></code></pre></div>
+font-style: inherit;">;</span></span></code></pre></div></div>
 <p>Use ‘d3.svg.axis()’ to create the axis function and set ‘.scale’ and ‘.ticks’.</p>
 </section>
 <section id="finally-when-reading-data-from-csv-or-other-files-one-can-transform-the-data-before-passing-it-on-to-create-visualization." class="level2">
 <h2 class="anchored" data-anchor-id="finally-when-reading-data-from-csv-or-other-files-one-can-transform-the-data-before-passing-it-on-to-create-visualization.">7. Finally, when reading data from csv or other files, one can transform the data before passing it on to create visualization.</h2>
-<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">var</span> format <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> d3<span class="op" style="color: #5E5E5E;
@@ -3345,6 +4317,7 @@ font-style: inherit;">"world_cup_geo.tsv"</span><span class="op" style="color: #
 background-color: null;
 font-style: inherit;">,</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(d){</span>
 <span id="cb6-3">d[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3370,6 +4343,7 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb6-5"><span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> d<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
@@ -3377,7 +4351,7 @@ font-style: inherit;">;</span></span>
 background-color: null;
 font-style: inherit;">,</span> draw)<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">;</span></span></code></pre></div>
+font-style: inherit;">;</span></span></code></pre></div></div>
 <p>‘d3.tsv()’ reads in the data, and pass it to the anonymous function, and then feeds the result to the user-defined ‘draw’ function for visualization. This is very convenient when one needs to convert some data format before moving on to the visualization step.</p>
 <p>Here I parsed the ‘date’ column and made them into a ‘Date’ type, and converted the ‘attendance’ column from string into&nbsp;a number&nbsp;using the unary operator ‘+’. The ‘draw’ is a function that draws the visualization of the dataset.</p>
 
@@ -3398,6 +4372,7 @@ font-style: inherit;">;</span></span></code></pre></div>
   <dc:creator>Ziyue Li</dc:creator>
   <link>https://feynlee.github.io/curiosity-notes/posts/2014-11-22-black-hole-physics-in-interstellar.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -3423,7 +4398,7 @@ font-style: inherit;">;</span></span></code></pre></div>
 <p><img src="https://latex.codecogs.com/png.latex?0=1-6%5Cdfrac%7BM%7D%7Br%7D+8%5Cdfrac%7Ba%20M%5E%7B1/2%7D%7D%7Br%5E%7B3/2%7D%7D-3%5Cdfrac%7Ba%5E%7B2%7D%7D%7Br%5E%7B2%7D%7D."></p>
 <p>Plotting <img src="https://latex.codecogs.com/png.latex?r_%7Brh%7D,%20r_%7BISCO%7D"> and <img src="https://latex.codecogs.com/png.latex?%5Cdfrac%7Bdt%7D%7Bd%5Ctau%7D"> as functions of <img src="https://latex.codecogs.com/png.latex?r"> and <img src="https://latex.codecogs.com/png.latex?a">, we get</p>
 <div style="text-align:center">
-<img src="https://feynlee.github.io/curiosity-notes/posts/https:/fishlee919.files.wordpress.com/2014/11/risco-rbh-and-time-dilation-factor.jpg" width="500">
+<img src="https://fishlee919.files.wordpress.com/2014/11/risco-rbh-and-time-dilation-factor.jpg" width="500">
 </div>
 <p>The red line indicates the location of the black hole horizon, the orange line indicates the location of the ISCO, and the blue curve gives the time dilation factor as a function of coordinate <img src="https://latex.codecogs.com/png.latex?r">. This plot is generated for <img src="https://latex.codecogs.com/png.latex?a=0.8M">. As <img src="https://latex.codecogs.com/png.latex?a"> increases, ISCO moves closer to the horizon, and the time dilation at ISCO becomes bigger. Therefore, to get the extreme time dilation of 1 hour equals 7 years as depicted in the movie, the black hole has to spin very fast, and <img src="https://latex.codecogs.com/png.latex?a"> takes almost its extremal value <img src="https://latex.codecogs.com/png.latex?M."> We now proceed to derive this spin rate.</p>
 <p>We parametrize <img src="https://latex.codecogs.com/png.latex?a"> in the following way:</p>
@@ -3474,7 +4449,7 @@ font-style: inherit;">;</span></span></code></pre></div>
 <p>Chris Nolan wanted the parking orbit to have modest time dilation relative to the earth, so in Kip’s interpretation, he chose the parking orbit at <img src="https://latex.codecogs.com/png.latex?r_%7Bparking%7D=10M_%7Bbh%7D=10r_%7Bunit%7D."> Plugging this value into the <img src="https://latex.codecogs.com/png.latex?dt/d%5Ctau">, we find the time dilation factor at this orbit to be about 1.2 (compared to earth time), which is reasonable.</p>
 <p>Note that because of the distortion in space, the circumference of the orbit is much less than <img src="https://latex.codecogs.com/png.latex?2%5Cpi"> times the radial proper distance to the center of the black hole (the distance traveling on the membrane in the following figure). We reduce the 3-dimensional space to 2-dimension, and use the third direction to show what our space looked like in a higher dimension:</p>
 <div style="text-align:center">
-<img src="https://feynlee.github.io/curiosity-notes/posts/https:/fishlee919.files.wordpress.com/2014/11/rvsz.jpg" width="800">
+<img src="https://fishlee919.files.wordpress.com/2014/11/rvsz.jpg" width="800">
 </div>
 <p>The yellow circle is the parking orbit for Endurance, the blue circle is the orbit for Miller’s planet, and the black circle at the bottom is the horizon. We see&nbsp;that because of the space distortion, even though the <img src="https://latex.codecogs.com/png.latex?r_%7BISCO%7D"> value is very close to <img src="https://latex.codecogs.com/png.latex?r_%7Bhr%7D"> (which produces similar radii for the circles), the proper distance between them (the distance on this “membrane” traversed by the spaceship) is much larger than expected.</p>
 <p>The radius of the circle is the proper distance of the orbit divided by <img src="https://latex.codecogs.com/png.latex?2%5Cpi">, and is given by <img src="https://latex.codecogs.com/png.latex?g_%7B%5Cphi%5Cphi%7D"> of the metric <img src="https://latex.codecogs.com/png.latex?R=%5Csqrt%7B%5Cfrac%7B2%20a%5E2%20M%7D%7Br%7D+a%5E2+r%5E2%7D">. Note that <img src="https://latex.codecogs.com/png.latex?R%3Er"> due to the spinning of the black hole (<img src="https://latex.codecogs.com/png.latex?a%5Cneq0">). For the parking orbit, <img src="https://latex.codecogs.com/png.latex?R_%7Bparking%7D%5Capprox10M_%7Bbh%7D%5Capprox10r_%7Bunit%7D">, the same as the coordinate <img src="https://latex.codecogs.com/png.latex?r">. For Miller’s planet and the horizon, <img src="https://latex.codecogs.com/png.latex?R_%7BISCO%7D%5Capprox%20R_%7Bhr%7D=2M_%7Bbh%7D=2r_%7Bunit%7D">, twice the coordinate <img src="https://latex.codecogs.com/png.latex?r_%7BISCO%7D"> and <img src="https://latex.codecogs.com/png.latex?r_%7Bhr%7D."></p>
@@ -3496,7 +4471,7 @@ font-style: inherit;">;</span></span></code></pre></div>
 <p>In one of Kip’s interpretations,&nbsp;the waves are possibly created by the rocking of the planet under the tidal force of the black hole. As he explained in his book, the planet has its face almost locked to the black hole, because otherwise the mantle would be pulverized under the tidal force. But, to produce the huge waves seen in the movie, the planet needs to rock back and forth a bit.</p>
 <p>I now attempt to calculate the period of this rocking motion in a very simplified model.</p>
 <div style="text-align:center">
-<img src="https://feynlee.github.io/curiosity-notes/posts/https:/fishlee919.files.wordpress.com/2014/11/tidal-force-induced-rocking1.jpg" width="400">
+<img src="https://fishlee919.files.wordpress.com/2014/11/tidal-force-induced-rocking1.jpg" width="400">
 </div>
 <p>Under the tidal force,&nbsp;Miller’s&nbsp;planet would be stretched and squeezed to an ellipsoid shape. The red lines indicate the stretching direction and the blue lines indicate the squeezing direction. Let’s say the planet’s semi-major axis has length <img src="https://latex.codecogs.com/png.latex?l,"> then the torque produced by each half hemisphere has the lever arm distance of <img src="https://latex.codecogs.com/png.latex?l/2%5Ctheta."> So the torque produced by the tidal force in the black hole radial direction can be approximated to be <img src="https://latex.codecogs.com/png.latex?-%5Cdfrac%7Bm%7D%7B2%7Dg_%7Btidal%7D%5Cdfrac%7Bl%7D%7B2%7D%5Ctheta">, where <img src="https://latex.codecogs.com/png.latex?m/2"> is the mass of each hemisphere.</p>
 <p>There is another torque produced by the squeezing force in the orbital direction (see Kip Thorne’s book), but here instead of calculating that, we take a guess, and approximate it to be the same amount as the torque above.&nbsp;Therefore, the total torque is <img src="https://latex.codecogs.com/png.latex?-%5Cdfrac%7Bm%7D%7B2%7Dg_%7Btidal%7Dl%5Ctheta.">&nbsp;To simplify the problem further, we use the moment of inertia formula for a solid ball instead of an ellipsoid and approximate <img src="https://latex.codecogs.com/png.latex?r_%7Bmiller%7D%5Capprox%20l">, i.e.&nbsp;<img src="https://latex.codecogs.com/png.latex?I=%5Cdfrac%7B2%7D%7B5%7Dm%20l%5E%7B2%7D.">&nbsp;We then have</p>

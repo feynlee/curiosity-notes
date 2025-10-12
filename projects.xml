@@ -9,7 +9,7 @@
 <link>https://feynlee.github.io/curiosity-notes/projects.html</link>
 <atom:link href="https://feynlee.github.io/curiosity-notes/projects.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.3.450</generator>
+<generator>quarto-1.8.25</generator>
 <lastBuildDate>Mon, 04 Sep 2023 00:00:00 GMT</lastBuildDate>
 <item>
   <title>pikaQ - A SQL Query Builder for Different Dialects</title>
@@ -18,11 +18,12 @@
 
 
 
+
 <section id="pikaq" class="level1">
 <h1>pikaQ</h1>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><a href="https://github.com/feynlee/pikaQ"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid figure-img" width="80"></a></p>
+<p><a href="https://github.com/feynlee/pikaQ"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="80"></a></p>
 </figure>
 </div>
 <blockquote class="blockquote">
@@ -33,16 +34,16 @@
 <p>Validation of SQL correctness is not an explicit goal of PikaQ. You are encouraged to check inputs you provide to PyPika or appropriately handle errors raised from your SQL database - just as you would have if you were writing SQL yourself.</p>
 <section id="install" class="level2">
 <h2 class="anchored" data-anchor-id="install">Install</h2>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">pip</span> install pikaQ</span></code></pre></div>
+font-style: inherit;">pip</span> install pikaQ</span></code></pre></div></div>
 </section>
 <section id="delayed-translation" class="level2">
 <h2 class="anchored" data-anchor-id="delayed-translation">Delayed Translation</h2>
 <p>The translation of the query is delayed until the <code>get_sql</code> method is called. All the components of the query have an <code>execute</code> method that returns the SQL string for that component, and when <code>get_sql</code> is called, the <code>execute</code> method of all the components are called recursively to generate the final SQL string.</p>
 <p>For example, if we want to write the same query in Spark SQL and AWS Athena, we might encounter this problem: we have <code>ADD_MONTHS</code> function in <a href="https://spark.apache.org/docs/2.3.0/api/sql/#add_months">Spark SQL</a>, but in AWS Athena (<a href="https://prestodb.io/docs/current/functions/datetime.html#interval-functions">Presto</a>) we don’t have this function. We can define an <code>ADD_MONTHS</code> function in the following way:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+<div id="cell-7" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> pikaQ.terms <span class="im" style="color: #00769E;
 background-color: null;
@@ -59,6 +60,7 @@ background-color: null;
 font-style: inherit;">@custom_func</span></span>
 <span id="cb2-6"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> add_months(column, value, dialect<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
@@ -66,6 +68,7 @@ background-color: null;
 font-style: inherit;">'spark'</span>):</span>
 <span id="cb2-7">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> dialect <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="st" style="color: #20794D;
@@ -73,6 +76,7 @@ background-color: null;
 font-style: inherit;">'athena'</span>:</span>
 <span id="cb2-8">        <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> <span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;">f"DATE_ADD('month', </span><span class="sc" style="color: #5E5E5E;
@@ -90,6 +94,7 @@ background-color: null;
 font-style: inherit;">)"</span></span>
 <span id="cb2-9">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">elif</span> dialect <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="st" style="color: #20794D;
@@ -97,6 +102,7 @@ background-color: null;
 font-style: inherit;">'spark'</span>:</span>
 <span id="cb2-10">        <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> <span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;">f'ADD_MONTH(</span><span class="sc" style="color: #5E5E5E;
@@ -114,9 +120,11 @@ background-color: null;
 font-style: inherit;">)'</span></span>
 <span id="cb2-11">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span>:</span>
 <span id="cb2-12">        <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">raise</span> <span class="pp" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">ValueError</span>(<span class="ss" style="color: #20794D;
@@ -144,30 +152,30 @@ background-color: null;
 font-style: inherit;">3</span>).as_(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'col2'</span>))</span>
-<span id="cb2-17">)</span></code></pre></div>
+<span id="cb2-17">)</span></code></pre></div></div>
 </div>
 <p>Then we can generate the query for Spark SQL and AWS Athena:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="bu" style="color: null;
+<div id="cell-9" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(q.get_sql(dialect<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'athena'</span>))</span></code></pre></div>
+font-style: inherit;">'athena'</span>))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>select col1, DATE_ADD('month', 3, col2) AS col2
 from table</code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="bu" style="color: null;
+<div id="cell-10" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(q.get_sql(dialect<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'spark'</span>))</span></code></pre></div>
+font-style: inherit;">'spark'</span>))</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>select col1, ADD_MONTH(col2, 3) AS col2
 from table</code></pre>
@@ -177,8 +185,8 @@ from table</code></pre>
 <section id="select-query" class="level2">
 <h2 class="anchored" data-anchor-id="select-query">Select Query</h2>
 <p>A more complex example to show how the syntax works:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="im" style="color: #00769E;
+<div id="cell-12" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> pikaQ.queries <span class="im" style="color: #00769E;
 background-color: null;
@@ -334,7 +342,7 @@ font-style: inherit;">'flag'</span>)</span>
 <span id="cb7-48"></span>
 <span id="cb7-49"><span class="bu" style="color: null;
 background-color: null;
-font-style: inherit;">print</span>(q.get_sql())</span></code></pre></div>
+font-style: inherit;">print</span>(q.get_sql())</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>with s as (
 select distinct a.col1, a.col2, SUM(a.col3) OVER (PARTITION BY b.col2 ROWS BETWEEN 3 PRECEDING AND CURRENT_ROW) AS total, ROW_NUMBER() OVER (PARTITION BY b.col2 ORDER BY b.col4) AS row_num
@@ -387,9 +395,10 @@ join m on v.col1 = m.col1 and v.col2 = m.col2</code></pre>
 
 
 
+
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><a href="https://github.com/feynlee/latent-upscale"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid figure-img" width="80"></a></p>
+<p><a href="https://github.com/feynlee/latent-upscale"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="80"></a></p>
 </figure>
 </div>
 <p>Enhance the latent upscale options in the img2img process in <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">Automatic1111</a> to provide more flexibility and better image quality.</p>
@@ -452,11 +461,11 @@ join m on v.col1 = m.col1 and v.col2 = m.col2</code></pre>
 <ol start="2" type="1">
 <li>I turned on a fix that’s already in the code base but for some reason not applied by default:</li>
 </ol>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1">  opts.img2img_fix_steps <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1">  opts.img2img_fix_steps <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;">True</span></span></code></pre></div>
+font-style: inherit;">True</span></span></code></pre></div></div>
 <p>so the de-noising process has the correct number of steps.</p>
 <p><img src="https://feynlee.github.io/curiosity-notes/Projects/images/latent-upscale/fixed-sigmas.png" class="img-fluid"></p>
 </section>
@@ -490,32 +499,21 @@ font-style: inherit;">True</span></span></code></pre></div>
 
 
 
+
 <div class="long-text-pic">
 <div class="grid gap-0 container">
 <div class="g-col-12">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://feynlee.github.io/curiosity-notes/Apps/Long-Text-Pic.html"><img src="https://feynlee.github.io/curiosity-notes/Apps/images/Long-Text-Pic-banner.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="https://feynlee.github.io/curiosity-notes/Apps/Long-Text-Pic.html"><img src="https://feynlee.github.io/curiosity-notes/Apps/images/Long-Text-Pic-banner.png" class="img-fluid"></a></p>
 </div>
 <div class="text g-col-12">
 <p><span class="app-name">Long Text Pic</span></p>
 <p><span class="app-subtitle">Edit long text and convert it to a long image for sharing</span></p>
 <div class="app-link">
 <div class="app-link-item qrcode">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://apple.co/46avN7E"><img src="https://feynlee.github.io/curiosity-notes/Projects/https:/tools-qr-production.s3.amazonaws.com/output/apple-toolbox/35142435f6542ef4f3c5751f85271dc9/640c735d40f77518bf91755bf5a6fff3.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="https://apple.co/46avN7E"><img src="https://tools-qr-production.s3.amazonaws.com/output/apple-toolbox/35142435f6542ef4f3c5751f85271dc9/640c735d40f77518bf91755bf5a6fff3.png" class="img-fluid"></a></p>
 </div>
 <div class="app-link-item app-image">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://apple.co/46avN7E"><img src="https://feynlee.github.io/curiosity-notes/Apps/images/Download_on_the_App_Store_Badge.svg" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="https://apple.co/46avN7E"><img src="https://feynlee.github.io/curiosity-notes/Apps/images/Download_on_the_App_Store_Badge.svg" class="img-fluid"></a></p>
 </div>
 </div>
 <div class="support">
@@ -544,9 +542,10 @@ font-style: inherit;">True</span></span></code></pre></div>
 
 
 
+
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><a href="https://github.com/feynlee/code-insertion"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid figure-img" width="80"></a></p>
+<p><a href="https://github.com/feynlee/code-insertion"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="80"></a></p>
 </figure>
 </div>
 <section id="what-this-is" class="level2">
@@ -559,23 +558,25 @@ font-style: inherit;">True</span></span></code></pre></div>
 </section>
 <section id="installing" class="level2">
 <h2 class="anchored" data-anchor-id="installing">Installing</h2>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">quarto</span> add feynlee/code-insertion</span></code></pre></div>
+font-style: inherit;">quarto</span> add feynlee/code-insertion</span></code></pre></div></div>
 <p>This will install the extension under the <code>_extensions</code> subdirectory. If you’re using version control, you will want to check in this directory for your Quarto website.</p>
 </section>
 <section id="using" class="level2">
 <h2 class="anchored" data-anchor-id="using">Using</h2>
 <p>In the front matter of a post, the <code>code-insertion</code> filter and add <code>insert-before-post</code> and/or <code>insert-after-post</code> parameters that point to a markdown file with sections you want to insert before and/or after the post.</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filters</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb2-2"><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">  </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> code-insertion</span></span>
@@ -583,6 +584,7 @@ font-style: inherit;"> code-insertion</span></span>
 background-color: null;
 font-style: inherit;">insert-before-post</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> before_post.md</span></span>
@@ -590,9 +592,10 @@ font-style: inherit;"> before_post.md</span></span>
 background-color: null;
 font-style: inherit;">insert-after-post</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;"> after_post.md</span></span></code></pre></div>
+font-style: inherit;"> after_post.md</span></span></code></pre></div></div>
 <p>You need to specify the path to the markdown file that contains the code you want to insert into your post. Currently this extension does not support inline code insertion (i.e.&nbsp;specifying the code to be inserted right within YAML front matter).</p>
 <p><strong>Tip</strong>: You can add this to <code>_metadata.yml</code> under the folder containing all your posts, so that all of them can share this setting.</p>
 </section>
@@ -619,33 +622,34 @@ font-style: inherit;"> after_post.md</span></span></code></pre></div>
 
 
 
+
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><a href="https://github.com/feynlee/nbdev-ignore"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid figure-img" width="80"></a></p>
+<p><a href="https://github.com/feynlee/nbdev-ignore"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="80"></a></p>
 </figure>
 </div>
 <section id="what-this-is" class="level2">
 <h2 class="anchored" data-anchor-id="what-this-is">What this is</h2>
 <p>When using the <a href="https://github.com/fastai/nbdev">nbdev</a> library, I often find myself having to write</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#| hide</span></span>
 <span id="cb1-2"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#| eval: false</span></span>
-<span id="cb1-3">...</span></code></pre></div>
+<span id="cb1-3">...</span></code></pre></div></div>
 <p>in order for that cell in Jupyter Notebook to be ignored by both the tests and docs. It would great to have a simple directive to do this, and this is the ignore directive:</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#| ignore</span></span>
-<span id="cb2-2">...</span></code></pre></div>
+<span id="cb2-2">...</span></code></pre></div></div>
 <p>It’s equivalent to the above directives.</p>
 </section>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><span class="ex" style="color: null;
 background-color: null;
-font-style: inherit;">pip</span> install nbdev_ignore</span></code></pre></div>
+font-style: inherit;">pip</span> install nbdev_ignore</span></code></pre></div></div>
 </section>
 <section id="how-to-use" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
@@ -664,7 +668,7 @@ font-style: inherit;">pip</span> install nbdev_ignore</span></code></pre></div>
 <section id="result" class="level2">
 <h2 class="anchored" data-anchor-id="result">Result</h2>
 <p>We can now write <code>#|ignore</code> for the cell to be ignored by both tests and docs, but still kept in the notebook:</p>
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#|ignore</span></span>
 <span id="cb4-2"></span>
@@ -723,17 +727,19 @@ background-color: null;
 font-style: inherit;">=</span> df)</span>
 <span id="cb4-18"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">def</span> test(spark_load_mock):</span>
 <span id="cb4-19">    df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> fake_func(spark)</span>
 <span id="cb4-20">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> df</span>
 <span id="cb4-21"></span>
 <span id="cb4-22">dfpd <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> test()</span></code></pre></div>
+font-style: inherit;">=</span> test()</span></code></pre></div></div>
 
 
 <div class="sharethis-inline-share-buttons pt-5">
@@ -754,12 +760,13 @@ font-style: inherit;">=</span> test()</span></code></pre></div>
 
 
 
+
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://feynlee.github.io/curiosity-notes/Projects/images/whisper2subtitles-facecover.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="https://feynlee.github.io/curiosity-notes/Projects/images/whisper2subtitles-facecover.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
-<p><a href="https://colab.research.google.com/github/feynlee/whisper2subtitles/blob/main/Whisper2subtitles.ipynb"><img src="https://feynlee.github.io/curiosity-notes/Projects/https:/colab.research.google.com/assets/colab-badge.svg" class="img-fluid" data-fig-align="left"></a> <a href="https://github.com/feynlee/whisper2subtitles"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid" data-fig-align="left" width="80"></a></p>
+<p><a href="https://colab.research.google.com/github/feynlee/whisper2subtitles/blob/main/Whisper2subtitles.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid quarto-figure quarto-figure-left"></a> <a href="https://github.com/feynlee/whisper2subtitles"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid quarto-figure quarto-figure-left" width="80"></a></p>
 <p>A simple Google Colab Notebook to generate transcribed subtitles for videos/audios using OpenAI’s open source <a href="https://github.com/openai/whisper">whisper model</a>, with options to generate translated subtitles.</p>
 <p>You can choose to generate translations using Facebooks’ <a href="https://huggingface.co/facebook/m2m100_418M">M2M100_418 model</a> model or manually add translated texts from other tools. The original texts and translated texts will be combined into one bilingual subtitle.</p>
 <p>There’s also an option to burn the subtitle into video using ffmpeg directly in the notebook.</p>
@@ -782,74 +789,39 @@ font-style: inherit;">=</span> test()</span></code></pre></div>
 
 
 
-<p><a href="https://colab.research.google.com/github/feynlee/Stable_Diffusion/blob/main/dreambooth/DreamBooth_Stable_Diffusion.ipynb"><img src="https://feynlee.github.io/curiosity-notes/Projects/https:/colab.research.google.com/assets/colab-badge.svg" class="img-fluid" data-fig-align="left"></a> <a href="https://github.com/feynlee/Stable_Diffusion/tree/main/dreambooth"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid" data-fig-align="left" width="80"></a></p>
+
+<p><a href="https://colab.research.google.com/github/feynlee/Stable_Diffusion/blob/main/dreambooth/DreamBooth_Stable_Diffusion.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid quarto-figure quarto-figure-left"></a> <a href="https://github.com/feynlee/Stable_Diffusion/tree/main/dreambooth"><img src="https://feynlee.github.io/curiosity-notes/images/icons/github-logo.png" class="img-fluid quarto-figure quarto-figure-left" width="80"></a></p>
 <section id="train-on-stable-diffusion-v1.4" class="level2">
 <h2 class="anchored" data-anchor-id="train-on-stable-diffusion-v1.4">Train on Stable Diffusion V1.4</h2>
 <p>I adapted a Google Colab Notebook to fine-tune the stability diffusion model with DreamBooth, and added sections to save the trained model directly to HuggingFace, so it can be pulled from the hub in the future.</p>
 <p>The following are some profile artworks generated by a model trained with photos of my face. The results are pretty interesting. Some of them do have some resemblance with me, while others do not look that much like me.</p>
 <div class="grid">
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/comp-1.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-1.JPG" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/comp-1.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-1.JPG" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/comp-2.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-2.JPG" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/comp-2.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-2.JPG" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/comp-3.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-3.JPG" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/comp-3.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-3.JPG" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/comp-4.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-4.JPG" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/comp-4.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-4.JPG" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/comp-5.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-5.JPG" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/comp-5.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-5.JPG" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/comp-6.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-6.JPG" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/comp-6.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-6.JPG" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/comp-7.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-7.JPG" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/comp-7.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-7.JPG" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/comp-8.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-8.JPG" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/comp-8.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-8.JPG" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/comp-9.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-9.JPG" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/comp-9.JPG" class="lightbox" data-gallery="composition"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/comp-9.JPG" class="img-fluid"></a></p>
 </div>
 </div>
 </section>
@@ -859,172 +831,76 @@ font-style: inherit;">=</span> test()</span></code></pre></div>
 <p>The Arcane style got preserved, and now I can generate pictures of “me” in this style:</p>
 <div class="grid">
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-0.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-0.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-0.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-0.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-1.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-1.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-1.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-1.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-2.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-2.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-2.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-2.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-3.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-3.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-3.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-3.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-4.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-4.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-4.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-4.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-5.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-5.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-5.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-5.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-6.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-6.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-6.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-6.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-7.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-7.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-7.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-7.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-8.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-8.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-8.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-8.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-9.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-9.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-9.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-9.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-10.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-10.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-10.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-10.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-11.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-11.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-11.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-11.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-12.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-12.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-12.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-12.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-13.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-13.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-13.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-13.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-14.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-14.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-14.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-14.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-15.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-15.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-15.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-15.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-16.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-16.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-16.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-16.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-17.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-17.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-17.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-17.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-18.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-18.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-18.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-18.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-19.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-19.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-19.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-19.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-20.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-20.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-20.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-20.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-21.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-21.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-21.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-21.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-22.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-22.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-22.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-22.png" class="img-fluid"></a></p>
 </div>
 <div class="g-col-6 g-col-md-4">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/dreambooth/arcane_style/arcane_style-23.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-23.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
+<p><a href="images/dreambooth/arcane_style/arcane_style-23.png" class="lightbox" data-gallery="arcane"><img src="https://feynlee.github.io/curiosity-notes/Projects/images/dreambooth/arcane_style/arcane_style-23.png" class="img-fluid"></a></p>
 </div>
 </div>
 
@@ -1047,10 +923,9 @@ font-style: inherit;">=</span> test()</span></code></pre></div>
 
 
 
+
 <p>Some projects I did while learning Blender.</p>
-<p></p><div id="youtube-frame" style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;"><iframe width="100%" height="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/Q3o_hI-Jx_8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
-<p></p><div id="youtube-frame" style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;"><iframe width="100%" height="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/QZ8IfDjbJNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
-<p></p><div id="youtube-frame" style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;"><iframe width="100%" height="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/XKTIpnJ2R4o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+<p></p><div id="youtube-frame" style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;"><iframe width="100%" height="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/Q3o_hI-Jx_8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div> <div id="youtube-frame" style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;"><iframe width="100%" height="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/QZ8IfDjbJNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div> <div id="youtube-frame" style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;"><iframe width="100%" height="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/XKTIpnJ2R4o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
 
 
 <div class="sharethis-inline-share-buttons pt-5">
