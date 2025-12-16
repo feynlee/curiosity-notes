@@ -26,7 +26,11 @@ website:
       - text: Projects
         href: projects.qmd
       - text: Apps
-        href: Apps/Long-Text-Pic.qmd
+        menu:
+          - text: Long Text Pic
+            href: Apps/Long-Text-Pic.qmd
+          - text: Lexigen
+            href: Apps/Lexigen.qmd
     right:
       - about.qmd
       - icon: github
