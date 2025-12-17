@@ -9,7 +9,7 @@
 <link>https://feynlee.github.io/curiosity-notes/projects.html</link>
 <atom:link href="https://feynlee.github.io/curiosity-notes/projects.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.8.25</generator>
+<generator>quarto-1.8.26</generator>
 <lastBuildDate>Mon, 04 Sep 2023 00:00:00 GMT</lastBuildDate>
 <item>
   <title>pikaQ - A SQL Query Builder for Different Dialects</title>

@@ -17,17 +17,6 @@
     "items": []
   },
   {
-    "listing": "/ai_art-sd.html",
-    "items": [
-      "/AI_art/stable_diffusion/Cyberpunk_Knight.html",
-      "/AI_art/stable_diffusion/Practice.html",
-      "/AI_art/stable_diffusion/happy_the_year_of_the_rabbit.html",
-      "/AI_art/stable_diffusion/this_fleeting_life.html",
-      "/AI_art/stable_diffusion/Christmas_gift.html",
-      "/AI_art/stable_diffusion/horse.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": [
       "/posts/2023-11-27-How_to_use_TextKit2.html",
@@ -45,6 +34,17 @@
       "/posts/2017-01-20-how-i-solved-the-worlds-hardest-logic-puzzle.html",
       "/posts/2016-05-02-notes-for-learning-d3-js.html",
       "/posts/2014-11-22-black-hole-physics-in-interstellar.html"
+    ]
+  },
+  {
+    "listing": "/ai_art-sd.html",
+    "items": [
+      "/AI_art/stable_diffusion/Cyberpunk_Knight.html",
+      "/AI_art/stable_diffusion/Practice.html",
+      "/AI_art/stable_diffusion/happy_the_year_of_the_rabbit.html",
+      "/AI_art/stable_diffusion/this_fleeting_life.html",
+      "/AI_art/stable_diffusion/Christmas_gift.html",
+      "/AI_art/stable_diffusion/horse.html"
     ]
   },
   {
