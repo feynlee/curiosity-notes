@@ -23,11 +23,11 @@ to a long image for sharing]{.app-subtitle}
 
 :::{.app-link}
 :::{.app-link-item .qrcode}
-[![](images/qr-code-long_text_pic.png)](https://apple.co/46avN7E)
+[![](images/qr-code-long_text_pic.png)](https://apple.co/4jaS644)
 :::
 
 :::{.app-link-item .app-image}
-[![](images/Download_on_the_App_Store_Badge.svg)](https://apple.co/46avN7E)
+[![](images/download-badge-long_text_pic.svg)](https://apple.co/4jaS644)
 :::
 :::
 
