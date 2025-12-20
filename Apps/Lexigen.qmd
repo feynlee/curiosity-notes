@@ -22,11 +22,11 @@ toc: false
 
 :::{.app-link}
 :::{.app-link-item .qrcode}
-[![](images/qr-code-lexigen.png)](https://apple.co/46avN7E)
+[![](images/qr-code-lexigen.png)](https://apple.co/4jaS644)
 :::
 
 :::{.app-link-item .app-image}
-[![](images/download-badge-Lexigen.svg)](https://apple.co/46avN7E)
+[![](images/download-badge-Lexigen.svg)](https://apple.co/4jaS644)
 :::
 :::
 
