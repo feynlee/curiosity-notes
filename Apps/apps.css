@@ -328,6 +328,283 @@ body {
     margin: 20px 10px;
 }
 
+/* BillSplit product page */
+.billsplit-page {
+    min-height: calc(100vh - 56px);
+    padding: 44px 24px 64px;
+    overflow: hidden;
+    color: #f7f8fb;
+    text-align: left;
+    background:
+        radial-gradient(ellipse at 17% 34%, rgba(30, 81, 137, 0.32), transparent 43%),
+        linear-gradient(145deg, #11151c 0%, #080a0e 70%);
+}
+
+.billsplit-shell {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.billsplit-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+    align-items: center;
+    gap: clamp(28px, 5vw, 76px);
+}
+
+.billsplit-gallery {
+    position: relative;
+    width: 100%;
+    height: min(72vw, 720px);
+    min-height: 570px;
+}
+
+.billsplit-gallery figure {
+    margin: 0;
+}
+
+.billsplit-main-shot {
+    position: absolute;
+    top: 2%;
+    left: 3%;
+    z-index: 1;
+    width: min(59%, 355px);
+}
+
+.billsplit-main-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 26px;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.58);
+}
+
+.billsplit-receipt-card {
+    position: absolute;
+    right: 1%;
+    bottom: 6%;
+    z-index: 2;
+    width: min(43%, 250px);
+    padding: 9px 9px 12px;
+    overflow: hidden;
+    color: #f4f5f7;
+    text-align: center;
+    background: #191d24;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.52);
+    transform: rotate(2deg);
+}
+
+.billsplit-receipt-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.billsplit-receipt-card figcaption {
+    padding-top: 10px;
+    color: #d4d8e0;
+    font-size: 13px;
+    letter-spacing: 0.015em;
+}
+
+.billsplit-copy {
+    max-width: 540px;
+    padding: 24px 0;
+    text-align: left;
+}
+
+.billsplit-eyebrow {
+    margin: 0 0 20px;
+    color: #8f9aab;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.billsplit-eyebrow span {
+    padding: 0 5px;
+    color: #168bff;
+}
+
+.billsplit-copy h1 {
+    margin: 0 0 22px;
+    color: #fff;
+    font-size: clamp(44px, 5.1vw, 68px);
+    font-weight: 750;
+    letter-spacing: -0.055em;
+    line-height: 1.02;
+}
+
+.billsplit-copy h1 span {
+    color: #80bdff;
+}
+
+.billsplit-description {
+    max-width: 500px;
+    margin: 0;
+    color: #c0c7d2;
+    font-size: clamp(18px, 1.8vw, 22px);
+    line-height: 1.55;
+}
+
+.billsplit-contact-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 34px;
+    padding: 15px 21px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    background: #087ff1;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 105, 219, 0.24);
+    transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.billsplit-contact-button:hover,
+.billsplit-contact-button:focus-visible {
+    color: #fff;
+    background: #2092ff;
+    transform: translateY(-1px);
+}
+
+.billsplit-support-note {
+    margin: 15px 0 0;
+    color: #8993a3;
+    font-size: 14px;
+}
+
+.billsplit-support-note a {
+    color: #b9d9ff;
+    text-decoration-color: rgba(185, 217, 255, 0.45);
+    text-underline-offset: 3px;
+}
+
+.billsplit-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 8px;
+}
+
+.billsplit-steps article {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    min-height: 112px;
+    padding: 21px 20px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.085);
+    border-radius: 15px;
+}
+
+.billsplit-step-number {
+    flex: 0 0 auto;
+    color: #5aa9ff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.billsplit-steps h2 {
+    margin: 0 0 7px;
+    color: #f2f4f8;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.billsplit-steps p {
+    margin: 0;
+    color: #aab3c0;
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+@media (max-width: 820px) {
+    .billsplit-page {
+        padding: 30px 20px 48px;
+    }
+
+    .billsplit-hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .billsplit-gallery {
+        width: min(100%, 520px);
+        height: 560px;
+        min-height: 0;
+        margin: 0 auto;
+    }
+
+    .billsplit-main-shot {
+        left: 8%;
+        width: min(58%, 240px);
+    }
+
+    .billsplit-receipt-card {
+        right: 5%;
+        bottom: 7%;
+        width: min(41%, 210px);
+    }
+
+    .billsplit-copy {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 6px 0 26px;
+    }
+
+    .billsplit-copy h1 {
+        font-size: clamp(44px, 9vw, 62px);
+    }
+
+    .billsplit-steps {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    .billsplit-steps article {
+        min-height: auto;
+    }
+}
+
+@media (max-width: 420px) {
+    .billsplit-page {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .billsplit-gallery {
+        height: 520px;
+    }
+
+    .billsplit-main-shot {
+        left: 4%;
+        width: min(60%, 220px);
+    }
+
+    .billsplit-receipt-card {
+        right: 1%;
+        bottom: 5%;
+        width: 43%;
+        padding: 7px 7px 10px;
+    }
+
+    .billsplit-receipt-card figcaption {
+        padding-top: 7px;
+        font-size: 11px;
+    }
+}
+
 
 @media (max-width: 992px) {
     .long-text-pic .text,

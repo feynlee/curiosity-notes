@@ -1,21 +1,46 @@
 ---
-pagetitle: BillSplit Support
+pagetitle: BillSplit — Split restaurant bills item by item
 page-layout: custom
 css: apps.css
 toc: false
 ---
 
-::::::{.lexigen style="background-color: #050505;"}
-:::::{.grid .gap-0 .container}
-::::{.text .g-col-12}
-[BillSplit]{.app-name}
+<div class="billsplit-page">
+  <div class="billsplit-shell">
+    <section class="billsplit-hero" aria-labelledby="billsplit-title">
+      <div class="billsplit-gallery" aria-label="BillSplit app preview">
+        <figure class="billsplit-main-shot">
+          <img src="images/BillSplit-app-screenshot.png" alt="BillSplit on iPhone showing a Mint and Maple receipt, item assignments, shared tax and tip, and the final total." fetchpriority="high">
+        </figure>
+        <figure class="billsplit-receipt-card">
+          <img src="images/BillSplit-sample-receipt.png" alt="Sample Mint and Maple restaurant receipt with two dishes, tax, tip, and a $38.71 total." loading="lazy">
+          <figcaption>Start with the receipt</figcaption>
+        </figure>
+      </div>
 
-[Split restaurant bills, item by item.]{.app-subtitle}
+      <div class="billsplit-copy">
+        <p class="billsplit-eyebrow">BILLSPLIT <span aria-hidden="true">·</span> FOR IPHONE</p>
+        <h1 id="billsplit-title">Split the bill.<br><span>Keep it fair.</span></h1>
+        <p class="billsplit-description">A clear, item-by-item way to split a restaurant check. Assign dishes, share tax and tip proportionally, and see what everyone owes. BillSplit doesn’t transfer bill payments or send payment requests; optional support tips use Apple’s in-app purchase system.</p>
 
-**BillSplit for iPhone**
+        <a class="billsplit-contact-button" href="mailto:billsplit@flycricket.support">Contact support <span aria-hidden="true">↗</span></a>
+        <p class="billsplit-support-note">Questions or feedback? <a href="mailto:billsplit@flycricket.support">billsplit@flycricket.support</a></p>
+      </div>
+    </section>
 
-For support, feedback, or feature requests, contact [billsplit@flycricket.support](mailto:billsplit@flycricket.support).
-
-::::
-:::::
-::::::
+    <section class="billsplit-steps" aria-label="How BillSplit works">
+      <article>
+        <span class="billsplit-step-number">01</span>
+        <div><h2>Add the items</h2><p>Start with the receipt and its itemized total.</p></div>
+      </article>
+      <article>
+        <span class="billsplit-step-number">02</span>
+        <div><h2>Share each dish</h2><p>Choose who had each item, including shared plates.</p></div>
+      </article>
+      <article>
+        <span class="billsplit-step-number">03</span>
+        <div><h2>Check each share</h2><p>See each person's share of the items, tax, and tip.</p></div>
+      </article>
+    </section>
+  </div>
+</div>
