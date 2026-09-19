@@ -29,6 +29,8 @@ website:
         menu:
           - text: Long Text Pic
             href: Apps/Long-Text-Pic.qmd
+          - text: BillSplit
+            href: Apps/BillSplit.qmd
           - text: Lexigen
             href: Apps/Lexigen.qmd
     right:
