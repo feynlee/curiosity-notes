@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,16 @@
 
 <title>Export Jupyter Document With Optional Code Visibility – curiosity-notes</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -70,15 +76,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-68c8bffd90dad8f2b55c52d7b6410dc0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-aced932c6eb97d642153b8e218288f9f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9fe750d4bca42c81179e6171a5259934.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b0fbc108aa289a9c2dc95917efcac9b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -322,31 +327,31 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 <section id="add-button-to-toggle-code" class="level2">
 <h2 class="anchored" data-anchor-id="add-button-to-toggle-code">Add Button to Toggle Code</h2>
 <p>Jupyter notebooks are web-based, we can simply add some HTML and javascript to make this work. One can include a raw cell at the beginning of your notebook containing the JavaScript and HTML below. This code is heavily based on <a href="http://chris-said.io/2016/02/13/how-to-make-polished-jupyter-presentations-with-optional-code-visibility/">Chris Said’s blog post</a>, except it also hides a few other things besides the input cell, including the numerical prompt next to the cells such as <code>input [1]</code> and <code>output [1]</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">function</span> <span class="fu">code_toggle</span>() {</span>
-<span id="cb1-3"><a href="#cb1-3"></a>    <span class="cf">if</span> (code_shown){</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    <span class="fu">$</span>(<span class="st">'div.input'</span>)<span class="op">.</span><span class="fu">hide</span>(<span class="st">'500'</span>)<span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>    <span class="fu">$</span>(<span class="st">'#toggleButton'</span>)<span class="op">.</span><span class="fu">val</span>(<span class="st">'Show Code'</span>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    } <span class="cf">else</span> {</span>
-<span id="cb1-7"><a href="#cb1-7"></a>    <span class="fu">$</span>(<span class="st">'div.input'</span>)<span class="op">.</span><span class="fu">show</span>(<span class="st">'500'</span>)<span class="op">;</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>    <span class="fu">$</span>(<span class="st">'#toggleButton'</span>)<span class="op">.</span><span class="fu">val</span>(<span class="st">'Hide Code'</span>)</span>
-<span id="cb1-9"><a href="#cb1-9"></a>    }</span>
-<span id="cb1-10"><a href="#cb1-10"></a>    code_shown <span class="op">=</span> <span class="op">!</span>code_shown</span>
-<span id="cb1-11"><a href="#cb1-11"></a>}</span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="fu">$</span>( <span class="bu">document</span> )<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span>() {</span>
-<span id="cb1-14"><a href="#cb1-14"></a>    code_shown<span class="op">=</span><span class="kw">false</span><span class="op">;</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a>    <span class="fu">$</span>(<span class="st">'div.input'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>    <span class="fu">$</span>(<span class="st">'div.prompt'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>    <span class="fu">$</span>(<span class="st">'div.back-to-top'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a>    <span class="fu">$</span>(<span class="st">'nav#menubar'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>    <span class="fu">$</span>(<span class="st">'.breadcrumb'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a>    <span class="fu">$</span>(<span class="st">'.hidden-print'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a>})<span class="op">;</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="dt">&lt;</span><span class="kw">form</span><span class="ot"> action</span><span class="op">=</span><span class="st">"javascript:code_toggle()"</span><span class="dt">&gt;</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">"submit"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"toggleButton"</span><span class="ot"> value</span><span class="op">=</span><span class="st">"Show Code"</span><span class="dt">&gt;</span></span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="dt">&lt;/</span><span class="kw">form</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="kw">function</span> <span class="fu">code_toggle</span>() {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>    <span class="cf">if</span> (code_shown){</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>    <span class="fu">$</span>(<span class="st">'div.input'</span>)<span class="op">.</span><span class="fu">hide</span>(<span class="st">'500'</span>)<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>    <span class="fu">$</span>(<span class="st">'#toggleButton'</span>)<span class="op">.</span><span class="fu">val</span>(<span class="st">'Show Code'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>    } <span class="cf">else</span> {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>    <span class="fu">$</span>(<span class="st">'div.input'</span>)<span class="op">.</span><span class="fu">show</span>(<span class="st">'500'</span>)<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>    <span class="fu">$</span>(<span class="st">'#toggleButton'</span>)<span class="op">.</span><span class="fu">val</span>(<span class="st">'Hide Code'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>    }</span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a>    code_shown <span class="op">=</span> <span class="op">!</span>code_shown</span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>}</span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a><span class="fu">$</span>( <span class="bu">document</span> )<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span>() {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a>    code_shown<span class="op">=</span><span class="kw">false</span><span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a>    <span class="fu">$</span>(<span class="st">'div.input'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a>    <span class="fu">$</span>(<span class="st">'div.prompt'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a>    <span class="fu">$</span>(<span class="st">'div.back-to-top'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a>    <span class="fu">$</span>(<span class="st">'nav#menubar'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-label="19"></a>    <span class="fu">$</span>(<span class="st">'.breadcrumb'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-label="20"></a>    <span class="fu">$</span>(<span class="st">'.hidden-print'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-label="21"></a>})<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-label="22"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-label="23"></a><span class="dt">&lt;</span><span class="kw">form</span><span class="ot"> action</span><span class="op">=</span><span class="st">"javascript:code_toggle()"</span><span class="dt">&gt;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-label="24"></a><span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">"submit"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"toggleButton"</span><span class="ot"> value</span><span class="op">=</span><span class="st">"Show Code"</span><span class="dt">&gt;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-label="25"></a><span class="dt">&lt;/</span><span class="kw">form</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When we export the notebook to HTML, the added code will make a toggle button. See Chris’ example <a href="https://nbviewer.jupyter.org/github/csaid/polished_notebooks/blob/master/notebook_polished.ipynb">here</a>.</p>
 <p>This is good and all, but we don’t want to manually add this raw cell to every notebook we create. Plus, it takes up a lot of space and does not look good in the notebook format. <strong><em>Is there a way that Jupyter can automatically add this code to the HTML file when exporting?</em></strong></p>
 <p>The answer is yes.</p>
@@ -360,66 +365,66 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 <p><code>&lt;Anaconda_Folder&gt;/envs/py3/lib/python3.6/site-packages/nbconvert/templates/html/</code>.</p>
 <!-- TODO modifications to basic.tpl -->
 <p>I copied the <code>full.tpl</code> template and added the script part in the <code>&lt;head&gt;</code> element:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1"></a>#| code-fold: true</span>
-<span id="cb2-2"><a href="#cb2-2"></a>{%- block toggle_script -%}</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">function</span> <span class="fu">code_toggle</span>() {</span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="cf">if</span> (code_shown){</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="fu">$</span>(<span class="st">'div.input'</span>)<span class="op">.</span><span class="fu">hide</span>(<span class="st">'500'</span>)<span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="fu">$</span>(<span class="st">'#toggleButton'</span>)<span class="op">.</span><span class="fu">val</span>(<span class="st">'Show Code'</span>)</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    } <span class="cf">else</span> {</span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="fu">$</span>(<span class="st">'div.input'</span>)<span class="op">.</span><span class="fu">show</span>(<span class="st">'500'</span>)<span class="op">;</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>    <span class="fu">$</span>(<span class="st">'#toggleButton'</span>)<span class="op">.</span><span class="fu">val</span>(<span class="st">'Hide Code'</span>)</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    }</span>
-<span id="cb2-12"><a href="#cb2-12"></a>    code_shown <span class="op">=</span> <span class="op">!</span>code_shown</span>
-<span id="cb2-13"><a href="#cb2-13"></a>}</span>
-<span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="fu">$</span>( <span class="bu">document</span> )<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span>(){</span>
-<span id="cb2-16"><a href="#cb2-16"></a>    code_shown<span class="op">=</span><span class="kw">false</span><span class="op">;</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a>    <span class="fu">$</span>(<span class="st">'div.input'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a>    <span class="fu">$</span>(<span class="st">'div.prompt'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>    <span class="fu">$</span>(<span class="st">'div.back-to-top'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a>    <span class="fu">$</span>(<span class="st">'nav#menubar'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>    <span class="fu">$</span>(<span class="st">'.breadcrumb'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a>    <span class="fu">$</span>(<span class="st">'.hidden-print'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>})<span class="op">;</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>{%- endblock toggle_script -%}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>#| code-fold: true</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>{%- block toggle_script -%}</span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a><span class="kw">function</span> <span class="fu">code_toggle</span>() {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>    <span class="cf">if</span> (code_shown){</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>    <span class="fu">$</span>(<span class="st">'div.input'</span>)<span class="op">.</span><span class="fu">hide</span>(<span class="st">'500'</span>)<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>    <span class="fu">$</span>(<span class="st">'#toggleButton'</span>)<span class="op">.</span><span class="fu">val</span>(<span class="st">'Show Code'</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>    } <span class="cf">else</span> {</span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a>    <span class="fu">$</span>(<span class="st">'div.input'</span>)<span class="op">.</span><span class="fu">show</span>(<span class="st">'500'</span>)<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a>    <span class="fu">$</span>(<span class="st">'#toggleButton'</span>)<span class="op">.</span><span class="fu">val</span>(<span class="st">'Hide Code'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-label="11"></a>    }</span>
+<span id="cb2-12"><a href="#cb2-12" aria-label="12"></a>    code_shown <span class="op">=</span> <span class="op">!</span>code_shown</span>
+<span id="cb2-13"><a href="#cb2-13" aria-label="13"></a>}</span>
+<span id="cb2-14"><a href="#cb2-14" aria-label="14"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-label="15"></a><span class="fu">$</span>( <span class="bu">document</span> )<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span>(){</span>
+<span id="cb2-16"><a href="#cb2-16" aria-label="16"></a>    code_shown<span class="op">=</span><span class="kw">false</span><span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-label="17"></a>    <span class="fu">$</span>(<span class="st">'div.input'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-label="18"></a>    <span class="fu">$</span>(<span class="st">'div.prompt'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-label="19"></a>    <span class="fu">$</span>(<span class="st">'div.back-to-top'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-label="20"></a>    <span class="fu">$</span>(<span class="st">'nav#menubar'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-label="21"></a>    <span class="fu">$</span>(<span class="st">'.breadcrumb'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-label="22"></a>    <span class="fu">$</span>(<span class="st">'.hidden-print'</span>)<span class="op">.</span><span class="fu">hide</span>()<span class="op">;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-label="23"></a>})<span class="op">;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-label="24"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-label="25"></a>{%- endblock toggle_script -%}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and the HTML part for the button to the body.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> tabindex</span><span class="op">=</span><span class="st">"-1"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"notebook"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"border-box-sizing"</span><span class="dt">&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"container"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"notebook-container"</span><span class="dt">&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>        <span class="dt">&lt;</span><span class="kw">form</span><span class="ot"> action</span><span class="op">=</span><span class="st">"javascript:code_toggle()"</span><span class="dt">&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>        <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">"submit"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"toggleButton"</span><span class="ot"> value</span><span class="op">=</span><span class="st">"Show Code"</span><span class="dt">&gt;</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>        <span class="dt">&lt;/</span><span class="kw">form</span><span class="dt">&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>        {{ super() }}</span>
-<span id="cb3-8"><a href="#cb3-8"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> tabindex</span><span class="op">=</span><span class="st">"-1"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"notebook"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"border-box-sizing"</span><span class="dt">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"container"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"notebook-container"</span><span class="dt">&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>        <span class="dt">&lt;</span><span class="kw">form</span><span class="ot"> action</span><span class="op">=</span><span class="st">"javascript:code_toggle()"</span><span class="dt">&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>        <span class="dt">&lt;</span><span class="kw">input</span><span class="ot"> type</span><span class="op">=</span><span class="st">"submit"</span><span class="ot"> id</span><span class="op">=</span><span class="st">"toggleButton"</span><span class="ot"> value</span><span class="op">=</span><span class="st">"Show Code"</span><span class="dt">&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a>        <span class="dt">&lt;/</span><span class="kw">form</span><span class="dt">&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a>        {{ super() }}</span>
+<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-label="10"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>See this <a href="https://gist.github.com/feynlee/701a56a239f7034e380e850865154945">gist</a> for the full template code.</p>
 </section>
 <section id="use-jupyters-post-save-hook-to-automate" class="level2">
 <h2 class="anchored" data-anchor-id="use-jupyters-post-save-hook-to-automate">Use Jupyter’s Post-Save Hook to Automate</h2>
 <p>We can add a function in the Jupyter configuration file to automatically export HTML file whenever we save a notebook. The Jupyter configuration file can be found at “~/.jupyter/jupyter_notebook_config.py” on mac.</p>
 <p>An example code for <code>jupyter_notebook_config.py</code> that exports an HTML file on save for notebooks with “Report-” in their names:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> os</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="im">from</span> subprocess <span class="im">import</span> check_call</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="kw">def</span> post_save(model, os_path, contents_manager):</span>
-<span id="cb4-5"><a href="#cb4-5"></a>    <span class="co">"""post-save hook for converting notebooks to .py scripts"""</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>    <span class="cf">if</span> model[<span class="st">'type'</span>] <span class="op">!=</span> <span class="st">'notebook'</span>:</span>
-<span id="cb4-7"><a href="#cb4-7"></a>        <span class="cf">return</span> <span class="co"># only do this for notebooks</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>    d, fname <span class="op">=</span> os.path.split(os_path)</span>
-<span id="cb4-9"><a href="#cb4-9"></a>    <span class="cf">if</span> <span class="st">'Report-'</span> <span class="kw">in</span> fname:</span>
-<span id="cb4-10"><a href="#cb4-10"></a>        <span class="co"># generate html files</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>        check_call([<span class="st">'jupyter'</span>, <span class="st">'nbconvert'</span>, <span class="st">'--to'</span>, <span class="st">'html'</span>,</span>
-<span id="cb4-12"><a href="#cb4-12"></a>            fname, <span class="st">'--template=report.tpl'</span>], cwd<span class="op">=</span>d)</span>
-<span id="cb4-13"><a href="#cb4-13"></a>        <span class="bu">print</span>(<span class="st">"finished creating html file </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(fname.replace(<span class="st">'.ipynb'</span>, <span class="st">'.html'</span>)))</span>
-<span id="cb4-14"><a href="#cb4-14"></a></span>
-<span id="cb4-15"><a href="#cb4-15"></a></span>
-<span id="cb4-16"><a href="#cb4-16"></a>c <span class="op">=</span> get_config()</span>
-<span id="cb4-17"><a href="#cb4-17"></a>c.FileContentsManager.post_save_hook <span class="op">=</span> post_save</span>
-<span id="cb4-18"><a href="#cb4-18"></a>c.NotebookApp.open_browser <span class="op">=</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="im">import</span> os</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a><span class="im">from</span> subprocess <span class="im">import</span> check_call</span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a><span class="kw">def</span> post_save(model, os_path, contents_manager):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>    <span class="co">"""post-save hook for converting notebooks to .py scripts"""</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>    <span class="cf">if</span> model[<span class="st">'type'</span>] <span class="op">!=</span> <span class="st">'notebook'</span>:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>        <span class="cf">return</span> <span class="co"># only do this for notebooks</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a>    d, fname <span class="op">=</span> os.path.split(os_path)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a>    <span class="cf">if</span> <span class="st">'Report-'</span> <span class="kw">in</span> fname:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-label="10"></a>        <span class="co"># generate html files</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-label="11"></a>        check_call([<span class="st">'jupyter'</span>, <span class="st">'nbconvert'</span>, <span class="st">'--to'</span>, <span class="st">'html'</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-label="12"></a>            fname, <span class="st">'--template=report.tpl'</span>], cwd<span class="op">=</span>d)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-label="13"></a>        <span class="bu">print</span>(<span class="st">"finished creating html file </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(fname.replace(<span class="st">'.ipynb'</span>, <span class="st">'.html'</span>)))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-label="14"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-label="15"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-label="16"></a>c <span class="op">=</span> get_config()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-label="17"></a>c.FileContentsManager.post_save_hook <span class="op">=</span> post_save</span>
+<span id="cb4-18"><a href="#cb4-18" aria-label="18"></a>c.NotebookApp.open_browser <span class="op">=</span> <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>See <a href="https://jupyter-notebook.readthedocs.io/en/stable/extending/savehooks.html">Jupyter documentation on file save hooks</a> for more details on how to use save hooks.</p>
 
 

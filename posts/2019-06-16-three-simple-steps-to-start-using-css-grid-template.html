@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,16 @@
 
 <title>Three Simple Steps to Start Using CSS Grid Template – curiosity-notes</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -70,15 +76,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-68c8bffd90dad8f2b55c52d7b6410dc0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-aced932c6eb97d642153b8e218288f9f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9fe750d4bca42c81179e6171a5259934.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b0fbc108aa289a9c2dc95917efcac9b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -317,18 +322,18 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 <section id="step-1-display-grid" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-display-grid">Step 1: Display Grid</h2>
 <p>First, we change the display to be “grid”:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1"></a>div<span class="fu">.container</span> {</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw">display</span><span class="ch">:</span> <span class="dv">grid</span><span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>div<span class="fu">.container</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>    <span class="kw">display</span><span class="ch">:</span> <span class="dv">grid</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="step-2-define-grid" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-define-grid">Step 2: Define Grid</h2>
 <p>We then define the grid using “fr” (short for fraction) as the following:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource scss number-lines code-with-copy"><code class="sourceCode scss"><span id="cb2-1"><a href="#cb2-1"></a>div<span class="fu">.container</span> {</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">display</span>: <span class="dv">grid</span><span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="kw">grid-template-columns</span>: <span class="dv">5</span>fr <span class="dv">1</span>fr <span class="dv">1</span>fr<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="kw">grid-template-rows</span>: <span class="dv">1</span>fr <span class="dv">1</span>fr<span class="op">;</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource scss number-lines code-with-copy"><code class="sourceCode scss"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>div<span class="fu">.container</span> {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>    <span class="kw">display</span>: <span class="dv">grid</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>    <span class="kw">grid-template-columns</span>: <span class="dv">5</span>fr <span class="dv">1</span>fr <span class="dv">1</span>fr<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>    <span class="kw">grid-template-rows</span>: <span class="dv">1</span>fr <span class="dv">1</span>fr<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/css_grid.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
@@ -339,30 +344,30 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 <section id="step-3-place-content-into-the-grid" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-place-content-into-the-grid">Step 3: Place Content Into the Grid</h2>
 <p>The easiest way is to use grid-template-areas:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource scss number-lines code-with-copy"><code class="sourceCode scss"><span id="cb3-1"><a href="#cb3-1"></a>div<span class="fu">.container</span> {</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    <span class="kw">display</span>: <span class="dv">grid</span><span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>    <span class="kw">grid-template-columns</span>: <span class="dv">5</span>fr <span class="dv">1</span>fr <span class="dv">1</span>fr<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="kw">grid-template-rows</span>: <span class="dv">1</span>fr <span class="dv">1</span>fr<span class="op">;</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="kw">grid-template-areas</span>:</span>
-<span id="cb3-6"><a href="#cb3-6"></a>        <span class="st">"description social rss"</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>        <span class="st">"description social rss"</span><span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>}</span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a>div<span class="fu">.description</span> {</span>
-<span id="cb3-11"><a href="#cb3-11"></a>    <span class="kw">grid-area</span>: description<span class="op">;</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a>    <span class="kw">justify-self</span>: <span class="dv">stretch</span><span class="op">;</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a>    <span class="kw">align-self</span>: <span class="dv">stretch</span><span class="op">;</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a>}</span>
-<span id="cb3-15"><a href="#cb3-15"></a>div<span class="fu">.social</span> {</span>
-<span id="cb3-16"><a href="#cb3-16"></a>    <span class="kw">grid-area</span>: social<span class="op">;</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a>    <span class="kw">justify-self</span>: <span class="dv">stretch</span><span class="op">;</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a>    <span class="kw">align-self</span>: <span class="dv">stretch</span><span class="op">;</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a>}</span>
-<span id="cb3-20"><a href="#cb3-20"></a>div<span class="fu">.rss</span> {</span>
-<span id="cb3-21"><a href="#cb3-21"></a>    <span class="kw">grid-area</span>: rss<span class="op">;</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a>    <span class="kw">justify-self</span>: <span class="dv">stretch</span><span class="op">;</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a>    <span class="kw">align-self</span>: <span class="dv">stretch</span><span class="op">;</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource scss number-lines code-with-copy"><code class="sourceCode scss"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>div<span class="fu">.container</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>    <span class="kw">display</span>: <span class="dv">grid</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>    <span class="kw">grid-template-columns</span>: <span class="dv">5</span>fr <span class="dv">1</span>fr <span class="dv">1</span>fr<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>    <span class="kw">grid-template-rows</span>: <span class="dv">1</span>fr <span class="dv">1</span>fr<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>    <span class="kw">grid-template-areas</span>:</span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a>        <span class="st">"description social rss"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a>        <span class="st">"description social rss"</span><span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a>}</span>
+<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-label="10"></a>div<span class="fu">.description</span> {</span>
+<span id="cb3-11"><a href="#cb3-11" aria-label="11"></a>    <span class="kw">grid-area</span>: description<span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-label="12"></a>    <span class="kw">justify-self</span>: <span class="dv">stretch</span><span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-label="13"></a>    <span class="kw">align-self</span>: <span class="dv">stretch</span><span class="op">;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-label="14"></a>}</span>
+<span id="cb3-15"><a href="#cb3-15" aria-label="15"></a>div<span class="fu">.social</span> {</span>
+<span id="cb3-16"><a href="#cb3-16" aria-label="16"></a>    <span class="kw">grid-area</span>: social<span class="op">;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-label="17"></a>    <span class="kw">justify-self</span>: <span class="dv">stretch</span><span class="op">;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-label="18"></a>    <span class="kw">align-self</span>: <span class="dv">stretch</span><span class="op">;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-label="19"></a>}</span>
+<span id="cb3-20"><a href="#cb3-20" aria-label="20"></a>div<span class="fu">.rss</span> {</span>
+<span id="cb3-21"><a href="#cb3-21" aria-label="21"></a>    <span class="kw">grid-area</span>: rss<span class="op">;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-label="22"></a>    <span class="kw">justify-self</span>: <span class="dv">stretch</span><span class="op">;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-label="23"></a>    <span class="kw">align-self</span>: <span class="dv">stretch</span><span class="op">;</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-label="24"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We assign the <strong>grid-area</strong> attribute for each block that we want to place into the grid, and then use <strong>grid-template-areas</strong> to easily specify how they should be layed out within the grid. The <strong>justify-self</strong> and <strong>align-self</strong> attributes further specifies how they should be justified and aligned within their grid space.</p>
 <p>That should get you started! It’s really that simple!</p>
 <p>For more features and details about css grid, you can look up this wonderful guide: <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">A Complete Guide to Grid</a>.</p>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,16 @@
 
 <title>Infinite Recursion When Using store_attr and Overwriting __getattr__ – curiosity-notes</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -72,15 +78,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../TIL/2022/2022-11-23-aws-private_subnet_setup.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-68c8bffd90dad8f2b55c52d7b6410dc0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-aced932c6eb97d642153b8e218288f9f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9fe750d4bca42c81179e6171a5259934.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-b0fbc108aa289a9c2dc95917efcac9b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -386,18 +391,18 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 
 
 <div id="cell-1" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> fastcore.basics <span class="im">import</span> store_attr</span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">class</span> Table:</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
-<span id="cb1-5"><a href="#cb1-5"></a>        store_attr()</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a>    <span class="kw">def</span> <span class="fu">__getattr__</span>(<span class="va">self</span>, __name: <span class="bu">str</span>):</span>
-<span id="cb1-8"><a href="#cb1-8"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss">.</span><span class="sc">{</span>__name<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a>t <span class="op">=</span> Table(<span class="st">'tbl'</span>)</span>
-<span id="cb1-12"><a href="#cb1-12"></a>t.column</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="im">from</span> fastcore.basics <span class="im">import</span> store_attr</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="kw">class</span> Table:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>        store_attr()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>    <span class="kw">def</span> <span class="fu">__getattr__</span>(<span class="va">self</span>, __name: <span class="bu">str</span>):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>        <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss">.</span><span class="sc">{</span>__name<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>t <span class="op">=</span> Table(<span class="st">'tbl'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>t.column</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -444,45 +449,45 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 </div>
 <p>If we take a look at <code>store_attr</code>, we see that the problem occurs at the step where <code>store_attr()</code> calls <code>hasattr(self, '__slots__')</code>, which calls <code>__getattr__</code> when <code>__slots__</code> is not available. In fact, <code>store_attr</code> calls a few attributes that start with <code>__</code>.</p>
 <div id="cell-3" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> store_attr(names<span class="op">=</span><span class="va">None</span>, <span class="va">self</span><span class="op">=</span><span class="va">None</span>, but<span class="op">=</span><span class="st">''</span>, cast<span class="op">=</span><span class="va">False</span>, store_args<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>attrs):</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    <span class="co">"Store params named in comma-separated `names` from calling context into attrs in `self`"</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>    fr <span class="op">=</span> sys._getframe(<span class="dv">1</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a>    args <span class="op">=</span> argnames(fr, <span class="va">True</span>)</span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="cf">if</span> <span class="va">self</span>: args <span class="op">=</span> (<span class="st">'self'</span>, <span class="op">*</span>args)</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="cf">else</span>: <span class="va">self</span> <span class="op">=</span> fr.f_locals[args[<span class="dv">0</span>]]</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="cf">if</span> store_args <span class="kw">is</span> <span class="va">None</span>: store_args <span class="op">=</span> <span class="kw">not</span> <span class="bu">hasattr</span>(<span class="va">self</span>,<span class="st">'__slots__'</span>)</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="cf">if</span> store_args <span class="kw">and</span> <span class="kw">not</span> <span class="bu">hasattr</span>(<span class="va">self</span>, <span class="st">'__stored_args__'</span>): <span class="va">self</span>.__stored_args__ <span class="op">=</span> {}</span>
-<span id="cb2-9"><a href="#cb2-9"></a>    anno <span class="op">=</span> annotations(<span class="va">self</span>) <span class="cf">if</span> cast <span class="cf">else</span> {}</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    <span class="cf">if</span> names <span class="kw">and</span> <span class="bu">isinstance</span>(names,<span class="bu">str</span>): names <span class="op">=</span> re.split(<span class="st">', *'</span>, names)</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    ns <span class="op">=</span> names <span class="cf">if</span> names <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> <span class="bu">getattr</span>(<span class="va">self</span>, <span class="st">'__slots__'</span>, args[<span class="dv">1</span>:])</span>
-<span id="cb2-12"><a href="#cb2-12"></a>    added <span class="op">=</span> {n:fr.f_locals[n] <span class="cf">for</span> n <span class="kw">in</span> ns}</span>
-<span id="cb2-13"><a href="#cb2-13"></a>    attrs <span class="op">=</span> {<span class="op">**</span>attrs, <span class="op">**</span>added}</span>
-<span id="cb2-14"><a href="#cb2-14"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(but,<span class="bu">str</span>): but <span class="op">=</span> re.split(<span class="st">', *'</span>, but)</span>
-<span id="cb2-15"><a href="#cb2-15"></a>    attrs <span class="op">=</span> {k:v <span class="cf">for</span> k,v <span class="kw">in</span> attrs.items() <span class="cf">if</span> k <span class="kw">not</span> <span class="kw">in</span> but}</span>
-<span id="cb2-16"><a href="#cb2-16"></a>    <span class="cf">return</span> _store_attr(<span class="va">self</span>, anno, <span class="op">**</span>attrs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="kw">def</span> store_attr(names<span class="op">=</span><span class="va">None</span>, <span class="va">self</span><span class="op">=</span><span class="va">None</span>, but<span class="op">=</span><span class="st">''</span>, cast<span class="op">=</span><span class="va">False</span>, store_args<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>attrs):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>    <span class="co">"Store params named in comma-separated `names` from calling context into attrs in `self`"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>    fr <span class="op">=</span> sys._getframe(<span class="dv">1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>    args <span class="op">=</span> argnames(fr, <span class="va">True</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>    <span class="cf">if</span> <span class="va">self</span>: args <span class="op">=</span> (<span class="st">'self'</span>, <span class="op">*</span>args)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>    <span class="cf">else</span>: <span class="va">self</span> <span class="op">=</span> fr.f_locals[args[<span class="dv">0</span>]]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>    <span class="cf">if</span> store_args <span class="kw">is</span> <span class="va">None</span>: store_args <span class="op">=</span> <span class="kw">not</span> <span class="bu">hasattr</span>(<span class="va">self</span>,<span class="st">'__slots__'</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>    <span class="cf">if</span> store_args <span class="kw">and</span> <span class="kw">not</span> <span class="bu">hasattr</span>(<span class="va">self</span>, <span class="st">'__stored_args__'</span>): <span class="va">self</span>.__stored_args__ <span class="op">=</span> {}</span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a>    anno <span class="op">=</span> annotations(<span class="va">self</span>) <span class="cf">if</span> cast <span class="cf">else</span> {}</span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a>    <span class="cf">if</span> names <span class="kw">and</span> <span class="bu">isinstance</span>(names,<span class="bu">str</span>): names <span class="op">=</span> re.split(<span class="st">', *'</span>, names)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-label="11"></a>    ns <span class="op">=</span> names <span class="cf">if</span> names <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span> <span class="cf">else</span> <span class="bu">getattr</span>(<span class="va">self</span>, <span class="st">'__slots__'</span>, args[<span class="dv">1</span>:])</span>
+<span id="cb2-12"><a href="#cb2-12" aria-label="12"></a>    added <span class="op">=</span> {n:fr.f_locals[n] <span class="cf">for</span> n <span class="kw">in</span> ns}</span>
+<span id="cb2-13"><a href="#cb2-13" aria-label="13"></a>    attrs <span class="op">=</span> {<span class="op">**</span>attrs, <span class="op">**</span>added}</span>
+<span id="cb2-14"><a href="#cb2-14" aria-label="14"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(but,<span class="bu">str</span>): but <span class="op">=</span> re.split(<span class="st">', *'</span>, but)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-label="15"></a>    attrs <span class="op">=</span> {k:v <span class="cf">for</span> k,v <span class="kw">in</span> attrs.items() <span class="cf">if</span> k <span class="kw">not</span> <span class="kw">in</span> but}</span>
+<span id="cb2-16"><a href="#cb2-16" aria-label="16"></a>    <span class="cf">return</span> _store_attr(<span class="va">self</span>, anno, <span class="op">**</span>attrs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Therefore, if we want to use <code>store_attr()</code>, when overwriting <code>__getattr__</code>, we need to protect those called by <code>store_attr()</code>, otherwise there will be an infinite loop.</p>
 <div id="cell-5" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> fastcore.basics <span class="im">import</span> store_attr</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">class</span> Table:</span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
-<span id="cb3-5"><a href="#cb3-5"></a>        store_attr()</span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a>    <span class="kw">def</span> <span class="fu">__getattr__</span>(<span class="va">self</span>, __name: <span class="bu">str</span>):</span>
-<span id="cb3-8"><a href="#cb3-8"></a>        <span class="cf">if</span> __name.startswith(<span class="st">'__'</span>):</span>
-<span id="cb3-9"><a href="#cb3-9"></a>            <span class="cf">return</span> <span class="bu">super</span>().<span class="fu">__getattr__</span>(__name)</span>
-<span id="cb3-10"><a href="#cb3-10"></a>        <span class="cf">else</span>:</span>
-<span id="cb3-11"><a href="#cb3-11"></a>            <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss">.</span><span class="sc">{</span>__name<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a></span>
-<span id="cb3-13"><a href="#cb3-13"></a></span>
-<span id="cb3-14"><a href="#cb3-14"></a>t <span class="op">=</span> Table(<span class="st">'tbl'</span>)</span>
-<span id="cb3-15"><a href="#cb3-15"></a>t.column</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="im">from</span> fastcore.basics <span class="im">import</span> store_attr</span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a><span class="kw">class</span> Table:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>        store_attr()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a>    <span class="kw">def</span> <span class="fu">__getattr__</span>(<span class="va">self</span>, __name: <span class="bu">str</span>):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a>        <span class="cf">if</span> __name.startswith(<span class="st">'__'</span>):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a>            <span class="cf">return</span> <span class="bu">super</span>().<span class="fu">__getattr__</span>(__name)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-label="10"></a>        <span class="cf">else</span>:</span>
+<span id="cb3-11"><a href="#cb3-11" aria-label="11"></a>            <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>name<span class="sc">}</span><span class="ss">.</span><span class="sc">{</span>__name<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-label="12"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-label="13"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-label="14"></a>t <span class="op">=</span> Table(<span class="st">'tbl'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-label="15"></a>t.column</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>'tbl.column'</code></pre>
 </div>
 </div>
-<p></p><div id="tweet-51131"></div><script>tweet={"url":"https:\/\/twitter.com\/curiosity_notes\/status\/1593048086527762432","author_name":"Ziyue Li","author_url":"https:\/\/twitter.com\/curiosity_notes","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003E\u003Ca href=\"https:\/\/twitter.com\/hashtag\/TIL?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#TIL\u003C\/a\u003E if you use \u003Ca href=\"https:\/\/twitter.com\/fastdotai?ref_src=twsrc%5Etfw\"\u003E@fastdotai\u003C\/a\u003E&#39;s store_attr() to assign arguments to instance, and also overwrite __getattr__, an infinite recursion may occur, because store_attr calls a few attributes that start with &#39;__&#39; that may not exist. Details in the attached pictures. \u003Ca href=\"https:\/\/twitter.com\/hashtag\/python?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#python\u003C\/a\u003E \u003Ca href=\"https:\/\/twitter.com\/hashtag\/fastcore?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#fastcore\u003C\/a\u003E \u003Ca href=\"https:\/\/t.co\/eA0VWzrIQS\"\u003Epic.twitter.com\/eA0VWzrIQS\u003C\/a\u003E\u003C\/p\u003E&mdash; Ziyue Li (@curiosity_notes) \u003Ca href=\"https:\/\/twitter.com\/curiosity_notes\/status\/1593048086527762432?ref_src=twsrc%5Etfw\"\u003ENovember 17, 2022\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-51131").innerHTML = tweet["html"];</script><p></p>
+<p></p><div id="tweet-39118"></div><script>tweet={"url":"https:\/\/x.com\/curiosity_notes\/status\/1593048086527762432","author_name":"Ziyue Li","author_url":"https:\/\/x.com\/curiosity_notes","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003E\u003Ca href=\"https:\/\/x.com\/hashtag\/TIL?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#TIL\u003C\/a\u003E if you use \u003Ca href=\"https:\/\/x.com\/fastdotai?ref_src=twsrc%5Etfw\"\u003E@fastdotai\u003C\/a\u003E&#39;s store_attr() to assign arguments to instance, and also overwrite __getattr__, an infinite recursion may occur, because store_attr calls a few attributes that start with &#39;__&#39; that may not exist. Details in the attached pictures. \u003Ca href=\"https:\/\/x.com\/hashtag\/python?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#python\u003C\/a\u003E \u003Ca href=\"https:\/\/x.com\/hashtag\/fastcore?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#fastcore\u003C\/a\u003E \u003Ca href=\"https:\/\/t.co\/eA0VWzrIQS\"\u003Epic.twitter.com\/eA0VWzrIQS\u003C\/a\u003E\u003C\/p\u003E&mdash; Ziyue Li (@curiosity_notes) \u003Ca href=\"https:\/\/x.com\/curiosity_notes\/status\/1593048086527762432?ref_src=twsrc%5Etfw\"\u003ENovember 17, 2022\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.x.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"X","provider_url":"https:\/\/x.com","version":"1.0"};document.getElementById("tweet-39118").innerHTML = tweet["html"];</script><p></p>
 
 
 <div class="sharethis-inline-share-buttons pt-5">

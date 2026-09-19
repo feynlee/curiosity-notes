@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,16 @@
 
 <title>Nbdev_ignore – curiosity-notes</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -71,15 +77,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../Projects/2022-11-25-Code_Insertion.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-68c8bffd90dad8f2b55c52d7b6410dc0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-aced932c6eb97d642153b8e218288f9f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9fe750d4bca42c81179e6171a5259934.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b0fbc108aa289a9c2dc95917efcac9b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -383,17 +388,17 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 <section id="what-this-is" class="level2">
 <h2 class="anchored" data-anchor-id="what-this-is">What this is</h2>
 <p>When using the <a href="https://github.com/fastai/nbdev">nbdev</a> library, I often find myself having to write</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#| hide</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#| eval: false</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="co">#| hide</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="co">#| eval: false</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>in order for that cell in Jupyter Notebook to be ignored by both the tests and docs. It would great to have a simple directive to do this, and this is the ignore directive:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#| ignore</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="co">#| ignore</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It’s equivalent to the above directives.</p>
 </section>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="ex">pip</span> install nbdev_ignore</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="ex">pip</span> install nbdev_ignore</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="how-to-use" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-use">How to use</h2>
@@ -412,28 +417,28 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 <section id="result" class="level2">
 <h2 class="anchored" data-anchor-id="result">Result</h2>
 <p>We can now write <code>#|ignore</code> for the cell to be ignored by both tests and docs, but still kept in the notebook:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#|ignore</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="im">from</span> mock <span class="im">import</span> patch</span>
-<span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a>spark <span class="op">=</span> (SparkSession.builder</span>
-<span id="cb4-7"><a href="#cb4-7"></a>        .config(<span class="st">"fs.s3a.aws.credentials.provider"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8"></a>                <span class="st">"com.amazonaws.auth.profile.ProfileCredentialsProvider"</span>)</span>
-<span id="cb4-9"><a href="#cb4-9"></a>        .appName(<span class="st">"app_name"</span>)</span>
-<span id="cb4-10"><a href="#cb4-10"></a>        .getOrCreate()</span>
-<span id="cb4-11"><a href="#cb4-11"></a>        )</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a>columns <span class="op">=</span> [<span class="st">"address"</span>, <span class="st">"date"</span>]</span>
-<span id="cb4-14"><a href="#cb4-14"></a>data <span class="op">=</span> [(<span class="st">"address1"</span>, <span class="st">"20211001"</span>)]</span>
-<span id="cb4-15"><a href="#cb4-15"></a>df <span class="op">=</span> spark.createDataFrame(data).toDF(<span class="op">*</span>columns)</span>
-<span id="cb4-16"><a href="#cb4-16"></a></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="at">@patch</span>(<span class="st">"pyspark.sql.session.DataFrameReader.load"</span>, return_value <span class="op">=</span> df)</span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="kw">def</span> test(spark_load_mock):</span>
-<span id="cb4-19"><a href="#cb4-19"></a>    df <span class="op">=</span> fake_func(spark)</span>
-<span id="cb4-20"><a href="#cb4-20"></a>    <span class="cf">return</span> df</span>
-<span id="cb4-21"><a href="#cb4-21"></a></span>
-<span id="cb4-22"><a href="#cb4-22"></a>dfpd <span class="op">=</span> test()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="co">#|ignore</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a><span class="im">from</span> mock <span class="im">import</span> patch</span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>spark <span class="op">=</span> (SparkSession.builder</span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>        .config(<span class="st">"fs.s3a.aws.credentials.provider"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a>                <span class="st">"com.amazonaws.auth.profile.ProfileCredentialsProvider"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a>        .appName(<span class="st">"app_name"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-label="10"></a>        .getOrCreate()</span>
+<span id="cb4-11"><a href="#cb4-11" aria-label="11"></a>        )</span>
+<span id="cb4-12"><a href="#cb4-12" aria-label="12"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-label="13"></a>columns <span class="op">=</span> [<span class="st">"address"</span>, <span class="st">"date"</span>]</span>
+<span id="cb4-14"><a href="#cb4-14" aria-label="14"></a>data <span class="op">=</span> [(<span class="st">"address1"</span>, <span class="st">"20211001"</span>)]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-label="15"></a>df <span class="op">=</span> spark.createDataFrame(data).toDF(<span class="op">*</span>columns)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-label="16"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-label="17"></a><span class="at">@patch</span>(<span class="st">"pyspark.sql.session.DataFrameReader.load"</span>, return_value <span class="op">=</span> df)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-label="18"></a><span class="kw">def</span> test(spark_load_mock):</span>
+<span id="cb4-19"><a href="#cb4-19" aria-label="19"></a>    df <span class="op">=</span> fake_func(spark)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-label="20"></a>    <span class="cf">return</span> df</span>
+<span id="cb4-21"><a href="#cb4-21" aria-label="21"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-label="22"></a>dfpd <span class="op">=</span> test()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 <div class="sharethis-inline-share-buttons pt-5">

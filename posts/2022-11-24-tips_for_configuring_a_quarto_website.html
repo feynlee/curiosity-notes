@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,16 @@
 
 <title>Tips for Configuring a Quarto Website – curiosity-notes</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -69,15 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-68c8bffd90dad8f2b55c52d7b6410dc0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-aced932c6eb97d642153b8e218288f9f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9fe750d4bca42c81179e6171a5259934.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b0fbc108aa289a9c2dc95917efcac9b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -338,30 +343,30 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 <!-- ![](images/2022/sidebars.png){width=50%, fig-align=center} -->
 <p>This is easy to set up by simply having multiple sidebars in <code>_quarto.yml</code>. However, there seems to be a bug when you only have one sidebar configured. That one sidebar will show up across your website, even for pages unrelated to that sidebar.</p>
 <p>As of this writing, an easy way to solve this is to make another empty sidebar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">sidebar</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> til</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="at">    </span><span class="fu">title</span><span class="kw">:</span><span class="at"> TIL</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="at">    </span><span class="fu">contents</span><span class="kw">:</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">section</span><span class="kw">:</span><span class="at"> </span><span class="st">'2022'</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="at">        </span><span class="fu">contents</span><span class="kw">:</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Nbdev_ignore</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="at">          </span><span class="fu">href</span><span class="kw">:</span><span class="at"> TIL/2022/2022-11-23-aws-private_subnet_setup.ipynb</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Whisper2Subtitles</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="at">          </span><span class="fu">href</span><span class="kw">:</span><span class="at"> TIL/2022/2022-11-16-fastai-store_attr_infinite_recursion.ipynb</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> DreamBooth</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="at">          </span><span class="fu">href</span><span class="kw">:</span><span class="at"> TIL/2022/2022-11-15-fastai-show_training_loop.ipynb</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> empty sidebar</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="fu">sidebar</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> til</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="at">    </span><span class="fu">title</span><span class="kw">:</span><span class="at"> TIL</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a><span class="at">    </span><span class="fu">contents</span><span class="kw">:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">section</span><span class="kw">:</span><span class="at"> </span><span class="st">'2022'</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a><span class="at">        </span><span class="fu">contents</span><span class="kw">:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Nbdev_ignore</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a><span class="at">          </span><span class="fu">href</span><span class="kw">:</span><span class="at"> TIL/2022/2022-11-23-aws-private_subnet_setup.ipynb</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Whisper2Subtitles</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a><span class="at">          </span><span class="fu">href</span><span class="kw">:</span><span class="at"> TIL/2022/2022-11-16-fastai-store_attr_infinite_recursion.ipynb</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> DreamBooth</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a><span class="at">          </span><span class="fu">href</span><span class="kw">:</span><span class="at"> TIL/2022/2022-11-15-fastai-show_training_loop.ipynb</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> empty sidebar</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="enable-line-numbers-in-code-blocks" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="enable-line-numbers-in-code-blocks"><span class="header-section-number">2</span> Enable Line Numbers in Code Blocks</h2>
 <p>Some useful settings for code blocks in <code>_quarto.yml</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="at">    </span><span class="fu">code-line-numbers</span><span class="kw">:</span><span class="at"> </span><span class="st">"1"</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="at">    </span><span class="fu">code-block-bg</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="at">    </span><span class="fu">code-block-border-left</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="at">    </span><span class="fu">code-copy</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a><span class="at">    </span><span class="fu">code-line-numbers</span><span class="kw">:</span><span class="at"> </span><span class="st">"1"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a><span class="at">    </span><span class="fu">code-block-bg</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a><span class="at">    </span><span class="fu">code-block-border-left</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a><span class="at">    </span><span class="fu">code-copy</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="add-a-comment-section-that-supports-latex" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="add-a-comment-section-that-supports-latex"><span class="header-section-number">3</span> Add A Comment Section that Supports Latex</h2>
@@ -369,46 +374,46 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 <p><a href="https://giscus.app">Giscus</a> is a comments system powered by <a href="https://docs.github.com/en/discussions">GitHub Discussions</a>. It supports Latex, so that visitors can type math equations in the comment section.</p>
 <p>Make sure you configure the <code>repository</code> and the <code>Discussion Category</code> on <a href="https://giscus.app">Giscus</a>. This will generate the script code. We don’t need to copy that code, but we do need to note the <code>data-repo-id</code>, and <code>data-category-id</code>.</p>
 <p>To enable it for a page, include the following in the YAML front matter:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">comments</span><span class="kw">:</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="at">  </span><span class="fu">giscus</span><span class="kw">:</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="at">    </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> &lt;GitHub Repo for Your Quarto Website&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="at">    </span><span class="fu">repo-id</span><span class="kw">:</span><span class="at"> &lt;Your data-repo-id&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="at">    </span><span class="fu">category</span><span class="kw">:</span><span class="at"> &lt;The Discussion Category&gt;</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="at">    </span><span class="fu">category-id</span><span class="kw">:</span><span class="at"> &lt;Your data-category-id&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="at">    </span><span class="fu">mapping</span><span class="kw">:</span><span class="at"> </span><span class="st">"title"</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="at">    </span><span class="fu">reactions-enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="at">    </span><span class="fu">loading</span><span class="kw">:</span><span class="at"> lazy</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="at">    </span><span class="fu">input-position</span><span class="kw">:</span><span class="at"> </span><span class="st">"top"</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="st">"preferred_color_scheme"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="fu">comments</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a><span class="at">  </span><span class="fu">giscus</span><span class="kw">:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a><span class="at">    </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> &lt;GitHub Repo for Your Quarto Website&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a><span class="at">    </span><span class="fu">repo-id</span><span class="kw">:</span><span class="at"> &lt;Your data-repo-id&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a><span class="at">    </span><span class="fu">category</span><span class="kw">:</span><span class="at"> &lt;The Discussion Category&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a><span class="at">    </span><span class="fu">category-id</span><span class="kw">:</span><span class="at"> &lt;Your data-category-id&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a><span class="at">    </span><span class="fu">mapping</span><span class="kw">:</span><span class="at"> </span><span class="st">"title"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a><span class="at">    </span><span class="fu">reactions-enabled</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a><span class="at">    </span><span class="fu">loading</span><span class="kw">:</span><span class="at"> lazy</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-label="10"></a><span class="at">    </span><span class="fu">input-position</span><span class="kw">:</span><span class="at"> </span><span class="st">"top"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-label="11"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="st">"preferred_color_scheme"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="add-rss-feed" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="add-rss-feed"><span class="header-section-number">4</span> Add RSS Feed</h2>
 <!-- ![rss](images/2022/rss.png){width=50%, fig-align=center} -->
 <ol type="1">
 <li><p>Add <code>feed: true</code> in the listing page Include a feed for your listing by including the <code>feed</code> option in your listing page:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">listing</span><span class="kw">:</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="at">  </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> posts</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="at">  </span><span class="fu">feed</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="fu">listing</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a><span class="at">  </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> posts</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a><span class="at">  </span><span class="fu">feed</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>An RSS file will automatically be generated using the name of the the file in the same location as the listing page. For example, <code>index.qmd</code> will produce a feed at <code>index.xml</code>.</p></li>
 <li><p>Include the path to the xml file</p>
 <p>We need to explicitly include links to these xml files. On this website, I created 3 RSS feeds: Posts, TIL and Projects. I included them in <code>_quarto.yml</code> under a menu on the right side of the navigation bar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">website</span><span class="kw">:</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="at">    </span><span class="fu">right</span><span class="kw">:</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> rss</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="at">        </span><span class="fu">menu</span><span class="kw">:</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Subscribe to Posts</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="at">            </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> rss</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="at">            </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://feynlee.github.io/curiosity-notes/index.xml</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="at">            </span><span class="fu">aria-label</span><span class="kw">:</span><span class="at"> Posts RSS</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Subscribe to TIL</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="at">            </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> rss</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="at">            </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://feynlee.github.io/curiosity-notes/TIL.xml</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="at">            </span><span class="fu">aria-label</span><span class="kw">:</span><span class="at"> TIL RSS</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Subscribe to Projects</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="at">            </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> rss</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="at">            </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://feynlee.github.io/curiosity-notes/projects.xml</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="at">            </span><span class="fu">aria-label</span><span class="kw">:</span><span class="at"> Projects RSS</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a><span class="at">    </span><span class="fu">right</span><span class="kw">:</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> rss</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a><span class="at">        </span><span class="fu">menu</span><span class="kw">:</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Subscribe to Posts</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a><span class="at">            </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> rss</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a><span class="at">            </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://feynlee.github.io/curiosity-notes/index.xml</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a><span class="at">            </span><span class="fu">aria-label</span><span class="kw">:</span><span class="at"> Posts RSS</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-label="10"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Subscribe to TIL</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-label="11"></a><span class="at">            </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> rss</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-label="12"></a><span class="at">            </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://feynlee.github.io/curiosity-notes/TIL.xml</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-label="13"></a><span class="at">            </span><span class="fu">aria-label</span><span class="kw">:</span><span class="at"> TIL RSS</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-label="14"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Subscribe to Projects</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-label="15"></a><span class="at">            </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> rss</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-label="16"></a><span class="at">            </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://feynlee.github.io/curiosity-notes/projects.xml</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-label="17"></a><span class="at">            </span><span class="fu">aria-label</span><span class="kw">:</span><span class="at"> Projects RSS</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 </section>
 <section id="add-social-share-buttons" class="level2" data-number="5">
@@ -419,9 +424,9 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 <section id="header-code" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="header-code"><span class="header-section-number">5.1</span> Header Code</h3>
 <p>For the header code, we can include it in the header of the website, by adding the following in <code>_quarto.yml</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="at">    </span><span class="fu">header-includes</span><span class="kw">:</span><span class="at"> &lt;script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js</span><span class="co">#property=**************&amp;product=inline-share-buttons&amp;source=platform" async="async"&gt;&lt;/script&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a><span class="at">    </span><span class="fu">header-includes</span><span class="kw">:</span><span class="at"> &lt;script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js</span><span class="co">#property=**************&amp;product=inline-share-buttons&amp;source=platform" async="async"&gt;&lt;/script&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="buttons-code" class="level3" data-number="5.2">
 <h3 data-number="5.2" class="anchored" data-anchor-id="buttons-code"><span class="header-section-number">5.2</span> Buttons Code</h3>
@@ -429,19 +434,19 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 <p>Here’s what you need to do to enable this:</p>
 <ul>
 <li><p>Install Extension</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="ex">quarto</span> add feynlee/code-insertion</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="ex">quarto</span> add feynlee/code-insertion</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will install the extension under the <code>_extensions</code> subdirectory. If you’re using version control, you will want to check in this directory for your Quarto website.</p></li>
 <li><p>Create a Markdown file to store the buttons code</p>
 <p>Create a markdown file (html also works) <code>_sharebuttons.md</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"sharethis-inline-share-buttons pt-5"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"sharethis-inline-share-buttons pt-5"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>pt-5</code> is a <a href="https://getbootstrap.com/docs/4.0/utilities/spacing/#examples">Bootstrap class</a> to make sure there’s enough space between the post and the share buttons.</p>
 <p>Make sure to start the file name with an underscore, so that Quarto ignores it when generating htmls.</p></li>
 <li><p>Enable the filter in <code>_metadata.yml</code> for all posts</p>
 <p>In the YAML front matter of a post, enable the code-insertion filter, and add <code>insert-before-post</code> and/or <code>insert-after-post</code> parameters that point to a markdown file with sections you want to insert before and/or after the post.</p>
 <p>Create a <code>_metadata.yml</code> file under the folder that contains all of your posts. Any settings here will be shared by all posts. Enable the <code>code-insertion</code> filter:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">filters</span><span class="kw">:</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="at">  </span><span class="kw">-</span><span class="at"> code-insertion</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">insert-after-post</span><span class="kw">:</span><span class="at"> _sharebuttons.md</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a><span class="fu">filters</span><span class="kw">:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a><span class="at">  </span><span class="kw">-</span><span class="at"> code-insertion</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a><span class="fu">insert-after-post</span><span class="kw">:</span><span class="at"> _sharebuttons.md</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note that you should put the path to your <code>_sharebuttons.md</code> file for <code>insert-after-post</code>. This will insert that code as the last block in your post, which is above the comment section.</p></li>
 </ul>
 </section>
@@ -449,17 +454,17 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 <section id="add-an-annotation-tool" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="add-an-annotation-tool"><span class="header-section-number">6</span> Add An Annotation Tool</h2>
 <p>You can enable <a href="https://web.hypothes.is">hypothes</a> on your website so that visitors can highlight and annotate your posts.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">comments</span><span class="kw">:</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="at">  </span><span class="fu">hypothesis</span><span class="kw">:</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> clean</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a><span class="fu">comments</span><span class="kw">:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a><span class="at">  </span><span class="fu">hypothesis</span><span class="kw">:</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> clean</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is enabled for my website. You can see the Hypothesis UI at the far right of the page. You can also drag cursor over texts to make your own highlights and annotations on this page.</p>
 </section>
 <section id="enable-anchor-sections" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="enable-anchor-sections"><span class="header-section-number">7</span> Enable Anchor Sections</h2>
 <p>Hover over a section title to see an anchor link. An anchor link makes it possible to share and reference the exact position of the specified section. Enable/disable this behavior with:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="at">    </span><span class="fu">anchor-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-label="3"></a><span class="at">    </span><span class="fu">anchor-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Anchor links are also automatically added to figures and tables that have a <a href="https://quarto.org/docs/authoring/cross-references.html">cross reference</a> defined.</p>
 </section>
 <section id="a-custom-listing-page" class="level2" data-number="8">

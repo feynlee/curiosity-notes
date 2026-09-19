@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,16 @@
 
 <title>Fixing the “Unable to Resolve Your Shell Environment” Problem in VSCode – curiosity-notes</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -70,15 +76,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-68c8bffd90dad8f2b55c52d7b6410dc0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-aced932c6eb97d642153b8e218288f9f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9fe750d4bca42c81179e6171a5259934.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-b0fbc108aa289a9c2dc95917efcac9b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -312,19 +317,19 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 <p>It means that the shell environment defined in your <code>.bashrc</code> or <code>.zshrc</code> files is not resolved in a short amount of time. See detailed explanation <a href="https://code.visualstudio.com/docs/supporting/faq#_resolving-shell-environment-fails">here</a>.</p>
 <p>Unfortunately, VSCode does not have an option to customize or disable that time limit. So to make it work, we need to remove some lines that are taking long from our <code>.zshrc</code> for VSCode.</p>
 <p>Here’s a simple example of not sourcing <code>oh-my-zsh.sh</code> when using VSCode:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource zsh number-lines code-with-copy"><code class="sourceCode zsh"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># In .zshrc</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">${TERM_PROGRAM}</span><span class="st">"</span> <span class="ot">!=</span> <span class="st">"vscode"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="va">plugins</span><span class="op">=</span><span class="va">(</span>git zsh-autosuggestions zsh-syntax-highlighting<span class="va">)</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="bu">source</span> <span class="va">$ZSH</span>/oh-my-zsh.sh</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="cf">fi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource zsh number-lines code-with-copy"><code class="sourceCode zsh"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="co"># In .zshrc</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">${TERM_PROGRAM}</span><span class="st">"</span> <span class="ot">!=</span> <span class="st">"vscode"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>  <span class="va">plugins</span><span class="op">=</span><span class="va">(</span>git zsh-autosuggestions zsh-syntax-highlighting<span class="va">)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>  <span class="bu">source</span> <span class="va">$ZSH</span>/oh-my-zsh.sh</span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a><span class="cf">fi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you need to add this <code>if</code> statement at multiple places, you may want to simply create a separate <code>.zshrc-vscode</code> file and source that when using VSCode:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource zsh number-lines code-with-copy"><code class="sourceCode zsh"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># In .zshrc</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">${TERM_PROGRAM}</span><span class="st">"</span> <span class="ot">=</span> <span class="st">"vscode"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="bu">source</span> ~/.zshrc-vscode</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="cf">else</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>    <span class="bu">source</span> ~/.zshrc-g</span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="cf">fi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p></p><div id="tweet-21662"></div><script>tweet={"url":"https:\/\/twitter.com\/curiosity_notes\/status\/1603912405230227457","author_name":"Ziyue Li","author_url":"https:\/\/twitter.com\/curiosity_notes","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003EWow, \u003Ca href=\"https:\/\/twitter.com\/hashtag\/chatGPT?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#chatGPT\u003C\/a\u003E now shows all the past conversations! \u003Cbr\u003E\u003Cbr\u003EAccording to the Dec15 release notes, it&#39;s now less likely to refuse to answer questions, and there will be an experimental daily message cap. \u003Cbr\u003E\u003Cbr\u003EYou will be given the option to extend access by providing feedback to ChatGPT. \u003Ca href=\"https:\/\/t.co\/pOzGf9skCx\"\u003Epic.twitter.com\/pOzGf9skCx\u003C\/a\u003E\u003C\/p\u003E&mdash; Ziyue Li (@curiosity_notes) \u003Ca href=\"https:\/\/twitter.com\/curiosity_notes\/status\/1603912405230227457?ref_src=twsrc%5Etfw\"\u003EDecember 17, 2022\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-21662").innerHTML = tweet["html"];</script><p></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource zsh number-lines code-with-copy"><code class="sourceCode zsh"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="co"># In .zshrc</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">${TERM_PROGRAM}</span><span class="st">"</span> <span class="ot">=</span> <span class="st">"vscode"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>    <span class="bu">source</span> ~/.zshrc-vscode</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a><span class="cf">else</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>    <span class="bu">source</span> ~/.zshrc-g</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a><span class="cf">fi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p></p><div id="tweet-81668"></div><script>tweet={"url":"https:\/\/x.com\/curiosity_notes\/status\/1603912405230227457","author_name":"Ziyue Li","author_url":"https:\/\/x.com\/curiosity_notes","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003EWow, \u003Ca href=\"https:\/\/x.com\/hashtag\/chatGPT?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#chatGPT\u003C\/a\u003E now shows all the past conversations! \u003Cbr\u003E\u003Cbr\u003EAccording to the Dec15 release notes, it&#39;s now less likely to refuse to answer questions, and there will be an experimental daily message cap. \u003Cbr\u003E\u003Cbr\u003EYou will be given the option to extend access by providing feedback to ChatGPT. \u003Ca href=\"https:\/\/t.co\/pOzGf9skCx\"\u003Epic.twitter.com\/pOzGf9skCx\u003C\/a\u003E\u003C\/p\u003E&mdash; Ziyue Li (@curiosity_notes) \u003Ca href=\"https:\/\/x.com\/curiosity_notes\/status\/1603912405230227457?ref_src=twsrc%5Etfw\"\u003EDecember 17, 2022\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.x.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"X","provider_url":"https:\/\/x.com","version":"1.0"};document.getElementById("tweet-81668").innerHTML = tweet["html"];</script><p></p>
 
 
 <div class="sharethis-inline-share-buttons pt-5">

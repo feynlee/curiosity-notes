@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,16 @@
 
 <title>Subtle Bug: Variable Shadows Function – curiosity-notes</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -72,15 +78,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../TIL/2023/2023-01-13-get_function_with_its_name.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-68c8bffd90dad8f2b55c52d7b6410dc0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-aced932c6eb97d642153b8e218288f9f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9fe750d4bca42c81179e6171a5259934.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-b0fbc108aa289a9c2dc95917efcac9b5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -386,17 +391,17 @@ gtag('config', 'G-343667243', { 'anonymize_ip': true});
 
 <p>Here’s an example:</p>
 <div id="cell-2" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> func(): <span class="cf">pass</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">def</span> func2(): <span class="cf">pass</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">def</span> test(x):</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    <span class="cf">if</span> x <span class="op">&gt;</span><span class="dv">0</span>:</span>
-<span id="cb1-7"><a href="#cb1-7"></a>        func <span class="op">=</span> func2</span>
-<span id="cb1-8"><a href="#cb1-8"></a>    <span class="cf">return</span> func</span>
-<span id="cb1-9"><a href="#cb1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a>test(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="kw">def</span> func(): <span class="cf">pass</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="kw">def</span> func2(): <span class="cf">pass</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a><span class="kw">def</span> test(x):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>    <span class="cf">if</span> x <span class="op">&gt;</span><span class="dv">0</span>:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>        func <span class="op">=</span> func2</span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>    <span class="cf">return</span> func</span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>test(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -421,42 +426,42 @@ Cell <span class="ansi-green-fg">In[4], line 8</span>, in <span class="ansi-cyan
 <p>We need to remember that if the same name is used for a variable inside the function, we have to continue to treat it as a variable in the function, even if it’s inside a branched <code>if</code> statement.</p>
 <p>To fix this, we can either directly return the function <code>func</code> or <code>func2</code> in the <code>test</code> function, or we can use a different name for the variable.</p>
 <div id="cell-4" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> func(): <span class="cf">pass</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">def</span> func2(): <span class="cf">pass</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="kw">def</span> test(x):</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="cf">if</span> x <span class="op">&gt;</span><span class="dv">0</span>:</span>
-<span id="cb2-7"><a href="#cb2-7"></a>        <span class="cf">return</span> func2</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="cf">else</span>:</span>
-<span id="cb2-9"><a href="#cb2-9"></a>        <span class="cf">return</span> func</span>
-<span id="cb2-10"><a href="#cb2-10"></a></span>
-<span id="cb2-11"><a href="#cb2-11"></a></span>
-<span id="cb2-12"><a href="#cb2-12"></a>test(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="kw">def</span> func(): <span class="cf">pass</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a><span class="kw">def</span> func2(): <span class="cf">pass</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a><span class="kw">def</span> test(x):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>    <span class="cf">if</span> x <span class="op">&gt;</span><span class="dv">0</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>        <span class="cf">return</span> func2</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a>        <span class="cf">return</span> func</span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-label="11"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-label="12"></a>test(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>&lt;function __main__.func()&gt;</code></pre>
 </div>
 </div>
 <div id="cell-5" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">def</span> func(): <span class="cf">pass</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="kw">def</span> func2(): <span class="cf">pass</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="kw">def</span> test(x):</span>
-<span id="cb4-7"><a href="#cb4-7"></a>    <span class="cf">if</span> x <span class="op">&gt;</span><span class="dv">0</span>:</span>
-<span id="cb4-8"><a href="#cb4-8"></a>        f <span class="op">=</span>  func2</span>
-<span id="cb4-9"><a href="#cb4-9"></a>    <span class="cf">else</span>:</span>
-<span id="cb4-10"><a href="#cb4-10"></a>        f <span class="op">=</span> func</span>
-<span id="cb4-11"><a href="#cb4-11"></a>    <span class="cf">return</span> f</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a></span>
-<span id="cb4-14"><a href="#cb4-14"></a>test(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a><span class="kw">def</span> func(): <span class="cf">pass</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a><span class="kw">def</span> func2(): <span class="cf">pass</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a><span class="kw">def</span> test(x):</span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>    <span class="cf">if</span> x <span class="op">&gt;</span><span class="dv">0</span>:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a>        f <span class="op">=</span>  func2</span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-label="10"></a>        f <span class="op">=</span> func</span>
+<span id="cb4-11"><a href="#cb4-11" aria-label="11"></a>    <span class="cf">return</span> f</span>
+<span id="cb4-12"><a href="#cb4-12" aria-label="12"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-label="13"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-label="14"></a>test(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>&lt;function __main__.func()&gt;</code></pre>
 </div>
 </div>
-<p></p><div id="tweet-88821"></div><script>tweet={"url":"https:\/\/twitter.com\/curiosity_notes\/status\/1642520651926761474","author_name":"Ziyue Li","author_url":"https:\/\/twitter.com\/curiosity_notes","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003EA subtle\uD83D\uDC1E: the function &#39;test&#39; has a variable &#39;func&#39; that shadows the function &#39;func&#39; defined outside &#39;test&#39;.\u003Cbr\u003E\u003Cbr\u003EEven though it&#39;s in one branch of the if statement, the &#39;func&#39; is now treated as a variable in &#39;test&#39; and does not fall back to the function &#39;func&#39;. \u003Ca href=\"https:\/\/twitter.com\/hashtag\/TIL?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#TIL\u003C\/a\u003E \u003Ca href=\"https:\/\/twitter.com\/hashtag\/Python?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#Python\u003C\/a\u003E \u003Ca href=\"https:\/\/t.co\/RXPAzHFPhV\"\u003Epic.twitter.com\/RXPAzHFPhV\u003C\/a\u003E\u003C\/p\u003E&mdash; Ziyue Li (@curiosity_notes) \u003Ca href=\"https:\/\/twitter.com\/curiosity_notes\/status\/1642520651926761474?ref_src=twsrc%5Etfw\"\u003EApril 2, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.twitter.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"Twitter","provider_url":"https:\/\/twitter.com","version":"1.0"};document.getElementById("tweet-88821").innerHTML = tweet["html"];</script><p></p>
+<p></p><div id="tweet-20017"></div><script>tweet={"url":"https:\/\/x.com\/curiosity_notes\/status\/1642520651926761474","author_name":"Ziyue Li","author_url":"https:\/\/x.com\/curiosity_notes","html":"\u003Cblockquote class=\"twitter-tweet\" align=\"center\"\u003E\u003Cp lang=\"en\" dir=\"ltr\"\u003EA subtle\uD83D\uDC1E: the function &#39;test&#39; has a variable &#39;func&#39; that shadows the function &#39;func&#39; defined outside &#39;test&#39;.\u003Cbr\u003E\u003Cbr\u003EEven though it&#39;s in one branch of the if statement, the &#39;func&#39; is now treated as a variable in &#39;test&#39; and does not fall back to the function &#39;func&#39;. \u003Ca href=\"https:\/\/x.com\/hashtag\/TIL?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#TIL\u003C\/a\u003E \u003Ca href=\"https:\/\/x.com\/hashtag\/Python?src=hash&amp;ref_src=twsrc%5Etfw\"\u003E#Python\u003C\/a\u003E \u003Ca href=\"https:\/\/t.co\/RXPAzHFPhV\"\u003Epic.twitter.com\/RXPAzHFPhV\u003C\/a\u003E\u003C\/p\u003E&mdash; Ziyue Li (@curiosity_notes) \u003Ca href=\"https:\/\/x.com\/curiosity_notes\/status\/1642520651926761474?ref_src=twsrc%5Etfw\"\u003EApril 2, 2023\u003C\/a\u003E\u003C\/blockquote\u003E\n\u003Cscript async src=\"https:\/\/platform.x.com\/widgets.js\" charset=\"utf-8\"\u003E\u003C\/script\u003E\n\n","width":550,"height":null,"type":"rich","cache_age":"3153600000","provider_name":"X","provider_url":"https:\/\/x.com","version":"1.0"};document.getElementById("tweet-20017").innerHTML = tweet["html"];</script><p></p>
 
 
 <div class="sharethis-inline-share-buttons pt-5">
