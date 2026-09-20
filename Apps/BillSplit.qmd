@@ -1,7 +1,9 @@
 ---
 pagetitle: BillSplit — Split restaurant bills item by item
 page-layout: custom
-css: apps.css
+css:
+  - apps.css
+  - billsplit-layout.css
 toc: false
 ---
 
