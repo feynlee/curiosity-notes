@@ -1,0 +1,17 @@
+/* Keep BillSplit content inset on phones, even if the shared app stylesheet is cached. */
+#quarto-content .billsplit-page {
+    padding: 44px 24px 64px;
+}
+
+@media (max-width: 820px) {
+    #quarto-content .billsplit-page {
+        padding: 30px 20px 48px;
+    }
+}
+
+@media (max-width: 420px) {
+    #quarto-content .billsplit-page {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}
