@@ -488,6 +488,53 @@ body {
     text-underline-offset: 3px;
 }
 
+.billsplit-app-store {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 30px;
+    padding: 13px 17px 13px 13px;
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+}
+
+.billsplit-app-store-qr {
+    display: block;
+    flex: 0 0 128px;
+    width: 128px;
+    padding: 8px;
+    line-height: 0;
+    background: #fff;
+    border-radius: 12px;
+}
+
+.billsplit-app-store-qr img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.billsplit-app-store-copy {
+    max-width: 245px;
+}
+
+.billsplit-app-store-status {
+    margin: 0 0 7px;
+    color: #f2f4f8;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.billsplit-app-store-note {
+    margin: 0;
+    color: #aab3c0;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
 .billsplit-steps {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -567,6 +614,10 @@ body {
         font-size: clamp(44px, 9vw, 62px);
     }
 
+    .billsplit-app-store {
+        gap: 14px;
+    }
+
     .billsplit-steps {
         grid-template-columns: minmax(0, 1fr);
         gap: 10px;
@@ -602,6 +653,25 @@ body {
     .billsplit-receipt-card figcaption {
         padding-top: 7px;
         font-size: 11px;
+    }
+
+    .billsplit-app-store {
+        gap: 12px;
+        padding: 10px 12px 10px 10px;
+    }
+
+    .billsplit-app-store-qr {
+        flex-basis: 100px;
+        width: 100px;
+        padding: 6px;
+    }
+
+    .billsplit-app-store-status {
+        font-size: 14px;
+    }
+
+    .billsplit-app-store-note {
+        font-size: 12px;
     }
 }
 

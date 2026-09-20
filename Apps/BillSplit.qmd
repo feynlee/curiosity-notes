@@ -25,6 +25,16 @@ toc: false
 
 <a class="billsplit-contact-button" href="mailto:billsplit@flycricket.support">Contact support <span aria-hidden="true">↗</span></a>
 <p class="billsplit-support-note">Questions or feedback? <a href="mailto:billsplit@flycricket.support">billsplit@flycricket.support</a></p>
+
+<div class="billsplit-app-store">
+<a class="billsplit-app-store-qr" href="https://apps.apple.com/app/id6813985167" aria-label="Open BillSplit's App Store page">
+<img src="images/qr-code-billsplit.png" alt="QR code linking to BillSplit's App Store page">
+</a>
+<div class="billsplit-app-store-copy">
+<p class="billsplit-app-store-status">Submitted to Apple for review</p>
+<p class="billsplit-app-store-note">Scan to open BillSplit on the App Store after Apple approves and releases it.</p>
+</div>
+</div>
 </div>
 </section>
 
