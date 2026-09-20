@@ -329,7 +329,7 @@ body {
 }
 
 /* BillSplit product page */
-.billsplit-page {
+#quarto-content .billsplit-page {
     min-height: calc(100vh - 56px);
     padding: 44px 24px 64px;
     overflow: hidden;
@@ -577,7 +577,7 @@ body {
 }
 
 @media (max-width: 820px) {
-    .billsplit-page {
+    #quarto-content .billsplit-page {
         padding: 30px 20px 48px;
     }
 
@@ -629,7 +629,7 @@ body {
 }
 
 @media (max-width: 420px) {
-    .billsplit-page {
+    #quarto-content .billsplit-page {
         padding-right: 16px;
         padding-left: 16px;
     }
