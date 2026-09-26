@@ -1,0 +1,30 @@
+/* PassPhoto reuses the BillSplit product-page layout with the app's US-passport navy. */
+#quarto-content .passphoto-page {
+    background:
+        radial-gradient(ellipse at 17% 34%, rgba(122, 146, 218, 0.26), transparent 43%),
+        linear-gradient(145deg, #121833 0%, #080a14 70%);
+}
+
+.passphoto-page .billsplit-eyebrow span,
+.passphoto-page .billsplit-step-number {
+    color: #a9bcf0;
+}
+
+.passphoto-page .billsplit-copy h1 span {
+    color: #a9bcf0;
+}
+
+.passphoto-page .billsplit-contact-button {
+    background: #2c3f80;
+    box-shadow: 0 10px 30px rgba(31, 45, 90, 0.45);
+}
+
+.passphoto-page .billsplit-contact-button:hover,
+.passphoto-page .billsplit-contact-button:focus-visible {
+    background: #3a50a0;
+}
+
+.passphoto-page .billsplit-support-note a {
+    color: #c9d5f7;
+    text-decoration-color: rgba(201, 213, 247, 0.45);
+}

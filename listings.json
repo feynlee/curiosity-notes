@@ -11,20 +11,23 @@
     ]
   },
   {
-    "listing": "/books/books.html",
-    "items": []
-  },
-  {
-    "listing": "/projects.html",
+    "listing": "/index.html",
     "items": [
-      "/Projects/2023-09-04-PikaQ.html",
-      "/Projects/2023-07-16-Latent_Upscale.html",
-      "/Projects/2023-06-20-Long_Text_Pic.html",
-      "/Projects/2022-11-25-Code_Insertion.html",
-      "/Projects/2022-11-21-Nbdev_ignore.html",
-      "/Projects/2022-11-09-Whisper2Subtitles.html",
-      "/Projects/2022-10-01-DreamBooth.html",
-      "/Projects/2021-12-15-Learning_Blender.html"
+      "/posts/2023-11-27-How_to_use_TextKit2.html",
+      "/posts/2023-06-20-How_to_Release_Your_First_iOS_App.html",
+      "/posts/2022-12-23-Eclipse_on_pandora_and_orbital_physics.html",
+      "/posts/2022-11-24-tips_for_configuring_a_quarto_website.html",
+      "/posts/2022-07-02-Duck_Pass_Trail.html",
+      "/posts/2021-08-19-data-block-api-in-fastai.html",
+      "/posts/2020-11-26-what_is_temporature.html",
+      "/posts/2020-05-24-deriving_the_kelvin_wake_pattern.html",
+      "/posts/2019-09-22-how-to-write-the-setup.py-file-for-python-packages.html",
+      "/posts/2019-08-25-cosmological-perspective.html",
+      "/posts/2019-06-16-three-simple-steps-to-start-using-css-grid-template.html",
+      "/posts/2019-01-07-auto-generate-data-science-report-for-sharing.html",
+      "/posts/2017-01-20-how-i-solved-the-worlds-hardest-logic-puzzle.html",
+      "/posts/2016-05-02-notes-for-learning-d3-js.html",
+      "/posts/2014-11-22-black-hole-physics-in-interstellar.html"
     ]
   },
   {
@@ -45,24 +48,21 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/projects.html",
     "items": [
-      "/posts/2023-11-27-How_to_use_TextKit2.html",
-      "/posts/2023-06-20-How_to_Release_Your_First_iOS_App.html",
-      "/posts/2022-12-23-Eclipse_on_pandora_and_orbital_physics.html",
-      "/posts/2022-11-24-tips_for_configuring_a_quarto_website.html",
-      "/posts/2022-07-02-Duck_Pass_Trail.html",
-      "/posts/2021-08-19-data-block-api-in-fastai.html",
-      "/posts/2020-11-26-what_is_temporature.html",
-      "/posts/2020-05-24-deriving_the_kelvin_wake_pattern.html",
-      "/posts/2019-09-22-how-to-write-the-setup.py-file-for-python-packages.html",
-      "/posts/2019-08-25-cosmological-perspective.html",
-      "/posts/2019-06-16-three-simple-steps-to-start-using-css-grid-template.html",
-      "/posts/2019-01-07-auto-generate-data-science-report-for-sharing.html",
-      "/posts/2017-01-20-how-i-solved-the-worlds-hardest-logic-puzzle.html",
-      "/posts/2016-05-02-notes-for-learning-d3-js.html",
-      "/posts/2014-11-22-black-hole-physics-in-interstellar.html"
+      "/Projects/2023-09-04-PikaQ.html",
+      "/Projects/2023-07-16-Latent_Upscale.html",
+      "/Projects/2023-06-20-Long_Text_Pic.html",
+      "/Projects/2022-11-25-Code_Insertion.html",
+      "/Projects/2022-11-21-Nbdev_ignore.html",
+      "/Projects/2022-11-09-Whisper2Subtitles.html",
+      "/Projects/2022-10-01-DreamBooth.html",
+      "/Projects/2021-12-15-Learning_Blender.html"
     ]
+  },
+  {
+    "listing": "/books/books.html",
+    "items": []
   },
   {
     "listing": "/TIL.html",
