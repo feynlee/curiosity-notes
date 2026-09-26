@@ -13,7 +13,7 @@ toc: false
 <section class="billsplit-hero" aria-labelledby="passphoto-title">
 <div class="billsplit-gallery" aria-label="PassPhoto app preview">
 <figure class="billsplit-main-shot">
-<img src="images/PassPhoto-app-screenshot.png" alt="PassPhoto on iPhone showing a fictional passport portrait fitted to the head and eye guides, with two checks to review." fetchpriority="high">
+<img src="images/PassPhoto-app-screenshot.png" alt="PassPhoto on iPhone showing a fictional passport portrait fitted to the head and eye guides, with two things to fix." fetchpriority="high">
 </figure>
 <figure class="billsplit-receipt-card">
 <img src="images/PassPhoto-print-sheet.jpg" alt="A 4 by 6 inch print sheet rendered by PassPhoto with two copies of the same passport photo and cut marks." loading="lazy">
