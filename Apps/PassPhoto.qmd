@@ -1,0 +1,60 @@
+---
+pagetitle: PassPhoto — Passport, visa and ID photos
+page-layout: custom
+css:
+  - apps.css
+  - billsplit-layout.css
+  - passphoto-layout.css
+toc: false
+---
+
+<div class="billsplit-page passphoto-page">
+<div class="billsplit-shell">
+<section class="billsplit-hero" aria-labelledby="passphoto-title">
+<div class="billsplit-gallery" aria-label="PassPhoto app preview">
+<figure class="billsplit-main-shot">
+<img src="images/PassPhoto-app-screenshot.png" alt="PassPhoto on iPhone showing a fictional passport portrait fitted to the head and eye guides, with two checks to review." fetchpriority="high">
+</figure>
+<figure class="billsplit-receipt-card">
+<img src="images/PassPhoto-print-sheet.jpg" alt="A 4 by 6 inch print sheet rendered by PassPhoto with two copies of the same passport photo and cut marks." loading="lazy">
+<figcaption>Print it on a 4×6 sheet</figcaption>
+</figure>
+</div>
+
+<div class="billsplit-copy">
+<p class="billsplit-eyebrow">PASSPHOTO <span aria-hidden="true">·</span> FOR IPHONE</p>
+<h1 id="passphoto-title">Passport photos.<br><span>Right the first time.</span></h1>
+<p class="billsplit-description">Take or choose a photo, pick your document, and PassPhoto crops it to that document’s official rules for 46 countries and areas, plus the international ICAO standard. Faces are never retouched; the photo check runs on your iPhone or with Apple’s Private Cloud Compute. Optional support tips use Apple’s in-app purchase system.</p>
+
+<a class="billsplit-contact-button" href="mailto:passphoto@flycricket.support">Contact support <span aria-hidden="true">↗</span></a>
+<p class="billsplit-support-note">Questions or feedback? <a href="mailto:passphoto@flycricket.support">passphoto@flycricket.support</a></p>
+<p class="billsplit-support-note"><a href="https://feynlee.github.io/curiosity-notes/Apps/PassPhoto-privacy.html">Privacy policy</a></p>
+
+<div class="billsplit-app-store">
+<a class="billsplit-app-store-qr" href="https://apps.apple.com/app/id6816522205" aria-label="Open PassPhoto's App Store page">
+<img src="images/qr-code-passphoto.png" alt="QR code linking to PassPhoto's App Store page">
+</a>
+<div class="billsplit-app-store-copy">
+<p class="billsplit-app-store-status">Coming soon to the App Store</p>
+<p class="billsplit-app-store-note">Scan to open PassPhoto on the App Store after Apple approves and releases it.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="billsplit-steps" aria-label="How PassPhoto works">
+<article>
+<span class="billsplit-step-number">01</span>
+<div><h2>Pick your document</h2><p>Choose from 63 documents across 46 countries and areas, each with its official rules and source.</p></div>
+</article>
+<article>
+<span class="billsplit-step-number">02</span>
+<div><h2>Take or choose a photo</h2><p>The guided camera tells you when everything lines up.</p></div>
+</article>
+<article>
+<span class="billsplit-step-number">03</span>
+<div><h2>Check, save and print</h2><p>Review the photo against the document rules, then save it or make a 4×6 print sheet.</p></div>
+</article>
+</section>
+</div>
+</div>
