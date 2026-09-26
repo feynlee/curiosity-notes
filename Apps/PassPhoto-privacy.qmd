@@ -1,0 +1,45 @@
+---
+title: "PassPhoto Privacy Policy"
+pagetitle: "PassPhoto Privacy Policy - Curiosity Notes"
+toc: false
+---
+
+*Effective date: September 26, 2026*
+
+PassPhoto (秒证照 in Chinese) is an iPhone app by Ziyue Li for making passport, visa and ID photos. It does not require an account or registration. This policy explains what information is processed when you use the app.
+
+## Photos you take or choose
+
+You choose whether to take a photo with the camera or select one through Apple's photo picker. PassPhoto finds the face, measures it, crops the photo and, if needed, separates the person from the background on your device using Apple's Vision framework.
+
+When Apple Private Cloud Compute is available, PassPhoto sends the photo to Apple's Private Cloud Compute service to check its quality (for example lighting, expression, glasses and focus), and, if the face can't be found on the device, to locate the head. Apple states that Private Cloud Compute uses this information only to fulfill the request and does not retain it; Apple staff cannot access it. See [Apple's Private Cloud Compute privacy requirements](https://security.apple.com/documentation/private-cloud-compute/corerequirements/).
+
+If Private Cloud Compute is unavailable, PassPhoto uses Apple's on-device language model instead, or asks you to check those items yourself. The developer does not operate a server that receives your photos or any information about them.
+
+## Information stored on your device
+
+Photos you keep in PassPhoto (the finished photo and the original, so you can adjust it later) and their names, document types and dates are stored in the app's local storage on your iPhone. The app also stores your settings locally: your default and recent documents, save and print preferences, your cumulative optional tip total and your celebration choice. Deleting a photo in the app removes it from the app's storage; deleting the app removes all of it.
+
+## Saving to Photos
+
+If you choose to save to Photos, PassPhoto asks for permission to add photos to your library. It can only add photos; it cannot read your photo library. Photo access for choosing a photo is limited to the image you select through Apple's photo picker. You can manage camera and photo permissions in iOS Settings.
+
+## Requirement updates
+
+PassPhoto periodically downloads the latest photo requirements (public data files) from GitHub and the jsDelivr content delivery network. These requests contain no personal information or photos; like any web request, they reveal your device's IP address to those services, which handle it under their own privacy policies.
+
+## Optional tips
+
+If you choose to send an optional tip, the purchase is handled by Apple's App Store payment system. PassPhoto does not receive your payment card or billing information. Apple handles purchase information under Apple's own terms and privacy policy.
+
+## Sharing, advertising, and analytics
+
+PassPhoto does not use advertising or cross-app tracking and does not operate its own analytics or account service. The app does not transmit your photos, saved photos or settings to the developer.
+
+## Children
+
+PassPhoto is not designed for children under 13, and the developer does not knowingly collect personal information from children. Parents and guardians can use PassPhoto to make photos of their children; those photos are processed as described above and are not sent to the developer.
+
+## Changes and contact
+
+This policy may be updated as the app changes. For questions about privacy, email [passphoto@flycricket.support](mailto:passphoto@flycricket.support) or use the [PassPhoto support page](https://feynlee.github.io/curiosity-notes/Apps/PassPhoto.html).
