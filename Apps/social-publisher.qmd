@@ -1,0 +1,23 @@
+---
+title: "social-publisher"
+pagetitle: "social-publisher - Curiosity Notes"
+toc: false
+---
+
+social-publisher is a small personal tool by Ziyue Li. It uploads the explainer videos I make to my own YouTube channel (and to a few other platforms) from my Mac, with Claude as the assistant that prepares each post.
+
+It is not a public service. It has no accounts, no sign-up and no other users. It runs only on my own computer.
+
+## What it does
+
+- It uploads a video file from my Mac to my own YouTube channel, with the title, description and tags that I approve.
+- It reads my channel name, so I can check that I am signed in to the correct channel.
+- I review and approve every post before it is published. Nothing is posted automatically.
+
+## Privacy
+
+See the [social-publisher privacy policy](social-publisher-privacy.qmd).
+
+## Contact
+
+Email: [liziyue241@gmail.com](mailto:liziyue241@gmail.com)
